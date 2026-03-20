@@ -1,0 +1,1 @@
+Implement a Dafny function that recursively computes a value based on an integer input, while the main method verifies its correctness through an iterative approach with loop invariants and assertions.

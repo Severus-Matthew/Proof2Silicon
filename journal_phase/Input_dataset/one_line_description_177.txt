@@ -1,0 +1,1 @@
+Implement a method that determines if an array contains only one distinct element, returning true for empty arrays and ensuring at least two differing elements if false.

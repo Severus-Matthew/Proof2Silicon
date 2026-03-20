@@ -1,0 +1,1 @@
+Implement a Dafny program that includes a linear search algorithm, array manipulation functions, multi-dimensional array handling, and validation of character types within a specified range.

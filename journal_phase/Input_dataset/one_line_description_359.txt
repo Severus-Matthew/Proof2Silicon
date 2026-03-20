@@ -1,0 +1,1 @@
+Implement a recursive function `Sum` to calculate the sum of natural numbers up to `n`, and an iterative method `ComputeSum` that verifies this result using an invariant to ensure correctness.

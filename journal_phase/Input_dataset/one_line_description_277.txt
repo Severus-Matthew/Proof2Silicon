@@ -1,0 +1,1 @@
+Implement a `join` method in Dafny that concatenates two integer arrays while ensuring element preservation, correct length, and validating properties through assertions, along with a `Check` method for testing the output.

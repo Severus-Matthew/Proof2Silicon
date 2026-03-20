@@ -1,0 +1,1 @@
+Implement a recursive function in Dafny to compute the sum of natural numbers in an array up to a given index, and a method to calculate the total sum of the array while ensuring correctness through preconditions and postconditions.

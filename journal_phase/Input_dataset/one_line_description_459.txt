@@ -1,0 +1,1 @@
+Implement a Dafny method `mfirstCero` that returns the index of the first zero in an integer array while ensuring all prior elements are non-zero and the zero is found at the returned index, using a while loop with appropriate invariants for correctness.

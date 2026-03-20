@@ -1,0 +1,1 @@
+Implement a recursive function `expo` in Dafny to compute \\(x^n\\) and prove by induction that the difference \\(2^{3n} - 3^n\\) is divisible by 5 for non-negative integers \\(n\\).

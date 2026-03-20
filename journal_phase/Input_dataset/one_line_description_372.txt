@@ -1,0 +1,1 @@
+Implement a functional list data structure in Dafny with utilities for length, membership, indexing, and array conversion, while demonstrating its usage in a `Main` method.

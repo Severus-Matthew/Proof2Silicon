@@ -1,0 +1,1 @@
+Implement and verify properties of natural numbers and list operations in Dafny, including addition, size, concatenation, and their associated algebraic properties.

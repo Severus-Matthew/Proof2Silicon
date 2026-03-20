@@ -1,0 +1,1 @@
+Implement and verify a factorial calculation using both recursive and accumulator methods in Dafny, alongside a linked list data structure with a non-negative length computation, ensuring correctness through lemmas.

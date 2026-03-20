@@ -1,0 +1,1 @@
+Create a Dafny method that verifies integer array manipulations and object reference behaviors in a custom class while ensuring state consistency through assertions and expect statements.

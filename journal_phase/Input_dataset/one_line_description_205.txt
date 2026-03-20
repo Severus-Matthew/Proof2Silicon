@@ -1,0 +1,1 @@
+Implement a Dafny linear search algorithm that verifies the presence of an integer \\( x \\) in an array \\( a \\) by returning its index \\( r \\) with appropriate preconditions, postconditions, and a loop invariant.

@@ -1,0 +1,1 @@
+Implement a Dafny method `Triple` that returns three times an integer input `x`, ensuring correctness with the postcondition `ensures r==3*x`.

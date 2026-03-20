@@ -1,0 +1,1 @@
+Implement recursive and iterative algorithms in Dafny to compute the natural power of a real number (x^n) with time complexity analyses and formal verification for correctness.

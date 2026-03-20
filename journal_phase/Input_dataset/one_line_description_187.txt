@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the area of a rectangle, enforcing positive integer constraints for length and width, and validating the result against the expected product.

@@ -1,0 +1,1 @@
+Implement a Dafny method `FindEvenNumbers` that extracts and returns a sequence of all even integers from a given array, ensuring the output contains only even numbers present in the input and maintains specified invariants during execution.

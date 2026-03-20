@@ -1,0 +1,1 @@
+Implement a `PrimeMap` class in Dafny that manages a database of prime numbers, allowing for insertion and querying of prime status with verification properties and testing functionality.

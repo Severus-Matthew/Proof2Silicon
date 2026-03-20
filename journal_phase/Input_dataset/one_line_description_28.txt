@@ -1,0 +1,1 @@
+Implement a Dafny function to compute the Fibonacci number for a natural number using an invariant-maintaining iterative method and validate the implementation with assertions.

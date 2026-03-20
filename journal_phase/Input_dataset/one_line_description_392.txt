@@ -1,0 +1,1 @@
+Develop Dafny code to analyze string prefixes and substrings, including predicates, Boolean methods for detection, equivalence lemmas, and a method to find the maximum length of a common substring with correctness guarantees.

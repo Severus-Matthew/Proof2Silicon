@@ -1,0 +1,1 @@
+Implement a method in Dafny that swaps the first and last elements of a non-empty integer array while ensuring preconditions and postconditions for formal verification.

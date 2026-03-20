@@ -1,0 +1,1 @@
+Implement Dafny predicates and methods to verify set and map properties, ensuring they only contain the integer 5 while validating a custom datatype's conditions.

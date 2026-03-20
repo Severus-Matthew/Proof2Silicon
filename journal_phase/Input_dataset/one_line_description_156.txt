@@ -1,0 +1,1 @@
+Implement a Dafny method to find the maximum value in an integer array, ensuring correctness through verification functions that check for value existence, upper bounds, and maximum validation.

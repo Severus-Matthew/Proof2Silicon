@@ -1,0 +1,1 @@
+Implement a `Filter` method in Dafny that returns a set of characters from a given sequence that are present in a specified set, and ensure its correctness through comprehensive test cases.

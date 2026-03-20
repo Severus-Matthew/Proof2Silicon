@@ -1,0 +1,1 @@
+Implement a Dafny code that formalizes arithmetic and boolean expressions, along with a stack machine for executing and optimizing these expressions, while ensuring correctness through verification lemmas.

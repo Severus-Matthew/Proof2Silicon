@@ -1,0 +1,1 @@
+Implement a "lol sort" algorithm in Dafny that sorts an array of integers using pairwise swaps, while verifying the correctness of permutations and sorted order through predicates and methods.

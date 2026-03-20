@@ -1,0 +1,1 @@
+Implement a Dafny method `FindSmallest` that returns the smallest integer from a non-empty array while ensuring correctness through preconditions, postconditions, and loop invariants.

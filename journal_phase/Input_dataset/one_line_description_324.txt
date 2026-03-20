@@ -1,0 +1,1 @@
+Implement a method in Dafny that converts all uppercase characters in a string to lowercase while maintaining the original string length and ensuring character transformations are validated through invariants and postconditions.

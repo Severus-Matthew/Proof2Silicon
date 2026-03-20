@@ -1,0 +1,1 @@
+Implement a predicate `IsOdd` and a method `FindFirstOdd` that locates the first odd integer in an array, returning a boolean and its index while ensuring correctness through appropriate preconditions, postconditions, and invariants.

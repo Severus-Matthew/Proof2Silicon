@@ -1,0 +1,1 @@
+Implement a Dafny method `Two` that takes an integer `x` and returns `y` such that `y = x + 1`, ensuring the correctness of this relationship through assertions.

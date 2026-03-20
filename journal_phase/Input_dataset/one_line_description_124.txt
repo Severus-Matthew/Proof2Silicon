@@ -1,0 +1,1 @@
+Implement various algorithms in Dafny for computing Fibonacci numbers, summing list elements, finding maximum values in arrays, and summing natural numbers, all with both recursive and iterative methods, including verification conditions to ensure correctness.

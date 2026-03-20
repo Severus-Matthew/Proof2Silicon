@@ -1,0 +1,1 @@
+Implement a Dafny function to count the number of digit characters (0-9) in a string while ensuring the count is non-negative and adheres to formal specifications.

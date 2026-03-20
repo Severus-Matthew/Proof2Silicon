@@ -1,0 +1,1 @@
+Implement a Dafny datatype for arithmetic expressions with evaluation and optimization functions, ensuring correctness through assertions.

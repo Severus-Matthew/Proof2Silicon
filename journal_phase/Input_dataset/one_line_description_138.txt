@@ -1,0 +1,1 @@
+Implement a Dafny method `Carre` that computes the square of a natural number using an iterative approach based on the sum of odd integers, ensuring correctness through loop invariants.

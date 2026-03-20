@@ -1,0 +1,1 @@
+Implement a Dafny method for verifying properties of two integer arrays and a class for a secret-guessing game that manages attempts and enforces guessing constraints.

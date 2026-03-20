@@ -1,0 +1,1 @@
+Implement a method `CountArrays` in Dafny that counts the number of integer arrays in a given sequence and verifies that the count is non-negative and matches the length of the input sequence.

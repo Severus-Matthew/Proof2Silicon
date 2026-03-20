@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the sum of the first `n` elements from an integer array, ensuring each element does not exceed a specified maximum value and that the sum is within defined limits.

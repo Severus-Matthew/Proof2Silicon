@@ -1,0 +1,1 @@
+Implement a Dafny program with methods for basic arithmetic operations, including maximum calculation, recursive addition, and multiplication, along with verification of mathematical properties and relationships through preconditions and ensures clauses.

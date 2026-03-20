@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the difference between the maximum and minimum values of a non-empty integer array, ensuring correctness through loop invariants and auxiliary functions.

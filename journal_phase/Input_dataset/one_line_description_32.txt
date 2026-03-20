@@ -1,0 +1,1 @@
+Implement a Dafny linear search algorithm that returns the index of a specified integer in an array, ensuring correctness through verification of return values and loop invariants.

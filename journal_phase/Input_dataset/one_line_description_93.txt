@@ -1,0 +1,1 @@
+Implement a Dafny method `Interleave` that takes three equal-length integer sequences and returns a new sequence that interleaves their elements while ensuring the output length is three times the input length.

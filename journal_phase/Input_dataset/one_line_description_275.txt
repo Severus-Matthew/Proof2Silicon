@@ -1,0 +1,1 @@
+Implement a Dafny module named `DivMod` that verifies integer division and modulus functions along with their mathematical properties and relationships through recursive definitions and lemmas.

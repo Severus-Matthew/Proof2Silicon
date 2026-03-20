@@ -1,0 +1,1 @@
+Implement a Dafny function to calculate the sum of a subsequence from an integer array and a method to find the maximum sum of any contiguous subarray using loop invariants for correctness verification.

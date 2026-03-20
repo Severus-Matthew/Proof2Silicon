@@ -1,0 +1,1 @@
+Implement a method in Dafny to find all starting indices of a substring within a larger string using a hash-based matching approach, ensuring correctness through assertions, invariants, and supporting lemmas.

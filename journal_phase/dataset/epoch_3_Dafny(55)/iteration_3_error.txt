@@ -1,0 +1,104 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(13,15): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(13,20): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(14,22): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(14,37): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(15,25): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(15,46): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(18,31): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(18,72): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(19,29): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(19,46): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(20,27): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(20,35): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(23,19): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(23,26): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(24,19): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(24,26): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(25,20): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(25,57): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(28,28): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(28,32): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(29,30): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(29,34): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(30,37): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(30,79): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(33,41): Error: a mutable field may not have an initializer (ID: p_no_init_for_var_field)
+Dafny does not allow field declarations to have initializers. They are initialized in constructors.
+Local variable declarations (which also begin with `var`) may have initializers.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(42,5): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(69,39): Error: invalid ParensExpression (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(125,47): Error: rbrace expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+15 parse errors detected in RL_No_feedback.dfy

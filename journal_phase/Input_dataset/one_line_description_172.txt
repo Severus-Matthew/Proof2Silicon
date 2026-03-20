@@ -1,0 +1,1 @@
+Implement a Dafny method `FindFirstOccurrence` that efficiently locates the first index of a target integer in a sorted array, returning -1 if not found, while maintaining array integrity through specified preconditions and postconditions.

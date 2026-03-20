@@ -1,0 +1,1 @@
+Implement a method to find the maximum sum of a contiguous subarray in a non-empty integer array, ensuring correctness through invariants and verification predicates.

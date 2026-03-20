@@ -1,0 +1,1 @@
+Implement a method in Dafny that merges two non-empty integer arrays into a new array, ensuring all elements are concatenated in sequence and verified through invariants.

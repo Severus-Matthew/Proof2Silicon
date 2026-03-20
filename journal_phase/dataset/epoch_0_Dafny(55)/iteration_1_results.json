@@ -1,0 +1,32 @@
+{
+  "reward": -1.448,
+  "reward_breakdown": {
+    "total_reward": -1.448,
+    "outcome_reward": 0.0,
+    "progress_reward": 0.0,
+    "structure_reward": 0.6,
+    "efficiency_reward": -2.048,
+    "stability_reward": -0.0
+  },
+  "error_count": 0,
+  "error_counts_by_type": {
+    "syntax": 0,
+    "type": 0,
+    "missing_invariant": 0,
+    "postcondition": 0,
+    "timeout": 0
+  },
+  "structure_features": {
+    "lemma_count": 0,
+    "recursion_count": 0,
+    "invariant_count": 2,
+    "ghost_var_count": 0
+  },
+  "prompt_token_increase": 2048,
+  "kl_value": 0.0,
+  "timestamp": "2026-03-20 07:58:42",
+  "folder": "Dafny(55)",
+  "iteration": 1,
+  "epoch": 0,
+  "parse_errors": -3
+}

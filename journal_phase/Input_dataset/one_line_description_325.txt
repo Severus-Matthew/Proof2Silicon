@@ -1,0 +1,1 @@
+Implement a Dafny method `FilterOddNumbers` that filters and returns all odd integers from an input array while ensuring the output contains only odd numbers present in the original array.

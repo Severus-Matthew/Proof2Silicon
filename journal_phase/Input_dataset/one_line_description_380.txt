@@ -1,0 +1,1 @@
+Implement a Dafny method that identifies and returns a sequence of unique integers present in both of two input arrays, ensuring distinctness and correctness through the use of invariants.

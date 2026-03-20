@@ -1,0 +1,1 @@
+Implement a method `IsNonPrime` in Dafny that checks if an integer `n` (≥ 2) is non-prime by identifying divisors from 2 to `n/2` and includes formal preconditions and postconditions for correctness.

@@ -1,0 +1,1 @@
+Implement a method in Dafny that modifies an integer array by replacing each negative element with its absolute value, while ensuring correctness through assertions in a testing method.

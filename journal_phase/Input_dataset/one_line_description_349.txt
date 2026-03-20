@@ -1,0 +1,1 @@
+Implement a recursive function to sum the first `len` elements of an integer array and an iterative method to calculate the total sum, ensuring correctness with preconditions and invariants in Dafny.

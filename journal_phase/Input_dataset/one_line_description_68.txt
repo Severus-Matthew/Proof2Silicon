@@ -1,0 +1,1 @@
+Implement a Dafny program that counts even integers in a sequence and computes cumulative counts in an output array using recursive and auxiliary methods while maintaining specified invariants and preconditions.

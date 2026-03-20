@@ -1,0 +1,1 @@
+Implement a Dafny method to extract and return a sequence of odd numbers from an integer array, ensuring all output numbers are odd and sourced from the input, while including all odd numbers from the input and maintaining loop invariants for correctness.

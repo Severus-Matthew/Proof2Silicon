@@ -1,0 +1,1 @@
+Implement a Dafny method `min` that finds the minimum value in the first `n` elements of an integer array, ensuring valid input through preconditions and maintaining correctness with postconditions and loop invariants.

@@ -1,0 +1,1 @@
+Implement a Dafny program that counts the occurrences of the minimum value in an integer array using functions to find the minimum and count its occurrences efficiently in linear time.

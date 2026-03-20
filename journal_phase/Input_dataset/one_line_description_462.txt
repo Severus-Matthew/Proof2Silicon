@@ -1,0 +1,1 @@
+Implement a method `KthElement` in Dafny that safely retrieves the k-th element from an integer array, ensuring k is within valid bounds and returning the element at index k-1.

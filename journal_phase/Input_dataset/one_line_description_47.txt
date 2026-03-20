@@ -1,0 +1,1 @@
+Implement a method `MaxDifference` in Dafny that computes the maximum difference between elements in an integer array with at least two elements, while maintaining invariants for minimum and maximum values during iteration.

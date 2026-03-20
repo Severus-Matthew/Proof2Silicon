@@ -1,0 +1,8 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(21,7): Error: a ghost field is allowed only in specification contexts (ID: r_only_in_specification)
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(21,48): Error: a ghost field is allowed only in specification contexts (ID: r_only_in_specification)
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(31,19): Error: ghost variables such as length are allowed only in specification contexts. length was inferred to be ghost based on its declaration or initialization. (ID: r_ghost_var_only_in_specifications)
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(45,17): Error: assignment to array element is not allowed in this context, because the statement is in a ghost context; e.g., it may be guarded by a specification-only expression (ID: r_assignment_forbidden_in_context)
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(52,14): Error: assignment to non-ghost variable is not allowed in this context, because the statement is in a ghost context; e.g., it may be guarded by a specification-only expression (ID: r_assignment_forbidden_in_context)
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(53,12): Error: assignment to non-ghost variable is not allowed in this context, because the statement is in a ghost context; e.g., it may be guarded by a specification-only expression (ID: r_assignment_forbidden_in_context)
+6 resolution/type errors detected in RL_No_feedback.dfy

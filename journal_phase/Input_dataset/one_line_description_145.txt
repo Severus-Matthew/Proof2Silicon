@@ -1,0 +1,1 @@
+Develop a Dafny-based semantic evaluator for a simple programming language that ensures safety properties, such as preventing arithmetic overflow, while verifying execution correctness through abstract interpretation.

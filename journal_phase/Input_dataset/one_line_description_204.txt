@@ -1,0 +1,1 @@
+Implement two Dafny methods, `plus_one` to return `x + 1` for a non-negative integer `x`, and `add_by_one` to compute `x + y` by incrementally adding one, ensuring correctness through assertions and invariants.

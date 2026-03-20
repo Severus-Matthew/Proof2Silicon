@@ -1,0 +1,10 @@
+{"time":"2026-03-20T07:48:56.361658177Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260320_074856-sh7wtds5/logs/debug-core.log"}
+{"time":"2026-03-20T07:48:56.612237239Z","level":"INFO","msg":"created new stream","id":"sh7wtds5"}
+{"time":"2026-03-20T07:48:56.612384804Z","level":"INFO","msg":"stream: started","id":"sh7wtds5"}
+{"time":"2026-03-20T07:48:56.612623822Z","level":"INFO","msg":"handler: started","stream_id":"sh7wtds5"}
+{"time":"2026-03-20T07:48:56.612745121Z","level":"INFO","msg":"sender: started","stream_id":"sh7wtds5"}
+{"time":"2026-03-20T07:48:56.612869488Z","level":"INFO","msg":"writer: Do: started","stream_id":"sh7wtds5"}
+{"time":"2026-03-20T07:48:57.186400675Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-20T07:49:11.118006992Z","level":"ERROR","msg":"dispatch: no responder found: 127.0.0.1:43474"}
+{"time":"2026-03-20T07:49:11.767193627Z","level":"ERROR","msg":"dispatch: no responder found: 127.0.0.1:43474"}
+{"time":"2026-03-20T12:23:12.631089251Z","level":"INFO","msg":"api: retrying HTTP error","status":502,"url":"https://api.wandb.ai/files/drprofmjha-university-of-illinois-urbana-champaign/dafny-rl_full/sh7wtds5/file_stream","body":"\n<html><head>\n<meta http-equiv=\"content-type\" content=\"text/html;charset=utf-8\">\n<title>502 Server Error</title>\n</head>\n<body text=#000000 bgcolor=#ffffff>\n<h1>Error: Server Error</h1>\n<h2>The server encountered a temporary error and could not complete your request.<p>Please try again in 30 seconds.</h2>\n<h2></h2>\n</body></html>\n"}

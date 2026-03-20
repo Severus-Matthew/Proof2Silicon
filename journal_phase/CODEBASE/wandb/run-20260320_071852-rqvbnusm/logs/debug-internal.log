@@ -1,0 +1,6 @@
+{"time":"2026-03-20T07:18:52.863106776Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260320_071852-rqvbnusm/logs/debug-core.log"}
+{"time":"2026-03-20T07:18:52.984406718Z","level":"INFO","msg":"created new stream","id":"rqvbnusm"}
+{"time":"2026-03-20T07:18:52.984486164Z","level":"INFO","msg":"stream: started","id":"rqvbnusm"}
+{"time":"2026-03-20T07:18:52.984660738Z","level":"INFO","msg":"writer: Do: started","stream_id":"rqvbnusm"}
+{"time":"2026-03-20T07:18:52.984751611Z","level":"INFO","msg":"sender: started","stream_id":"rqvbnusm"}
+{"time":"2026-03-20T07:18:52.984872616Z","level":"INFO","msg":"handler: started","stream_id":"rqvbnusm"}

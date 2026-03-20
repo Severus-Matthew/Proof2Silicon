@@ -1,0 +1,1 @@
+Create Dafny methods for computing absolute values, finding maximum integers, checking palindromes, indexing in arrays, and removing duplicates from sorted sequences, while incorporating preconditions, postconditions, and invariants for formal verification.

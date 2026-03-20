@@ -1,0 +1,1 @@
+Implement a generic dynamic array-like data structure in Dafny called `List`, with methods for initialization, element addition, iteration, and extraction based on conditions, ensuring correctness through predicates and invariants.

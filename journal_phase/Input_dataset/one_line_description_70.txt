@@ -1,0 +1,1 @@
+Create a Dafny module for a Binary Decision Diagram (BDD) that includes classes for BDD nodes and the BDD itself, ensuring structural integrity and providing functionality for evaluating boolean sequences.

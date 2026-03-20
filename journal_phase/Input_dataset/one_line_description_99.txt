@@ -1,0 +1,1 @@
+Implement a Dafny code that defines a ghost function `f(n)` for recursive calculations on natural numbers, and create an iterative `problem5` method to compute `f(n)` while ensuring correctness through invariants and verification goals.

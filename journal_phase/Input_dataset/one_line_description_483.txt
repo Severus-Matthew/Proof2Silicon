@@ -1,0 +1,1 @@
+Implement a Dafny function to calculate the sum of the first `n` natural numbers using both a mathematical formula and an iterative method, ensuring their results match through invariants and postconditions.

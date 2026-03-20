@@ -1,0 +1,1 @@
+Implement a `CheckSumCalculator` class in Dafny that calculates and verifies the checksum of a string while ensuring data integrity through ghost functions and predicates, with a `Main` method to demonstrate its usage.

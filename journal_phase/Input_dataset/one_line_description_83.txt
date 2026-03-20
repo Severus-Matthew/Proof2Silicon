@@ -1,0 +1,1 @@
+Implement a method in Dafny that computes the nth octagonal number using the formula `n * (3 * n - 2)` with appropriate preconditions and postconditions.

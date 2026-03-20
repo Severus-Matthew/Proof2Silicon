@@ -1,0 +1,1 @@
+Implement a function in Dafny that finds the index of the first occurrence of three consecutive equal integers in an array, returning the array length if none exist, and validate it with assertions.

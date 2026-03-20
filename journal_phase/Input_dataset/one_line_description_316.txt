@@ -1,0 +1,1 @@
+Implement a lemma in Dafny to prove the transitive property of subset relationships among three sets A, B, and C, ensuring that if A is a subset of B and B is a subset of C, then A is a subset of C.

@@ -1,0 +1,1 @@
+Implement a method that calculates the difference between the first even and first odd integers in an array, ensuring the presence of both types and using predicates for validation.

@@ -1,0 +1,581 @@
+2026-03-18 20:30:07.380486: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-03-18 20:30:07.398438: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1773865807.418361 3382735 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1773865807.424629 3382735 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1773865807.440813 3382735 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1773865807.440842 3382735 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1773865807.440844 3382735 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1773865807.440846 3382735 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2026-03-18 20:30:07.445773: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2026-03-18 20:30:11,275 - INFO - Starting execution...
+2026-03-18 20:30:11,275 - INFO - Processing folders in /mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one
+wandb: Currently logged in as: drprofmjha (drprofmjha-university-of-illinois-urbana-champaign) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: Tracking run with wandb version 0.19.10
+wandb: Run data is saved locally in /mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260318_203011-0jivafqn
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run dafny_rl_full_job
+wandb: ⭐️ View project at https://wandb.ai/drprofmjha-university-of-illinois-urbana-champaign/dafny-rl_new2
+wandb: 🚀 View run at https://wandb.ai/drprofmjha-university-of-illinois-urbana-champaign/dafny-rl_new2/runs/0jivafqn
+2026-03-18 20:30:21.079726: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1773865821.099403 3382779 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1773865821.105449 3382779 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1773865821.121439 3382779 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1773865821.121467 3382779 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1773865821.121470 3382779 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1773865821.121472 3382779 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+Loading tokenizer...
+Configuring quantization and offloading settings...
+Loading base model with offloading configuration...
+`torch_dtype` is deprecated! Use `dtype` instead!
+Preparing model for kbit training...
+Configuring LoRA...
+Applying LoRA configuration...
+Model successfully initialized with offloading
+Device map: {'': 0}
+Offload folder: /mnt/shared/gpfs/home/manvij2/UIUC_PROJ_2/model_offload
+2026-03-18 20:30:27,535 - INFO - Processing subfolder: /mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)
+2026-03-18 20:30:27,535 - INFO - Prompt preview for Dafny(55): The provided Dafny code defines a method `ToArray` that converts a sequence `xs` of type `T` into an array `a`. The method ensures that the resulting array is a fresh allocation, matches the length of...
+2026-03-18 20:30:27,536 - INFO - Starting training for Dafny(55)
+2026-03-18 20:30:27,536 - INFO - Starting/Resuming SLM training with sequence-level policy gradient...
+2026-03-18 20:30:27,560 - INFO - Created checkpoint directory at: /mnt/shared/gpfs/home/manvij2/checkpoints/run_CHK
+2026-03-18 20:30:27,560 - INFO - 
+Starting Epoch 1/5
+2026-03-18 20:30:27,560 - INFO - Processing batch 1/1
+2026-03-18 20:30:41,617 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+I'll provide a Dafny implementation that follows your requirements. The key challenge is managing the `Arrayagh` array with the specified constraints about changes to order and content.
+
+```dafny
+method ArrayaghOperations(sequenceолос: array<int>) returns (Arrayagh: array<int>)
+  requires sequenceолос != null
+  ensures Arrayagh != null
+  ensures Arrayagh.Length == sequenceолос.Length
+  ensures forall i :: 0 <= i < Arrayagh.Length ==> Arrayagh[i] == sequenceолос[i]
+  ensures old(Arrayagh) == null || 
+          (Arrayagh == old(Arrayagh) || 
+           (forall i :: 0 <= i < Arrayagh.Length ==> Arrayagh[i] == old(Arrayagh)[i]) ||
+           (exists perm :: (forall i :: 0 <= i < Arrayagh.Length ==> 
+              exists j :: 0 <= j < Arrayagh.Length && Arrayagh[i] == old(Arrayagh)[j])))
+{
+  // Create Arrayagh from sequenceолос
+  Arrayagh := new int[sequenceолос.Length];
+  
+  // Copy elements from sequenceолос to Arrayagh
+  var index := 0;
+  while index < sequenceолос.Length
+    invariant 0 <= index <= sequenceолос.Length
+    invariant forall i :: 0 <= i < index ==> Arrayagh[i] == sequenceолос[i]
+    invariant Arrayagh.Length == sequenceолос.Length
+  {
+    Arrayagh[index] := sequenceолос[index];
+    index := index + 1;
+  }
+  
+  // Main logic with the constraint about changes
+  if Arrayagh.Length > 0 {
+    // Example operation that maintains the constraint
+    // Option 1: No change at all
+    // Arrayagh := Arrayagh; // This maintains both order and content
+    
+    // Option 2: Change that maintains order but might change content
+    // We'll demonstrate with a conditional modification
+    var tempArray := new int[Arrayagh.Length];
+    var i := 0;
+    while i < Arrayagh.Length
+      invariant 0 <= i <= Arrayagh.Length
+      invariant tempArray.Length == Arrayagh.Length
+      invariant forall j :: 0 <= j < i ==> tempArray[j] == Arrayagh[j] // Maintains order
+    {
+      tempArray[i] := Arrayagh[i];
+      i := i + 1;
+    }
+    
+    // Now we have tempArray which is identical to Arrayagh (maintains both order and content)
+    // This satisfies: order hasn't changed AND content hasn't been altered
+    
+    // For demonstration, let's show an alternative path that changes order but maintains content
+    if Arrayagh.Length > 1 {
+      // Create a reversed version (changes order, maintains content)
+      var reversedArray := new int[Arrayagh.Length];
+      var j := 0;
+      while j < Arrayagh.Length
+        invariant 0 <= j <= Arrayagh.Length
+        invariant reversedArray.Length == Arrayagh.Length
+        invariant forall k :: 0 <= k < j ==> 
+          reversedArray[k] == Arrayagh[Arrayagh.Length - 1 - k]
+      {
+        reversedArray[j] := Arrayagh[Arrayagh.Length - 1 - j];
+        j := j + 1;
+      }
+      
+      // This reversed array maintains content but changes order
+      // It satisfies: content hasn't been altered (but order has changed)
+      
+      // We could assign either array back to Arrayagh
+      // For this example, we'll keep the original
+      Arrayagh := tempArray;
+    }
+  }
+  
+  // Post-condition verification
+  assert Arrayagh != null;
+  assert Arrayagh.Length == sequenceолос.Length;
+  assert forall i :: 0 <= i < Arrayagh.Length ==> Arrayagh[i] == sequenceолос[i];
+}
+
+// Helper method to demonstrate the constraint
+method ModifyArrayagh(Arrayagh: array<int>) returns (modifiedArray: array<int>)
+  requires Arrayagh != null
+  ensures modifiedArray != null
+  ensures modifiedArray.Length == Arrayagh.Length
+  // The key constraint: either order unchanged OR content unchanged
+  ensures (forall i :: 0 <= i < modifiedArray.Length ==> 
+            modifiedArray[i] == Arrayagh[i]) ||  // Order and content unchanged
+          (exists perm :: (forall i :: 0 <= i < modifiedArray.Length ==> 
+            exists j :: 0 <= j < modifiedArray.Length && 
+            modifiedArray[i] == Arrayagh[j]))  // Content unchanged (permutation)
+{
+  modifiedArray := new int[Arrayagh.Length];
+  
+  // Copy Arrayagh to modifiedArray (maintains both order and content)
+  var i := 0;
+  while i < Arrayagh.Length
+    invariant 0 <= i <= Arrayagh.Length
+    invariant modifiedArray.Length == Arrayagh.Length
+    invariant forall j :: 0 <= j < i ==> modifiedArray[j] == Arrayagh[j]
+  {
+    modifiedArray[i] := Arrayagh[i];
+    i := i + 1;
+  }
+  
+  // The post-condition is satisfied because:
+  // forall i :: 0 <= i < modifiedArray.Length ==> modifiedArray[i] == Arrayagh[i]
+  // This means both order AND content are unchanged
+}
+
+// Alternative method that changes order but maintains content
+method PermuteArrayagh(Arrayagh: array<int>) returns (permutedArray: array<int>)
+  requires Arrayagh != null
+  requires Arrayagh.Length > 0
+  ensures permutedArray != null
+  ensures permutedArray.Length == Arrayagh.Length
+  // Content unchanged (but order may change)
+  ensures forall x :: x in Arrayagh[..] <==> x in permutedArray[..]
+  ensures exists perm :: (forall i :: 0 <= i < permutedArray.Length ==> 
+    exists j :: 0 <= j < permutedArray.Length && permutedArray[i] == Arrayagh[j])
+{
+  permutedArray := new int[Arrayagh.Length];
+  
+  // Simple permutation: rotate by one position
+  var i := 0;
+  while i < Arrayagh.Length
+    invariant 0 <= i <= Arrayagh.Length
+    invariant permutedArray.Length == Arrayagh.Length
+    invariant forall k :: 0 <= k < i ==> 
+      permutedArray[k] == Arrayagh[(k + 1) % Arrayagh.Length]
+  {
+    permutedArray[i] := Arrayagh[(i + 1) % Arrayagh.Length];
+    i := i + 1;
+  }
+  
+  // Verify the permutation property
+  ghost var perm;
+  // The permutation exists: j = (i + 1) % Arrayagh.Length
+  assert forall i :: 0 <= i < permutedArray.Length ==> 
+    exists j :: 0 <= j < permutedArray.Length && permutedArray[i] == Arrayagh[j];
+}
+```
+
+This implementation includes:
+
+1. **Array creation and copying** from `sequenceолос` to `Arrayagh`
+2. **Reference assignments** with proper tracking
+3. **Existence assertions** for permutation properties
+4. **Length assertions** to ensure array size consistency
+5. **The key constraint**: When `Arrayagh` changes, either:
+   - Order hasn't changed (elements in same positions), OR
+   - Content hasn't been altered (same multiset of elements)
+
+The code demonstrates:
+- Creating `Arrayagh` from `sequenceолос`
+- Operations that maintain the constraint
+- Helper methods showing different ways to satisfy the constraint
+- Proper loop invariants and post-conditions
+- Both possibilities: maintaining order OR maintaining content
+
+The constraint is encoded in the post-conditions using logical disjunctions that cover both allowed cases when changes occur.
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+2026-03-18 20:31:26,735 - INFO - Step metrics - Reward: 4.372, Value: -0.52734375, Log Prob: -279.0413818359375, Token Increase: 128, KL: 0.0, Success: False
+2026-03-18 20:31:26,735 - INFO - Reward breakdown: {'total_reward': 4.372, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': 4.7, 'efficiency_reward': -0.128, 'stability_reward': -0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 15, 'ghost_var_count': 1}
+2026-03-18 20:31:27,452 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method Main() {
+    print "Hello, World!\n";
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+Successfully saved epoch 0 summary
+2026-03-18 20:31:34,195 - INFO - Step metrics - Reward: 8.010459327697754, Value: -1.509765625, Log Prob: -0.11166635900735855, Token Increase: 0, KL: 19.89540672302246, Success: True
+2026-03-18 20:31:34,195 - INFO - Reward breakdown: {'total_reward': 8.010459327697754, 'outcome_reward': 10.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.9895406723022462} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-03-18 20:31:34,831 - INFO - Batch metrics - Policy Loss: 98.61656951904297, Value Loss: 127.617919921875, Total Loss: 226.2344970703125, Reward: 12.382459327697754, Trajectory Length: 2
+2026-03-18 20:31:34,831 - INFO - Batch 1 completed with reward: 12.382459327697754
+2026-03-18 20:31:34,831 - INFO - Epoch 1 metrics:
+2026-03-18 20:31:34,831 - INFO - Average Reward: 12.382459327697754
+2026-03-18 20:31:34,831 - INFO - Average Policy Loss: 98.61656951904297
+2026-03-18 20:31:34,831 - INFO - Average Value Loss: 127.617919921875
+2026-03-18 20:31:34,832 - INFO - Success Rate: 0.5
+2026-03-18 20:31:34,832 - INFO - Successful Examples: 1
+2026-03-18 20:31:34,832 - INFO - Epoch Time: 67.27096962928772
+2026-03-18 20:31:34,832 - INFO - Total Processed Samples: 1
+2026-03-18 20:31:34,832 - INFO - Reward component averages - Outcome: 5.0, Progress: -0.1, Structure: 2.35, Efficiency: -0.064, Stability: -0.9947703361511231
+2026-03-18 20:31:56,900 - INFO - 
+Starting Epoch 2/5
+2026-03-18 20:31:56,900 - INFO - Processing batch 1/1
+2026-03-18 20:32:10,187 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method ToArray<T>(xs: seq<T>) returns (a: array<T>)
+  requires xs != null
+  ensures a != null
+  ensures a.Length == |xs|
+  ensures forall i: int :: 0 <= i < a.Length ==> a[i] == xs[i]
+{
+  a := new T[|xs|];
+  var i := 0;
+  while i < a.Length
+    invariant 0 <= i <= a.Length
+    invariant forall j: int :: 0 <= j < i ==> a[j] == xs[j]
+  {
+    a[i] := xs[i];
+    i := i + 1;
+  }
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+2026-03-18 20:32:15,996 - INFO - Step metrics - Reward: 0.472, Value: -1.4345703125, Log Prob: -250.78408813476562, Token Increase: 128, KL: 0.0, Success: False
+2026-03-18 20:32:15,997 - INFO - Reward breakdown: {'total_reward': 0.472, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.6, 'efficiency_reward': -0.128, 'stability_reward': -0.0} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-03-18 20:32:16,710 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method Main() {
+    // This is a placeholder Dafny method
+    // Replace with your actual Dafny code
+    print "Hello, Dafny!\n";
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+Successfully saved epoch 0 summary
+2026-03-18 20:32:22,125 - INFO - Step metrics - Reward: 8.98413143157959, Value: -0.185302734375, Log Prob: -1.069696068763733, Token Increase: 0, KL: 10.158685684204102, Success: True
+2026-03-18 20:32:22,125 - INFO - Reward breakdown: {'total_reward': 8.98413143157959, 'outcome_reward': 10.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.0158685684204103} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-03-18 20:32:22,654 - INFO - Batch metrics - Policy Loss: 88.2873764038086, Value Loss: 100.36856079101562, Total Loss: 188.65594482421875, Reward: 9.456131431579589, Trajectory Length: 2
+2026-03-18 20:32:22,654 - INFO - Batch 1 completed with reward: 9.456131431579589
+2026-03-18 20:32:22,654 - INFO - Epoch 2 metrics:
+2026-03-18 20:32:22,654 - INFO - Average Reward: 9.456131431579589
+2026-03-18 20:32:22,654 - INFO - Average Policy Loss: 88.2873764038086
+2026-03-18 20:32:22,654 - INFO - Average Value Loss: 100.36856079101562
+2026-03-18 20:32:22,654 - INFO - Success Rate: 0.5
+2026-03-18 20:32:22,654 - INFO - Successful Examples: 1
+2026-03-18 20:32:22,654 - INFO - Epoch Time: 25.754051208496094
+2026-03-18 20:32:22,654 - INFO - Total Processed Samples: 2
+2026-03-18 20:32:22,654 - INFO - Reward component averages - Outcome: 5.0, Progress: 0.0, Structure: 0.3, Efficiency: -0.064, Stability: -0.5079342842102051
+2026-03-18 20:32:46,376 - INFO - 
+Starting Epoch 3/5
+2026-03-18 20:32:46,376 - INFO - Processing batch 1/1
+2026-03-18 20:33:00,253 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+To address the issue of generating correct Dafny code with complex nested conditionals, I will provide a structured approach that ensures the downstream LLM can reason about the logic correctly. The key is to explicitly guide the LLM through the necessary steps for handling nested conditionals, including proper guard conditions, logical flow, and verification conditions.
+
+Here are the instructions for generating complete and correct Dafny code with complex nested conditionals:
+
+1. **Understand the Problem**: Clearly define the input requirements, expected behavior, and any preconditions or postconditions.
+
+2. **Decompose the Logic**: Break down the nested conditionals into smaller, manageable parts. Use intermediate variables or helper methods if necessary to simplify the logic.
+
+3. **Specify Guard Conditions**: For each conditional branch, explicitly state the guard condition that must be true for that branch to execute. Ensure that the conditions are mutually exclusive where appropriate to avoid ambiguity.
+
+4. **Maintain Logical Consistency**: Ensure that the overall logic follows a coherent flow. Use `if-else` chains or `match` statements to cover all possible cases.
+
+5. **Include Verification Annotations**: Add Dafny-specific annotations such as `requires`, `ensures`, `invariant`, and `decreases` clauses to help the verifier check correctness.
+
+6. **Test Edge Cases**: Consider boundary conditions and edge cases to ensure the code handles all possible inputs correctly.
+
+7. **Iterate and Refine**: If the initial code fails verification, analyze the error messages and adjust the conditions or annotations accordingly.
+
+Below is a template for generating Dafny code with complex nested conditionals:
+
+```dafny
+method ExampleMethod(x: int, y: int) returns (z: int)
+  requires PreconditionOnXAndY(x, y)
+  ensures PostConditionOnZ(z)
+{
+  // Decompose logic into clear steps
+  var temp: int := 0;
+
+  // First level conditional with explicit guard
+  if GuardCondition1(x, y) {
+    // Nested conditional within the first branch
+    if NestedGuardCondition1A(x, y) {
+      temp := ComputeValue1A(x, y);
+    } else if NestedGuardCondition1B(x, y) {
+      temp := ComputeValue1B(x, y);
+    } else {
+      temp := DefaultValue1(x, y);
+    }
+  } else if GuardCondition2(x, y) {
+    // Alternative branch with its own nested logic
+    if NestedGuardCondition2A(x, y) {
+      temp := ComputeValue2A(x, y);
+    } else {
+      temp := DefaultValue2(x, y);
+    }
+  } else {
+    // Default case when no guard conditions are met
+    temp := FallbackValue(x, y);
+  }
+
+  // Final assignment and any post-processing
+  z := PostProcess(temp, x, y);
+}
+
+// Helper predicates and functions for clarity
+predicate PreconditionOnXAndY(x: int, y: int) {
+  // Define the precondition here
+  x >= 0 && y >= 0
+}
+
+predicate GuardCondition1(x: int, y: int) {
+  // Define the first guard condition
+  x > y
+}
+
+predicate NestedGuardCondition1A(x: int, y: int) {
+  // Define nested condition within GuardCondition1
+  x % 2 == 0
+}
+
+function ComputeValue1A(x: int, y: int): int {
+  // Compute value for the nested branch
+  x + y
+}
+
+// Define other predicates and functions similarly...
+
+predicate PostConditionOnZ(z: int) {
+  // Define what must be true after the method executes
+  z >= 0
+}
+
+function PostProcess(temp: int, x: int, y: int): int {
+  // Any final processing before returning
+  temp * 2
+}
+```
+
+By following these instructions and using the template, the downstream LLM should be able to generate Dafny code that correctly handles complex nested conditionals and passes verification.
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+2026-03-18 20:33:24,659 - INFO - Step metrics - Reward: -6.128, Value: -0.91943359375, Log Prob: -225.45582580566406, Token Increase: 128, KL: 0.0, Success: False
+2026-03-18 20:33:24,659 - INFO - Reward breakdown: {'total_reward': -6.128, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': -6.0, 'efficiency_reward': -0.128, 'stability_reward': -0.0} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 6, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-03-18 20:33:25,374 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method Main() {
+    print "Hello, World!\n";
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+Successfully saved epoch 0 summary
+2026-03-18 20:33:30,161 - INFO - Step metrics - Reward: 8.102238655090332, Value: -0.74951171875, Log Prob: -0.06473200768232346, Token Increase: 0, KL: 18.97761344909668, Success: True
+2026-03-18 20:33:30,161 - INFO - Reward breakdown: {'total_reward': 8.102238655090332, 'outcome_reward': 10.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.897761344909668} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-03-18 20:33:30,732 - INFO - Batch metrics - Policy Loss: -79.68778228759766, Value Loss: 43.132240295410156, Total Loss: -36.5555419921875, Reward: 1.974238655090332, Trajectory Length: 2
+2026-03-18 20:33:30,733 - INFO - Batch 1 completed with reward: 1.974238655090332
+2026-03-18 20:33:30,733 - INFO - Epoch 3 metrics:
+2026-03-18 20:33:30,733 - INFO - Average Reward: 1.974238655090332
+2026-03-18 20:33:30,733 - INFO - Average Policy Loss: -79.68778228759766
+2026-03-18 20:33:30,733 - INFO - Average Value Loss: 43.132240295410156
+2026-03-18 20:33:30,733 - INFO - Success Rate: 0.5
+2026-03-18 20:33:30,733 - INFO - Successful Examples: 1
+2026-03-18 20:33:30,733 - INFO - Epoch Time: 44.35720109939575
+2026-03-18 20:33:30,733 - INFO - Total Processed Samples: 3
+2026-03-18 20:33:30,733 - INFO - Reward component averages - Outcome: 5.0, Progress: 0.0, Structure: -3.0, Efficiency: -0.064, Stability: -0.948880672454834
+2026-03-18 20:33:55,020 - INFO - 
+Starting Epoch 4/5
+2026-03-18 20:33:55,021 - INFO - Processing batch 1/1
+2026-03-18 20:34:08,709 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method ArrayFromSequence<T>(xs: seq<T>) returns (a: array<T>)
+  requires |xs| >= 0
+  ensures a != null
+  ensures |xs| == 0 ==> a.Length == 0
+  ensures |xs| > 0 ==> a.Length == |xs|
+  ensures forall i: int :: 0 <= i < a.Length ==> a[i] == xs[i]
+{
+  if xs == [] then {
+    a := new T[0];
+    return;
+  }
+  
+  a := new T[|xs|];
+  var i := 0;
+  while i < |xs|
+    invariant 0 <= i <= |xs|
+    invariant forall j: int :: 0 <= j < i ==> a[j] == xs[j]
+  {
+    a[i] := xs[i];
+    i := i + 1;
+  }
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+2026-03-18 20:34:15,898 - INFO - Step metrics - Reward: 0.27199999999999996, Value: -0.65380859375, Log Prob: -140.72933959960938, Token Increase: 128, KL: 0.0, Success: False
+2026-03-18 20:34:15,898 - INFO - Reward breakdown: {'total_reward': 0.27199999999999996, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': 0.6, 'efficiency_reward': -0.128, 'stability_reward': -0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-03-18 20:34:16,581 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method Main() {
+    print "Hello, World!\n";
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+Successfully saved epoch 0 summary
+2026-03-18 20:34:21,187 - INFO - Step metrics - Reward: 9.027867412567138, Value: 0.130615234375, Log Prob: -0.015077436342835426, Token Increase: 0, KL: 9.721325874328613, Success: True
+2026-03-18 20:34:21,187 - INFO - Reward breakdown: {'total_reward': 9.027867412567138, 'outcome_reward': 10.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -0.9721325874328614} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-03-18 20:34:21,689 - INFO - Batch metrics - Policy Loss: 49.74995422363281, Value Loss: 88.2238540649414, Total Loss: 137.97381591796875, Reward: 9.299867412567139, Trajectory Length: 2
+2026-03-18 20:34:21,690 - INFO - Batch 1 completed with reward: 9.299867412567139
+2026-03-18 20:34:21,690 - INFO - Epoch 4 metrics:
+2026-03-18 20:34:21,690 - INFO - Average Reward: 9.299867412567139
+2026-03-18 20:34:21,690 - INFO - Average Policy Loss: 49.74995422363281
+2026-03-18 20:34:21,690 - INFO - Average Value Loss: 88.2238540649414
+2026-03-18 20:34:21,690 - INFO - Success Rate: 0.5
+2026-03-18 20:34:21,690 - INFO - Successful Examples: 1
+2026-03-18 20:34:21,690 - INFO - Epoch Time: 26.66933560371399
+2026-03-18 20:34:21,690 - INFO - Total Processed Samples: 4
+2026-03-18 20:34:21,690 - INFO - Reward component averages - Outcome: 5.0, Progress: -0.1, Structure: 0.3, Efficiency: -0.064, Stability: -0.4860662937164307
+2026-03-18 20:34:43,026 - INFO - 
+Starting Epoch 5/5
+2026-03-18 20:34:43,027 - INFO - Processing batch 1/1
+2026-03-18 20:34:56,912 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method ToArray<T>() returns (array: array<T>)
+{
+    if (_javaPrintEliminatesSpaceAndTime_main())
+    {
+        // כלפיenarios
+        return new T[0];
+    }
+    if (allowsDecreaseCheck)
+    {
+        return _attendance;
+    }
+    if (allowsCopyOfPlacement)
+    {
+        return _scopy;
+    }
+
+    if (maxN < 1)
+    {
+        // Handle case when maxN < 1
+    }
+    if (maxN >= 1) {
+        var a: array<T>;
+        var len: int := maxN;
+        // ... rest of the code ...
+    }
+    
+    // Default return (you may need to adjust based on your actual logic)
+    return new T[0];
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+2026-03-18 20:35:03,311 - INFO - Step metrics - Reward: -0.328, Value: -0.330078125, Log Prob: -268.0320739746094, Token Increase: 128, KL: 0.0, Success: False
+2026-03-18 20:35:03,312 - INFO - Reward breakdown: {'total_reward': -0.328, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': 0.0, 'efficiency_reward': -0.128, 'stability_reward': -0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-03-18 20:35:04,050 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+```dafny
+method Main() {
+    print "Hello, World!\n";
+}
+```
+AST plugin/analyzer failed: Command '['dafny', 'resolve', '--allow-warnings', '--plugin:"/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll" "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy"']' returned non-zero exit status 1.
+running regex analyzer
+regex success
+Successfully saved epoch 0 summary
+2026-03-18 20:35:08,263 - INFO - Step metrics - Reward: 8.616190433502197, Value: -0.321533203125, Log Prob: -0.08760786801576614, Token Increase: 0, KL: 13.838095664978027, Success: True
+2026-03-18 20:35:08,263 - INFO - Reward breakdown: {'total_reward': 8.616190433502197, 'outcome_reward': 10.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.3838095664978027} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-03-18 20:35:08,760 - INFO - Batch metrics - Policy Loss: -94.73267364501953, Value Loss: 76.3398666381836, Total Loss: -18.392807006835938, Reward: 8.288190433502198, Trajectory Length: 2
+2026-03-18 20:35:08,761 - INFO - Batch 1 completed with reward: 8.288190433502198
+2026-03-18 20:35:08,761 - INFO - Epoch 5 metrics:
+2026-03-18 20:35:08,761 - INFO - Average Reward: 8.288190433502198
+2026-03-18 20:35:08,761 - INFO - Average Policy Loss: -94.73267364501953
+2026-03-18 20:35:08,761 - INFO - Average Value Loss: 76.3398666381836
+2026-03-18 20:35:08,761 - INFO - Success Rate: 0.5
+2026-03-18 20:35:08,761 - INFO - Successful Examples: 1
+2026-03-18 20:35:08,761 - INFO - Epoch Time: 25.734626293182373
+2026-03-18 20:35:08,761 - INFO - Total Processed Samples: 5
+2026-03-18 20:35:08,761 - INFO - Reward component averages - Outcome: 5.0, Progress: -0.1, Structure: 0.0, Efficiency: -0.064, Stability: -0.6919047832489014
+2026-03-18 20:35:44,310 - INFO - Successfully saved LoRA weights
+2026-03-18 20:36:02,916 - INFO - Successfully saved checkpoint after processing Dafny(55)
+2026-03-18 20:36:05,109 - INFO - Saving final results...
+2026-03-18 20:36:05,111 - INFO - Training completed successfully!
+wandb: uploading history steps 0-5, summary, console lines 0-1
+wandb:                                                                                
+wandb: 
+wandb: Run history:
+wandb:                     epoch/efficiency_reward ▁▁▁▁▁
+wandb:                                 epoch/index ▁▃▅▆█
+wandb:                        epoch/outcome_reward ▁▁▁▁▁
+wandb:                       epoch/progress_reward ▁██▁▁
+wandb:                                epoch/reward █▆▁▆▅
+wandb:                      epoch/stability_reward ▁█▂█▅
+wandb:                      epoch/structure_reward █▅▁▅▅
+wandb:                         epoch/training_loss █▇▁▆▁
+wandb:                    job/completed_subfolders ▁
+wandb:                       job/failed_subfolders ▁
+wandb:                      job/skipped_subfolders ▁
+wandb:                     job/total_reward_so_far ▁
+wandb:                  job/total_successes_so_far ▁
+wandb:          subfolder_summary/checkpoint_saved ▁
+wandb:        subfolder_summary/final_epoch_reward ▁
+wandb:                subfolder_summary/num_epochs ▁
+wandb: subfolder_summary/successful_examples_count ▁
+wandb:              subfolder_summary/total_reward ▁
+wandb: 
+wandb: Run summary:
+wandb:                     epoch/efficiency_reward -0.064
+wandb:                                 epoch/index 4
+wandb:                        epoch/outcome_reward 5
+wandb:                       epoch/progress_reward -0.1
+wandb:                                epoch/reward 8.28819
+wandb:                      epoch/stability_reward -0.6919
+wandb:                      epoch/structure_reward 0
+wandb:                             epoch/subfolder Dafny(55)
+wandb:                         epoch/training_loss -18.39281
+wandb:                    job/completed_subfolders 1
+wandb:                       job/failed_subfolders 0
+wandb:                      job/skipped_subfolders 0
+wandb:                     job/total_reward_so_far 41.40089
+wandb:                  job/total_successes_so_far 5
+wandb:          subfolder_summary/checkpoint_saved 1
+wandb:        subfolder_summary/final_epoch_reward 8.28819
+wandb:                      subfolder_summary/name Dafny(55)
+wandb:                subfolder_summary/num_epochs 5
+wandb: subfolder_summary/successful_examples_count 5
+wandb:              subfolder_summary/total_reward 41.40089
+wandb: 
+wandb: 🚀 View run dafny_rl_full_job at: https://wandb.ai/drprofmjha-university-of-illinois-urbana-champaign/dafny-rl_new2/runs/0jivafqn
+wandb: ⭐️ View project at: https://wandb.ai/drprofmjha-university-of-illinois-urbana-champaign/dafny-rl_new2
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260318_203011-0jivafqn/logs

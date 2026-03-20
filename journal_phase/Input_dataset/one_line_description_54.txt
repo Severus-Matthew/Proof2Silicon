@@ -1,0 +1,1 @@
+Implement a generic method `GenericMax` that finds the maximum element in an array using a provided comparison function while ensuring the function adheres to reflexive, antisymmetric, and transitive properties.

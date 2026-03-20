@@ -1,0 +1,1 @@
+Develop Dafny methods to formally verify array segment equality and element-wise comparisons with appropriate preconditions and logical assertions for correctness.

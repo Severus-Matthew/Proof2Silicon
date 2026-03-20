@@ -1,0 +1,1 @@
+Implement a method `GetEven` that modifies an input array to ensure all its elements are even by incrementing any odd elements by 1, while maintaining preconditions and invariants for correctness.

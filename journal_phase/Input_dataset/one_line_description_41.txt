@@ -1,0 +1,1 @@
+Implement a method `SubtractSequences` in Dafny that performs element-wise subtraction of two equal-length integer sequences and returns the result while ensuring correctness through loop invariants.

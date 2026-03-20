@@ -1,0 +1,1 @@
+Implement a method that checks if all characters in a string are the same, ensuring correctness through loop invariants for both true and false outcomes.

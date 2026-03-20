@@ -1,0 +1,1 @@
+Implement a method `Triple` that returns three times an integer input `x` using different calculations based on whether `x` is less than 18 or non-negative.

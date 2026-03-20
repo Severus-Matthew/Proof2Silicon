@@ -1,0 +1,1 @@
+Implement a Dafny method `Max` that returns the maximum value from an array of natural numbers, returning -1 for empty arrays, and ensure correctness through a `Checker` method that validates the output against an example array.

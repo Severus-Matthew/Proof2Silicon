@@ -1,0 +1,1 @@
+Implement a function that calculates the sum of a sequence of integers in Dafny, along with lemmas to prove the invariance of sum under sequence splitting and permutations.

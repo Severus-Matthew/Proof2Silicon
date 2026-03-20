@@ -1,0 +1,1 @@
+Implement a method in Dafny that checks if an array of integers is sorted in non-decreasing order, including preconditions, postconditions, and loop invariants for verification.

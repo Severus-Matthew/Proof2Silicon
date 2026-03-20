@@ -1,0 +1,1 @@
+Implement a Dafny program that includes recursive and iterative functions for summing elements in an integer array, verifies summation correctness with a lemma, and defines a list data structure with array conversion and membership checking methods.

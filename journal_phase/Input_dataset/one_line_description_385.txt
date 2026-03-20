@@ -1,0 +1,1 @@
+Implement a method `IsDivisibleBy11` in Dafny that checks if an integer `n` is divisible by 11 and includes an assertion to validate the correctness of the result.

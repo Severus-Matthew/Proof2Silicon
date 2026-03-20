@@ -1,0 +1,1 @@
+Implement a method `MinSecondValueFirst` that returns the first integer of the sequence with the minimum second element from a non-empty array of integer sequences, ensuring each sequence has at least two integers.

@@ -1,0 +1,5 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(8,22): Error: size operator expects a collection argument (instead got SeqT)
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(19,19): Error: type of 'null' is a reference type, but it is used as seq<char>
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(21,21): Error: type of right argument to + (int) must agree with the result type (seq<char>)
+3 resolution/type errors detected in RL_No_feedback.dfy

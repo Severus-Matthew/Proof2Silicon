@@ -1,0 +1,1 @@
+Implement a Dafny lemma that verifies a non-decreasing sequence of integers, requiring at least two elements in the sequence and both `false` and `true` as keys in a provided map.

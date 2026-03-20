@@ -1,0 +1,1 @@
+Implement a method to replace all occurrences of a specified integer in an array with another integer, ensuring in-place modification and correctness through postconditions and invariants.

@@ -1,0 +1,1 @@
+Implement a Dafny function `f` with properties of associativity, monotonicity, and diagonal identity, and prove a lemma showing that `f(a, f(b, c)) <= x` using both calculational and assertion-based proof styles.

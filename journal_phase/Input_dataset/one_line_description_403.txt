@@ -1,0 +1,1 @@
+Implement a recursive function `C(n: nat)` and an iterative method `calcC(n: nat)` in Dafny to compute a specific sequence, ensuring both methods produce matching results and maintain correctness through loop invariants and assertions.

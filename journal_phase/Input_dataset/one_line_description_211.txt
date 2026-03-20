@@ -1,0 +1,1 @@
+Implement a method `RemoveChars` in Dafny that returns a new string containing characters from `s1` that are not in `s2`, ensuring the output string's length does not exceed that of `s1`.

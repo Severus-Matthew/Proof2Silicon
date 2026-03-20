@@ -1,0 +1,1 @@
+Develop a Dafny program that formally verifies natural power calculations for real numbers using recursive, iterative, and optimized methods, including lemmas for properties and a test method for correctness validation.

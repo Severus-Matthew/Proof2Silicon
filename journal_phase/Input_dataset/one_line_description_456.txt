@@ -1,0 +1,1 @@
+Implement a Dafny program that defines a method to return a non-positive integer, verifies its correctness through assertions in a main method, and calculates the midpoint of two integers while ensuring it adheres to specified bounds with assertions.

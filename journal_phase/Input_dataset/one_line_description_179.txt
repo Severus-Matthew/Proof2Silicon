@@ -1,0 +1,1 @@
+Implement a method `flip` that reverses the elements of a non-empty array within a specified range from `0` to `num`, ensuring valid input bounds and maintaining the integrity of the rest of the array.

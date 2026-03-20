@@ -1,0 +1,1 @@
+Implement a Dafny method `SphereSurfaceArea` that calculates the surface area of a sphere using the formula \\\\(4 \\\\pi r^2\\\\), ensuring the radius is greater than zero and verifying the correctness of the computation.

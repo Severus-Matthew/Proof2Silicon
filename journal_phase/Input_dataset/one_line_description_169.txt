@@ -1,0 +1,1 @@
+Implement a method `AbsIt` in Dafny that transforms all negative integers in an array to their absolute values while preserving non-negative integers, with appropriate preconditions, postconditions, and loop invariants to ensure correctness.

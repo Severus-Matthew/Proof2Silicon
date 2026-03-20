@@ -1,0 +1,1 @@
+Implement a Dafny method `Multiply` that takes two integers and returns their product, ensuring the result meets a postcondition for correctness.

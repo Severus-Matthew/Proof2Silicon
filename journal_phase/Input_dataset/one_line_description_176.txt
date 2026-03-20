@@ -1,0 +1,1 @@
+Implement a Dafny function `MapRemove1` to safely remove a key from a map, ensuring the remaining key-value pairs are intact, along with an external method `ComputeMapRemove1` for computing the result.

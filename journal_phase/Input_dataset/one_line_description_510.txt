@@ -1,0 +1,1 @@
+Implement a Dafny method `simple` that takes an integer `y` (required to be 6) and returns `x` as 7, demonstrating a basic assignment operation with preconditions and postconditions for correctness.

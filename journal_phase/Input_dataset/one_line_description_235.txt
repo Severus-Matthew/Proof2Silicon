@@ -1,0 +1,1 @@
+Implement a Dafny method `A8Q1` that computes the minimum of three integers `x`, `y`, and `z`, ensuring correctness through post-conditions and detailed comments.

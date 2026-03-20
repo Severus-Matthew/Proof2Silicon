@@ -1,0 +1,1 @@
+Implement a `RotateRight` method in Dafny that rotates a sequence of integers by a specified non-negative number of positions, ensuring the output sequence retains the same length and correctly reflects the rotation logic.

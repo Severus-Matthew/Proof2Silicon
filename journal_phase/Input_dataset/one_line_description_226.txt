@@ -1,0 +1,1 @@
+Implement a method in Dafny that performs element-wise subtraction of two integer arrays, ensuring preconditions for non-nullity and equal length, while maintaining invariants for correctness throughout the operation.

@@ -1,0 +1,1 @@
+Implement a Dafny method that efficiently finds two distinct indices in an integer array whose values sum up to a given target, using a map for tracking seen elements and ensuring correctness via predicates and invariants.

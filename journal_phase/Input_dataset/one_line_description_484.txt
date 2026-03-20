@@ -1,0 +1,1 @@
+Implement and verify a Dafny method that checks if a character array is a palindrome, ensuring correctness through assertions in a test method without altering the method signature or adding new predicates.

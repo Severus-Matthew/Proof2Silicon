@@ -1,0 +1,1 @@
+Implement a method in Dafny to check if the first `n` elements of a strictly increasing array `v` are contained within the first `m` elements of another strictly increasing array `w`, ensuring O(m+n) time complexity using a two-pointer approach.

@@ -1,0 +1,1 @@
+Implement a method in Dafny that intersperses a delimiter between elements of a sequence of integers, ensuring the output sequence meets specified length and placement conditions through postconditions and loop invariants.

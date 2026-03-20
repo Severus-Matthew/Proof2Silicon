@@ -1,0 +1,1 @@
+Implement two data structures in Dafny: `OddList` for managing a sequence of odd integers with operations that maintain its integrity, and `CircularLinkedList` for general elements with circular indexing to handle out-of-bounds operations while respecting capacity constraints.

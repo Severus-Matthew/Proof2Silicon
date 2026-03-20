@@ -1,0 +1,1 @@
+Implement various basic programming concepts in Dafny, including maximum value comparison, Fibonacci computation, list summation (both recursive and imperative), and array maximum finding with correctness assertions.

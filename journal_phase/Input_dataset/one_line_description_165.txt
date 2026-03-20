@@ -1,0 +1,1 @@
+Implement a method that replaces all spaces in a given string with a specified character while preserving the original string's length and other characters.

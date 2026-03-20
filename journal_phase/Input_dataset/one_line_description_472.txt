@@ -1,0 +1,1 @@
+Implement a method `DissimilarElements` that returns a sequence of distinct integers present in either of two integer arrays but not in both, ensuring proper invariants during iteration to maintain exclusivity.

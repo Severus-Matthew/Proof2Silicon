@@ -1,0 +1,16 @@
+{"time":"2026-03-18T03:51:28.698564438Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260318_035128-vukg5mb2/logs/debug-core.log"}
+{"time":"2026-03-18T03:51:28.908430033Z","level":"INFO","msg":"created new stream","id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:28.908462997Z","level":"INFO","msg":"stream: started","id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:28.908486487Z","level":"INFO","msg":"writer: Do: started","stream_id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:28.908494795Z","level":"INFO","msg":"handler: started","stream_id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:28.908548781Z","level":"INFO","msg":"sender: started","stream_id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:29.304448108Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-18T03:51:49.06331296Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-18T03:51:49.06355261Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-18T03:51:49.497789829Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-03-18T03:51:49.768507715Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-03-18T03:51:49.77163076Z","level":"INFO","msg":"stream: closing","id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:49.771645473Z","level":"INFO","msg":"handler: closed","stream_id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:49.771651642Z","level":"INFO","msg":"writer: Close: closed","stream_id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:49.771663041Z","level":"INFO","msg":"sender: closed","stream_id":"vukg5mb2"}
+{"time":"2026-03-18T03:51:49.772112765Z","level":"INFO","msg":"stream: closed","id":"vukg5mb2"}

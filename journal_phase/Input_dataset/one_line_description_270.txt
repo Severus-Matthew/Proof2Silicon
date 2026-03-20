@@ -1,0 +1,1 @@
+Implement a method `SmallestMissingNumber` in Dafny that finds the smallest non-negative integer not present in a sorted sequence of non-negative integers, ensuring all necessary preconditions and postconditions are met.

@@ -1,0 +1,1 @@
+Implement a method that counts and returns the number of positions where three integer sequences have identical elements, ensuring they are of equal length and that the count is non-negative.

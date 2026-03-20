@@ -1,0 +1,1 @@
+Implement a method in Dafny that appends an integer array to a sequence while ensuring the resulting sequence's length and elements are correctly validated through loop invariants.

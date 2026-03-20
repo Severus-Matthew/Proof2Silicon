@@ -1,0 +1,1 @@
+Implement various methods in Dafny to compute the triple of an integer with specific conditions and assertions, including handling zero, managing ranges, and enforcing evenness.

@@ -1,0 +1,1 @@
+Implement a method `IsGreater` in Dafny that checks if an integer `n` is greater than all elements in an array `a`, ensuring correctness through invariants.

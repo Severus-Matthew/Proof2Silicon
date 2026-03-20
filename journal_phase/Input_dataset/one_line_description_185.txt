@@ -1,0 +1,1 @@
+Implement a method `Ceiling7` in Dafny that computes the largest multiple of 7 less than or equal to a natural number `n`, and create a `test7` method to validate its correctness with assertions.

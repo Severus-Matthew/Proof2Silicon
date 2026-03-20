@@ -1,0 +1,1 @@
+Implement a method in Dafny to compute the n-th tetrahedral number using the formula \\( t = \\frac{n(n + 1)(n + 2)}{6} \\), ensuring that the input \\( n \\) is non-negative and the output is verified against the formula.

@@ -1,0 +1,1 @@
+Implement a Dafny function `RollingMax` that computes a new sequence of rolling maximums from a list of integers, ensuring the output sequence matches the input length and satisfies specified verification conditions.

@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the unique elements in sequence `a` that are not present in sequence `b`, ensuring the result sequence maintains both uniqueness and correctness through loop invariants.

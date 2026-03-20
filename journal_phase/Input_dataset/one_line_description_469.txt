@@ -1,0 +1,1 @@
+Create a Dafny program that demonstrates functional programming concepts such as lambda expressions, variable scopes, and loops with invariants, while verifying properties through assertions and showcasing closure behavior with a generic reference class.

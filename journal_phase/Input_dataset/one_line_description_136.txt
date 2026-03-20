@@ -1,0 +1,1 @@
+Implement a method `String3Sort` in Dafny that sorts a string of exactly three characters while maintaining the original characters and includes a `check` method to validate its correctness against various test cases.

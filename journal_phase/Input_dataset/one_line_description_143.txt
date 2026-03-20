@@ -1,0 +1,1 @@
+Implement a Dafny method `longestPrefix` to find the length of the longest common prefix between two integer arrays while ensuring the validity of the result.

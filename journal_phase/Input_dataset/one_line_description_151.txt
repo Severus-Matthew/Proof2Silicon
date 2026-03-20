@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the nth nonagonal number using the formula \\\\( n \\\\times \\\\frac{(7n - 5)}{2} \\\\), ensuring input validity and result verification.

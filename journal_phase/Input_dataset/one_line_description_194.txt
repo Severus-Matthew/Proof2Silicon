@@ -1,0 +1,1 @@
+Implement a method `TestArrayElements` that updates the element at index `j` of an integer array `a` to 60, ensuring `j` is within bounds and all other elements remain unchanged.

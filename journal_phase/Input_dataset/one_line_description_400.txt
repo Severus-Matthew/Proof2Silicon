@@ -1,0 +1,1 @@
+Implement a verified binary search algorithm in Dafny that checks for the existence of an integer \\( K \\) in a sorted array, using a predicate to ensure the array's sorted state and maintaining loop invariants for correctness.

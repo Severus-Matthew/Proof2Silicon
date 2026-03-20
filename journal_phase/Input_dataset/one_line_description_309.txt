@@ -1,0 +1,1 @@
+Implement a formal verification in Dafny for calculating the distinct ways to climb a staircase with `n` steps using a dynamic programming approach, ensuring the correctness of sequences representing the climbing steps.

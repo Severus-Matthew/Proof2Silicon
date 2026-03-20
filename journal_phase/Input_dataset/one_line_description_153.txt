@@ -1,0 +1,1 @@
+Implement and verify methods for computing the absolute value of an integer and finding the maximum of two integers, along with corresponding test methods to ensure their correctness.

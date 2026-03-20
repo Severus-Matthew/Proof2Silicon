@@ -1,0 +1,1 @@
+Implement a Dafny method to find the second smallest distinct integer in an array of integers, utilizing functions for pairwise minimums and recursive minimum searches with correctness guarantees.

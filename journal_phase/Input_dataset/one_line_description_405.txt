@@ -1,0 +1,1 @@
+Implement the Insertion Sort algorithm in Dafny to sort an array of integers in ascending order, using a predicate to ensure segments are sorted throughout the process.

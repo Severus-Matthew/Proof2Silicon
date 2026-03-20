@@ -1,0 +1,1 @@
+Implement a Dafny method `SumAndAverage` that computes the sum and average of the first `n` positive integers, ensuring input validation and correctness through preconditions, postconditions, and loop invariants.

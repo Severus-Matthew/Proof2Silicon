@@ -1,0 +1,1 @@
+Implement a Dafny method that computes the sum and maximum of a non-negative integer array while ensuring the sum does not exceed the product of the array's length and its maximum value, including preconditions and a loop invariant for verification.

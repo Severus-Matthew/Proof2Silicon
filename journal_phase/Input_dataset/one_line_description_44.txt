@@ -1,0 +1,1 @@
+Implement a Dafny module named `Seq` that provides operations and properties for sequences, including substring identification, distinctness checks, and reverse operations, along with a test method to validate these functionalities.

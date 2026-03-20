@@ -1,0 +1,1 @@
+Implement a `twoSum` method in Dafny that finds two distinct indices in an integer array whose values sum to a given target, while ensuring preconditions and loop invariants for correctness.

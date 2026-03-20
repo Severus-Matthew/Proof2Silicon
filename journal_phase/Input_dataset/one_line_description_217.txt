@@ -1,0 +1,1 @@
+Implement a method to rearrange an array of natural numbers so that all odd numbers precede even numbers, using two pointers for efficient element swapping, and include a test method to verify the output.

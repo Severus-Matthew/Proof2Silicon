@@ -1,0 +1,1 @@
+Implement a `Reverse` method in Dafny that returns a new array of characters in reverse order, ensuring correctness through verification conditions and demonstrating its usage with test cases in the `Main` method.

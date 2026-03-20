@@ -1,0 +1,1 @@
+Implement a Dafny method `SecondLargest` that finds the second largest integer in a non-empty array while maintaining specified invariants and validating results against a secondary integer.

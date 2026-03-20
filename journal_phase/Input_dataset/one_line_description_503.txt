@@ -1,0 +1,1 @@
+Implement a Dafny method that checks if an integer is even and redistributes values between two integers while maintaining an even difference until they are equal, using proper preconditions and invariants for correctness.

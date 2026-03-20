@@ -1,0 +1,1 @@
+Implement a method in Dafny that copies elements from a source 2D array to a destination 2D array, ensuring both arrays have the same dimensions and maintaining data integrity through preconditions, postconditions, and loop invariants.

@@ -1,0 +1,1 @@
+Develop Dafny lemmas to verify the correctness of set and map comprehensions by asserting their equivalence to explicitly defined forms, ensuring that filtering and mapping operations preserve intended semantics.

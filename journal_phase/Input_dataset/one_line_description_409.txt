@@ -1,0 +1,1 @@
+Implement a method `RemoveOddNumbers` in Dafny that filters an integer array to return a sequence of all even numbers, ensuring correctness through predicates and invariants.

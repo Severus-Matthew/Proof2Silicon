@@ -1,0 +1,1 @@
+Implement a method `AddLists` in Dafny that takes two equal-length sequences of integers and returns a new sequence with their element-wise sums, ensuring correctness through loop invariants.

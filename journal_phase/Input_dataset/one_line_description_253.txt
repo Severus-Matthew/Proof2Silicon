@@ -1,0 +1,1 @@
+Implement a Dafny solution to the "Find Pivot Index" problem that identifies an index in an array where the left and right sums are equal, including verification and correctness lemmas.

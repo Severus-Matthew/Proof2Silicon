@@ -1,0 +1,1 @@
+Implement a method to merge two maps, ensuring that the resulting map retains values from both, includes all keys from the second map, and excludes keys not present in either map.

@@ -1,0 +1,1 @@
+Implement a distributed algorithm in Dafny for a ring topology that ensures unique node identification, maintains the highest heard identifiers, and verifies the safety property of having a single leader at any time using ghost state for formal correctness.

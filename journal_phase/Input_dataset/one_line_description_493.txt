@@ -1,0 +1,1 @@
+Implement a method in Dafny that swaps two integers using arithmetic operations without a temporary variable, ensuring the output values are correctly assigned.

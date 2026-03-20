@@ -1,0 +1,1 @@
+Develop a Dafny-based email application that manages messages and mailboxes with functionalities for adding, moving, and deleting messages, ensuring correctness through formal verification and invariants.

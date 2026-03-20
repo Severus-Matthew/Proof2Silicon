@@ -1,0 +1,1 @@
+Implement a Dafny function `f` that returns its input unchanged, along with a lemma `L` to verify that `f(x) = x` for all integers `x`.

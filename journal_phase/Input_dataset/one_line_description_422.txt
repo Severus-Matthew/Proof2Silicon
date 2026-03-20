@@ -1,0 +1,1 @@
+Implement a Dafny program that manipulates an integer sequence, asserting properties about its size and slices, while ensuring a method safely accesses the second element of the sequence.

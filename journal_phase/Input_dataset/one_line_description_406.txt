@@ -1,0 +1,1 @@
+Implement a Dafny program that includes methods for calculating midpoints, minimums, maximums, their sums, and reconstructing original integers from their sum and maximum, while ensuring correctness through assertions and verification clauses.

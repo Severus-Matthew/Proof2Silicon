@@ -1,0 +1,1 @@
+Implement a method in Dafny that concatenates two integer arrays while ensuring the resulting array maintains the correct order of elements and has the appropriate length.

@@ -1,0 +1,1 @@
+Implement a Dafny method `SplitArray` that divides an integer array into two sequences based on a specified index `L`, ensuring valid bounds and correct reconstruction of the original array.

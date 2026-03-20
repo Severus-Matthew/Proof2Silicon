@@ -1,0 +1,1 @@
+Implement a recursive function and an iterative method in Dafny to count the number of `true` values in a boolean array, ensuring both approaches yield consistent results.

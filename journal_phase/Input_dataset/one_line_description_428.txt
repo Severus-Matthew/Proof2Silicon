@@ -1,0 +1,1 @@
+Implement a recursive function `sumTo` and an iterative method `SumInRange` in Dafny to calculate the sum of elements in a valid range of an integer array, ensuring correctness through preconditions and postconditions.

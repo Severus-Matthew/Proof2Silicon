@@ -1,0 +1,1 @@
+Implement a verifiable selection sort algorithm in Dafny that ensures ordered output, element preservation, and tracks comparison counts.

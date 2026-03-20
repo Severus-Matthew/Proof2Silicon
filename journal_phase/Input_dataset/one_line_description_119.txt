@@ -1,0 +1,1 @@
+Implement a method that generates a strictly increasing list of integers from 0 to `n` that are divisible by 3.

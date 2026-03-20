@@ -1,0 +1,1 @@
+Implement a method in Dafny that swaps the values at two specified indices in an integer array, ensuring index validity and maintaining array integrity through formal verification.

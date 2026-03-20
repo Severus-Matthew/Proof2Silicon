@@ -1,0 +1,1 @@
+Implement an Insertion Sort algorithm in Dafny that maintains invariants to ensure the array remains a multiset of its original values while verifying sorted segments for correctness.

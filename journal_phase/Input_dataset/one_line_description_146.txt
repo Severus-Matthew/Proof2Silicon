@@ -1,0 +1,1 @@
+Implement a Dafny code that defines a recursive function to compute the sum of the first `i` elements of an array of natural numbers and a method to verify the total sum through iteration, ensuring correctness with invariants.

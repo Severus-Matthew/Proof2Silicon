@@ -1,0 +1,1 @@
+Implement a method `StringSwap` in Dafny that swaps two characters in a string at specified indices while ensuring the output string has the same characters as the input and includes checks for constraints like empty strings, along with a `check` method for testing its correctness.

@@ -1,0 +1,1 @@
+Implement a Dafny method that partitions a non-empty array around a pivot, placing elements smaller than the pivot on the left and those greater than or equal on the right, while preserving the original multiset and returning the pivot's new position.

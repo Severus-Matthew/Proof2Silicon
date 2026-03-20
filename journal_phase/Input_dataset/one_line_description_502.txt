@@ -1,0 +1,1 @@
+Implement a function to find the maximum value in an array of natural numbers, ensuring correctness through assertions and maintaining an invariant during iteration.

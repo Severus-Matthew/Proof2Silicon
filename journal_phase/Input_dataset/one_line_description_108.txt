@@ -1,0 +1,1 @@
+Implement a Dafny method `SwapFirstAndLast` to swap the first and last elements of a non-null, non-empty integer array while maintaining the integrity of the other elements, with appropriate preconditions and postconditions.

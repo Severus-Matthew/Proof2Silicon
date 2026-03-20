@@ -1,0 +1,1 @@
+Implement a Dafny method `Max` to compute the maximum of two integers with postconditions, and create a test method `MaxTest` to validate its functionality, alongside a similarly structured function `max` and test `maxTest`.

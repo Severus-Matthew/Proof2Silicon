@@ -1,0 +1,1 @@
+Implement an iterator in Dafny that generates up to 10 consecutive integers starting from a specified value, ensuring correctness in the number of yielded elements and their sequence.

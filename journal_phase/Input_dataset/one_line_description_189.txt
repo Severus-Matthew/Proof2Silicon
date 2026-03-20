@@ -1,0 +1,1 @@
+Implement a Dafny method that accepts two equal non-negative integers and decrements them in a loop while maintaining their equality, ensuring postconditions are met.

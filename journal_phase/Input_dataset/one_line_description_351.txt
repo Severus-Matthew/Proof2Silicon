@@ -1,0 +1,1 @@
+Implement a method in Dafny to calculate the sum of the squares of the first `n` odd numbers, ensuring preconditions for non-negativity and postconditions for correctness using loop invariants.

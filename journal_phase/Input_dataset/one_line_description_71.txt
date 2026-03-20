@@ -1,0 +1,1 @@
+Create a Dafny class `SumOfCubes` that calculates and verifies the sum of cubes of integers between two specified bounds, employing mathematical proofs and ghost methods for correctness without runtime impact.

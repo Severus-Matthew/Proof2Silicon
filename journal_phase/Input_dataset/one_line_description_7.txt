@@ -1,0 +1,1 @@
+Implement a Binary Search algorithm in Dafny that validates a sorted integer array segment and returns the index of a specified key or -1 if not found, ensuring correctness through defined invariants.

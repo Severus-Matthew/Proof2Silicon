@@ -1,0 +1,1 @@
+Implement a Dafny method `findMax` that identifies and returns the index and value of the maximum element in a non-empty array of non-negative integers, ensuring correctness through assertions and loop invariants.

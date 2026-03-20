@@ -1,0 +1,1 @@
+Implement a method in Dafny that finds and returns the minimum value from a non-empty array of integers, ensuring correctness through preconditions, postconditions, and loop invariants.

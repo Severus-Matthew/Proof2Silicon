@@ -1,0 +1,1 @@
+Implement a Dafny method to partition an integer array into three categories—negative numbers, zeros, and positive numbers—while preserving the original order of elements within each category.

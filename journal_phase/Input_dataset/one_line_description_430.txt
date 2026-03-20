@@ -1,0 +1,1 @@
+Implement a `separate` method in Dafny that rearranges an input array to place all positive integers at the front and negative integers at the back, while preserving the original array's content and ensuring the segments are correctly defined.

@@ -1,0 +1,1 @@
+Implement a Dafny method `IsSmaller` that verifies if all elements in sequence `a` are greater than their corresponding elements in sequence `b` of equal length, using quantifiers for preconditions and postconditions, and a loop with invariants for comparison logic.

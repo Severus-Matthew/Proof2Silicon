@@ -1,0 +1,1 @@
+Implement an iterative `square` method in Dafny that calculates the square of a non-negative integer `n` by summing odd numbers, ensuring correctness through loop invariants.

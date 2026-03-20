@@ -1,0 +1,1 @@
+Implement a method in Dafny that computes the square of a non-negative integer by summing the integer a specified number of times, ensuring correctness through loop invariants and post-conditions.

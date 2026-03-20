@@ -1,0 +1,1 @@
+Implement a method that retrieves an element from a sequence after performing a valid left rotation by a specified number of positions, ensuring the rotation count is non-negative and the index is within bounds.

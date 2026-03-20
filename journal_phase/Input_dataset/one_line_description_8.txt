@@ -1,0 +1,1 @@
+Implement a Dafny program with a method `Foo` for multiplying two integers using a loop, a function `stringToSet` for converting a string to a character set, and a `Main` method to test both with assertions for correctness.

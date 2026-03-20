@@ -1,0 +1,1 @@
+Implement a linear search algorithm in Dafny that returns the index of the first element in an array satisfying a given predicate, while ensuring array bounds and correctness invariants are maintained, and include a test for checking even integers.

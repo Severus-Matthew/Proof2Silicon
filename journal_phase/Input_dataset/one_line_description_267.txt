@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the perimeter of a pentagon as five times the length of a positive integer side, ensuring the input meets the specified constraints.

@@ -1,0 +1,1 @@
+Implement a Dafny function that recursively computes the sum of the first `n` elements of an integer array and an iterative method that verifies the sum of all elements matches the recursive result, ensuring correctness through invariants and postconditions.

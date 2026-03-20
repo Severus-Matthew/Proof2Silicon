@@ -1,0 +1,1 @@
+Implement a verified bubble sort algorithm in Dafny that sorts a specified segment of an integer array while maintaining the original multiset properties and the relative order of elements outside the segment.

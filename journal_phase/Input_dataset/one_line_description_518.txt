@@ -1,0 +1,1 @@
+Implement a method in Dafny that determines if a given month (1-12) has 31 days, ensuring valid input and correct output based on predefined months.

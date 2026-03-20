@@ -1,0 +1,1 @@
+Implement a method `IsPerfectSquare` that checks if a non-negative integer `n` is a perfect square by incrementally testing integer values.

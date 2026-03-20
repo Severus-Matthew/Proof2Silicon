@@ -1,0 +1,1 @@
+Implement a method `IsPrime` that checks if an integer `n` (n ≥ 2) is prime by verifying the absence of divisors in the range from 2 to n/2.

@@ -1,0 +1,1 @@
+Implement a method that checks if the first and last characters of a non-empty string are the same, ensuring proper preconditions and postconditions for validation.

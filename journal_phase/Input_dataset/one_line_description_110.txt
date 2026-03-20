@@ -1,0 +1,1 @@
+Implement a Dafny program to compute sums of sequences and arrays, ensuring correctness through recursive functions, lemmas for properties of summation, and iterative methods with invariants.

@@ -1,0 +1,1 @@
+Implement a Dafny method `StarNumber` that computes the nth star number using the formula `6 * n * (n - 1) + 1`, with appropriate preconditions and postconditions for input validation.

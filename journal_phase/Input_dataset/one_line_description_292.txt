@@ -1,0 +1,1 @@
+Implement a Dafny method `CalculateLoss` that verifies non-negative cost and selling prices and computes the financial loss as the difference or zero, ensuring correctness through formal verification.

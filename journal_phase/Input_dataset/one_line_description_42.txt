@@ -1,0 +1,1 @@
+Implement a Dafny program that defines a recursive function and an iterative method to calculate the number of distinct ways to climb a staircase with `n` steps, ensuring both implementations produce consistent results through logical invariants.

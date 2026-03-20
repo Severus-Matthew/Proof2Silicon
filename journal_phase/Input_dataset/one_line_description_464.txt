@@ -1,0 +1,1 @@
+Implement a Dafny method `ClosestSmaller` that returns the largest integer less than a given positive integer `n`, ensuring the precondition that `n` is greater than zero and validating that the result is `n - 1`.

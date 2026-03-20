@@ -1,0 +1,1 @@
+Implement a method in Dafny that replaces spaces, commas, and periods in a string with colons while preserving the original string length and ensuring correctness through specified preconditions and invariants.

@@ -1,0 +1,1 @@
+Implement a method in Dafny that iterates `n` times to update two integers `a` and `b`, ensuring their sum equals three times `n` using loop invariants for correctness.

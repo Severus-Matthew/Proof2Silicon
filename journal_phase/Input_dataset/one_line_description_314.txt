@@ -1,0 +1,1 @@
+Implement two methods in Dafny: `Reverse` to reverse an entire array while preserving external elements, and `ReverseUptoK` to reverse the first `k` elements of an array while keeping the remaining elements intact, both with necessary invariants.

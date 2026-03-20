@@ -1,0 +1,1 @@
+Implement a Dafny method `ContainsK` that checks if a sequence contains a specified integer `k`, returning a boolean result with correctness ensured by loop invariants.

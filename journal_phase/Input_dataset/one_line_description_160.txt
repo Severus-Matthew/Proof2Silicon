@@ -1,0 +1,1 @@
+Implement a method `MaxSum` in Dafny that calculates the sum and maximum of two integers, ensuring correct output, and demonstrate its usage in a `Main` method.

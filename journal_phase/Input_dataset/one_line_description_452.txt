@@ -1,0 +1,1 @@
+Implement a Dafny method `DifferenceMinMax` that computes the difference between the maximum and minimum values of a non-empty integer array, utilizing loop invariants and supporting recursive functions for minimum and maximum calculations.

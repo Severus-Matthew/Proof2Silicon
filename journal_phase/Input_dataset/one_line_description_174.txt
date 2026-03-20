@@ -1,0 +1,1 @@
+Implement a function `F(n)` that computes the nth term of a sequence defined by the sum of the (n-1)th and (n-3)th terms, with specified base cases, while ensuring the calculation is verified against the sequence's properties.

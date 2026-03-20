@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the surface area of a cube, ensuring the side length is positive and the result adheres to the invariant that it equals six times the square of the side length.

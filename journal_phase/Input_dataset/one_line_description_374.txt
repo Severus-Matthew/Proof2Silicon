@@ -1,0 +1,1 @@
+Implement a monadic structure in Dafny using a custom list datatype, including the `append`, `Return`, and `Bind` functions, along with lemmas to verify monadic laws of identity and associativity.

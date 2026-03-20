@@ -1,0 +1,1 @@
+Implement a Dafny method called `Max` that returns the maximum of two integers, ensuring correctness through postconditions that validate the result.

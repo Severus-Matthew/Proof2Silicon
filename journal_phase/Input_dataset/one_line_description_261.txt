@@ -1,0 +1,1 @@
+Implement a Dafny method `problem3` that takes two integers `m` and `X`, ensuring through preconditions and assertions that the output `r` equals `X` after applying specific transformations based on certain conditions.

@@ -1,0 +1,1 @@
+Implement a Dafny method `LateralSurfaceArea` that computes the lateral surface area of a cube, ensuring the edge length is positive and the result is four times the square of the edge length.

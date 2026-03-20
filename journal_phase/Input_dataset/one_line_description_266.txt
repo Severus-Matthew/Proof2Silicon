@@ -1,0 +1,1 @@
+Implement a `Composite` class in Dafny that models a tree structure with parent-child relationships, enabling node initialization, addition, value updates, and dislodgment while ensuring tree integrity and correct sum calculations, along with usage demonstrations via `Main` and `Harness` methods.

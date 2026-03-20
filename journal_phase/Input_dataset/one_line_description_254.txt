@@ -1,0 +1,1 @@
+Implement a Dafny function `max` and a method `slow_max` that computes the maximum of two natural numbers using a while loop, ensuring correctness through loop invariants and post-conditions.

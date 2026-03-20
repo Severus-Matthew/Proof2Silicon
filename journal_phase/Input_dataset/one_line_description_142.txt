@@ -1,0 +1,1 @@
+Implement a Dafny method `BitwiseXOR` that computes the bitwise XOR of two equal-length sequences of 32-bit binary vectors, ensuring correctness through preconditions, postconditions, and loop invariants.

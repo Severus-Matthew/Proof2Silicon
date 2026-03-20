@@ -1,0 +1,1 @@
+Develop Dafny code that formalizes and verifies set theory properties, including intersections, unions, and subset relationships, through lemmas and assertions.

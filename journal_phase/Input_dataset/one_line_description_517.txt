@@ -1,0 +1,1 @@
+Implement a Dafny function and method to compute \\\\(2^n\\\\) recursively and iteratively, ensuring the iterative method adheres to invariants that guarantee its correctness against the recursive implementation.

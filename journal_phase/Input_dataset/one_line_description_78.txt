@@ -1,0 +1,1 @@
+Implement a co-inductive datatype `Stream` in Dafny to represent infinite lists, including functions for generating integer streams and verifying properties like positivity and associativity using co-predicates and colemmas.

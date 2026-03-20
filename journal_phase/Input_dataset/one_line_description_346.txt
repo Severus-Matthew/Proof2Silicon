@@ -1,0 +1,1 @@
+Implement a Dafny method `findMax` that verifies and returns the maximum value from a non-empty array of real numbers, along with a `testFindMax` method to validate its correctness through diverse test cases.

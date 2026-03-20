@@ -1,0 +1,1 @@
+Implement a Dafny method `main` that calculates integers `i` and `j` such that the sum of `k`, `i`, and `j` is at least twice `n`, using a loop that iterates `i` from 0 to `n` while maintaining `j` as the sum of the first `i` natural numbers.

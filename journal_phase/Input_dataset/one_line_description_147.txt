@@ -1,0 +1,1 @@
+Implement an Insertion Sort algorithm in Dafny that sorts a sequence of integers while ensuring the output is a sorted permutation of the input, maintaining multiset properties.

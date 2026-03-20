@@ -1,0 +1,1 @@
+Implement a Dafny method that verifies a computed value through a loop against a recursive ghost function, ensuring the output aligns with the function's definition.

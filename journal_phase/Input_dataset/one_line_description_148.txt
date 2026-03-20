@@ -1,0 +1,1 @@
+Implement a Dafny method `ArrayToSeq` that converts an integer array into a corresponding sequence while maintaining length and element correspondence, ensuring correctness with appropriate invariants.

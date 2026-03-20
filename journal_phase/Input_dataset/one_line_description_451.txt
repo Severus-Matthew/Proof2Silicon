@@ -1,0 +1,1 @@
+Implement a Dafny program that computes subarray sums using both recursive and prefix sum methods, and defines a linked list datatype with a method to convert an array into this list while preserving membership properties.

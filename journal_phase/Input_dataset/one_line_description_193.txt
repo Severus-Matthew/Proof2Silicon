@@ -1,0 +1,1 @@
+Implement string manipulation methods in Dafny to check for prefixes, substrings, and find the longest common substring between two strings.

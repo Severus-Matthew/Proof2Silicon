@@ -1,0 +1,1 @@
+Develop Dafny code to define types and predicates for natural numbers, including properties of odd/even integers and prime numbers, while implementing arithmetic functions for a custom `int32` type with overflow and underflow checks.

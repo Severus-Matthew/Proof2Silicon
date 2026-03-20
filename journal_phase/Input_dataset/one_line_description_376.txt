@@ -1,0 +1,1 @@
+Implement a Dafny method to check if an array contains at least one even integer, using a predicate for evenness and loop invariants for correctness.

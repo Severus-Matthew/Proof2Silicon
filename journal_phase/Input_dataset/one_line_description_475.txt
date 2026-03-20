@@ -1,0 +1,1 @@
+Implement a recursive function and an iterative method in Dafny to compute the power of a natural number, ensuring both approaches maintain correctness through defined mathematical properties and invariants.

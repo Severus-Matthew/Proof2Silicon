@@ -1,0 +1,1 @@
+Implement a Dafny method `RemoveDuplicates` that modifies a sorted array of integers in place to remove duplicates and returns the new length, while maintaining order and correctness, along with a testing method to validate its functionality.

@@ -1,0 +1,1 @@
+Implement a Dafny solution for toggling letter cases in a string or reversing the string if no letters are present, ensuring proper validation and invariants.

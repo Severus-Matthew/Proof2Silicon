@@ -1,0 +1,1 @@
+Implement a Dafny method that verifies if all elements at even indices in a sequence of integers are even, using a predicate to check evenness and maintaining an invariant during iteration.

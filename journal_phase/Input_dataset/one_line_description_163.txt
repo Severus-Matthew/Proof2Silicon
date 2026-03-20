@@ -1,0 +1,1 @@
+Implement a method in Dafny that subtracts a positive integer `n` from a larger integer `k`, ensuring the result is non-negative, using a loop that decrements the result iteratively while maintaining specified invariants.

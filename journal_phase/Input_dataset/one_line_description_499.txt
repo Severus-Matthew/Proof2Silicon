@@ -1,0 +1,1 @@
+Implement a function to count even integers in a non-empty sequence and an array method with input validation, including supporting lemmas for correctness verification.

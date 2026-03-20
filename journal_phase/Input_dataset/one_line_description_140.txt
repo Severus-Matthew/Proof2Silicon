@@ -1,0 +1,1 @@
+Implement a Dafny program that defines a class with a two-dimensional array and methods for manipulating its contents, ensuring correct array bounds and manipulation semantics through formal verification.

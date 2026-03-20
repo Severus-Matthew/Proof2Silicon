@@ -1,0 +1,1 @@
+Implement a method that identifies the first character in a string that appears more than once, returning a boolean for presence and the character itself if found, while ensuring correctness through state invariants.

@@ -1,0 +1,1 @@
+Implement a Dafny program that checks if an integer array is sorted and performs a binary search to find a specified value, ensuring formal specifications for input conditions and output properties.

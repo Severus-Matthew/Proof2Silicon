@@ -1,0 +1,1 @@
+Implement a method `ArrayMap` in Dafny that applies a function to each element of an input array while ensuring preconditions for validity and postconditions for correctness, along with a commented-out `GenericSort` method for sorting based on a comparison function.

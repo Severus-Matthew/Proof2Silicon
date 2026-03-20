@@ -1,0 +1,1 @@
+Implement Dafny functions demonstrating recursive behavior, including tail recursion and non-termination, while ensuring outputs scale with inputs and utilizing ghost variables for formal verification.

@@ -1,0 +1,1 @@
+Implement a Dafny method `MinLengthSublist` that returns the shortest sublist from a sequence of integer sequences, ensuring it meets specified preconditions and postconditions for correctness.

@@ -1,0 +1,1 @@
+Implement a Dafny method `SquarePyramidSurfaceArea` that computes the surface area of a square pyramid using positive integers for base edge length and height, adhering to the surface area formula.

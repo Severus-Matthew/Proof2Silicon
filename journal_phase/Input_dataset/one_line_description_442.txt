@@ -1,0 +1,1 @@
+Implement a recursive function for exponentiation in Dafny, along with an iterative method and a lemma verifying the distributive property of exponentiation.

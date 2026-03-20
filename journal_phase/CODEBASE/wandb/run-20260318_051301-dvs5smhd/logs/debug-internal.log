@@ -1,0 +1,16 @@
+{"time":"2026-03-18T05:13:01.478169991Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260318_051301-dvs5smhd/logs/debug-core.log"}
+{"time":"2026-03-18T05:13:01.708223613Z","level":"INFO","msg":"created new stream","id":"dvs5smhd"}
+{"time":"2026-03-18T05:13:01.708277762Z","level":"INFO","msg":"stream: started","id":"dvs5smhd"}
+{"time":"2026-03-18T05:13:01.708301152Z","level":"INFO","msg":"writer: Do: started","stream_id":"dvs5smhd"}
+{"time":"2026-03-18T05:13:01.708314886Z","level":"INFO","msg":"sender: started","stream_id":"dvs5smhd"}
+{"time":"2026-03-18T05:13:01.708528958Z","level":"INFO","msg":"handler: started","stream_id":"dvs5smhd"}
+{"time":"2026-03-18T05:13:02.738331444Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-18T05:14:05.638999119Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-18T05:14:05.639216789Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-18T05:14:06.209505001Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-03-18T05:14:06.462455222Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-03-18T05:14:06.465754956Z","level":"INFO","msg":"stream: closing","id":"dvs5smhd"}
+{"time":"2026-03-18T05:14:06.465774234Z","level":"INFO","msg":"handler: closed","stream_id":"dvs5smhd"}
+{"time":"2026-03-18T05:14:06.465780687Z","level":"INFO","msg":"writer: Close: closed","stream_id":"dvs5smhd"}
+{"time":"2026-03-18T05:14:06.465802126Z","level":"INFO","msg":"sender: closed","stream_id":"dvs5smhd"}
+{"time":"2026-03-18T05:14:06.466304082Z","level":"INFO","msg":"stream: closed","id":"dvs5smhd"}

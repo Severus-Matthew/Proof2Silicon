@@ -1,0 +1,1 @@
+Implement a method in Dafny that multiplies two natural numbers using successive addition while maintaining a loop invariant to verify the correctness of the result.

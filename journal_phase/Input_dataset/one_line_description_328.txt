@@ -1,0 +1,1 @@
+Implement a method `AnyValueExists` in Dafny that determines if there is at least one common element between two sequences and ensures correctness through invariants and ensures clauses.

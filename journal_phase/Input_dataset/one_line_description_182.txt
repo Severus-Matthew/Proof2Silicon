@@ -1,0 +1,1 @@
+Implement a Dafny program that defines a recursive and an iterative function to compute the factorial of a natural number, ensuring their results are verified to be equivalent through appropriate invariants.

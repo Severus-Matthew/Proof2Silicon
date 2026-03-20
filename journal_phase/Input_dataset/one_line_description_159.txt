@@ -1,0 +1,1 @@
+Implement a Dafny method that initializes two integers, maintains their sum in a loop up to 100,000, and ensures their values remain equal while returning their final values.

@@ -1,0 +1,1 @@
+Implement a Dafny module that defines custom division and modulus functions, handling negative values and edge cases with clear documentation and examples.

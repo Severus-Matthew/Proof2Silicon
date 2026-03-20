@@ -1,0 +1,1 @@
+Develop Dafny code to prove various mathematical properties through lemmas, including divisibility, parity of cubed integers, modular equivalence of cubes, and the monotonicity of exponential functions using induction and contradiction.

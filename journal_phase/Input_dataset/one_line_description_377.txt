@@ -1,0 +1,1 @@
+Implement multiple methods in Dafny for linear searching in arrays and sequences that ensure specific properties and validate inputs/outputs through predicates and assertions.

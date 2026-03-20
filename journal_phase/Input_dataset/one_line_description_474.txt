@@ -1,0 +1,1 @@
+Implement a Dafny predicate that checks if an integer array has an even length and ensures that elements at indices that are multiples of a given integer `n` are zero, while all other elements are non-zero, and provide tests for validation.

@@ -1,0 +1,1 @@
+Implement a binary search algorithm in Dafny to find the correct index for inserting a value into a sorted array while ensuring the array remains sorted, along with test cases to validate the implementation.

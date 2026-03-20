@@ -1,0 +1,1 @@
+Implement mathematical functions in Dafny, including absolute value computation, a method for multiple return values, and a maximum value finder, all with correctness assertions and test cases.

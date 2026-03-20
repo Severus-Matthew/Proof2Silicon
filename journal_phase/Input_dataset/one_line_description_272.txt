@@ -1,0 +1,1 @@
+Implement a method `FindMax` in Dafny that returns the index of the maximum value in a non-empty integer array, ensuring correct preconditions, postconditions, and loop invariants.

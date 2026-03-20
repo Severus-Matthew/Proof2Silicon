@@ -1,0 +1,1 @@
+Implement a method `MinOfThree` in Dafny that takes three integers and returns the minimum, ensuring the result is less than or equal to each input and matches one of them.

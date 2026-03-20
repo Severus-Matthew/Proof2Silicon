@@ -1,0 +1,1 @@
+Implement a method in Dafny that checks if an integer array is symmetric, ensuring it validates elements against their mirrored counterparts with appropriate preconditions and postconditions.

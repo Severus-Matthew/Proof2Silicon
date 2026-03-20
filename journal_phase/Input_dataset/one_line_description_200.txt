@@ -1,0 +1,1 @@
+Implement recursive datatypes in Dafny that represent collections while ensuring they do not allow self-referential instances, supported by lemmas that verify their structural properties.

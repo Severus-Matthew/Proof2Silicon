@@ -1,0 +1,1 @@
+Implement a Dafny function for matrix multiplication of two 2D integer arrays, ensuring proper input validation and formal verification of the results.

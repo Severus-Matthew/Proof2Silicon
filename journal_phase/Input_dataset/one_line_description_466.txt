@@ -1,0 +1,1 @@
+Implement a Dafny method that converts an array of integers to an array of their absolute values while ensuring the output array's length matches the input and each element corresponds to the absolute value of the respective input element.

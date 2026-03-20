@@ -1,0 +1,1 @@
+Implement a method in Dafny that multiplies two non-negative integers using an iterative approach, ensuring preconditions for non-negativity and postconditions for correct output.

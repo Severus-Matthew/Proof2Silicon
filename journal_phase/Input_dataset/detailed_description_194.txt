@@ -1,0 +1,1 @@
+The Dafny code defines a method `TestArrayElements` that takes an integer array `a` and a natural number `j` as parameters. It sets the element at index `j` of the array to 60, while ensuring that this modification is only allowed if `j` is within valid bounds. Additionally, it guarantees that all other elements of the array remain unchanged after the operation.

@@ -1,0 +1,1 @@
+Implement a method `MedianOfThree` in Dafny that calculates and returns the median of three given integers, ensuring the result is one of the inputs and lies between the smallest and largest values.

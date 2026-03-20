@@ -1,0 +1,1 @@
+Implement a Dafny method `RemoveElement` that removes an element from an integer array at a specified index, returning a new array with the remaining elements while ensuring correctness through formal verification techniques.

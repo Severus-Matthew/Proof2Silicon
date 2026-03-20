@@ -1,0 +1,1 @@
+Implement two algorithms in Dafny: one for calculating the additive factorial of a natural number and another for rearranging an array around a pivot element while ensuring correct placements using invariants and ensures clauses for correctness.

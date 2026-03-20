@@ -1,0 +1,1 @@
+Implement a Dafny method `Swap` that exchanges two integers and verifies the correctness of the swap operation through assertions.

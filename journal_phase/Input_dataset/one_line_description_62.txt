@@ -1,0 +1,1 @@
+Implement a method that decrements a positive integer `k` over `n` iterations while ensuring the result remains non-negative, translating this logic from Dafny to C code.

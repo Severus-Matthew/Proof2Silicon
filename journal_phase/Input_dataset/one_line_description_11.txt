@@ -1,0 +1,1 @@
+Implement an Insertion Sort algorithm in Dafny that sorts an array of integers while maintaining a sorted property using a predicate and a method to find the minimum element.

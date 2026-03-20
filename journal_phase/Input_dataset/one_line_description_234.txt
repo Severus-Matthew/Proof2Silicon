@@ -1,0 +1,1 @@
+Implement a Dafny method `Mult` that computes the product of two natural numbers `x` and `y` using an iterative loop and maintains loop invariants to ensure correctness.

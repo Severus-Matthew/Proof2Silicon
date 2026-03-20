@@ -1,0 +1,1 @@
+Implement the Selection Sort algorithm in Dafny, ensuring correctness and data integrity by maintaining invariants that guarantee the final array is sorted and contains the same elements as the original.

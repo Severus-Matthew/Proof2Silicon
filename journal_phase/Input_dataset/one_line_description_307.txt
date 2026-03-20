@@ -1,0 +1,1 @@
+Implement two classes in Dafny, where one class initializes a property and the other manipulates this property through a method that includes assertions to verify state changes and invariants.

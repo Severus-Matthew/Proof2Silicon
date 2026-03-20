@@ -1,0 +1,1 @@
+Implement a Bubble Sort algorithm in Dafny that sorts an integer array in ascending order while using predicates to verify sorting conditions and array partitions.

@@ -1,0 +1,1 @@
+Implement a Dafny method `Getmini` that returns the index of the first occurrence of the minimum value in a non-empty array of integers, ensuring correctness through preconditions and postconditions.

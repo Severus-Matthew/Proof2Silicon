@@ -1,0 +1,1 @@
+Implement a Dafny function for exponentiation using binary exponentiation, along with lemmas to verify its properties and the relationship between binary representation and natural numbers.

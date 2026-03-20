@@ -1,0 +1,1 @@
+Implement two methods in Dafny: `fillK` to check if the first `c` elements of an integer array equal a specified integer `k`, and `containsSubString` to find the starting position of a character array substring within another character array, returning -1 if not found.

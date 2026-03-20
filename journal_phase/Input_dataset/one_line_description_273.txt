@@ -1,0 +1,1 @@
+Implement a bubble sort algorithm in Dafny that verifies the sorted order of an integer array using predicates, maintains the multiset of elements, and incorporates invariants for correctness.

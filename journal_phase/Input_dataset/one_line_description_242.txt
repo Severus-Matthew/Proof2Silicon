@@ -1,0 +1,1 @@
+Implement recursive multiplication and addition methods in Dafny that correctly handle positive and negative integers while adhering to mathematical definitions through postconditions and loop invariants.

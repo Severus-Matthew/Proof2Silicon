@@ -1,0 +1,1 @@
+Implement a Dafny method `Min` that returns the minimum of two integers, ensuring the result satisfies specific postconditions for correctness.

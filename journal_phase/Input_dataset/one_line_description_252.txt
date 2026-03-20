@@ -1,0 +1,1 @@
+Implement a method `ZapNegatives` in Dafny that replaces all negative integers in an input array with zero, while preserving the original array's length and ensuring correctness through verification goals.

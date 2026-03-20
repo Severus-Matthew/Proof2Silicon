@@ -1,0 +1,1 @@
+Implement a Dafny method to verify that all elements at odd indices of an integer array are odd, utilizing invariants to maintain correctness throughout the iteration.

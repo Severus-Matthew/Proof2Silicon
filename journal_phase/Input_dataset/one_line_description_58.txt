@@ -1,0 +1,1 @@
+Implement a dynamically resizable array class in Dafny that maintains logical invariants and integrity through ghost variables, allowing for element addition, setting, and access while managing overflow storage.

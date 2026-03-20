@@ -1,0 +1,1 @@
+Implement a recursive `reverse` function for a sequence of natural numbers in Dafny, ensuring it satisfies properties of reversing concatenated sequences and returning the original sequence when reversed twice.

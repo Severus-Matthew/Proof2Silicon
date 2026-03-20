@@ -1,0 +1,1 @@
+Implement a function to filter vowels from a sequence of characters and another method to extract vowels from an array, ensuring type safety and correctness through invariants and assertions.

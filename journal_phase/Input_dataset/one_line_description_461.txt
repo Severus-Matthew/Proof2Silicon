@@ -1,0 +1,1 @@
+Design a `CarPark` class in Dafny that models a parking facility with functionalities for managing regular and reserved spaces, subscriptions, and enforcing constraints on parking operations, while including tests for various scenarios.

@@ -1,0 +1,1 @@
+Implement a Dafny method `MaxLengthList` that returns the longest sequence from a given sequence of integer sequences, ensuring the result is an input sequence and all others are of lesser or equal length.

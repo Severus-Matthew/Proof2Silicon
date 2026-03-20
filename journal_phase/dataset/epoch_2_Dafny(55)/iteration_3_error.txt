@@ -1,0 +1,8 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(45,16): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(4,5): Error: index out of range
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(4,15): Error: index out of range
+
+Dafny program verifier finished with 3 verified, 2 errors

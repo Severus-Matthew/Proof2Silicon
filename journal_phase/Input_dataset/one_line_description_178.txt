@@ -1,0 +1,1 @@
+Implement a merge sort algorithm in Dafny that sorts an integer array, including functions for checking sorted order, copying array sections, merging sorted subarrays, and handling the recursive sorting process.

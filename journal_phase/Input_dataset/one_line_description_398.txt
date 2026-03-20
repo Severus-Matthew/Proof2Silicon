@@ -1,0 +1,1 @@
+Implement a Dafny method `IsBreakEven` that checks if a product's selling price equals its cost price, ensuring both are non-negative, to determine break-even status.

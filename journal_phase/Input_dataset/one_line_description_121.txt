@@ -1,0 +1,1 @@
+Implement a binary search algorithm in Dafny to find the appropriate index for inserting an integer `x` in a sorted array of size 1000, ensuring all elements to the left are less than `x` and all to the right are greater than or equal to `x`, utilizing both iterative and recursive binary search methods for specific array segment sizes.

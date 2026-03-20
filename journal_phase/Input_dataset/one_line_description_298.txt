@@ -1,0 +1,1 @@
+Implement a method `swap3` that swaps the values of three distinct elements in an integer array at given indices while maintaining original values, and create a `testSwap3` method to validate the correctness of the swap operation.

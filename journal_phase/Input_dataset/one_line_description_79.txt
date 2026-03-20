@@ -1,0 +1,1 @@
+Implement a Dafny method to compute and verify the difference between the sum of cubes and the sum of the first `n` natural numbers, using invariants for loop consistency and correctness.

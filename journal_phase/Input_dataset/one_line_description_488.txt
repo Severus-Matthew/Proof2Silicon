@@ -1,0 +1,1 @@
+Implement a recursive function `has_count` and an iterative method `count` to count occurrences of a specific integer in an array, ensuring both methods yield consistent results.

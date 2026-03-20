@@ -1,0 +1,1 @@
+Implement a Dafny lemma that proves the product of two consecutive natural numbers is even using structural induction.

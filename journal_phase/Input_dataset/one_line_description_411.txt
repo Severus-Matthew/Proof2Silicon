@@ -1,0 +1,1 @@
+Implement a Dafny program that defines a recursive factorial function and an iterative method to calculate the factorial, ensuring both methods yield the same result through verification and invariants.

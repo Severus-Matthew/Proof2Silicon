@@ -1,0 +1,1 @@
+Implement a method `CountToAndReturnN` in Dafny that counts from 0 to a given non-negative integer `n` and returns `n`, ensuring loop invariants maintain the loop variable within bounds.

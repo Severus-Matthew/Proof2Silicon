@@ -1,0 +1,1 @@
+Implement a Dafny method `Abs` that computes the absolute value of a negative integer, ensuring preconditions for negativity and postconditions for positivity and correctness, with a demonstration in the `Main` method.

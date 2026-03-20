@@ -1,0 +1,1 @@
+Implement two methods in Dafny that find the first negative number in an integer array, ensuring all preceding values are non-negative, while returning a boolean for the presence of a negative number and its index, along with maintaining verification invariants.

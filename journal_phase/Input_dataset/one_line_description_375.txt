@@ -1,0 +1,1 @@
+Implement and verify functions and properties for exponentiation and binary representations of natural numbers in Dafny, ensuring adherence to mathematical identities and correctness through lemmas.

@@ -1,0 +1,1 @@
+Develop a Dafny module that defines a ghost function for the exponential function and includes lemmas to verify its key properties, such as monotonicity, positivity, and evaluation at critical points.

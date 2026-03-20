@@ -1,0 +1,1 @@
+Develop Dafny code to verify properties of sets and sequences, focusing on element membership, auto-triggering conditions for even numbers, and implementing classes for managing collections with invariants.

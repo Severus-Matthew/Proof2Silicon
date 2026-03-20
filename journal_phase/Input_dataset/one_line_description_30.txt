@@ -1,0 +1,1 @@
+Implement an O(log n) algorithm in Dafny to compute the natural power of a real number using a divide-and-conquer approach, ensuring correctness through functional programming, inductive verification, and test cases.

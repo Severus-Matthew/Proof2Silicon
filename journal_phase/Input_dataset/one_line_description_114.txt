@@ -1,0 +1,1 @@
+Implement a method `ReplaceLastElement` that replaces the last element of a given integer sequence with another sequence, ensuring the new sequence maintains the appropriate length and preserves the preceding elements.

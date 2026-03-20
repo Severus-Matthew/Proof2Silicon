@@ -1,0 +1,1 @@
+Implement an algebraic data type for natural numbers in Dafny, with predicates for odd/even identification, an addition function, and a lemma proving that the sum of two odd numbers is even, using structural recursion and assertions for verification.

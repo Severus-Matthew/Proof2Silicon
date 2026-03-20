@@ -1,0 +1,1 @@
+Implement a method `nonZeroReturn` that returns 1 for an input of 0 and the negative of the input for non-zero values, ensuring the output is always non-zero, and include a test to validate this behavior.

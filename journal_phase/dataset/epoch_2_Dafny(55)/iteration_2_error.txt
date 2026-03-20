@@ -1,0 +1,4 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(8,7): Error: unless an initializer is provided for the array elements, a new array of 'T' must have empty size
+
+Dafny program verifier finished with 1 verified, 1 error

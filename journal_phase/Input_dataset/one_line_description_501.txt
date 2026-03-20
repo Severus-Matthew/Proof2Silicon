@@ -1,0 +1,1 @@
+Implement a Dafny function `fact` to compute the factorial of a non-negative integer `n`, ensuring the result is at least 1, along with an iterative method `factorial` that uses loop invariants for correctness verification.

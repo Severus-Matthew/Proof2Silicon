@@ -1,0 +1,1 @@
+Implement a method `HasCommonElement` in Dafny that checks for common elements between two non-null integer arrays, ensuring specified preconditions and postconditions for the result.

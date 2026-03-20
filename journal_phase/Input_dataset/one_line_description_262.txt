@@ -1,0 +1,1 @@
+Implement Dafny code that defines mathematical functions and predicates for evenness and oddness of natural numbers, verifies properties of relations, and ensures specific outcomes for defined functions related to even and odd results.

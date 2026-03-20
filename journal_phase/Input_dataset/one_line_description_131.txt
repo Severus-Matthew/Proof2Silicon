@@ -1,0 +1,1 @@
+Implement a Dafny method `Triple` that calculates and verifies that the output is three times the input integer by using a temporary variable that is double the input.

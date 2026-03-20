@@ -1,0 +1,1 @@
+Implement a formally verified linked list in Dafny that supports node prepending, head-skipping, and in-place reversal while maintaining structural invariants.

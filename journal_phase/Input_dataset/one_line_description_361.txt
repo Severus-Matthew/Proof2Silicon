@@ -1,0 +1,1 @@
+Implement a method `SumMinMax` in Dafny that computes the sum of the minimum and maximum values from a non-empty array of integers, using recursive functions and ensuring correctness through invariants and assertions.

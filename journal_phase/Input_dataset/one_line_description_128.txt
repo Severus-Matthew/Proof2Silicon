@@ -1,0 +1,1 @@
+Implement a function to compute the absolute value of a real number and a method to check for distinct elements in a sequence that are closer than a specified threshold, ensuring correctness through assertions and loop invariants.

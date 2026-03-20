@@ -1,0 +1,1 @@
+Implement a method `AllSequencesEqualLength` in Dafny that verifies if all sequences within a sequence of sequences have the same length, returning true for an empty input.

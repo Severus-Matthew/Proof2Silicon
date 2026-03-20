@@ -1,0 +1,1 @@
+Implement a recursive function to compute the sum of negative integers in a segment of an array and a method to aggregate this sum across the entire array, ensuring correctness through loop invariants.

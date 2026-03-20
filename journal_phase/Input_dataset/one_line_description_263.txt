@@ -1,0 +1,1 @@
+Implement a Dafny function `IsEven` to check if a non-negative integer is even, and prove related properties through lemmas on even numbers, including their squares, doubles, and sums using structural induction.

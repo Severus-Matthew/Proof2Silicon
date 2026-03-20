@@ -1,0 +1,1 @@
+Implement a Dafny method `max` that returns the maximum value from a non-empty array of natural numbers, ensuring correctness through preconditions and postconditions, and validate it with a test in the `Main` method.

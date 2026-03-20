@@ -1,0 +1,1 @@
+Implement a verified method in Dafny that efficiently identifies two distinct duplicate integers in an array, ensuring proper handling of bounds and invariants.

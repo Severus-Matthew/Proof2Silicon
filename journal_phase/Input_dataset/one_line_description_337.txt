@@ -1,0 +1,1 @@
+Implement a Dafny method `DoubleArray` that verifies two equal-length integer arrays, ensuring each element in the destination array is double the corresponding element in the source array using loop invariants.

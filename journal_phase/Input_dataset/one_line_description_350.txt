@@ -1,0 +1,1 @@
+Implement a method `IsEven` in Dafny that checks if an integer `n` is even, ensuring correctness with a postcondition that confirms the result is true if `n` is divisible by 2.

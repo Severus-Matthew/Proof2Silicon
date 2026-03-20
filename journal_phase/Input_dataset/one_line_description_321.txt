@@ -1,0 +1,1 @@
+Implement a Dafny method to reverse an array of characters while maintaining invariants, and demonstrate its correctness by asserting that reversing the array multiple times returns it to its original state.

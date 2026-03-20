@@ -1,0 +1,1 @@
+Implement a Dafny program to compute the cumulative sum of an array and find the index for a specified percentile, ensuring correctness and uniqueness of the result for strictly positive elements.

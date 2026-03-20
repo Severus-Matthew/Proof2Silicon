@@ -1,0 +1,1 @@
+Implement a Dafny method `CountLists` that counts the number of inner integer sequences in a given sequence of sequences, ensuring the count is non-negative and matches the length of the input.

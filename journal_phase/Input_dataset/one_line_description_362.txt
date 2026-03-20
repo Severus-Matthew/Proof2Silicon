@@ -1,0 +1,1 @@
+Implement an iterative method `calcR` in Dafny to compute the value of a recursive function `R(n)` for natural numbers while ensuring correctness through invariants.

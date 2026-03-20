@@ -1,0 +1,1 @@
+Implement a method `FindMedian` in Dafny that calculates the median of two sorted, non-null arrays of equal length, ensuring proper handling of both even and odd lengths.

@@ -1,0 +1,6 @@
+{"time":"2026-03-20T07:49:10.762161997Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260320_074910-sh7wtds5/logs/debug-core.log"}
+{"time":"2026-03-20T07:49:10.874100058Z","level":"INFO","msg":"created new stream","id":"sh7wtds5"}
+{"time":"2026-03-20T07:49:10.874196294Z","level":"INFO","msg":"stream: started","id":"sh7wtds5"}
+{"time":"2026-03-20T07:49:10.874377279Z","level":"INFO","msg":"writer: Do: started","stream_id":"sh7wtds5"}
+{"time":"2026-03-20T07:49:10.874419049Z","level":"INFO","msg":"sender: started","stream_id":"sh7wtds5"}
+{"time":"2026-03-20T07:49:10.874563406Z","level":"INFO","msg":"handler: started","stream_id":"sh7wtds5"}

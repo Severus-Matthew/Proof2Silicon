@@ -1,0 +1,1 @@
+Implement a Dafny program that performs addition and multiplication of integers using a loop and recursion, respectively, while ensuring correctness through invariants and testing with various integer pairs.

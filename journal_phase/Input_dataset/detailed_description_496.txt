@@ -1,0 +1,1 @@
+The given Dafny code defines a method `ContainsSequence` that checks whether a specified subsequence `sub` exists within a list of sequences `list`. It ensures that the result is true if and only if there is at least one sequence in `list` that matches `sub`. The method employs an invariant during iteration to maintain the correctness of the result throughout the search process.

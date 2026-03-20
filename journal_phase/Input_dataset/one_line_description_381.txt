@@ -1,0 +1,1 @@
+Implement a Dafny method `IsOdd` that returns true if an integer `n` is odd (i.e., `n % 2 == 1`) and false otherwise.

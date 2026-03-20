@@ -1,0 +1,1 @@
+Implement functions and methods in Dafny to compute the sum of natural numbers both recursively and iteratively, ensuring correctness through verification and invariants.

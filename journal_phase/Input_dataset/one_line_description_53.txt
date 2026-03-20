@@ -1,0 +1,1 @@
+Implement a Dafny method `Maximum` to find the unique largest element in a non-empty list of integers, ensuring correctness with a while loop and invariants, and prove its uniqueness with the `MaximumIsUnique` lemma.

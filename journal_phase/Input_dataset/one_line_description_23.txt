@@ -1,0 +1,1 @@
+Implement a Dafny code that defines a ghost function to recursively compute the sum of the first `n` natural numbers and validates it through an iterative method with invariants and assertions.

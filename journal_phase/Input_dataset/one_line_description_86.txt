@@ -1,0 +1,1 @@
+Implement a selection sort algorithm in Dafny that sorts an integer array in non-decreasing order while preserving the multiset of values and ensuring correctness through invariants.

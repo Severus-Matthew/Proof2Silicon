@@ -1,0 +1,1 @@
+Implement a Dafny method `rotate` that circularly shifts an integer array by a specified offset, ensuring the output array has the same length and correctly transformed indices, with appropriate preconditions and postconditions for validation.

@@ -1,0 +1,1 @@
+Develop Dafny code that defines a recursive `Sum` function for calculating sums of functions over natural numbers, alongside lemmas verifying mathematical properties like commutativity and distribution for formal verification.

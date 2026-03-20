@@ -1,0 +1,1 @@
+Implement methods in Dafny to find the maximum value and its indices in an integer array using both left-to-right and right-to-left iterations, ensuring the maximum is strictly greater than adjacent elements.

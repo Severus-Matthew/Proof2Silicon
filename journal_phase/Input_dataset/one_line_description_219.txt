@@ -1,0 +1,1 @@
+Implement a Dafny method `NthHexagonalNumber` that calculates the nth hexagonal number using the formula \\( n \\times (2n - 1) \\), ensuring input validation for non-negativity and output verification.

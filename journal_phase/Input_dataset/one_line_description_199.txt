@@ -1,0 +1,1 @@
+Implement a Dafny method to calculate and verify the area of the largest inscribed triangle in a semicircle, ensuring it matches the square of the radius using preconditions and postconditions.

@@ -1,0 +1,1 @@
+Implement a cellular automaton in Dafny that evolves a row of cells according to a binary rule over specified steps while preserving invariants and validating behavior through test cases.

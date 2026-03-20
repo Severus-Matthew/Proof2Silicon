@@ -1,0 +1,1 @@
+Implement a method `CountEqualNumbers` in Dafny that counts and returns how many of three given integers are equal, ensuring the count is between 0 and 3 and reflects the equality relationships among the integers.

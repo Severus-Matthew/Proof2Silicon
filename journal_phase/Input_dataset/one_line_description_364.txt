@@ -1,0 +1,1 @@
+Create an abstract interface in Dafny with a function that guarantees a return value greater than the input, implement it in a module, and refine another module to validate the implementation's correctness.

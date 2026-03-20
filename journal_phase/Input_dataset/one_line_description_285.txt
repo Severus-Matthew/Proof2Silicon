@@ -1,0 +1,1 @@
+Implement a method in Dafny that calculates the nth decagonal number using the formula \\(4n^2 - 3n\\) and verifies the output against this calculation for non-negative integers.

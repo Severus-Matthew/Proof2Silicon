@@ -1,0 +1,25 @@
+{
+  "DafnyVersionNote": "Built against Dafny 4.11.x assemblies (DafnyCore/DafnyDriver); report is fully AST-based.",
+  "TotalCallables": 1,
+  "Callables": [
+    {
+      "Kind": "method",
+      "Name": "ToArray",
+      "QualifiedName": "_module.ToArray",
+      "ModuleName": "_module",
+      "IsGhost": false,
+      "SourceLine": 1,
+      "SourceColumn": 1,
+      "DafnyResolvedIsRecursive": false,
+      "Calls": []
+    }
+  ],
+  "DirectRecursive": [],
+  "MutualRecursiveGroups": [],
+  "Summary": {
+    "GhostVariables": 0,
+    "GhostConstants": 0,
+    "LoopInvariantClauses": 2
+  },
+  "GhostDeclarations": []
+}

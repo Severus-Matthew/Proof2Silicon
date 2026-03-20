@@ -1,0 +1,16 @@
+{"time":"2026-03-18T03:39:35.266287783Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260318_033935-fcto93i6/logs/debug-core.log"}
+{"time":"2026-03-18T03:39:35.507414392Z","level":"INFO","msg":"created new stream","id":"fcto93i6"}
+{"time":"2026-03-18T03:39:35.507626355Z","level":"INFO","msg":"stream: started","id":"fcto93i6"}
+{"time":"2026-03-18T03:39:35.507716609Z","level":"INFO","msg":"writer: Do: started","stream_id":"fcto93i6"}
+{"time":"2026-03-18T03:39:35.507915768Z","level":"INFO","msg":"handler: started","stream_id":"fcto93i6"}
+{"time":"2026-03-18T03:39:35.508004985Z","level":"INFO","msg":"sender: started","stream_id":"fcto93i6"}
+{"time":"2026-03-18T03:39:36.249746564Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2026-03-18T03:40:11.809807962Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2026-03-18T03:40:11.810711628Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2026-03-18T03:40:12.419012233Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-03-18T03:40:12.750648877Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-03-18T03:40:12.764858809Z","level":"INFO","msg":"stream: closing","id":"fcto93i6"}
+{"time":"2026-03-18T03:40:12.764912445Z","level":"INFO","msg":"handler: closed","stream_id":"fcto93i6"}
+{"time":"2026-03-18T03:40:12.764927204Z","level":"INFO","msg":"writer: Close: closed","stream_id":"fcto93i6"}
+{"time":"2026-03-18T03:40:12.764976061Z","level":"INFO","msg":"sender: closed","stream_id":"fcto93i6"}
+{"time":"2026-03-18T03:40:12.766646714Z","level":"INFO","msg":"stream: closed","id":"fcto93i6"}

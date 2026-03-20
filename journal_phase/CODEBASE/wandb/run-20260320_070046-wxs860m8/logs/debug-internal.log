@@ -1,0 +1,6 @@
+{"time":"2026-03-20T07:00:46.92241589Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260320_070046-wxs860m8/logs/debug-core.log"}
+{"time":"2026-03-20T07:00:47.041338529Z","level":"INFO","msg":"created new stream","id":"wxs860m8"}
+{"time":"2026-03-20T07:00:47.041404973Z","level":"INFO","msg":"stream: started","id":"wxs860m8"}
+{"time":"2026-03-20T07:00:47.041490598Z","level":"INFO","msg":"writer: Do: started","stream_id":"wxs860m8"}
+{"time":"2026-03-20T07:00:47.041555944Z","level":"INFO","msg":"handler: started","stream_id":"wxs860m8"}
+{"time":"2026-03-20T07:00:47.041693195Z","level":"INFO","msg":"sender: started","stream_id":"wxs860m8"}

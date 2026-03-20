@@ -1,0 +1,1 @@
+Implement a method `twoSum` that finds two distinct indices in an integer array whose corresponding values sum to a specified target, ensuring no duplicate pairs are considered.

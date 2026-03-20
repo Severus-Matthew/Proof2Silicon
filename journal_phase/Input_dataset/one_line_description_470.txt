@@ -1,0 +1,1 @@
+Develop Dafny lemmas to verify properties of integer and boolean sequences, focusing on subsequences, concatenation, and equality to ensure correctness in sequence manipulations.

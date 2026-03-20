@@ -1,0 +1,63 @@
+_wandb:
+    value:
+        cli_version: 0.19.10
+        m: []
+        python_version: 3.12.3
+        t:
+            "1":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 11
+                - 12
+                - 41
+                - 49
+                - 51
+                - 53
+                - 55
+                - 71
+                - 95
+                - 98
+            "2":
+                - 1
+                - 2
+                - 3
+                - 5
+                - 11
+                - 12
+                - 41
+                - 49
+                - 51
+                - 53
+                - 55
+                - 71
+                - 95
+                - 98
+            "3":
+                - 2
+                - 13
+                - 14
+                - 16
+                - 23
+                - 55
+            "4": 3.12.3
+            "5": 0.19.10
+            "6": 4.57.3
+            "8":
+                - 5
+                - 9
+            "12": 0.19.10
+            "13": linux-x86_64
+checkpoint:
+    value: /mnt/shared/gpfs/home/manvij2/journal_phase/checkpoints/run_CHK/final_model_new.pt
+max_workers:
+    value: 1
+start_epoch:
+    value: 0
+temperature:
+    value: 0.75
+wandb_entity:
+    value: drprofmjha-university-of-illinois-urbana-champaign
+wandb_project:
+    value: dafny-rl_full

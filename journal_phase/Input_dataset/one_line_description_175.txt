@@ -1,0 +1,1 @@
+Implement a method `SumOfCommonDivisors` that calculates and returns the non-negative sum of all common divisors of two positive integers `a` and `b`, ensuring mathematical correctness through iterative invariants.

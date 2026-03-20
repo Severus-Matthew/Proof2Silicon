@@ -1,0 +1,1 @@
+Implement a Dafny algorithm to efficiently compute the sum of "peek" elements in an array, ensuring correctness through predicates and recursive functions.

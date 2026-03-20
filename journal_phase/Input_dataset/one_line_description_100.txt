@@ -1,0 +1,1 @@
+Implement a Dafny method `find` that searches for the first occurrence of an integer `key` in an array `a`, ensuring valid index bounds and maintaining loop invariants for correctness.

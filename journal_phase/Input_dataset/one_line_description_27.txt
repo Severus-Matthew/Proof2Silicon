@@ -1,0 +1,1 @@
+Implement a Dafny method `TriangularPrismVolume` that calculates the volume of a triangular prism using positive integer inputs for base, height, and length, ensuring input validation and correct output verification.

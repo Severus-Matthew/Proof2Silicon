@@ -1,0 +1,1 @@
+Implement a method `M` in Dafny that takes an integer input and always returns the integer 7, ensuring the postcondition guarantees a consistent output.

@@ -1,0 +1,1 @@
+Implement coinductive datatypes for conatural numbers and parametric streams in Dafny, including operations like successor, addition, and stream manipulation, while providing proofs for their properties.

@@ -1,0 +1,1 @@
+Implement an iterative method in Dafny to reverse a non-empty character array without modifying the original array, and include a test to verify the correctness of the reversal.

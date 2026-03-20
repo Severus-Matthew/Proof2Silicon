@@ -1,0 +1,1 @@
+Implement a Dafny method `UpdateElements` that modifies an integer array of at least length 8 by increasing the value at index 4 by 3, setting index 7 to 516, and ensuring all other elements remain unchanged, with appropriate postconditions for correctness verification.

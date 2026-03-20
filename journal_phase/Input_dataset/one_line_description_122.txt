@@ -1,0 +1,1 @@
+Implement and verify properties of natural numbers and lists in Dafny, including successor function injectivity, addition properties, a less-than predicate, and list operations like size, concatenation, and reversal.

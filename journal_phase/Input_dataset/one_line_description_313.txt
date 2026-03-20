@@ -1,0 +1,1 @@
+Implement methods in Dafny to convert a string to a character multiset, check the equivalence of two multisets, and determine if two strings are anagrams based on their character counts.

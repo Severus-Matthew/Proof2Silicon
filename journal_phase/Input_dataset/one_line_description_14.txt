@@ -1,0 +1,1 @@
+Implement a method in Dafny that converts degrees to radians, ensuring correctness through a postcondition that verifies the conversion formula \\( \\text{radians} = \\text{degrees} \\times \\frac{\\pi}{180} \\).

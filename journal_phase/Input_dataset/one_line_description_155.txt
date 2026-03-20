@@ -1,0 +1,1 @@
+Implement a Dafny method that computes two integers `a` and `b` such that their sum equals three times a non-negative integer `n`, using a loop with conditional updates while maintaining specified invariants.

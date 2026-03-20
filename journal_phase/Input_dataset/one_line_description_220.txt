@@ -1,0 +1,1 @@
+Develop Dafny code to verify string properties, including prefix and substring detection, and analyze common substrings of specified lengths with formal correctness guarantees.

@@ -1,0 +1,93 @@
+{
+  "os": "Linux-6.8.0-90-generic-x86_64-with-glibc2.39",
+  "python": "CPython 3.12.3",
+  "startedAt": "2026-03-18T04:05:09.307458Z",
+  "args": [
+    "--checkpoint",
+    "/mnt/shared/gpfs/home/manvij2/checkpoints/run_CHK/test_new.pt",
+    "--start_epoch",
+    "0",
+    "--wandb_project",
+    "dafny-rl_new2",
+    "--wandb_entity",
+    "drprofmjha-university-of-illinois-urbana-champaign",
+    "--max_workers",
+    "1"
+  ],
+  "program": "/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/main.py",
+  "codePath": "main.py",
+  "email": "drprofmjha@gmail.com",
+  "root": "/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE",
+  "host": "codenimbus-003-1.csl.illinois.edu",
+  "executable": "/mnt/shared/gpfs/home/manvij2/dafny/bin/python",
+  "codePathLocal": "main.py",
+  "cpu_count": 96,
+  "cpu_count_logical": 96,
+  "gpu": "NVIDIA H100 PCIe",
+  "gpu_count": 2,
+  "disk": {
+    "/": {
+      "total": "267847524352",
+      "used": "168694538240"
+    }
+  },
+  "memory": {
+    "total": "464128917504"
+  },
+  "cpu": {
+    "count": 96,
+    "countLogical": 96
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA H100 PCIe",
+      "memoryTotal": "85520809984",
+      "cudaCores": 14592,
+      "architecture": "Hopper"
+    },
+    {
+      "name": "NVIDIA H100 PCIe",
+      "memoryTotal": "85520809984",
+      "cudaCores": 14592,
+      "architecture": "Hopper"
+    }
+  ],
+  "slurm": {
+    "cluster_name": "(null)",
+    "conf": "/etc/slurm/slurm.conf",
+    "cpus_on_node": "4",
+    "cpus_per_task": "4",
+    "gpus_on_node": "1",
+    "gtids": "0",
+    "job_cpus_per_node": "4",
+    "job_end_time": "1773808433",
+    "job_gid": "1717000013",
+    "job_gpus": "0",
+    "job_id": "16083",
+    "job_name": "dafny_smoke",
+    "job_nodelist": "codenimbus-003-1",
+    "job_num_nodes": "1",
+    "job_partition": "gpu-h100-dchen",
+    "job_start_time": "1773806633",
+    "job_uid": "1717000013",
+    "job_user": "manvij2",
+    "jobid": "16083",
+    "localid": "0",
+    "mem_per_cpu": "1000",
+    "nnodes": "1",
+    "nodeid": "0",
+    "nodelist": "codenimbus-003-1",
+    "nprocs": "1",
+    "ntasks": "1",
+    "prio_process": "0",
+    "procid": "0",
+    "submit_dir": "/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/runs",
+    "submit_host": "codenimbus-000-3.csl.illinois.edu",
+    "task_pid": "2379082",
+    "tasks_per_node": "1",
+    "topology_addr": "codenimbus-003-1",
+    "topology_addr_pattern": "node",
+    "tres_per_task": "cpu:4"
+  },
+  "cudaVersion": "13.1"
+}

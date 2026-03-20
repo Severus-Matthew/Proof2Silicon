@@ -1,0 +1,1 @@
+Implement a layered module refinement in Dafny, creating a generic `Container` class with operations for element management, while ensuring correctness through ghost predicates and proof reuse across multiple module layers.

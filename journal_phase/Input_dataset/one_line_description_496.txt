@@ -1,0 +1,1 @@
+Implement a method `ContainsSequence` in Dafny that verifies the existence of a specified subsequence within a list of sequences, ensuring correctness through an invariant during iteration.

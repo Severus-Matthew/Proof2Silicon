@@ -1,0 +1,1 @@
+Implement a function `Sum` for calculating the sum of a sequence of integers and a method `SumArray` that sums an integer array while ensuring consistency with `Sum` through loop invariants.

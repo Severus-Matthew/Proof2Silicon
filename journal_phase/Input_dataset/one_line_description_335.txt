@@ -1,0 +1,1 @@
+Implement a Dafny method to find the minimum index in a subarray and a selection sort algorithm that ensures correctness through formal verification of properties related to array manipulation.

@@ -1,0 +1,1 @@
+Implement a selection sort algorithm in Dafny using methods for swapping elements and finding the minimum value, ensuring preconditions and invariants are maintained throughout the sorting process.

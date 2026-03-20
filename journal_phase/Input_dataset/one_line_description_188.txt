@@ -1,0 +1,1 @@
+Implement a Dafny method `ToArray` that converts a sequence of type `T` into a new array, ensuring correct length, order, and content while maintaining type safety.

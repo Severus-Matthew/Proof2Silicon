@@ -1,0 +1,1 @@
+Implement a mutable map data structure in Dafny that enforces correctness and verification of operations like adding, removing, and selecting items, while maintaining consistent specifications and utilizing predicates and assertions.

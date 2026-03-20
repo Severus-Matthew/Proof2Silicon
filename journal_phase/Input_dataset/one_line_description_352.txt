@@ -1,0 +1,1 @@
+Implement a Dafny program that includes a recursive function to compute \\\\(2^n\\\\), a method for direct multiplication, and an iterative method with correctness verification using preconditions and loop invariants.

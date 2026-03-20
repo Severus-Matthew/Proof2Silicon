@@ -1,0 +1,1 @@
+The Dafny code implements a factorial function, `Fact`, which computes the factorial of a non-negative integer `x`. It uses an iterative approach within a while loop, where an invariant ensures that the loop variables maintain a valid state throughout execution. The `Main` method calls this factorial function with the input value 87 and prints the result.

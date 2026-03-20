@@ -1,0 +1,1 @@
+Implement a Dafny method `IsArmstrong` that determines if a three-digit integer is an Armstrong number by checking if it equals the sum of the cubes of its digits, with appropriate preconditions and postconditions.

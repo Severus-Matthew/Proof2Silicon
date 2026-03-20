@@ -1,0 +1,1 @@
+Implement a Dafny program that calculates cumulative sums over an integer array using recursive functions and efficient prefix sum techniques, while ensuring correctness through verification predicates and supporting lemmas.

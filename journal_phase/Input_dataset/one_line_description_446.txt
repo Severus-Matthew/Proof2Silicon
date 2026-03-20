@@ -1,0 +1,1 @@
+Implement a method in Dafny that adds a given integer tuple to the end of a sequence of tuples, ensuring the new sequence retains all original elements and includes the new tuple as the last element.

@@ -1,0 +1,1 @@
+Implement a method in Dafny that checks if an integer array contains any pairs of consecutive numbers, ensuring the array is non-empty and the output accurately reflects the presence of such pairs.

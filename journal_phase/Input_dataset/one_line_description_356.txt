@@ -1,0 +1,1 @@
+Design an abstract module in Dafny for a Sharded State Machine that includes shard definitions, validity predicates, glue operations, and lemmas to verify state transition properties and ensure correctness through specific implementations.

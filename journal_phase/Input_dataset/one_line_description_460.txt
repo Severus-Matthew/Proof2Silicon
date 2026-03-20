@@ -1,0 +1,1 @@
+Implement a method `IndexWiseAddition` that performs element-wise addition of two sequences of sequences of integers, ensuring they have the same dimensions and structure.

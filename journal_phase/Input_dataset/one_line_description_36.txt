@@ -1,0 +1,1 @@
+Implement a Dafny solution to the "rescue boats" problem using a two-pointer technique to minimize the number of boats required for rescuing individuals within weight limits, while ensuring formal verification of safety and input properties.

@@ -1,0 +1,1 @@
+Implement a Dafny method `CenteredHexagonalNumber` that computes the centered hexagonal number for a non-negative integer `n` using the formula \\(3 \\times n \\times (n - 1) + 1\\), ensuring appropriate pre- and post-conditions.

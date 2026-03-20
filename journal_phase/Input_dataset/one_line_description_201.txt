@@ -1,0 +1,1 @@
+Implement a Dafny method `Cubes` that fills an input array with the cubes of its indices using a while loop, ensuring correctness through invariants and a postcondition that validates the output.
