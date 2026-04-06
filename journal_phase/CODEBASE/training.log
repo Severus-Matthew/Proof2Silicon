@@ -2958,3 +2958,79 @@ Starting Epoch 1/5
 2026-04-06 01:25:10,620 - INFO - Skipping Dafny(55) because it appears already processed (found /u/mjha1/Proof2Silicon/journal_phase/dataset/epoch_0_Dafny(55)/iteration_1_results.json)
 2026-04-06 01:25:12,058 - INFO - Saving final results...
 2026-04-06 01:25:12,062 - INFO - Training completed successfully!
+2026-04-06 12:22:55,984 - INFO - Starting execution...
+2026-04-06 12:22:55,984 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/Input_dataset
+2026-04-06 12:22:57,641 - INFO - Saving final results...
+2026-04-06 12:22:57,643 - INFO - Training completed successfully!
+2026-04-06 12:35:15,441 - INFO - Starting execution...
+2026-04-06 12:35:15,442 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/Input_dataset
+2026-04-06 12:38:13,606 - INFO - Starting execution...
+2026-04-06 12:38:13,606 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/Input_dataset
+2026-04-06 12:39:54,589 - WARNING - Worker for Dafny(100): could not re-attach to W&B: Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+2026-04-06 12:39:54,799 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 12:39:54,809 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 12:39:54,877 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 12:39:54,886 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-06 12:39:54,941 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-06 12:39:54,982 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-06 12:39:55,277 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct "HTTP/1.1 200 OK"
+2026-04-06 12:39:55,317 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 12:39:55,326 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 12:39:55,377 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 12:39:55,385 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 12:40:00,037 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 12:40:00,038 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-06 12:40:00,047 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/generation_config.json "HTTP/1.1 200 OK"
+2026-04-06 12:40:00,093 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-06 12:40:00,527 - INFO - Processing subfolder: /u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(100)
+2026-04-06 12:40:00,528 - INFO - Prompt preview for Dafny(100): The provided Dafny code defines a module named `DivMod` that implements and verifies functions for integer division and modulus operations alongside their mathematical properties. It includes function...
+2026-04-06 12:40:00,532 - INFO - Starting training for Dafny(100)
+2026-04-06 12:40:00,532 - INFO - Starting/Resuming SLM training with sequence-level policy gradient...
+2026-04-06 12:40:00,541 - INFO - Created checkpoint directory at: /u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK
+2026-04-06 12:40:00,541 - INFO - 
+Starting Epoch 1/5
+2026-04-06 12:40:00,541 - INFO - Processing batch 1/1
+2026-04-06 12:48:27,162 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:49:10,453 - INFO - Step metrics - Reward: -7.648000000000001, Value: -2.16015625, Log Prob: -5518.48193359375, Token Increase: 2048, KL: 0.0, Success: False
+2026-04-06 12:49:10,453 - INFO - Reward breakdown: {'total_reward': -7.648000000000001, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': -5.4, 'efficiency_reward': -2.048, 'stability_reward': -0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 3, 'recursion_count': 6, 'invariant_count': 0, 'ghost_var_count': 0}
+2026-04-06 12:58:10,761 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 12:58:43,441 - INFO - Step metrics - Reward: -0.5349930658005179, Value: -1.228515625, Log Prob: -5812.94140625, Token Increase: 0, KL: 11.349930658005178, Success: False
+2026-04-06 12:58:43,444 - INFO - Reward breakdown: {'total_reward': -0.5349930658005179, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.6, 'efficiency_reward': -0.0, 'stability_reward': -1.1349930658005178} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 2, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 13:07:18,393 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 13:07:39,985 - INFO - Step metrics - Reward: -0.9856418932249653, Value: -0.87060546875, Log Prob: -4129.9619140625, Token Increase: 0, KL: 11.856418932249653, Success: False
+2026-04-06 13:07:39,988 - INFO - Reward breakdown: {'total_reward': -0.9856418932249653, 'outcome_reward': 0.0, 'progress_reward': 0.2, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.1856418932249653} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 13:15:44,844 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 13:16:10,112 - INFO - Step metrics - Reward: -2.357774160895497, Value: -0.2012939453125, Log Prob: -7814.693359375, Token Increase: 0, KL: 13.577741608954966, Success: False
+2026-04-06 13:16:10,113 - INFO - Reward breakdown: {'total_reward': -2.357774160895497, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': -1.0, 'efficiency_reward': -0.0, 'stability_reward': -1.3577741608954967} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 2, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 13:23:58,537 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 13:24:12,170 - INFO - Step metrics - Reward: -1.0955725818901556, Value: -0.48583984375, Log Prob: -6513.6611328125, Token Increase: 0, KL: 10.955725818901556, Success: False
+2026-04-06 13:24:12,171 - INFO - Reward breakdown: {'total_reward': -1.0955725818901556, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.0955725818901556} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 13:31:32,702 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 13:32:07,920 - INFO - Step metrics - Reward: -1.901798849311706, Value: -0.1165771484375, Log Prob: -10655.2421875, Token Increase: 0, KL: 9.017988493117059, Success: False
+2026-04-06 13:32:07,921 - INFO - Reward breakdown: {'total_reward': -1.901798849311706, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': -1.0, 'efficiency_reward': -0.0, 'stability_reward': -0.901798849311706} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 13:40:35,302 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 13:40:52,597 - INFO - Step metrics - Reward: -0.5859384496405255, Value: -0.5888671875, Log Prob: -9694.53515625, Token Increase: 0, KL: 7.859384496405255, Success: False
+2026-04-06 13:40:52,598 - INFO - Reward breakdown: {'total_reward': -0.5859384496405255, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.2, 'efficiency_reward': -0.0, 'stability_reward': -0.7859384496405255} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 1, 'recursion_count': 1, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 13:40:58,251 - INFO - Batch metrics - Policy Loss: 1315.4168701171875, Value Loss: 39.962005615234375, Total Loss: 1355.37890625, Reward: -15.10971900076337, Trajectory Length: 7
+2026-04-06 13:40:58,252 - INFO - Batch 1 completed with reward: -15.10971900076337
+2026-04-06 13:40:58,252 - INFO - Epoch 1 metrics:
+2026-04-06 13:40:58,252 - INFO - Average Reward: -15.10971900076337
+2026-04-06 13:40:58,252 - INFO - Average Policy Loss: 1315.4168701171875
+2026-04-06 13:40:58,252 - INFO - Average Value Loss: 39.962005615234375
+2026-04-06 13:40:58,253 - INFO - Success Rate: 0.0
+2026-04-06 13:40:58,253 - INFO - Successful Examples: 0
+2026-04-06 13:40:58,253 - INFO - Epoch Time: 3657.7106862068176
+2026-04-06 13:40:58,253 - INFO - Total Processed Samples: 1
+2026-04-06 13:40:58,253 - INFO - Reward component averages - Outcome: 0.0, Progress: 0.0, Structure: -0.942857142857143, Efficiency: -0.2925714285714286, Stability: -0.9231027143947667
+2026-04-06 13:41:02,157 - INFO - 
+Starting Epoch 2/5
+2026-04-06 13:41:02,158 - INFO - Processing batch 1/1
+2026-04-06 13:48:16,259 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 13:48:40,303 - INFO - Step metrics - Reward: -0.04800000000000004, Value: -1.48046875, Log Prob: -2611.708251953125, Token Increase: 2048, KL: 0.0, Success: False
+2026-04-06 13:48:40,303 - INFO - Reward breakdown: {'total_reward': -0.04800000000000004, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': 2.2, 'efficiency_reward': -2.048, 'stability_reward': -0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 8, 'recursion_count': 0, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 13:58:16,202 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 13:58:39,782 - INFO - Step metrics - Reward: -1.2266360360508204, Value: -1.1357421875, Log Prob: -2905.22412109375, Token Increase: 0, KL: 14.266360360508202, Success: False
+2026-04-06 13:58:39,783 - INFO - Reward breakdown: {'total_reward': -1.2266360360508204, 'outcome_reward': 0.0, 'progress_reward': 0.2, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.4266360360508203} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 2, 'recursion_count': 0, 'invariant_count': 1, 'ghost_var_count': 0}
+2026-04-06 14:07:11,153 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 14:07:39,834 - INFO - Step metrics - Reward: -1.6421009301688174, Value: -0.71337890625, Log Prob: -7882.42626953125, Token Increase: 0, KL: 13.421009301688173, Success: False
+2026-04-06 14:07:39,835 - INFO - Reward breakdown: {'total_reward': -1.6421009301688174, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': -0.10000000000000009, 'efficiency_reward': -0.0, 'stability_reward': -1.3421009301688174} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 1, 'recursion_count': 1, 'invariant_count': 4, 'ghost_var_count': 0}

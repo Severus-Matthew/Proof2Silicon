@@ -107,6 +107,8 @@ Key Dafny Requirements: <list of requirements>
 Proof / Verification Guidance: <list of guidance>
 Instruction: <final instruction for the downstream LLM>
 
+
+DO NOT WRITE THE DAFNY CODE YOURSELF. ONLY WRITE THE INSTRUCTION.
 Original Task:
 {task}
 """.strip()
@@ -159,14 +161,13 @@ What To Change: <list of changes>
 Dafny-Specific Guidance: <list of guidance>
 Improved Instruction: <final improved instruction for the downstream LLM>
 
+DO NOT WRITE THE DAFNY CODE YOURSELF. ONLY WRITE THE INSTRUCTION.
+
 Original Task:
 {task}
 
 Previous Instruction:
 {previous_instruction}
-
-Previous Downstream LLM Response:
-{previous_llm_response}
 
 Previous Generated Dafny Code:
 {code}

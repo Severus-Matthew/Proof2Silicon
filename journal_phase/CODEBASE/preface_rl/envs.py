@@ -233,12 +233,12 @@ class DafnyEnv(gym.core.Env):
             )
 
             try:
-                process.communicate(timeout=180)
+                process.communicate(timeout=120)
                 with open(self.error_path, "r", encoding="utf-8") as output_file:
                     output = output_file.read()
             except subprocess.TimeoutExpired:
                 process.kill()
-                return "timeout", "Error: Dafny verification timeout (3 minutes)", ""
+                return "timeout", "Error: Dafny verification timeout (2 minutes)", ""
 
             if "verified, 0 errors" in output and "Compiled assembly into" in output:
                 return "success", output, code

@@ -229,8 +229,8 @@ class SLMPG(nn.Module):
         return logits, values
 
 
-MAX_PROMPT_TOKENS = 2048   # hard cap on input prompt tokens fed to SLM
-MAX_NEW_TOKENS    = 2048    # tokens the SLM is allowed to generate
+MAX_PROMPT_TOKENS = 1024   # hard cap on input prompt tokens fed to SLM
+MAX_NEW_TOKENS    = 1024   # tokens the SLM is allowed to generate
 MAX_SEQ_LEN       = MAX_PROMPT_TOKENS + MAX_NEW_TOKENS  # 1280 total
 
 def generate_instruction_with_logprobs(slm_pg, tokenizer, prompt_text, max_new_tokens=MAX_NEW_TOKENS, temperature=1.0):

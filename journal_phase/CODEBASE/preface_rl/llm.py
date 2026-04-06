@@ -37,7 +37,7 @@ def run_LLM(responses: str) -> str:
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant"},
+            {"role": "system", "content": "You are an expert Dafny programmer. You are given a description of a problem and you need to write a Dafny program to solve it."},
             {"role": "user", "content": prompt},
         ],
         temperature=0.75,
