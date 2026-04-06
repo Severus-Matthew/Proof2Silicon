@@ -1,4 +1,12 @@
 Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
-/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(7,7): Error: unless an initializer is provided for the array elements, a new array of 'T' must have empty size
-
-Dafny program verifier finished with 1 verified, 1 error
+/u/mjha1/Proof2Silicon/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(23,0): Error: the phrase 'function method' is not allowed when using --function-syntax:4; to declare a compiled function, use just 'function' (ID: p_deprecating_function_method)
+From Dafny 4 on, the phrases `function method` and `predicate method` are no
+longer accepted. Use `function` for compiled, non-ghost functions and
+`ghost function` for non-compiled, ghost functions, and similarly for predicates.
+See [the documentation here](https://dafny.org/latest/DafnyRef/DafnyRef#sec-function-syntax).
+/u/mjha1/Proof2Silicon/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(40,0): Error: the phrase 'function method' is not allowed when using --function-syntax:4; to declare a compiled function, use just 'function' (ID: p_deprecating_function_method)
+From Dafny 4 on, the phrases `function method` and `predicate method` are no
+longer accepted. Use `function` for compiled, non-ghost functions and
+`ghost function` for non-compiled, ghost functions, and similarly for predicates.
+See [the documentation here](https://dafny.org/latest/DafnyRef/DafnyRef#sec-function-syntax).
+2 parse errors detected in RL_No_feedback.dfy

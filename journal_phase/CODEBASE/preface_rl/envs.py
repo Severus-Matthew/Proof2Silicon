@@ -5,7 +5,7 @@ import time
 from collections import defaultdict
 from typing import Any, Dict, Tuple
 
-import gym
+import gymnasium as gym
 import torch
 
 from .llm import run_LLM
@@ -25,7 +25,7 @@ from .utils import (
 )
 
 
-class DafnyEnv(gym.Env):
+class DafnyEnv(gym.core.Env):
     def __init__(self, prompt: str, tmp_path: str, error_path: str):
         super().__init__()
         self.prompt = prompt
@@ -38,9 +38,9 @@ class DafnyEnv(gym.Env):
         self.subfolder_path = os.path.dirname(tmp_path)
         self.epoch_rewards = []
         self.current_loss = 0.0
-        self.plugin_dll_path = "/mnt/shared/gpfs/home/manvij2/dafny/bin/Release/net8.0/DafnyAstExtractor.dll"
-        self.ast_json_path = "/mnt/shared/gpfs/home/manvij2/journal_phase/ast_json/dafny-ast-output.json"
-        self.regex_analyzer_path = "/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/preface_rl/Dafny_SCC.py"
+        self.plugin_dll_path = "/u/mjha1/Proof2Silicon/journal_phase/dafny-extractor-pp/bin/Release/net8.0/DafnyAstExtractor.dll"
+        self.ast_json_path = "/u/mjha1/Proof2Silicon/journal_phase/ast_json/dafny-ast-output.json"
+        self.regex_analyzer_path = "/u/mjha1/Proof2Silicon/journal_phase/CODEBASE/preface_rl/Dafny_SCC.py"
         self.prev_parse_errors = 0
         self.prev_error_counts = {
             "syntax": 0,
@@ -220,12 +220,10 @@ class DafnyEnv(gym.Env):
                 code = code.split("Dafny code", 1)[1].strip()
             file.write(code)
 
-        dafny_directory = r"/mnt/shared/gpfs/home/manvij2/dafny/Source/IntegrationTests"
-        os.chdir(dafny_directory)
 
         try:
             dafny_command = (
-                f"/mnt/shared/gpfs/home/manvij2/dafny/Scripts/dafny '{self.tmp_path}' > '{self.error_path}'"
+                f"dafny '{self.tmp_path}' > '{self.error_path}'"
             )
             process = subprocess.Popen(
                 dafny_command,

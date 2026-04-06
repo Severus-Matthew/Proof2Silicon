@@ -34,9 +34,9 @@ logging.basicConfig(
 # --------------------------------------------------
 # Constants
 # --------------------------------------------------
-CHECKPOINT_DIR = "/mnt/shared/gpfs/home/manvij2/journal_phase/checkpoints"
-LORA_ADAPTER_DIR = "/mnt/shared/gpfs/home/manvij2/journal_phase/lora_adapters"
-ROOT_DIRECTORY = "/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one"
+CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints"
+LORA_ADAPTER_DIR = "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters"
+ROOT_DIRECTORY = "/u/mjha1/Proof2Silicon/journal_phase/Input_dataset"
 
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 os.makedirs(LORA_ADAPTER_DIR, exist_ok=True)
@@ -79,7 +79,7 @@ def process_one_subfolder(
         model, tokenizer = initialize_slm(args.checkpoint)
 
         epoch_dir = os.path.join(
-            "/mnt/shared/gpfs/home/manvij2/journal_phase/dataset",
+            "/u/mjha1/Proof2Silicon/journal_phase/dataset",
             f"epoch_0_{entry}",
         )
         result_file = os.path.join(epoch_dir, "iteration_1_results.json")
@@ -280,7 +280,7 @@ def main():
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default="/mnt/shared/gpfs/home/manvij2/journal_phase/checkpoints/run_CHK/final_model_new.pt",
+        default="/u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK/final_model_new.pt",
     )
     parser.add_argument("--start_epoch", type=int, default=0)
     parser.add_argument("--wandb_project", type=str, default="dafny-rl_new2")

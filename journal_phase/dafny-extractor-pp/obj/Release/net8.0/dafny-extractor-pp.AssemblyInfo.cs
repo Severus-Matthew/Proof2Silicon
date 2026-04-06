@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DafnyAstExtractor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87898efd3aa61c34c2bac8f167f5e45e457bbc88")]
 [assembly: System.Reflection.AssemblyProductAttribute("DafnyAstExtractor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DafnyAstExtractor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

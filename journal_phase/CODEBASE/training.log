@@ -2845,3 +2845,116 @@ Starting Epoch 5/5
 2026-03-20 13:45:10,316 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
 2026-03-20 13:45:45,112 - INFO - Step metrics - Reward: 1.5470587222211176, Value: 0.92138671875, Log Prob: -3483.84765625, Token Increase: 0, KL: 12.52941277778882, Success: False
 2026-03-20 13:45:45,114 - INFO - Reward breakdown: {'total_reward': 1.5470587222211176, 'outcome_reward': 0.0, 'progress_reward': 2.1999999999999997, 'structure_reward': 0.6, 'efficiency_reward': -0.0, 'stability_reward': -1.2529412777788822} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-05 20:07:30,861 - INFO - Starting execution...
+2026-04-05 20:07:30,861 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/test_folder_one
+2026-04-05 21:51:20,178 - INFO - Starting execution...
+2026-04-05 21:51:20,179 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/test_folder_one
+2026-04-05 21:53:02,584 - WARNING - Worker for Dafny(55): could not re-attach to W&B: Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+2026-04-05 21:53:02,803 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:53:02,814 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:53:02,864 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:53:02,874 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:53:02,921 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:53:02,967 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:53:03,241 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct "HTTP/1.1 200 OK"
+2026-04-05 21:53:03,290 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:53:03,299 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:53:03,345 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:53:03,355 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:53:06,079 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:53:06,079 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-05 21:53:06,088 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:53:06,132 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:53:06,468 - INFO - Skipping Dafny(55) because it appears already processed (found /u/mjha1/Proof2Silicon/journal_phase/dataset/epoch_0_Dafny(55)/iteration_1_results.json)
+2026-04-05 21:53:07,473 - INFO - Saving final results...
+2026-04-05 21:53:07,478 - INFO - Training completed successfully!
+2026-04-05 21:56:24,595 - INFO - Starting execution...
+2026-04-05 21:56:24,595 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/test_folder_one
+2026-04-05 21:58:03,903 - WARNING - Worker for Dafny(55): could not re-attach to W&B: Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+2026-04-05 21:58:04,118 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:58:04,129 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:58:04,179 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:58:04,189 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:58:04,252 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-05 21:58:04,296 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-05 21:58:04,559 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct "HTTP/1.1 200 OK"
+2026-04-05 21:58:04,600 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:58:04,609 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:58:04,660 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:58:04,660 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-05 21:58:04,670 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-05 21:58:07,395 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-05 21:58:07,405 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/generation_config.json "HTTP/1.1 200 OK"
+2026-04-05 21:58:07,448 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-05 21:58:07,784 - INFO - Processing subfolder: /u/mjha1/Proof2Silicon/journal_phase/test_folder_one/Dafny(55)
+2026-04-05 21:58:07,785 - INFO - Prompt preview for Dafny(55): The provided Dafny code defines a method `ToArray` that converts a sequence `xs` of type `T` into an array `a`. The method ensures that the resulting array is a fresh allocation, matches the length of...
+2026-04-05 21:58:07,789 - INFO - Starting training for Dafny(55)
+2026-04-05 21:58:07,789 - INFO - Starting/Resuming SLM training with sequence-level policy gradient...
+2026-04-05 21:58:07,799 - INFO - Created checkpoint directory at: /u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK
+2026-04-05 21:58:07,799 - ERROR - Error while processing subfolder Dafny(55): ReduceLROnPlateau.__init__() got an unexpected keyword argument 'verbose'
+Traceback (most recent call last):
+  File "/u/mjha1/Proof2Silicon/journal_phase/CODEBASE/main.py", line 121, in process_one_subfolder
+    total_rewards, successful_examples = train_slm_with_grpo(
+                                         ^^^^^^^^^^^^^^^^^^^^
+  File "/u/mjha1/Proof2Silicon/journal_phase/CODEBASE/preface_rl/slm.py", line 567, in train_slm_with_grpo
+    actor_scheduler = ReduceLROnPlateau(
+                      ^^^^^^^^^^^^^^^^^^
+TypeError: ReduceLROnPlateau.__init__() got an unexpected keyword argument 'verbose'
+2026-04-05 21:58:08,821 - INFO - Saving final results...
+2026-04-05 21:58:08,825 - INFO - Training completed successfully!
+2026-04-06 00:49:34,007 - INFO - Starting execution...
+2026-04-06 00:49:34,008 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/test_folder_one
+2026-04-06 00:51:14,455 - WARNING - Worker for Dafny(55): could not re-attach to W&B: Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+2026-04-06 00:51:14,667 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 00:51:14,676 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 00:51:14,728 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 00:51:14,729 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-06 00:51:14,742 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-06 00:51:14,789 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-06 00:51:14,832 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-06 00:51:15,105 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct "HTTP/1.1 200 OK"
+2026-04-06 00:51:15,147 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 00:51:15,155 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 00:51:15,204 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 00:51:15,213 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 00:51:18,148 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 00:51:18,157 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/generation_config.json "HTTP/1.1 200 OK"
+2026-04-06 00:51:18,202 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-06 00:51:18,544 - INFO - Processing subfolder: /u/mjha1/Proof2Silicon/journal_phase/test_folder_one/Dafny(55)
+2026-04-06 00:51:18,546 - INFO - Prompt preview for Dafny(55): The provided Dafny code defines a method `ToArray` that converts a sequence `xs` of type `T` into an array `a`. The method ensures that the resulting array is a fresh allocation, matches the length of...
+2026-04-06 00:51:18,550 - INFO - Starting training for Dafny(55)
+2026-04-06 00:51:18,550 - INFO - Starting/Resuming SLM training with sequence-level policy gradient...
+2026-04-06 00:51:18,559 - INFO - Created checkpoint directory at: /u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK
+2026-04-06 00:51:18,559 - INFO - 
+Starting Epoch 1/5
+2026-04-06 00:51:18,559 - INFO - Processing batch 1/1
+2026-04-06 00:57:12,027 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 00:57:31,847 - INFO - Step metrics - Reward: -2.648, Value: -1.3759765625, Log Prob: -7164.8408203125, Token Increase: 2048, KL: 0.0, Success: False
+2026-04-06 00:57:31,847 - INFO - Reward breakdown: {'total_reward': -2.648, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': -0.4, 'efficiency_reward': -2.048, 'stability_reward': -0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 01:04:46,323 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 01:05:11,273 - INFO - Step metrics - Reward: -0.9081508521199795, Value: 0.037750244140625, Log Prob: -4027.72802734375, Token Increase: 0, KL: 11.081508521199794, Success: False
+2026-04-06 01:05:11,274 - INFO - Reward breakdown: {'total_reward': -0.9081508521199795, 'outcome_reward': 0.0, 'progress_reward': 0.2, 'structure_reward': 0.0, 'efficiency_reward': -0.0, 'stability_reward': -1.1081508521199794} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 2, 'ghost_var_count': 0}
+2026-04-06 01:12:52,411 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-06 01:13:13,418 - INFO - Step metrics - Reward: -0.7087714567673175, Value: 0.26171875, Log Prob: -8352.6181640625, Token Increase: 0, KL: 13.087714567673174, Success: False
+2026-04-06 01:13:13,420 - INFO - Reward breakdown: {'total_reward': -0.7087714567673175, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.6, 'efficiency_reward': -0.0, 'stability_reward': -1.3087714567673174} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 4, 'ghost_var_count': 0}
+2026-04-06 01:23:19,144 - INFO - Starting execution...
+2026-04-06 01:23:19,145 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/test_folder_one
+2026-04-06 01:25:04,061 - WARNING - Worker for Dafny(55): could not re-attach to W&B: Run initialization has timed out after 90.0 sec. Please try increasing the timeout with the `init_timeout` setting: `wandb.init(settings=wandb.Settings(init_timeout=120))`.
+2026-04-06 01:25:04,270 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 01:25:04,278 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 01:25:04,345 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 01:25:04,353 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-06 01:25:04,405 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-06 01:25:04,451 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-06 01:25:04,749 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct "HTTP/1.1 200 OK"
+2026-04-06 01:25:04,790 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 01:25:04,790 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-06 01:25:04,798 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 01:25:04,846 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 01:25:04,854 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-06 01:25:10,205 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-06 01:25:10,214 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/generation_config.json "HTTP/1.1 200 OK"
+2026-04-06 01:25:10,260 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+2026-04-06 01:25:10,620 - INFO - Skipping Dafny(55) because it appears already processed (found /u/mjha1/Proof2Silicon/journal_phase/dataset/epoch_0_Dafny(55)/iteration_1_results.json)
+2026-04-06 01:25:12,058 - INFO - Saving final results...
+2026-04-06 01:25:12,062 - INFO - Training completed successfully!
