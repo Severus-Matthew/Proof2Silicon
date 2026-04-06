@@ -11,7 +11,7 @@ using Microsoft.Dafny.Plugins;
 namespace DafnyAstExtractor;
 
 public class AstExtractorConfiguration : PluginConfiguration {
-  private string outputPath = "/mnt/shared/gpfs/home/manvij2/journal_phase/ast_json/dafny-ast-output.json";
+  private string outputPath = "/u/mjha1/Proof2Silicon/journal_phase/ast_json/dafny-ast-output.json";
 
   public override void ParseArguments(string[] args) {
     if (args.Length >= 1 && !string.IsNullOrWhiteSpace(args[0])) {

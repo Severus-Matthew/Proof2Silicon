@@ -11,12 +11,12 @@
 
   <ItemGroup>
     <Reference Include="DafnyCore">
-      <HintPath>/mnt/shared/gpfs/home/manvij2/.dotnet/tools/.store/dafny/4.11.0/dafny/4.11.0/tools/net8.0/any/DafnyCore.dll</HintPath>
+      <HintPath>/u/mjha1/.dotnet/tools/.store/dafny/4.11.0/dafny/4.11.0/tools/net8.0/any/DafnyCore.dll</HintPath>
       <Private>true</Private>
     </Reference>
 
     <Reference Include="DafnyDriver">
-      <HintPath>/mnt/shared/gpfs/home/manvij2/.dotnet/tools/.store/dafny/4.11.0/dafny/4.11.0/tools/net8.0/any/DafnyDriver.dll</HintPath>
+      <HintPath>/u/mjha1/.dotnet/tools/.store/dafny/4.11.0/dafny/4.11.0/tools/net8.0/any/DafnyDriver.dll</HintPath>
       <Private>true</Private>
     </Reference>
   </ItemGroup>

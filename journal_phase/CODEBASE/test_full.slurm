@@ -2,13 +2,13 @@
 #SBATCH --job-name=dafny_full
 #SBATCH --output=dafny_full_%j.out
 #SBATCH --error=dafny_full_%j.err
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
+#SBATCH --account=bgrm-dtai-gh
+#SBATCH --partition=ghx4
+#SBATCH --nodes=2
+#SBATCH --ntasks=2
 #SBATCH --cpus-per-task=6
 #SBATCH --gres=gpu:1
-#SBATCH --partition=gpu-h100-dchen
-#SBATCH --mail-type=BEGIN,END,FAIL
-#SBATCH --mail-user=drprofmjha@gmail.com
+#SBATCH --time=2-00:00:00
 
 set -euo pipefail
 
@@ -18,7 +18,7 @@ set -euo pipefail
 
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
-export PYTHONPATH=/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE:${PYTHONPATH:-}
+export PYTHONPATH=/u/mjha1/Proof2Silicon/journal_phase/CODEBASE:${PYTHONPATH:-}
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
 
 # Optional but useful for stability
@@ -32,18 +32,29 @@ echo "Working dir: $(pwd)"
 echo "=============================="
 
 nvidia-smi
-
-# --------------------------------------------------
+nvidia-smi
+echo "nvidia-smi ok"
+module purge
+echo "module purge ok"
+module load gcc-native/14
+echo "module load gcc-native/14 ok"
+module load cuda/12.9
+echo "module load cuda/12.9 ok"
+module load python/miniforge3_pytorch/2.10.0
+echo "module load python/miniforge3_pytorch/2.10.0 ok"
+conda activate base
+echo "conda activate base ok"
 # Activate environment
-# --------------------------------------------------
-
-source /mnt/shared/gpfs/home/manvij2/dafny/bin/activate
+source ~/rl_env311/bin/activate
+echo "source ~/rl_env311/bin/activate ok"
+python3 -m pip list
+echo "python3 -m pip list ok"
 
 # --------------------------------------------------
 # Move to project
 # --------------------------------------------------
 
-cd /mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE
+cd /u/mjha1/Proof2Silicon/journal_phase/CODEBASE
 
 # --------------------------------------------------
 # Run training

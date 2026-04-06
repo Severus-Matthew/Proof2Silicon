@@ -2,9 +2,10 @@ import json
 import os
 import time
 
-import google.generativeai as genai
-from google.generativeai.types import HarmBlockThreshold, HarmCategory  # noqa: F401
-
+# import google.generativeai as genai
+# from google.generativeai.types import HarmBlockThreshold, HarmCategory  # noqa: F401
+# import requests
+# import os
 
 def save_prompt_response(prompt: str, response: str, save_dir: str) -> None:
     timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -46,7 +47,7 @@ def run_LLM(responses: str) -> str:
     generated_texts = response.choices[0].message.content
     print(generated_texts)
 
-    save_dir = "/mnt/shared/gpfs/home/manvij2/journal_phase/prompts/llm_new"
+    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/llm_new"
     save_prompt_response(prompt, generated_texts, save_dir)
 
     return generated_texts

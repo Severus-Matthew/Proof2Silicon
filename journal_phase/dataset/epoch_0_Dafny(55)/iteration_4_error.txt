@@ -1,4 +1,0 @@
-Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
-/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(2,22): Error: module Dafny does not exist (position 0 in path Dafny.Collections)
-/mnt/shared/gpfs/home/manvij2/journal_phase/test_folder_one/Dafny(55)/RL_No_feedback.dfy(3,22): Error: module Dafny does not exist (position 0 in path Dafny.Sequence)
-2 resolution/type errors detected in RL_No_feedback.dfy

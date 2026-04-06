@@ -33,9 +33,9 @@ from .metrics import get_metrics_tracker
 # logging.info(f"Using device: {device}")
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-CHECKPOINT_DIR = "/mnt/shared/gpfs/home/manvij2/journal_phase/checkpoints"
+CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints"
 LORA_ADAPTER_DIR = (
-    "/mnt/shared/gpfs/home/manvij2/journal_phase/lora_adapters"
+    "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters"
 )
 
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
@@ -105,7 +105,7 @@ def initialize_slm(checkpoint_path: str | None = None):
         )
 
         # Create offload folder
-        offload_folder = "/mnt/shared/gpfs/home/manvij2/journal_phase/model_offload"
+        offload_folder = "/u/mjha1/Proof2Silicon/journal_phase/model_offload"
         os.makedirs(offload_folder, exist_ok=True)
 
         # Configure memory limits
@@ -190,7 +190,7 @@ def initialize_slm(checkpoint_path: str | None = None):
                 layer.gradient_checkpointing = True
 
         print("Model successfully initialized with offloading")
-        print(f"Device map: {global_model.hf_device_map}")
+        print(f"Device map: {getattr(global_model, 'hf_device_map', 'not set')}")
         print(f"Offload folder: {offload_folder}")
 
         return global_model, global_tokenizer
@@ -313,7 +313,7 @@ def generate_instruction_with_logprobs(slm_pg, tokenizer, prompt_text, max_new_t
 
 def _save_slm_interaction(prompt: str, response: str) -> None:
     """Save SLM prompt and generated instruction to disk for inspection."""
-    save_dir = "/mnt/shared/gpfs/home/manvij2/journal_phase/prompts/slm_new"
+    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new"
     os.makedirs(save_dir, exist_ok=True)
     timestamp = time.strftime("%Y%m%d_%H%M%S")
     try:
@@ -475,7 +475,7 @@ def save_checkpoint_safely(checkpoint_data: Dict[str, Any], checkpoint_path: str
 def run_SLM(prompt: str) -> str:
     try:
         checkpoint_path = (
-            "/mnt/shared/gpfs/home/manvij2/journal_phase/checkpoints/run_CHK/final_model_new.pt"
+            "/u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK/final_model_new.pt"
         )
         model, tok = initialize_slm(checkpoint_path)
         print("Model config hidden size:", getattr(model.config, "hidden_size", "N/A"))
@@ -509,7 +509,7 @@ def run_SLM(prompt: str) -> str:
                 out = model.generate(**inputs, **generation_config)
             model.train()
             response = tok.decode(out[0], skip_special_tokens=True)
-        save_dir = "/mnt/shared/gpfs/home/manvij2/journal_phase/prompts/slm_new"
+        save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new"
         os.makedirs(save_dir, exist_ok=True)
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         with open(
@@ -529,7 +529,7 @@ def run_SLM(prompt: str) -> str:
             model.train()
 
 
-def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch_size: int = 1, learning_rate: float = 1e-4, gamma: float = 0.99, epsilon: float = 0.2, checkpoint_path: str = "/mnt/shared/gpfs/home/manvij2/journal_phase/checkpoints/run_CHK/final_model_new.pt", start_epoch: int = 0):   
+def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch_size: int = 1, learning_rate: float = 1e-4, gamma: float = 0.99, epsilon: float = 0.2, checkpoint_path: str = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK/final_model_new.pt", start_epoch: int = 0):   
 
     logging.info(
         "Starting/Resuming SLM training with sequence-level policy gradient..."
@@ -565,10 +565,10 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
     logging.info(f"Created checkpoint directory at: {run_dir}")
 
     actor_scheduler = ReduceLROnPlateau(
-        actor_optimizer, mode="min", factor=0.5, patience=7, verbose=True
+        actor_optimizer, mode="min", factor=0.5, patience=7
     )
     critic_scheduler = ReduceLROnPlateau(
-        critic_optimizer, mode="min", factor=0.5, patience=7, verbose=True
+        critic_optimizer, mode="min", factor=0.5, patience=7
     )
 
     for epoch in range(start_epoch, num_epochs):

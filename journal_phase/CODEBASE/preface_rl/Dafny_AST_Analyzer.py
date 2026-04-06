@@ -156,7 +156,7 @@ def main():
 
 def extract_reward_features(json_data, filename):
     analyzer = DafnyASTAnalyzer(json_data)
-    json_path= "/mnt/shared/gpfs/home/manvij2/journal_phase/ast_json/dafny-ast-output.json"
+    json_path= "/u/mjha1/Proof2Silicon/journal_phase/ast_json/dafny-ast-output.json"
     recursion_count = len(analyzer.direct_recursive) + sum(
         len(group) for group in analyzer.mutual_recursive
     )

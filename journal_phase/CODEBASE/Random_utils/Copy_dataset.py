@@ -38,7 +38,7 @@ def copy_files_from_subfolders(src_dir, dest_dir):
 
 
 # Example usage
-src_directory = "/mnt/shared/gpfs/home/manvij2/UIUC_PROJ_2/dataset/Dafny"
-dest_directory = "/mnt/shared/gpfs/home/manvij2/journal_phase/Input_dataset"
+src_directory = "/u/mjha1/Proof2Silicon/UIUC_PROJ_2/dataset/Dafny"
+dest_directory = "/u/mjha1/Proof2Silicon/journal_phase/Input_dataset"
 
 copy_files_from_subfolders(src_directory, dest_directory)
