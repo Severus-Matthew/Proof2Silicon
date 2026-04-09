@@ -23,32 +23,37 @@ import os
 from openai import OpenAI
 os.environ['DEEPSEEK_API_KEY'] = "sk-d7844b60db514574982d2e06c7f66fca"
 
-def run_LLM(responses: str) -> str:
+def run_LLM(prompt: str, last_code: str = "", last_error: str = "") -> str:
     client = OpenAI(
         api_key=os.environ.get('DEEPSEEK_API_KEY'),
         base_url="https://api.deepseek.com"
     )
-
-    prompt = (
-        responses
-        + " You must return the full code in the following form:\n```dafny\nDafny Code\n```"
-    )
+    full_prompt = ""
+    if last_code or last_error:
+        full_prompt = "### Previous Attempt Context"
+        if last_code:
+            full_prompt += "\n### Previous Dafny Code\n" + last_code.strip() +"\n\n"
+        if last_error:
+            full_prompt += "\n### Previous Error\n" + last_error.strip() + "\n\n"
+        full_prompt += "\n Fix teh issue and return the corrected code based on the following instructions: "
+    full_prompt +=prompt
+    full_prompt += " You must return the full code in the following form:\n```dafny\nDafny Code\n```"
 
     response = client.chat.completions.create(
         model="deepseek-chat",
         messages=[
             {"role": "system", "content": "You are an expert Dafny programmer. You are given a description of a problem and you need to write a Dafny program to solve it."},
-            {"role": "user", "content": prompt},
+            {"role": "user", "content": full_prompt},
         ],
-        temperature=0.75,
+        temperature=0.75,   
         stream=False
     )
 
     generated_texts = response.choices[0].message.content
     print(generated_texts)
 
-    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/llm_new"
-    save_prompt_response(prompt, generated_texts, save_dir)
+    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/llm_new_3" #HERE_FOR_CHANGE
+    save_prompt_response(full_prompt, generated_texts, save_dir)
 
     return generated_texts
 

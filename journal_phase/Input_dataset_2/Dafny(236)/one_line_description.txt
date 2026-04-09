@@ -1,0 +1,1 @@
+Implement a binary search tree (BST) in Dafny with methods for insertion, validation, and in-order traversal, ensuring no duplicates and maintaining BST properties.

@@ -1,0 +1,1 @@
+Create a method `Swap` that takes two integers and returns them as a sequence in reversed order, ensuring the sequence contains exactly two elements.

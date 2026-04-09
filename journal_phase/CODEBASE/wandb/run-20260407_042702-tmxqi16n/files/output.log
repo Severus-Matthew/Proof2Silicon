@@ -1,0 +1,51 @@
+wandb: Detected [openai] in use.
+wandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
+wandb: For more information, check out the docs at: https://weave-docs.wandb.ai/
+2026-04-07 04:27:03,751 - INFO - Found 111 trainable subfolders in /u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2
+Loading tokenizer...
+2026-04-07 04:27:03,948 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-07 04:27:03,957 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+2026-04-07 04:27:04,021 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-07 04:27:04,021 - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-04-07 04:27:04,029 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-04-07 04:27:04,082 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-04-07 04:27:04,124 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-04-07 04:27:04,424 - INFO - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct "HTTP/1.1 200 OK"
+Configuring quantization and offloading settings...
+Loading base model with offloading configuration...
+2026-04-07 04:27:04,472 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-07 04:27:04,481 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+`torch_dtype` is deprecated! Use `dtype` instead!
+2026-04-07 04:27:04,528 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-07 04:27:04,536 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/config.json "HTTP/1.1 200 OK"
+Loading weights: 100%|██████████| 338/338 [00:01<00:00, 177.14it/s]
+2026-04-07 04:27:08,821 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-04-07 04:27:08,830 - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-1.5B-Instruct/989aa7980e4cf806f80c7fef2b1adb7bc71aa306/generation_config.json "HTTP/1.1 200 OK"
+2026-04-07 04:27:08,893 - INFO - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct/resolve/main/custom_generate/generate.py "HTTP/1.1 404 Not Found"
+Preparing model for kbit training...
+Configuring LoRA...
+Applying LoRA configuration...
+Model successfully initialized with offloading
+Device map: not set
+Offload folder: /u/mjha1/Proof2Silicon/journal_phase/model_offload_2
+2026-04-07 04:27:09,233 - INFO - Starting/Resuming SLM training with sequence-level policy gradient...
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Wandb enabled: True
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-07 04:27:09,243 - INFO - Created checkpoint directory at: /u/mjha1/Proof2Silicon/journal_phase/checkpoints_2/run_CHK
+2026-04-07 04:27:09,244 - INFO -
+Starting Epoch 1/5
+2026-04-07 04:27:09,244 - INFO - Processing episode 1/111 for subfolder Dafny(103)
+2026-04-07 04:29:59,610 - ERROR - Fatal error in main: 'DafnyEnv' object has no attribute 'last_attempt_info'
+Traceback (most recent call last):
+  File "/u/mjha1/Proof2Silicon/journal_phase/CODEBASE/main.py", line 484, in main
+    total_rewards, successful_examples = train_slm_with_grpo(
+                                         ^^^^^^^^^^^^^^^^^^^^
+  File "/u/mjha1/Proof2Silicon/journal_phase/CODEBASE/preface_rl/slm.py", line 683, in train_slm_with_grpo
+    reward, done, info = env.step(
+                         ^^^^^^^^^
+  File "/u/mjha1/Proof2Silicon/journal_phase/CODEBASE/preface_rl/envs.py", line 265, in step
+    if self.last_attempt_info is not None:
+       ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'DafnyEnv' object has no attribute 'last_attempt_info'

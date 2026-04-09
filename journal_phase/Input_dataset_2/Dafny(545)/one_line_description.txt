@@ -1,0 +1,1 @@
+Implement three methods in Dafny: `NinetyOne` for a mathematical function returning 91 or adjusted values based on input, `Gcd` for calculating the Greatest Common Divisor using the Euclidean algorithm, and `Determinant` for computing the determinant of a square matrix via Gaussian elimination.

@@ -1,0 +1,1 @@
+Implement a Dafny solution with `Tangent` and `BinarySearch` methods to find a common element between two arrays while ensuring correctness through preconditions, postconditions, and invariants.

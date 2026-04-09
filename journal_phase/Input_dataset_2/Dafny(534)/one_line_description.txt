@@ -1,0 +1,1 @@
+Implement and verify a variation of the Boyer-Moore Voting Algorithm in Dafny to find and confirm a majority candidate from a sequence of votes, utilizing formal verification techniques.

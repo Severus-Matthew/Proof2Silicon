@@ -1,0 +1,2 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(435)/RL_No_feedback.dfy(32,9): Warning: Could not find a trigger for this quantifier. Without a trigger, the quantifier may cause brittle verification. To silence this warning, add an explicit trigger using the {:trigger} attribute. For more information, see the section on quantifier instantiation rules in the reference manual.

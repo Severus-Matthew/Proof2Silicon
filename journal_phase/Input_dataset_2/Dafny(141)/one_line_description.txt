@@ -1,0 +1,1 @@
+Implement a method in Dafny that increments each element of a 2D integer array by 1, ensuring prior rows remain unchanged and all elements are correctly updated by the end of execution.

@@ -1,0 +1,1 @@
+Develop Dafny code to test variable modification and verification properties using ghost variables in a refined module, while generating outputs for comparison against expected results.

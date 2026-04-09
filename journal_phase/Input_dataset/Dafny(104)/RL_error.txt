@@ -1,0 +1,122 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(22,21): Error: closeparen expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(23,28): Error: openparen expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(24,22): Error: openparen expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(24,31): Error: openparen expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(25,2): Error: comma expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(25,44): Error: openparen expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(26,2): Error: comma expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(26,16): Error: openparen expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(27,0): Error: verticalbar expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(104)/RL_No_feedback.dfy(28,8): Error: rbrace expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+10 parse errors detected in RL_No_feedback.dfy

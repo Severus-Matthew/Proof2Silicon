@@ -1,0 +1,1 @@
+Develop Dafny code to analyze string relationships, focusing on prefixes, substrings, and the maximum length of common substrings with formal verification of their properties.

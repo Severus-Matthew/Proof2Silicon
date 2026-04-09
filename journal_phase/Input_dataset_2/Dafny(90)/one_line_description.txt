@@ -1,0 +1,1 @@
+Create Dafny code that defines custom data types and methods for type manipulation, including assertions to verify relationships and correctness, while demonstrating data structure manipulation through pattern matching.

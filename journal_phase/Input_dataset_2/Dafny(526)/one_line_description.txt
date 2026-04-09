@@ -1,0 +1,1 @@
+Create a Dafny method `CalcProduct` that verifies the product of two natural numbers `m` and `n` using assertions and assumptions, while ensuring the final result matches the mathematical product, despite complex state manipulations and unreachable statements.

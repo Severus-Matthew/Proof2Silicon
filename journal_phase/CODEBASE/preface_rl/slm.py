@@ -4,11 +4,14 @@ import os
 import time
 import zipfile
 from typing import Any, Dict, List, Set, Tuple
+from preface_rl.envs import DafnyEnv
 
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import wandb
+import wandb
+# wandb.init(settings=wandb.Settings(init_timeout=400))  # Sets timeout to 300 seconds
 from accelerate import init_empty_weights, load_checkpoint_and_dispatch  # noqa: F401
 from datasets import Dataset  # noqa: F401
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
@@ -24,7 +27,7 @@ from transformers import (
     TrainingArguments,
 )
 
-from .metrics import get_metrics_tracker
+from .metrics import get_metrics_tracker, set_metrics_tracker, MetricsTracker
 
 # # GPU / CUDA setup and constants previously at top-level
 # torch.cuda.set_per_process_memory_fraction(0.8, device=0)
@@ -33,11 +36,12 @@ from .metrics import get_metrics_tracker
 # logging.info(f"Using device: {device}")
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints"
+CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3" #HERE_FOR_CHANGE
 LORA_ADAPTER_DIR = (
-    "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters"
+    "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters_3" #HERE_FOR_CHANGE
 )
-
+METRICS_DIR = "/u/mjha1/Proof2Silicon/journal_phase/wandb_metrics_3" #HERE_FOR_CHANGE
+os.makedirs(METRICS_DIR, exist_ok=True)
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 os.makedirs(LORA_ADAPTER_DIR, exist_ok=True)
 
@@ -56,6 +60,59 @@ def configure_runtime():
             torch.cuda.set_per_process_memory_fraction(0.8, device=0)
         except Exception as e:
             logging.warning(f"Could not set CUDA runtime config: {e}")
+
+def _do_policy_update(log_probs_window, values_window, rewards_window,
+                      actor_optimizer, critic_optimizer,
+                      actor_params, critic_params,
+                      gamma, device):
+    """Compute returns+advantages and do one optimizer step on a window of steps."""
+    clipped = [max(-10.0, min(10.0, float(r))) for r in rewards_window]
+    R = 0.0
+    returns = []
+    for r in reversed(clipped):
+        R = float(r) + gamma * R
+        returns.append(R)
+    returns = list(reversed(returns))
+
+    returns_t   = torch.tensor(returns, device=device, dtype=torch.float32)
+    values_t    = torch.stack(values_window).float()
+    log_probs_t = torch.stack(log_probs_window).float()
+
+    if not (torch.isfinite(returns_t).all() and
+            torch.isfinite(values_t).all() and
+            torch.isfinite(log_probs_t).all()):
+        logging.warning("Non-finite tensors in mini-batch update; skipping.")
+        return None, None
+
+    advantages_t = returns_t - values_t.detach()
+    if len(advantages_t) > 1:
+        adv_std = advantages_t.std(unbiased=False)
+        if torch.isfinite(adv_std) and adv_std.item() > 1e-8:
+            advantages_t = (advantages_t - advantages_t.mean()) / (adv_std + 1e-8)
+        else:
+            advantages_t = advantages_t - advantages_t.mean()
+    else:
+        advantages_t = advantages_t - advantages_t.mean()
+
+    policy_loss       = -(log_probs_t * advantages_t).mean()
+    value_loss        = F.mse_loss(values_t, returns_t)
+    total_loss_tensor = policy_loss + value_loss
+
+    if not (torch.isfinite(policy_loss).all() and
+            torch.isfinite(value_loss).all() and
+            torch.isfinite(total_loss_tensor).all()):
+        logging.warning("Non-finite loss in mini-batch update; skipping.")
+        return None, None
+
+    actor_optimizer.zero_grad()
+    critic_optimizer.zero_grad()
+    total_loss_tensor.backward()
+    torch.nn.utils.clip_grad_norm_(actor_params, max_norm=0.5)
+    torch.nn.utils.clip_grad_norm_(critic_params, max_norm=0.5)
+    actor_optimizer.step()
+    critic_optimizer.step()
+
+    return float(policy_loss.item()), float(value_loss.item())
 
 class WeightedTrainer(Trainer):
     def compute_loss(self, model, inputs, return_outputs=False):
@@ -105,7 +162,7 @@ def initialize_slm(checkpoint_path: str | None = None):
         )
 
         # Create offload folder
-        offload_folder = "/u/mjha1/Proof2Silicon/journal_phase/model_offload"
+        offload_folder = "/u/mjha1/Proof2Silicon/journal_phase/model_offload_3" #HERE_FOR_CHANGE
         os.makedirs(offload_folder, exist_ok=True)
 
         # Configure memory limits
@@ -216,25 +273,30 @@ class SLMPG(nn.Module):
             nn.Linear(hidden_size, 1, dtype=torch.float16),
         )
 
-    def forward(self, input_ids, attention_mask=None):
+    def forward(self, input_ids, attention_mask=None, prompt_len: int = -1):
         outputs = self.model(
             input_ids=input_ids,
             attention_mask=attention_mask,
             output_hidden_states=True,
             return_dict=True,
         )
-        logits = outputs.logits  # [B, T, V]
-        last_hidden = outputs.hidden_states[-1][:, -1, :].to(device=device, dtype=torch.float16)
+        logits = outputs.logits
+        # Use last prompt token as state representation, not last generated token.
+        # Falls back to -1 (last token) during pure generation where prompt_len unknown.
+        value_idx = (prompt_len - 1) if prompt_len > 0 else -1
+        last_hidden = outputs.hidden_states[-1][:, value_idx, :].to(device=device, dtype=torch.float16)
         values = self.value_head(last_hidden).squeeze(-1).to(device=device, dtype=torch.float16)
         return logits, values
 
 
 MAX_PROMPT_TOKENS = 1024   # hard cap on input prompt tokens fed to SLM
-MAX_NEW_TOKENS    = 1024   # tokens the SLM is allowed to generate
+MAX_NEW_TOKENS    = 512  # tokens the SLM is allowed to generate
 MAX_SEQ_LEN       = MAX_PROMPT_TOKENS + MAX_NEW_TOKENS  # 1280 total
 
-def generate_instruction_with_logprobs(slm_pg, tokenizer, prompt_text, max_new_tokens=MAX_NEW_TOKENS, temperature=1.0):
+def generate_instruction_with_logprobs(slm_pg, tokenizer, prompt_text, max_new_tokens=MAX_NEW_TOKENS, temperature=0.2):
     slm_pg.eval()
+    if hasattr(slm_pg.model, "gradient_checkpointing_disable"):
+        slm_pg.model.gradient_checkpointing_disable()
     # Tokenise prompt with its own budget so generation is never squeezed out
     inputs = tokenizer(
         prompt_text,
@@ -302,10 +364,12 @@ def generate_instruction_with_logprobs(slm_pg, tokenizer, prompt_text, max_new_t
     )
 
     # Recompute log_probs WITH grad only once on the full sequence (not per-step)
+    if hasattr(slm_pg.model, "gradient_checkpointing_enable"):
+        slm_pg.model.gradient_checkpointing_enable()
     slm_pg.train()
+
     seq_log_prob, value = recompute_logprobs_for_sequence(
-        slm_pg, inputs["input_ids"].to(device), generated_ids.to(device), attention_mask
-    )
+        slm_pg, inputs["input_ids"].to(device), generated_ids.to(device))
 
     token_count = generated_ids.shape[1]
     _save_slm_interaction(prompt_text, instruction_text)
@@ -313,7 +377,7 @@ def generate_instruction_with_logprobs(slm_pg, tokenizer, prompt_text, max_new_t
 
 def _save_slm_interaction(prompt: str, response: str) -> None:
     """Save SLM prompt and generated instruction to disk for inspection."""
-    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new"
+    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new_3" #HERE_FOR_CHANGE
     os.makedirs(save_dir, exist_ok=True)
     timestamp = time.strftime("%Y%m%d_%H%M%S")
     try:
@@ -323,7 +387,7 @@ def _save_slm_interaction(prompt: str, response: str) -> None:
         logging.warning("Could not save SLM interaction to disk: %s", e)
 
 
-def recompute_logprobs_for_sequence(slm_pg, prompt_ids, generated_ids, full_attention_mask):
+def recompute_logprobs_for_sequence(slm_pg, prompt_ids, generated_ids):
     """Single forward pass over full sequence to get log_probs + value for training."""
     full_ids = torch.cat([prompt_ids, generated_ids.to(device)], dim=1)
     # Trim to combined budget (prompt + generation), not old 512 hard-cap
@@ -331,7 +395,7 @@ def recompute_logprobs_for_sequence(slm_pg, prompt_ids, generated_ids, full_atte
         full_ids = full_ids[:, :MAX_SEQ_LEN]
 
     attn = torch.ones_like(full_ids)
-    logits, value = slm_pg(input_ids=full_ids, attention_mask=attn)
+    logits, value = slm_pg(input_ids=full_ids, attention_mask=attn, prompt_len=prompt_ids.shape[1])
 
     # Get log probs only over generated portion
     gen_len = generated_ids.shape[1]
@@ -341,7 +405,7 @@ def recompute_logprobs_for_sequence(slm_pg, prompt_ids, generated_ids, full_atte
 
     log_probs = F.log_softmax(shift_logits, dim=-1)
     token_log_probs = log_probs.gather(2, shift_labels.unsqueeze(-1)).squeeze(-1)
-    seq_log_prob = token_log_probs.sum(dim=-1).squeeze()
+    seq_log_prob = token_log_probs.mean(dim=-1).squeeze()
 
     return seq_log_prob, value
 def compute_mean_kl(current_distributions, previous_distributions):
@@ -475,7 +539,7 @@ def save_checkpoint_safely(checkpoint_data: Dict[str, Any], checkpoint_path: str
 def run_SLM(prompt: str) -> str:
     try:
         checkpoint_path = (
-            "/u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK/final_model_new.pt"
+            "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3/run_CHK/final_model_new.pt" #HERE_FOR_CHANGE
         )
         model, tok = initialize_slm(checkpoint_path)
         print("Model config hidden size:", getattr(model.config, "hidden_size", "N/A"))
@@ -488,7 +552,6 @@ def run_SLM(prompt: str) -> str:
             "eos_token_id": tok.eos_token_id,
             "repetition_penalty": 1.0,
             "no_repeat_ngram_size": 0,
-            "use_cache": False,
             "max_length": 640,
             "min_length": 10,
             "length_penalty": 1.0,
@@ -503,13 +566,17 @@ def run_SLM(prompt: str) -> str:
             ).to(device)
             print("Input IDs shape:", inputs["input_ids"].shape)
             model.eval()
+            if hasattr(model, "gradient_checkpointing_disable"):
+                model.gradient_checkpointing_disable()
             with torch.no_grad():
                 if inputs["input_ids"].shape[1] > 512:
                     inputs = {k: v[:, :512] for k, v in inputs.items()}
                 out = model.generate(**inputs, **generation_config)
+            if hasattr(model, "gradient_checkpointing_enable"):
+                model.gradient_checkpointing_enable()
             model.train()
             response = tok.decode(out[0], skip_special_tokens=True)
-        save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new"
+        save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new_3" #HERE_FOR_CHANGE
         os.makedirs(save_dir, exist_ok=True)
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         with open(
@@ -528,14 +595,29 @@ def run_SLM(prompt: str) -> str:
         if "model" in locals():
             model.train()
 
-
-def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch_size: int = 1, learning_rate: float = 1e-4, gamma: float = 0.99, epsilon: float = 0.2, checkpoint_path: str = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints/run_CHK/final_model_new.pt", start_epoch: int = 0):   
+#HERE_FOR_CHANGE
+def train_slm_with_grpo( subfolders, slm, global_tokenizer, num_epochs: int = 10, learning_rate: float = 1e-4, gamma: float = 0.99, epsilon: float = 0.2, checkpoint_path: str = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3/run_CHK/final_model_new.pt", start_epoch: int = 0):   
 
     logging.info(
         "Starting/Resuming SLM training with sequence-level policy gradient..."
     )
+    if wandb.run is None:
+        wandb.init(
+            project="Proof2Silicon-journal_phase_CODEBASE",
+            entity="drprofmjha-university-of-illinois-urbana-champaign",
+            name="Proof2Silicon-journal_phase_CODEBASE",
+            # id="tmxqi16n",
+            resume="allow",
+            settings=wandb.Settings(init_timeout=800),
+        )
     wandb_enabled = wandb.run is not None
-
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print(f"Wandb enabled: {wandb_enabled}")
+    print("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    metrics_tracker = get_metrics_tracker()
+    if metrics_tracker is None or metrics_tracker.save_dir != METRICS_DIR:
+        metrics_tracker = MetricsTracker(METRICS_DIR)
+        set_metrics_tracker(metrics_tracker)
     slm_pg = SLMPG(slm)
     slm_pg.value_head = slm_pg.value_head.to(device)
     actor_params = list(slm_pg.model.parameters())
@@ -547,7 +629,12 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
     total_rewards: List[float] = []
     successful_examples: List[Any] = []
     processed_samples: Set[str] = set()
-
+    def save_metric_plots_to_fixed_dir():
+        metrics_tracker = get_metrics_tracker()
+        if metrics_tracker is None:
+            return
+        metrics_tracker.plot_learning_curves()
+        metrics_tracker.save_metrics()
     if checkpoint_path and os.path.exists(checkpoint_path):
         checkpoint, loaded_rewards, loaded_examples, loaded_samples = load_checkpoint(
             checkpoint_path, slm_pg, actor_optimizer
@@ -570,6 +657,7 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
     critic_scheduler = ReduceLROnPlateau(
         critic_optimizer, mode="min", factor=0.5, patience=7
     )
+    GRAD_ACCUM_STEPS = 2
 
     for epoch in range(start_epoch, num_epochs):
         epoch_start_time = time.time()
@@ -582,30 +670,52 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
         epoch_step_successes = 0
         epoch_step_count = 0
 
-        for batch_idx in range(batch_size):
-            logging.info(f"Processing batch {batch_idx + 1}/{batch_size}")
+        epoch_outcome_rewards: List[float] = []
+        epoch_progress_rewards: List[float] = []
+        epoch_structure_rewards: List[float] = []
+        epoch_efficiency_rewards: List[float] = []
+        epoch_stability_rewards: List[float] = []
 
+        for episode_idx, subfolder_info in enumerate(subfolders):
+            entry = subfolder_info["entry"]
+            subfolder_path = subfolder_info["subfolder_path"]
+            description_file = subfolder_info["description_file"]
+
+            logging.info(
+                f"Processing episode {episode_idx + 1}/{len(subfolders)} for subfolder {entry}"
+            )
+
+            with open(description_file, "r", encoding="utf-8") as file:
+                sample_prompt = file.read().strip()
+
+            tmp_path = os.path.join(subfolder_path, "RL_No_feedback.dfy")
+            error_path = os.path.join(subfolder_path, "RL_error.txt")
+
+            env = DafnyEnv(sample_prompt, tmp_path, error_path)
             env.reset()
+
             done = False
             episode_reward = 0.0
             episode_values: List[torch.Tensor] = []
             episode_log_probs: List[torch.Tensor] = []
             episode_rewards: List[float] = []
             episode_states: List[str] = []
-            epoch_outcome_rewards: List[float] = []
-            epoch_progress_rewards: List[float] = []
-            epoch_structure_rewards: List[float] = []
-            epoch_efficiency_rewards: List[float] = []
-            epoch_stability_rewards: List[float] = []
 
-            prev_generated_token_count = 0
+            policy_loss = None
+            value_loss = None
+            total_loss = None
+            returns_t = None
+            advantages_t = None
+
             prev_distributions = None
 
-            sample_id = f"{env.subfolder_path}_{epoch}_{batch_idx}"
+            sample_id = f"{env.subfolder_path}_{epoch}"
             if sample_id in processed_samples:
-                logging.info(f"Skipping already processed sample: {sample_id}")
+                logging.info(f"Skipping already processed episode: {sample_id}")
                 continue
+
             torch.cuda.empty_cache()
+
             while not done:
                 state_prompt = env.build_state_prompt()
 
@@ -621,16 +731,14 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
                     global_tokenizer,
                     state_prompt,
                     max_new_tokens=MAX_NEW_TOKENS,
-                    temperature=1.0,
+                    temperature=0.2,
                 )
 
                 if not instruction_text or seq_log_prob is None or value is None:
                     logging.warning("Empty instruction generated; ending episode.")
                     break
 
-                prompt_token_increase = max(
-                    0, generated_token_count - prev_generated_token_count
-                )
+                prompt_token_increase =generated_token_count
                 kl_value = compute_mean_kl(current_distributions, prev_distributions)
 
                 reward, done, info = env.step(
@@ -641,7 +749,6 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
                     training_epoch=epoch,   # <-- pass the real epoch index
                 )
 
-                prev_generated_token_count = generated_token_count
                 prev_distributions = current_distributions
 
                 epoch_step_count += 1
@@ -649,12 +756,30 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
                 if is_successful_step:
                     epoch_step_successes += 1
 
-                if not torch.isnan(value).any() and not torch.isinf(value).any():
-                    episode_values.append(value)
+                value_ok = torch.isfinite(value).all().item()
+                logprob_ok = torch.isfinite(seq_log_prob).all().item()
+                reward_ok = isinstance(reward, (int, float)) and not (reward != reward)  # NaN-safe
+
+                if value_ok and logprob_ok and reward_ok:
+                    episode_values.append(value.detach())
                     episode_log_probs.append(seq_log_prob)
-                    episode_rewards.append(reward)
-                    episode_reward += reward
+                    episode_rewards.append(float(reward))
+                    episode_reward += float(reward)
                     episode_states.append(state_prompt)
+                    if len(episode_log_probs)% GRAD_ACCUM_STEPS == 0:
+                        p1,v1 = _do_policy_update(episode_log_probs[-GRAD_ACCUM_STEPS:], episode_values[-GRAD_ACCUM_STEPS:], episode_rewards[-GRAD_ACCUM_STEPS:], actor_optimizer, critic_optimizer, actor_params, critic_params, gamma, device)
+                        if p1 is not None:
+                            epoch_policy_losses.append(p1)
+                            epoch_value_losses.append(v1)
+                            logging.info(f"Policy loss: {p1}, Value loss: {v1} after step {len(episode_log_probs)}")
+                else:
+                    logging.warning(
+                        "Skipping invalid step for %s | value_ok=%s logprob_ok=%s reward_ok=%s",
+                        entry,
+                        value_ok,
+                        logprob_ok,
+                        reward_ok,
+                    )
 
                 reward_breakdown = info.get("reward_breakdown", {})
                 epoch_outcome_rewards.append(reward_breakdown.get("outcome_reward", 0.0))
@@ -667,50 +792,40 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
                 parse_errors = info.get("parse_errors", 0)
                 if wandb_enabled:
                     wandb.log(
-                    {
-                        "step/reward_total": reward,
-                        "step/value": value.item(),
-                        "step/log_prob": seq_log_prob.item(),
-                        "step/prompt_token_increase": prompt_token_increase,
-                        "step/kl_value": kl_value,
-                        "step/is_successful": int(is_successful_step),
-                        "step/parse_errors": parse_errors,
-                        "step/reward_outcome": reward_breakdown.get(
-                            "outcome_reward", 0.0
-                        ),
-                        "step/reward_progress": reward_breakdown.get(
-                            "progress_reward", 0.0
-                        ),
-                        "step/reward_structure": reward_breakdown.get(
-                            "structure_reward", 0.0
-                        ),
-                        "step/reward_efficiency": reward_breakdown.get(
-                            "efficiency_reward", 0.0
-                        ),
-                        "step/reward_stability": reward_breakdown.get(
-                            "stability_reward", 0.0
-                        ),
-                        "step/error_syntax": curr_error_counts.get("syntax", 0),
-                        "step/error_type": curr_error_counts.get("type", 0),
-                        "step/error_missing_invariant": curr_error_counts.get(
-                            "missing_invariant", 0
-                        ),
-                        "step/error_postcondition": curr_error_counts.get(
-                            "postcondition", 0
-                        ),
-                        "step/error_timeout": curr_error_counts.get("timeout", 0),
-                        "step/lemma_count": curr_structure.get("lemma_count", 0),
-                        "step/recursion_count": curr_structure.get(
-                            "recursion_count", 0
-                        ),
-                        "step/invariant_count": curr_structure.get(
-                            "invariant_count", 0
-                        ),
-                        "step/ghost_var_count": curr_structure.get(
-                            "ghost_var_count", 0
-                        ),
-                    }
-                )
+                        {
+                            "step/epoch": epoch + 1,
+                            "step/episode_index": episode_idx + 1,
+                            "step/subfolder": entry,
+                            "step/iteration": env.current_iteration,
+
+                            "step/reward_total": reward,
+                            "step/value": value.item(),
+                            "step/log_prob": seq_log_prob.item(),
+                            "step/value_is_finite": int(torch.isfinite(value).all().item()),
+                            "step/logprob_is_finite": int(torch.isfinite(seq_log_prob).all().item()),
+                            "step/prompt_token_increase": prompt_token_increase,
+                            "step/kl_value": kl_value,
+                            "step/is_successful": int(is_successful_step),
+                            "step/parse_errors": parse_errors,
+
+                            "step/reward_outcome": reward_breakdown.get("outcome_reward", 0.0),
+                            "step/reward_progress": reward_breakdown.get("progress_reward", 0.0),
+                            "step/reward_structure": reward_breakdown.get("structure_reward", 0.0),
+                            "step/reward_efficiency": reward_breakdown.get("efficiency_reward", 0.0),
+                            "step/reward_stability": reward_breakdown.get("stability_reward", 0.0),
+
+                            "step/error_syntax": curr_error_counts.get("syntax", 0),
+                            "step/error_type": curr_error_counts.get("type", 0),
+                            "step/error_missing_invariant": curr_error_counts.get("missing_invariant", 0),
+                            "step/error_postcondition": curr_error_counts.get("postcondition", 0),
+                            "step/error_timeout": curr_error_counts.get("timeout", 0),
+
+                            "step/structure_lemma_count": curr_structure.get("lemma_count", 0),
+                            "step/structure_recursion_count": curr_structure.get("recursion_count", 0),
+                            "step/structure_invariant_count": curr_structure.get("invariant_count", 0),
+                            "step/structure_ghost_var_count": curr_structure.get("ghost_var_count", 0),
+                        }
+                    )
 
                 logging.info(
                     "Step metrics - Reward: %s, Value: %s, Log Prob: %s, Token Increase: %s, KL: %s, Success: %s",
@@ -727,6 +842,7 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
                     curr_error_counts,
                     curr_structure,
                 )
+                # log_latest_metric_plots_to_wandb()
 
                 if is_successful_step and reward > 0:
                     epoch_successful.append(
@@ -747,13 +863,24 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
 
             processed_samples.add(sample_id)
 
+            leftover_start = (len(episode_values)//GRAD_ACCUM_STEPS)*GRAD_ACCUM_STEPS
+            leftover_log_probs = episode_log_probs[leftover_start:]
+            leftover_values = episode_values[leftover_start:]
+            leftover_rewards = episode_rewards[leftover_start:]
+            if len(leftover_log_probs) > 0:
+                p1,v1 = _do_policy_update(leftover_log_probs, leftover_values, leftover_rewards, actor_optimizer, critic_optimizer, actor_params, critic_params, gamma, device)
+                if p1 is not None:
+                    epoch_policy_losses.append(p1)
+                    epoch_value_losses.append(v1)
+                    logging.info(f"Policy loss: {p1}, Value loss: {v1} after step {len(leftover_log_probs)}")
+            # Compute full-episode returns/advantages for wandb logging only.
+            # Gradient updates already happened via mini-batch and leftover blocks above.
             if len(episode_values) > 0:
-                clipped_rewards = [max(-10, min(10, r)) for r in episode_rewards]
-
+                clipped_rewards = [max(-10, min(10, float(r))) for r in episode_rewards]
                 returns = []
                 R = 0.0
                 for r in reversed(clipped_rewards):
-                    R = r + gamma * R
+                    R = float(r) + gamma * R
                     returns.append(R)
                 returns = list(reversed(returns))
 
@@ -761,64 +888,65 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
                 values_t = torch.stack(episode_values).float()
                 log_probs_t = torch.stack(episode_log_probs).float()
 
-                advantages_t = returns_t - values_t.detach()
-                if len(advantages_t) > 1:
-                    advantages_t = (advantages_t - advantages_t.mean()) / (
-                        advantages_t.std() + 1e-8
-                    )
-
-                policy_loss = -(log_probs_t * advantages_t).mean()
-                value_loss = F.mse_loss(values_t, returns_t)
-                total_loss_tensor = policy_loss + value_loss
-
-                if not (
-                    torch.isnan(policy_loss).any() or torch.isnan(value_loss).any() or torch.isnan(total_loss_tensor).any()
-                ):
-                    actor_optimizer.zero_grad()
-                    critic_optimizer.zero_grad()
-                    # policy_loss.backward()
-                    total_loss_tensor.backward()
-                    torch.nn.utils.clip_grad_norm_(actor_params, max_norm=0.5)
-                    torch.nn.utils.clip_grad_norm_(critic_params, max_norm=0.5)
-                    actor_optimizer.step()
-                    critic_optimizer.zero_grad()
-                    total_loss = total_loss_tensor.item()
-                    # value_loss.backward()
-                    # torch.nn.utils.clip_grad_norm_(critic_params, max_norm=0.5)
-                    # critic_optimizer.step()
-
-                    # total_loss = policy_loss.item() + value_loss.item()
-                    env.set_current_loss(policy_loss + value_loss)
-
-                    epoch_policy_losses.append(policy_loss.item())
-                    epoch_value_losses.append(value_loss.item())
-
-                    if wandb_enabled:
-                        wandb.log(
-                        {
-                            "batch/policy_loss": policy_loss.item(),
-                            "batch/value_loss": value_loss.item(),
-                            "batch/total_loss": total_loss,
-                            "batch/reward_total": episode_reward,
-                            "batch/trajectory_length": len(episode_values),
-                            "batch/mean_return": returns_t.mean().item(),
-                            "batch/mean_advantage": advantages_t.mean().item(),
-                        }
-                    )
-
-                    logging.info(
-                        "Batch metrics - Policy Loss: %s, Value Loss: %s, Total Loss: %s, Reward: %s, Trajectory Length: %s",
-                        policy_loss.item(),
-                        value_loss.item(),
-                        total_loss,
-                        episode_reward,
-                        len(episode_values),
-                    )
+                if (torch.isfinite(returns_t).all() and
+                    torch.isfinite(values_t).all() and
+                    torch.isfinite(log_probs_t).all()):
+                    advantages_t = returns_t - values_t.detach()
+                    if len(advantages_t) > 1:
+                        adv_std = advantages_t.std(unbiased=False)
+                        if torch.isfinite(adv_std) and adv_std.item() > 1e-8:
+                            advantages_t = (advantages_t - advantages_t.mean()) / (adv_std + 1e-8)
+                        else:
+                            advantages_t = advantages_t - advantages_t.mean()
+                    else:
+                        advantages_t = advantages_t - advantages_t.mean()
+                    # policy_loss/value_loss kept as logging variables only — no backward()
+                    policy_loss = -(log_probs_t * advantages_t).mean()
+                    value_loss = F.mse_loss(values_t, returns_t)
+                    total_loss = float((policy_loss + value_loss).item())
+            else:
+                logging.warning(
+                    "Episode %s/%s (%s) produced no valid trajectory.",
+                    episode_idx + 1, len(subfolders), entry,
+                )
 
             epoch_rewards.append(episode_reward)
+
+            if wandb_enabled:
+                episode_log = {
+                    "episode/epoch": epoch + 1,
+                    "episode/index_within_epoch": episode_idx + 1,
+                    "episode/subfolder": entry,
+                    "episode/reward_total": episode_reward,
+                    "episode/trajectory_length": len(episode_values),
+                    "episode/successful_examples_count": len(env.successful_examples),
+                    "episode/final_iteration": env.current_iteration,
+                    "episode/loss_computed": int(
+                        policy_loss is not None and value_loss is not None and total_loss is not None
+                    ),
+                }
+
+                if policy_loss is not None:
+                    episode_log["episode/policy_loss"] = float(policy_loss.item())
+                if value_loss is not None:
+                    episode_log["episode/value_loss"] = float(value_loss.item())
+                if total_loss is not None:
+                    episode_log["episode/total_loss"] = float(total_loss)
+                if returns_t is not None:
+                    episode_log["episode/mean_return"] = float(returns_t.mean().item())
+                if advantages_t is not None:
+                    episode_log["episode/mean_advantage"] = float(advantages_t.mean().item())
+
+                wandb.log(episode_log)
+
             logging.info(
-                "Batch %s completed with reward: %s", batch_idx + 1, episode_reward
+                "Episode %s/%s (%s) completed with reward: %s",
+                episode_idx + 1,
+                len(subfolders),
+                entry,
+                episode_reward,
             )
+            save_metric_plots_to_fixed_dir()
 
         epoch_time = time.time() - epoch_start_time
         avg_reward = sum(epoch_rewards) / len(epoch_rewards) if epoch_rewards else 0.0
@@ -875,26 +1003,26 @@ def train_slm_with_grpo( env, slm, global_tokenizer, num_epochs: int = 10, batch
 
         if wandb_enabled:
             wandb.log(
-            {
-                "epoch/index": epoch + 1,
-                "epoch/avg_reward_total": avg_reward,
-                "epoch/avg_policy_loss": avg_policy_loss,
-                "epoch/avg_value_loss": avg_value_loss,
-                "epoch/success_rate": epoch_success_rate,
-                "epoch/successful_examples": len(epoch_successful),
-                "epoch/time_sec": epoch_time,
-                "epoch/processed_samples_total": len(processed_samples),
-                "epoch/lr_actor": actor_optimizer.param_groups[0]["lr"],
-                "epoch/lr_critic": critic_optimizer.param_groups[0]["lr"],
-                "epoch/memory_allocated": torch.cuda.memory_allocated(device=device),
-                "epoch/memory_reserved": torch.cuda.memory_reserved(device=device),
-                "epoch/avg_reward_outcome": avg_outcome_reward,
-                "epoch/avg_reward_progress": avg_progress_reward,
-                "epoch/avg_reward_structure": avg_structure_reward,
-                "epoch/avg_reward_efficiency": avg_efficiency_reward,
-                "epoch/avg_reward_stability": avg_stability_reward,
-            }
-        )
+                {
+                    "epoch/index": epoch + 1,
+                    "epoch/avg_reward_total": avg_reward,
+                    "epoch/avg_policy_loss": avg_policy_loss,
+                    "epoch/avg_value_loss": avg_value_loss,
+                    "epoch/success_rate": epoch_success_rate,
+                    "epoch/successful_examples": len(epoch_successful),
+                    "epoch/time_sec": epoch_time,
+                    "epoch/processed_samples_total": len(processed_samples),
+                    "epoch/lr_actor": actor_optimizer.param_groups[0]["lr"],
+                    "epoch/lr_critic": critic_optimizer.param_groups[0]["lr"],
+                    "epoch/memory_allocated": torch.cuda.memory_allocated(device=device),
+                    "epoch/memory_reserved": torch.cuda.memory_reserved(device=device),
+                    "epoch/avg_reward_outcome": avg_outcome_reward,
+                    "epoch/avg_reward_progress": avg_progress_reward,
+                    "epoch/avg_reward_structure": avg_structure_reward,
+                    "epoch/avg_reward_efficiency": avg_efficiency_reward,
+                    "epoch/avg_reward_stability": avg_stability_reward,
+                }
+            )
 
         logging.info("Epoch %s metrics:", epoch + 1)
         logging.info("Average Reward: %s", avg_reward)

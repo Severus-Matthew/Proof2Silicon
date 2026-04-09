@@ -1,0 +1,1 @@
+Implement a Dafny function and methods to determine the maximum value in a sequence of integers, validate it, and create a rolling maximum sequence reflecting the maximum values for each prefix of the input.

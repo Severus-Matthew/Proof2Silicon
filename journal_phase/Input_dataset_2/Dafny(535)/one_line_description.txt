@@ -1,0 +1,1 @@
+Implement a data structure in Dafny that supports storing and retrieving items based on a match criterion, ensuring correctness through refinement types and autocontracts.

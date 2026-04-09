@@ -1,0 +1,6 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(558)/RL_No_feedback.dfy(6,66): Error: Ambiguous use of && and ||. Use parentheses to disambiguate. (ID: p_ambiguous_and_or)
+The `&&` and `||` operators have the same precedence but do not associate with each other.
+You must use parentheses to show how they are grouped. Write `p && q || r` as either
+`(p && q) || r` or `p && (q || r)`.
+1 parse errors detected in RL_No_feedback.dfy

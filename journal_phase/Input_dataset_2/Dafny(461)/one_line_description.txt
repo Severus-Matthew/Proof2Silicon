@@ -1,0 +1,1 @@
+Create a Dafny function to calculate the sum of the first `n` integers in a sequence and implement a method to check for any prefix with a negative sum, including verification of properties through lemmas and loop invariants.

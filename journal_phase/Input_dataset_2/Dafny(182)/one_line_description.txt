@@ -1,0 +1,1 @@
+Implement a Dafny method `GetEven` that modifies an array of natural numbers to ensure all elements are even by incrementing odd numbers, while incorporating preconditions and invariants for formal verification, along with a test method `evenTest` to validate the transformations.

@@ -1,0 +1,7 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(291)/RL_No_feedback.dfy(356,22): Error: type test for type 'Premature' must be from an expression assignable to it (got 'State')
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(291)/RL_No_feedback.dfy(358,29): Error: type test for type 'Youthful' must be from an expression assignable to it (got 'State')
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(291)/RL_No_feedback.dfy(360,29): Error: type test for type 'Inert' must be from an expression assignable to it (got 'State')
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(291)/RL_No_feedback.dfy(362,29): Error: type test for type 'Crimson' must be from an expression assignable to it (got 'State')
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(291)/RL_No_feedback.dfy(364,29): Error: type test for type 'Sterling' must be from an expression assignable to it (got 'State')
+5 resolution/type errors detected in RL_No_feedback.dfy

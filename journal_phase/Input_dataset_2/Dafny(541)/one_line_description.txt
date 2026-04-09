@@ -1,0 +1,1 @@
+Design a Dafny module that implements a `Counter` class with increment functionality and validity checks, then extend it to track two values with a `Cell` class ensuring their difference matches the increment count, and demonstrate usage in a `Main` method.

@@ -1,0 +1,82 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(105)/RL_No_feedback.dfy(98,18): Error: gets expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(105)/RL_No_feedback.dfy(98,32): Error: ident expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(105)/RL_No_feedback.dfy(98,21): Error: Expected 'to' or 'downto' (ID: p_to_or_downto)
+A for loop can express a computation to be performed for each value of a _loop index_.
+In Dafny, the loop index is an int-based variable that is either 
+- incremented up from a starting value to just before an ending value: `3 to 7` means 3, 4, 5, and 6
+- or decremented from just below a starting value down to an ending value: `7 downto 3` means 6, 5, 4, and 3.
+
+The contextual keywords `to` and `downto` indicate incrementing and decrementing, respectively.
+No other words are allowed here, including writing them with different case.
+
+These two words have special meaning only in this part of a for-loop; they are not reserved words elsewhere.
+That is, the code
+<!-- %check-resolve %exit 0 %nomsg -->
+```dafny
+method m() {
+  var to: int := 6;
+  var downto: int := 8;
+  for to := to to downto {}
+}
+```
+is legal, but not at all recommended.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(105)/RL_No_feedback.dfy(100,21): Error: invalid LetExprWithLHS (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(105)/RL_No_feedback.dfy(102,19): Error: then expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(105)/RL_No_feedback.dfy(103,15): Error: rbrace expected (ID: p_generic_syntax_error)
+This "invalid something" message where the something is typically
+the name of an internal parser non-terminal means that the text being parsed
+is a badly malformed instance of whatever parser entity was being parsed.
+This is an automatically generated message by the CoCo parser generator
+for a situation in which no specific recovery or a
+more informative error message has been implemented.
+
+The only advice we can give is to carefully scrutinize the location of the
+error to see what might be wrong with the text. If you think this is a
+common or confusing enough occurrence to warrant special error handling,
+please suggest the improvement, with this sample code, to the Dafny team.
+6 parse errors detected in RL_No_feedback.dfy

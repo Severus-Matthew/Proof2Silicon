@@ -1,0 +1,1 @@
+Implement a Dafny method `MaxArray` that returns the maximum value from a non-empty integer array, with preconditions and postconditions to ensure correctness, and demonstrate its usage in a `Main` method.

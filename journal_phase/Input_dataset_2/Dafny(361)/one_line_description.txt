@@ -1,0 +1,1 @@
+Implement a method in Dafny that computes a new sequence of elements raised to a specified non-negative integer power, ensuring the output sequence matches the input length and each element is correctly exponentiated.

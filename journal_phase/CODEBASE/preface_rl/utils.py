@@ -35,7 +35,7 @@ def save_iteration_results(
 ) -> None:
     try:
         folder_name = os.path.basename(subfolder_path)
-        root_dir = "/u/mjha1/Proof2Silicon/journal_phase/dataset"
+        root_dir = "/u/mjha1/Proof2Silicon/journal_phase/dataset_new_3" #HERE_FOR_CHANGE
         os.makedirs(root_dir, exist_ok=True)
 
         epoch_dir = os.path.join(root_dir, f"epoch_{epoch}_{folder_name}")
@@ -80,7 +80,7 @@ def save_epoch_summary(
 ) -> None:
     try:
         folder_name = os.path.basename(subfolder_path)
-        root_dir = "/u/mjha1/Proof2Silicon/journal_phase/dataset"
+        root_dir = "/u/mjha1/Proof2Silicon/journal_phase/dataset_new_3" #HERE_FOR_CHANGE
 
         # Create root directory if it doesn't exist
         os.makedirs(root_dir, exist_ok=True)

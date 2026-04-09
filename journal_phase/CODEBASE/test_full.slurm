@@ -4,8 +4,8 @@
 #SBATCH --error=dafny_full_%j.err
 #SBATCH --account=bgrm-dtai-gh
 #SBATCH --partition=ghx4
-#SBATCH --nodes=2
-#SBATCH --ntasks=2
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
 #SBATCH --cpus-per-task=6
 #SBATCH --gres=gpu:1
 #SBATCH --time=2-00:00:00
@@ -68,7 +68,6 @@ python main.py \
   --start_epoch 0 \
   --wandb_project dafny-rl_full \
   --wandb_entity drprofmjha-university-of-illinois-urbana-champaign \
-  --max_workers 1 \
   2>&1 | tee full_run.log
 
 echo "=============================="

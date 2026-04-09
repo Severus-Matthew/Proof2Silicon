@@ -1,0 +1,1 @@
+Implement Dafny modules that explore least and greatest fixed points through inductive reasoning with interconnected predicates and lemmas for integer properties.

@@ -1,0 +1,6 @@
+{"time":"2026-04-07T21:57:32.195642423-05:00","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
+{"time":"2026-04-07T21:57:32.269357126-05:00","level":"INFO","msg":"stream: created new stream","id":"jzzrwem2"}
+{"time":"2026-04-07T21:57:32.269399621-05:00","level":"INFO","msg":"handler: started","stream_id":"jzzrwem2"}
+{"time":"2026-04-07T21:57:32.271355379-05:00","level":"INFO","msg":"stream: started","id":"jzzrwem2"}
+{"time":"2026-04-07T21:57:32.271358483-05:00","level":"INFO","msg":"writer: started","stream_id":"jzzrwem2"}
+{"time":"2026-04-07T21:57:32.271371602-05:00","level":"INFO","msg":"sender: started","stream_id":"jzzrwem2"}

@@ -1,0 +1,11 @@
+2026-04-06 22:34:34,553 - INFO - Worker for Dafny(117): re-attached to W&B run e3ed233h
+2026-04-06 22:34:34,765 - INFO - Found 111 trainable subfolders in /u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2
+2026-04-06 22:34:34,765 - INFO - Starting training across all subfolders
+2026-04-06 22:34:34,766 - INFO - Starting/Resuming SLM training with sequence-level policy gradient...
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Wandb enabled: True
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-04-06 22:34:34,778 - INFO - Created checkpoint directory at: /u/mjha1/Proof2Silicon/journal_phase/checkpoints_2/run_CHK
+2026-04-06 22:34:34,778 - INFO -
+Starting Epoch 1/5
+2026-04-06 22:34:34,778 - INFO - Processing episode 1/111 for subfolder Dafny(103)

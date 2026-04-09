@@ -1,0 +1,1 @@
+Implement and verify the Bubble Sort algorithm in Dafny, ensuring array sorting correctness through predicates and loop invariants while maintaining element multiset invariance.

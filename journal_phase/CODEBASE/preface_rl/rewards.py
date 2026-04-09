@@ -187,7 +187,9 @@ def compute_efficiency_reward(prompt_token_increase: int) -> float:
     return PROMPT_TOKEN_EFFICIENCY_COEFF * prompt_token_increase
 
 
-def compute_stability_reward(kl_value: float) -> float:
+def compute_stability_reward(kl_value: float, epoch: int = 0) -> float:
+    if epoch < 2:
+        return 0.0  # don't penalize exploration in early epochs
     return -KL_REWARD_COEFF * kl_value
 
 
@@ -200,6 +202,7 @@ def compute_total_reward(
     curr_structure: Optional[Dict[str, int]] = None,
     prompt_token_increase: int = 0,
     kl_value: float = 0.0,
+    epoch: int = 0,
 ) -> Dict[str, float]:
     prev_error_counts = prev_error_counts or {}
     curr_error_counts = curr_error_counts or {}
@@ -222,7 +225,7 @@ def compute_total_reward(
         )
 
     efficiency_reward = compute_efficiency_reward(prompt_token_increase)
-    stability_reward = compute_stability_reward(kl_value)
+    stability_reward = compute_stability_reward(kl_value, epoch)
 
     total_reward = (
         outcome_reward

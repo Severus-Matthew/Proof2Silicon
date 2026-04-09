@@ -1,0 +1,4 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(188)/RL_No_feedback.dfy(7,30): Error: type array<array<array<int>>> is not assignable to LHS (of type array<array<int>>) (nonvariance for type parameter expects array<int> = array<array<int>>) (non-variant type parameter would require int = array<int>)
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(188)/RL_No_feedback.dfy(17,30): Error: type array<array<array<int>>> is not assignable to LHS (of type array<array<int>>) (nonvariance for type parameter expects array<int> = array<array<int>>) (non-variant type parameter would require int = array<int>)
+2 resolution/type errors detected in RL_No_feedback.dfy

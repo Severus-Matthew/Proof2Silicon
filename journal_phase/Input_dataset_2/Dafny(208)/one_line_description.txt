@@ -1,0 +1,1 @@
+Implement a Dafny method to solve the "Two Sum" problem by finding two distinct indices in an array that sum to a specified target, ensuring correctness through verification and maintaining invariants.

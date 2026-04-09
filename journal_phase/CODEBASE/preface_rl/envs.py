@@ -55,13 +55,17 @@ class DafnyEnv(gym.core.Env):
             "invariant_count": 0,
             "ghost_var_count": 0,
         }
+        self.last_attempt_info = None
         os.makedirs(self.subfolder_path, exist_ok=True)
 
         tracker = get_metrics_tracker()
         if tracker is None:
-            tracker = MetricsTracker(os.path.join(self.subfolder_path, "metrics"))
+            fixed_metrics_dir = "/u/mjha1/Proof2Silicon/journal_phase/wandb_metrics_3" #HERE_FOR_CHANGE
+            os.makedirs(fixed_metrics_dir, exist_ok=True)
+            tracker = MetricsTracker(fixed_metrics_dir)
             set_metrics_tracker(tracker)
         self.metrics_tracker = tracker
+        # self.metrics_tracker = tracker
 
         self.weighted_dataset_path = os.path.join(
             self.subfolder_path, "weighted_training_examples.jsonl"
@@ -89,24 +93,9 @@ class DafnyEnv(gym.core.Env):
             "invariant_count": 0,
             "ghost_var_count": 0,
         }
-        if hasattr(self, "last_attempt_info"):
-            del self.last_attempt_info
+        self.last_attempt_info = None
         return self.prompt
-    def build_state_prompt(self) -> str:
-        if self.current_iteration == 0:
-            return ShortPrompt(self.prompt)
 
-        if hasattr(self, "last_attempt_info"):
-            return ErrorPrompt(
-                self.last_attempt_info["error_output"],
-                self.prompt,
-                self.last_attempt_info["code"],
-                str(self.last_attempt_info["reward"]),
-                previous_instruction=self.last_attempt_info.get("instruction_text", ""),
-                previous_llm_response=self.last_attempt_info.get("llm_response", ""),
-            )
-
-        return ShortPrompt(self.prompt)
     def categorize_errors(self, output: str) -> Dict[str, int]:
         counts = {
             "syntax": 0,
@@ -193,13 +182,16 @@ class DafnyEnv(gym.core.Env):
             print("running regex analyzer")
             return self._run_regex_analyzer(dafny_file_path), -3
     def set_current_loss(self, loss: torch.Tensor):
-        self.current_loss = float(loss.detach().item())
+        if isinstance(loss, torch.Tensor):
+            self.current_loss = float(loss.detach().item())
+        else:
+            self.current_loss = float(loss)
 
     def build_state_prompt(self) -> str:
         if self.current_iteration == 0:
             return ShortPrompt(self.prompt)
 
-        if hasattr(self, "last_attempt_info"):
+        if self.last_attempt_info is not None:
             return ErrorPrompt(
                 self.last_attempt_info["error_output"],
                 self.prompt,
@@ -254,8 +246,12 @@ class DafnyEnv(gym.core.Env):
         # Use the epoch passed in from the training loop (authoritative).
         # Fall back to self.current_epoch only if not provided (legacy callers).
         effective_epoch = training_epoch if training_epoch is not None else self.current_epoch
-
-        llm_response = run_LLM(instruction_text)
+        last_code =""
+        last_error =""
+        if self.last_attempt_info is not None:
+            last_code = self.last_attempt_info.get("code", "")
+            last_error = self.last_attempt_info.get("error_output", "")
+        llm_response = run_LLM(instruction_text, last_code = last_code, last_error = last_error)
         dafny_code = extract_dafny_code(llm_response)
 
         outcome, error_output, code = self.get_dafny_output(dafny_code)
@@ -285,6 +281,7 @@ class DafnyEnv(gym.core.Env):
             curr_structure=curr_structure,
             prompt_token_increase=prompt_token_increase,
             kl_value=kl_value,
+            epoch=effective_epoch,
         )
         reward = reward_breakdown["total_reward"]
         self.metrics_tracker.update_reward_breakdown(

@@ -1,0 +1,1 @@
+Implement a method `DogYears` that converts non-negative human years to dog years by multiplying the input by seven.

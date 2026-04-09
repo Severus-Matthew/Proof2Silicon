@@ -1,0 +1,1 @@
+Implement a Dafny program that checks for vowels and counts positions in a string where both neighboring characters are vowels, ensuring correctness through formal verification.

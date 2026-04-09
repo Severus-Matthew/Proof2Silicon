@@ -1,0 +1,1 @@
+Implement a method `CountNonEmptySubstrings` in Dafny that calculates the number of non-empty substrings of a string `s` using the formula \\\\(|s| \\\\times (|s| + 1) / 2\\\\) and ensures the result is non-negative.

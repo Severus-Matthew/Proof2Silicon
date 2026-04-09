@@ -1,0 +1,3 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(337)/RL_No_feedback.dfy(1,9): Error: Function body type mismatch (expected int, got char)
+1 resolution/type errors detected in RL_No_feedback.dfy

@@ -1,0 +1,1 @@
+Implement a Dafny method `RemoveElements` that returns a sequence of unique integers from array `a` that are not present in array `b`, ensuring all output elements are validated against the input arrays.

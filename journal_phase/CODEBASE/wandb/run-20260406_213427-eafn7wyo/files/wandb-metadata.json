@@ -1,0 +1,87 @@
+{
+  "os":  "Linux-6.4.0-150600.23.53-64kb-aarch64-with-glibc2.38",
+  "python":  "CPython 3.12.9",
+  "startedAt":  "2026-04-07T02:34:27.053813Z",
+  "args":  [
+    "--start_epoch",
+    "0",
+    "--wandb_project",
+    "dafny-rl_full",
+    "--wandb_entity",
+    "drprofmjha-university-of-illinois-urbana-champaign",
+    "--max_workers",
+    "1"
+  ],
+  "program":  "<python with no main file>",
+  "git":  {
+    "remote":  "git@github.com:Severus-Matthew/Proof2Silicon.git",
+    "commit":  "b324b56df4fafd91a786e55a03ac20dee642b5e4"
+  },
+  "email":  "drprofmjha@gmail.com",
+  "root":  "/u/mjha1/Proof2Silicon/journal_phase/CODEBASE",
+  "host":  "gh008.hsn.cm.delta.internal.ncsa.edu",
+  "executable":  "/u/mjha1/rl_env311/bin/python",
+  "cpu_count":  288,
+  "cpu_count_logical":  288,
+  "gpu":  "NVIDIA GH200 120GB",
+  "gpu_count":  1,
+  "disk":  {
+    "/":  {
+      "total":  "256654442496",
+      "used":  "17314938880"
+    }
+  },
+  "memory":  {
+    "total":  "921330843648"
+  },
+  "gpu_nvidia":  [
+    {
+      "name":  "NVIDIA GH200 120GB",
+      "memoryTotal":  "102625181696",
+      "cudaCores":  16896,
+      "architecture":  "Hopper",
+      "uuid":  "GPU-ffe64d70-e658-1c7c-018b-e1978a340e0d"
+    }
+  ],
+  "cudaVersion":  "12.8",
+  "slurm":  {
+    "cluster_name":  "delta-gh",
+    "conf":  "/var/spool/slurmd/conf-cache/slurm.conf",
+    "cpus_on_node":  "6",
+    "cpus_per_task":  "6",
+    "gpus_on_node":  "1",
+    "gtids":  "0",
+    "job_account":  "bgrm-dtai-gh",
+    "job_cpus_per_node":  "6",
+    "job_end_time":  "1775702036",
+    "job_gid":  "202",
+    "job_gpus":  "0",
+    "job_id":  "2085891",
+    "job_name":  "dafny_full",
+    "job_nodelist":  "gh008",
+    "job_num_nodes":  "1",
+    "job_partition":  "ghx4",
+    "job_qos":  "bgrm-dtai-gh",
+    "job_start_time":  "1775529236",
+    "job_uid":  "71799",
+    "job_user":  "mjha1",
+    "jobid":  "2085891",
+    "localid":  "0",
+    "nnodes":  "1",
+    "nodeid":  "0",
+    "nodelist":  "gh008",
+    "nprocs":  "1",
+    "ntasks":  "1",
+    "oom_kill_step":  "0",
+    "prio_process":  "0",
+    "procid":  "0",
+    "submit_dir":  "/u/mjha1",
+    "submit_host":  "gh-login03.delta.ncsa.illinois.edu",
+    "task_pid":  "140980",
+    "tasks_per_node":  "1",
+    "topology_addr":  "deltaai_fabric.chassis_x8101c0.gh008",
+    "topology_addr_pattern":  "switch.switch.node",
+    "tres_per_task":  "cpu=6"
+  },
+  "writerId":  "iulxd9jbym1c24i7uc9r5udm3go9c9bl"
+}
