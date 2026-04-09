@@ -11965,3 +11965,30 @@ Starting Epoch 2/5
 2026-04-09 15:20:30,123 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
 2026-04-09 15:20:55,899 - INFO - Step metrics - Reward: -0.512, Value: 2.076171875, Log Prob: -1.4196799993515015, Token Increase: 512, KL: 22.21693997281818, Success: False
 2026-04-09 15:20:55,900 - INFO - Reward breakdown: {'total_reward': -0.512, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 2, 'invariant_count': 8, 'ghost_var_count': 0}
+2026-04-09 15:22:18,316 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:22:52,448 - INFO - Policy loss: 0.510188102722168, Value loss: 8.194826126098633 after step 6
+2026-04-09 15:22:52,449 - INFO - Step metrics - Reward: -0.512, Value: 2.09765625, Log Prob: -2.440056324005127, Token Increase: 512, KL: 22.20098251570016, Success: False
+2026-04-09 15:22:52,449 - INFO - Reward breakdown: {'total_reward': -0.512, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 2, 'invariant_count': 8, 'ghost_var_count': 0}
+2026-04-09 15:24:11,841 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:24:49,261 - INFO - Step metrics - Reward: -0.512, Value: 2.05859375, Log Prob: -1.834611177444458, Token Increase: 512, KL: 20.649269830870022, Success: False
+2026-04-09 15:24:49,261 - INFO - Reward breakdown: {'total_reward': -0.512, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 2, 'invariant_count': 8, 'ghost_var_count': 0}
+2026-04-09 15:24:49,763 - INFO - Policy loss: -0.0, Value loss: 6.60795259475708 after step 1
+2026-04-09 15:24:49,785 - INFO - Episode 58/111 (Dafny(377)) completed with reward: -3.3840000000000003
+2026-04-09 15:24:50,506 - INFO - Processing episode 59/111 for subfolder Dafny(382)
+2026-04-09 15:26:01,013 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:26:33,246 - INFO - Step metrics - Reward: 0.988, Value: 1.244140625, Log Prob: -9.661903381347656, Token Increase: 512, KL: 0.0, Success: False
+2026-04-09 15:26:33,246 - INFO - Reward breakdown: {'total_reward': 0.988, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 1.5, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 5, 'ghost_var_count': 0}
+2026-04-09 15:28:07,370 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:28:46,340 - INFO - Policy loss: 4.024354457855225, Value loss: 0.1233518123626709 after step 2
+2026-04-09 15:28:46,341 - INFO - Step metrics - Reward: 0.688, Value: 0.430908203125, Log Prob: -1.6131939888000488, Token Increase: 512, KL: 19.887852001935244, Success: False
+2026-04-09 15:28:46,342 - INFO - Reward breakdown: {'total_reward': 0.688, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 1.2, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 9, 'ghost_var_count': 0}
+2026-04-09 15:30:10,730 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:31:00,371 - INFO - Step metrics - Reward: 0.18799999999999994, Value: 1.03125, Log Prob: -2.3454556465148926, Token Increase: 512, KL: 18.75456150017728, Success: False
+2026-04-09 15:31:00,371 - INFO - Reward breakdown: {'total_reward': 0.18799999999999994, 'outcome_reward': 0.0, 'progress_reward': -0.2, 'structure_reward': 0.8999999999999999, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 12, 'ghost_var_count': 0}
+2026-04-09 15:32:24,054 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:33:11,253 - INFO - Policy loss: -0.0717313289642334, Value loss: 1.0926804542541504 after step 4
+2026-04-09 15:33:11,254 - INFO - Step metrics - Reward: -0.512, Value: 0.090087890625, Log Prob: -2.201993465423584, Token Increase: 512, KL: 20.043876847482707, Success: False
+2026-04-09 15:33:11,255 - INFO - Reward breakdown: {'total_reward': -0.512, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 8, 'ghost_var_count': 0}
+2026-04-09 15:34:30,791 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:35:12,289 - INFO - Step metrics - Reward: -0.512, Value: 0.52783203125, Log Prob: -3.5392699241638184, Token Increase: 512, KL: 22.424157287925482, Success: False
+2026-04-09 15:35:12,289 - INFO - Reward breakdown: {'total_reward': -0.512, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 8, 'ghost_var_count': 0}

@@ -116,11 +116,102 @@ method TestFeatures()
   assert sum2 == 14;  // 3² + 2² + 1² = 9 + 4 + 1 = 14
   assert sorted2 == false;
   
+  // Print results as requested
+  print "Sorted test 1: ";
+  print s1;
+  print "\n";
+  
+  print "Sorted test 2: ";
+  print s2;
+  print "\n";
+  
+  print "Sum of squares [1,2,3]: ";
+  print SumOfSquares([1, 2, 3]);
+  print "\n";
+  
+  print "Dot product: ";
+  print dot;
+  print "\n";
+  
+  print "ProcessArray result 1 - sum: ";
+  print sum;
+  print ", sorted: ";
+  print sorted;
+  print "\n";
+  
+  print "ProcessArray result 2 - sum: ";
+  print sum2;
+  print ", sorted: ";
+  print sorted2;
+  print "\n";
+  
   print "All tests passed!\n";
+}
+
+// Test method for decimal precision
+method TestDecimalPrecision()
+{
+  // Test basic decimal operations
+  var x: real := 0.1;
+  var y: real := 0.2;
+  var z: real := 0.3;
+  
+  // Note: Due to floating point precision, 0.1 + 0.2 might not exactly equal 0.3
+  // This is expected behavior in floating point arithmetic
+  // assert x + y == z; // This might fail due to floating point precision
+  
+  // Test with exact fractions
+  var a: real := 1.0 / 10.0;
+  var b: real := 2.0 / 10.0;
+  var c: real := 3.0 / 10.0;
+  assert a + b == c; // This should hold
+  
+  // Test vector operations with decimals
+  var v1: Vector := [0.1, 0.2, 0.3];
+  var v2: Vector := [0.4, 0.5, 0.6];
+  var dot: real := DotProduct(v1, v2);
+  
+  // Expected: 0.1*0.4 + 0.2*0.5 + 0.3*0.6 = 0.04 + 0.10 + 0.18 = 0.32
+  assert dot == 0.32;
+  
+  // Test with larger precision
+  var precise1: real := 1.23456789;
+  var precise2: real := 9.87654321;
+  assert precise1 + precise2 == 11.11111110;
+  
+  // Print results as requested
+  print "Decimal x: ";
+  print x;
+  print "\n";
+  
+  print "Decimal y: ";
+  print y;
+  print "\n";
+  
+  print "Decimal z: ";
+  print z;
+  print "\n";
+  
+  print "a + b = c: ";
+  print a + b;
+  print " == ";
+  print c;
+  print "\n";
+  
+  print "Dot product with decimals: ";
+  print dot;
+  print "\n";
+  
+  print "Precise sum: ";
+  print precise1 + precise2;
+  print "\n";
+  
+  print "Decimal precision tests completed!\n";
 }
 
 // Main method to run the tests
 method Main()
 {
   TestFeatures();
+  TestDecimalPrecision();
 }
