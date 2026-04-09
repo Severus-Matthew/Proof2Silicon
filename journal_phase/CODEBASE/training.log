@@ -11992,3 +11992,7 @@ Starting Epoch 2/5
 2026-04-09 15:34:30,791 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
 2026-04-09 15:35:12,289 - INFO - Step metrics - Reward: -0.512, Value: 0.52783203125, Log Prob: -3.5392699241638184, Token Increase: 512, KL: 22.424157287925482, Success: False
 2026-04-09 15:35:12,289 - INFO - Reward breakdown: {'total_reward': -0.512, 'outcome_reward': 0.0, 'progress_reward': 0.0, 'structure_reward': 0.0, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 1, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 0, 'invariant_count': 8, 'ghost_var_count': 0}
+2026-04-09 15:36:36,236 - INFO - HTTP Request: POST https://api.deepseek.com/chat/completions "HTTP/1.1 200 OK"
+2026-04-09 15:37:26,777 - INFO - Policy loss: 0.4329262971878052, Value loss: 7.79374885559082 after step 6
+2026-04-09 15:37:26,778 - INFO - Step metrics - Reward: -1.012, Value: 2.3671875, Log Prob: -2.6734163761138916, Token Increase: 512, KL: 19.82323202533007, Success: False
+2026-04-09 15:37:26,778 - INFO - Reward breakdown: {'total_reward': -1.012, 'outcome_reward': 0.0, 'progress_reward': 0.2, 'structure_reward': -0.7, 'efficiency_reward': -0.512, 'stability_reward': 0.0} | Error counts: {'syntax': 0, 'type': 0, 'missing_invariant': 0, 'postcondition': 0, 'timeout': 0} | Structure: {'lemma_count': 0, 'recursion_count': 1, 'invariant_count': 9, 'ghost_var_count': 0}
