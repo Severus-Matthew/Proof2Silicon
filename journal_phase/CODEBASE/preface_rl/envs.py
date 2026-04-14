@@ -35,6 +35,7 @@ class DafnyEnv(gym.core.Env):
         self.error_tree = ErrorTree(max_depth=7)
         self.current_iteration = 0
         self.current_epoch = 0
+        self.prev_llm_tokens = 0
         self.subfolder_path = os.path.dirname(tmp_path)
         self.epoch_rewards = []
         self.current_loss = 0.0
@@ -80,6 +81,7 @@ class DafnyEnv(gym.core.Env):
         self.current_iteration = 0
         self.epoch_rewards = []
         self.successful_examples = []
+        self.prev_llm_tokens = 0
         self.prev_error_counts = {
             "syntax": 0,
             "type": 0,
@@ -158,13 +160,28 @@ class DafnyEnv(gym.core.Env):
             parse_errors = -3 -> plugin resolve/JSON path failed, regex fallback used
         """
         try:
+            # Dafny's --plugin flag expects exactly one string: "dll_path arg1 arg2 ..."
+            # The Dafny runtime splits it internally. No shell quoting needed because
+            # subprocess list-mode passes the string verbatim to the OS without a shell.
+            plugin_arg = f"--plugin:{self.plugin_dll_path} {dafny_file_path}"
+
             plugin_cmd = [
                 "dafny",
                 "resolve",
                 "--allow-warnings",
-                '--plugin:'+'"'+self.plugin_dll_path+'" "'+dafny_file_path+'"',
+                plugin_arg,
+                dafny_file_path,       # also pass the .dfy file as a positional arg
             ]
-            subprocess.run(plugin_cmd, check=True, capture_output=True, text=True)
+            result = subprocess.run(
+                plugin_cmd,
+                check=False,           # don't raise on non-zero exit; fall back instead
+                capture_output=True,
+                text=True,
+            )
+
+            if result.returncode != 0:
+                print(f"dafny resolve exited with code {result.returncode}: {result.stderr.strip()}")
+                return self._run_regex_analyzer(dafny_file_path), -3
 
             if not os.path.exists(self.ast_json_path):
                 print("AST JSON file missing after dafny resolve; using regex fallback.")
@@ -181,6 +198,8 @@ class DafnyEnv(gym.core.Env):
             print(f"AST plugin/analyzer failed: {e}")
             print("running regex analyzer")
             return self._run_regex_analyzer(dafny_file_path), -3
+
+    
     def set_current_loss(self, loss: torch.Tensor):
         if isinstance(loss, torch.Tensor):
             self.current_loss = float(loss.detach().item())
@@ -214,24 +233,23 @@ class DafnyEnv(gym.core.Env):
 
 
         try:
-            dafny_command = (
-                f"dafny '{self.tmp_path}' > '{self.error_path}'"
-            )
             process = subprocess.Popen(
-                dafny_command,
-                shell=True,
+                ["dafny", self.tmp_path],   # no shell=True, no redirect, proper list
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                stderr=subprocess.STDOUT,   # merge stderr INTO stdout so we capture everything
+                text=True,
             )
-
             try:
-                process.communicate(timeout=120)
-                with open(self.error_path, "r", encoding="utf-8") as output_file:
-                    output = output_file.read()
+                output, _ = process.communicate(timeout=120)
+                # process.communicate(timeout=120)
+                # with open(self.error_path, "r", encoding="utf-8") as output_file:
+                #     output = output_file.read()
             except subprocess.TimeoutExpired:
                 process.kill()
+                process.communicate()
                 return "timeout", "Error: Dafny verification timeout (2 minutes)", ""
-
+            with open(self.error_path, "w", encoding="utf-8") as output_file:
+                output_file.write(output)
             if "verified, 0 errors" in output and "Compiled assembly into" in output:
                 return "success", output, code
 
@@ -251,7 +269,9 @@ class DafnyEnv(gym.core.Env):
         if self.last_attempt_info is not None:
             last_code = self.last_attempt_info.get("code", "")
             last_error = self.last_attempt_info.get("error_output", "")
-        llm_response = run_LLM(instruction_text, last_code = last_code, last_error = last_error)
+        llm_response, curre_llm_tokens = run_LLM(instruction_text, last_code = last_code, last_error = last_error)
+        prompt_token_increase = max(0, curre_llm_tokens - self.prev_llm_tokens)
+        self.prev_llm_tokens = curre_llm_tokens
         dafny_code = extract_dafny_code(llm_response)
 
         outcome, error_output, code = self.get_dafny_output(dafny_code)

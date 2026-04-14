@@ -1,0 +1,14 @@
+# Checkpoints
+journal_phase/checkpoints/
+journal_phase/checkpoints_3/
+
+# Datasets
+journal_phase/dataset_new/
+journal_phase/dataset_new_3/
+journal_phase/dataset_new_4/
+
+# Prompt logs
+journal_phase/prompts/llm_new/
+journal_phase/prompts/llm_new_3/
+journal_phase/prompts/slm_new/
+journal_phase/prompts/slm_new_3/

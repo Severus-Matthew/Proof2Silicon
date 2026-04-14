@@ -45,17 +45,18 @@ def run_LLM(prompt: str, last_code: str = "", last_error: str = "") -> str:
             {"role": "system", "content": "You are an expert Dafny programmer. You are given a description of a problem and you need to write a Dafny program to solve it."},
             {"role": "user", "content": full_prompt},
         ],
-        temperature=0.75,   
+        temperature=0.2,   
         stream=False
     )
 
     generated_texts = response.choices[0].message.content
+    prompt_count = response.usage.prompt_tokens
     print(generated_texts)
 
     save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/llm_new_3" #HERE_FOR_CHANGE
     save_prompt_response(full_prompt, generated_texts, save_dir)
 
-    return generated_texts
+    return generated_texts, prompt_count
 
 
 
