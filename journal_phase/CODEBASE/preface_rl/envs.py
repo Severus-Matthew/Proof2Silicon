@@ -35,6 +35,7 @@ class DafnyEnv(gym.core.Env):
         self.error_tree = ErrorTree(max_depth=7)
         self.current_iteration = 0
         self.current_epoch = 0
+        self.prev_llm_tokens = 0
         self.subfolder_path = os.path.dirname(tmp_path)
         self.epoch_rewards = []
         self.current_loss = 0.0
@@ -55,13 +56,17 @@ class DafnyEnv(gym.core.Env):
             "invariant_count": 0,
             "ghost_var_count": 0,
         }
+        self.last_attempt_info = None
         os.makedirs(self.subfolder_path, exist_ok=True)
 
         tracker = get_metrics_tracker()
         if tracker is None:
-            tracker = MetricsTracker(os.path.join(self.subfolder_path, "metrics"))
+            fixed_metrics_dir = "/u/mjha1/Proof2Silicon/journal_phase/wandb_metrics_4" #HERE_FOR_CHANGE
+            os.makedirs(fixed_metrics_dir, exist_ok=True)
+            tracker = MetricsTracker(fixed_metrics_dir)
             set_metrics_tracker(tracker)
         self.metrics_tracker = tracker
+        # self.metrics_tracker = tracker
 
         self.weighted_dataset_path = os.path.join(
             self.subfolder_path, "weighted_training_examples.jsonl"
@@ -76,6 +81,7 @@ class DafnyEnv(gym.core.Env):
         self.current_iteration = 0
         self.epoch_rewards = []
         self.successful_examples = []
+        self.prev_llm_tokens = 0
         self.prev_error_counts = {
             "syntax": 0,
             "type": 0,
@@ -89,24 +95,9 @@ class DafnyEnv(gym.core.Env):
             "invariant_count": 0,
             "ghost_var_count": 0,
         }
-        if hasattr(self, "last_attempt_info"):
-            del self.last_attempt_info
+        self.last_attempt_info = None
         return self.prompt
-    def build_state_prompt(self) -> str:
-        if self.current_iteration == 0:
-            return ShortPrompt(self.prompt)
 
-        if hasattr(self, "last_attempt_info"):
-            return ErrorPrompt(
-                self.last_attempt_info["error_output"],
-                self.prompt,
-                self.last_attempt_info["code"],
-                str(self.last_attempt_info["reward"]),
-                previous_instruction=self.last_attempt_info.get("instruction_text", ""),
-                previous_llm_response=self.last_attempt_info.get("llm_response", ""),
-            )
-
-        return ShortPrompt(self.prompt)
     def categorize_errors(self, output: str) -> Dict[str, int]:
         counts = {
             "syntax": 0,
@@ -169,13 +160,28 @@ class DafnyEnv(gym.core.Env):
             parse_errors = -3 -> plugin resolve/JSON path failed, regex fallback used
         """
         try:
+            # Dafny's --plugin flag expects exactly one string: "dll_path arg1 arg2 ..."
+            # The Dafny runtime splits it internally. No shell quoting needed because
+            # subprocess list-mode passes the string verbatim to the OS without a shell.
+            plugin_arg = f"--plugin:{self.plugin_dll_path} {dafny_file_path}"
+
             plugin_cmd = [
                 "dafny",
                 "resolve",
                 "--allow-warnings",
-                '--plugin:'+'"'+self.plugin_dll_path+'" "'+dafny_file_path+'"',
+                plugin_arg,
+                dafny_file_path,       # also pass the .dfy file as a positional arg
             ]
-            subprocess.run(plugin_cmd, check=True, capture_output=True, text=True)
+            result = subprocess.run(
+                plugin_cmd,
+                check=False,           # don't raise on non-zero exit; fall back instead
+                capture_output=True,
+                text=True,
+            )
+
+            if result.returncode != 0:
+                print(f"dafny resolve exited with code {result.returncode}: {result.stderr.strip()}")
+                return self._run_regex_analyzer(dafny_file_path), -3
 
             if not os.path.exists(self.ast_json_path):
                 print("AST JSON file missing after dafny resolve; using regex fallback.")
@@ -192,14 +198,19 @@ class DafnyEnv(gym.core.Env):
             print(f"AST plugin/analyzer failed: {e}")
             print("running regex analyzer")
             return self._run_regex_analyzer(dafny_file_path), -3
+
+    
     def set_current_loss(self, loss: torch.Tensor):
-        self.current_loss = float(loss.detach().item())
+        if isinstance(loss, torch.Tensor):
+            self.current_loss = float(loss.detach().item())
+        else:
+            self.current_loss = float(loss)
 
     def build_state_prompt(self) -> str:
         if self.current_iteration == 0:
             return ShortPrompt(self.prompt)
 
-        if hasattr(self, "last_attempt_info"):
+        if self.last_attempt_info is not None:
             return ErrorPrompt(
                 self.last_attempt_info["error_output"],
                 self.prompt,
@@ -222,24 +233,23 @@ class DafnyEnv(gym.core.Env):
 
 
         try:
-            dafny_command = (
-                f"dafny '{self.tmp_path}' > '{self.error_path}'"
-            )
             process = subprocess.Popen(
-                dafny_command,
-                shell=True,
+                ["dafny", self.tmp_path],   # no shell=True, no redirect, proper list
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
+                stderr=subprocess.STDOUT,   # merge stderr INTO stdout so we capture everything
+                text=True,
             )
-
             try:
-                process.communicate(timeout=120)
-                with open(self.error_path, "r", encoding="utf-8") as output_file:
-                    output = output_file.read()
+                output, _ = process.communicate(timeout=120)
+                # process.communicate(timeout=120)
+                # with open(self.error_path, "r", encoding="utf-8") as output_file:
+                #     output = output_file.read()
             except subprocess.TimeoutExpired:
                 process.kill()
+                process.communicate()
                 return "timeout", "Error: Dafny verification timeout (2 minutes)", ""
-
+            with open(self.error_path, "w", encoding="utf-8") as output_file:
+                output_file.write(output)
             if "verified, 0 errors" in output and "Compiled assembly into" in output:
                 return "success", output, code
 
@@ -254,8 +264,14 @@ class DafnyEnv(gym.core.Env):
         # Use the epoch passed in from the training loop (authoritative).
         # Fall back to self.current_epoch only if not provided (legacy callers).
         effective_epoch = training_epoch if training_epoch is not None else self.current_epoch
-
-        llm_response = run_LLM(instruction_text)
+        last_code =""
+        last_error =""
+        if self.last_attempt_info is not None:
+            last_code = self.last_attempt_info.get("code", "")
+            last_error = self.last_attempt_info.get("error_output", "")
+        llm_response, curre_llm_tokens = run_LLM(instruction_text, last_code = last_code, last_error = last_error)
+        prompt_token_increase = max(0, curre_llm_tokens - self.prev_llm_tokens)
+        self.prev_llm_tokens = curre_llm_tokens
         dafny_code = extract_dafny_code(llm_response)
 
         outcome, error_output, code = self.get_dafny_output(dafny_code)
@@ -285,6 +301,7 @@ class DafnyEnv(gym.core.Env):
             curr_structure=curr_structure,
             prompt_token_increase=prompt_token_increase,
             kl_value=kl_value,
+            epoch=effective_epoch,
         )
         reward = reward_breakdown["total_reward"]
         self.metrics_tracker.update_reward_breakdown(
@@ -385,6 +402,7 @@ class DafnyEnv(gym.core.Env):
 
         info: Dict[str, Any] = {
             "error_tree": self.error_tree,
+            "successful_examples": self.successful_examples.copy(),
             "successful_examples_count": len(self.successful_examples),
             "iterations": self.current_iteration,
             "final_reward": reward,

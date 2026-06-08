@@ -1,0 +1,19 @@
+Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(3,21): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(6,15): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(7,15): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(10,25): Warning: deprecated style: a semi-colon is not needed here (ID: p_deprecated_semicolon)
+Semicolons are required after statements and declarations in method bodies,  
+but are deprecated after declarations within modules and types.
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(29,11): Warning: the type of the other operand is a non-null type, so this comparison with 'null' will always return 'true' (to make it possible for field 'arr' to have the value 'null', declare its type to be 'array?<int>') (ID: r_trivial_null_test)
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(30,21): Error: a ghost field is allowed only in specification contexts (ID: r_only_in_specification)
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(33,14): Error: a ghost field is allowed only in specification contexts (ID: r_only_in_specification)
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(35,31): Error: a ghost field is allowed only in specification contexts (ID: r_only_in_specification)
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset/Dafny(106)/RL_No_feedback.dfy(51,17): Error: a ghost field is allowed only in specification contexts (ID: r_only_in_specification)
+4 resolution/type errors detected in RL_No_feedback.dfy

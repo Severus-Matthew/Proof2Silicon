@@ -1,7 +1,0 @@
-{"time":"2026-04-06T12:38:14.247280493-05:00","level":"INFO","msg":"stream: starting","core version":"0.25.0"}
-{"time":"2026-04-06T12:38:14.44056095-05:00","level":"INFO","msg":"stream: created new stream","id":"jzzrwem2"}
-{"time":"2026-04-06T12:38:14.440598005-05:00","level":"INFO","msg":"handler: started","stream_id":"jzzrwem2"}
-{"time":"2026-04-06T12:38:14.442518787-05:00","level":"INFO","msg":"stream: started","id":"jzzrwem2"}
-{"time":"2026-04-06T12:38:14.442525314-05:00","level":"INFO","msg":"writer: started","stream_id":"jzzrwem2"}
-{"time":"2026-04-06T12:38:14.442534466-05:00","level":"INFO","msg":"sender: started","stream_id":"jzzrwem2"}
-{"time":"2026-04-06T12:38:24.641627977-05:00","level":"ERROR","msg":"dispatch: no responder found: 2(@)"}

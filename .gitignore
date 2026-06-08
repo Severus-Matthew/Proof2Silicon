@@ -1,0 +1,47 @@
+# Checkpoints
+journal_phase/checkpoints/
+journal_phase/checkpoints_3/
+
+# Datasets
+journal_phase/dataset_new/
+journal_phase/dataset_new_3/
+journal_phase/dataset_new_4/
+
+# Prompt logs
+journal_phase/prompts/llm_new/
+journal_phase/prompts/llm_new_3/
+journal_phase/prompts/slm_new/
+journal_phase/prompts/slm_new_3/
+
+
+journal_phase/ast_json/
+journal_phase/baseline_outputs_cleaned/
+journal_phase/baseline_outputs_trained_lora/
+journal_phase/baseline_outputs_trained_lora_chk/
+journal_phase/baseline_outputs_trained_lora_chk7/
+journal_phase/baseline_outputs_trained_lora_chklora/
+journal_phase/baseline_outputs_trained_lora_chklora7/
+journal_phase/baseline_outputs_trained_lora7/
+journal_phase/baseline_outputs_trained_loraO/
+journal_phase/checkpoints_4/
+journal_phase/checkpoints_4_old/
+journal_phase/CODEBASE/wandb/
+journal_phase/CODEBASE/runs/
+journal_phase/dafny-extractor-pp/
+journal_phase/dataset/
+journal_phase/dataset_new/
+journal_phase/dataset_new_3/
+journal_phase/dataset_new_4/
+journal_phase/dataset_new_4_old/
+/u/mjha1/Proof2Silicon/journal_phase/Input_dataset
+journal_phase/Input_dataset_2/
+journal_phase/Input_dataset_3/
+journal_phase/lora_adapters_4/
+journal_phase/model_offload_4/
+journal_phase/model_offload_test_lora/
+journal_phase/prompts/
+journal_phase/test_folder_one/
+journal_phase/trained_outputs/
+journal_phase/trained_outputs copy/
+journal_phase/wandb_metrics_4/
+
