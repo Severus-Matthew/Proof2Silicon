@@ -1,1 +1,0 @@
-The Dafny code defines a simple function `f` that returns a natural number, specifically `0`. It has a postcondition ensuring that the return value equals `0`, and contains an assertion that is trivially true. This serves as a basic example of a function with correctness verification while demonstrating the use of assertions within the function body.

@@ -1,1 +1,0 @@
-Implement two division methods in Dafny, one that forbids division by 42 and another that allows it with a default return value, along with a tester method for validation.

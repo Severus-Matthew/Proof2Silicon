@@ -1,1 +1,0 @@
-Develop Dafny code to define and verify properties of infinite data structures like streams and trees, focusing on their boundedness and finiteness characteristics.

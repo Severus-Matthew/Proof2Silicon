@@ -1,1 +1,0 @@
-function Find(s: string, substr: string): int  // Added return type

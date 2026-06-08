@@ -1,1 +1,0 @@
-Implement a Dafny code that defines a recursive Fibonacci-like function and an accumulator to compute the sum of its values iteratively, ensuring correctness through invariants and assertions.

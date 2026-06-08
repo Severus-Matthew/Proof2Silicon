@@ -1,1 +1,0 @@
-Implement a recursive function `Potencia` and an iterative method `Pot` to calculate the power of a natural number `x` raised to another natural number `y`, ensuring both methods produce the same result through a maintained invariant.

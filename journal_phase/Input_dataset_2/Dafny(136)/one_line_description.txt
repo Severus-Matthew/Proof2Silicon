@@ -1,1 +1,0 @@
-Implement a Dafny function to compute the cumulative sum of an array while ensuring index bounds, and a method to populate a second array with these cumulative sums, including necessary correctness conditions.

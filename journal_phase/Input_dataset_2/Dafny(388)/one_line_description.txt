@@ -1,1 +1,0 @@
-Implement a Dafny method `LastPosition` that returns the last index of a specified element in a sorted integer array, ensuring the array remains unchanged and adhering to specified preconditions and postconditions.

@@ -36,8 +36,8 @@ logging.basicConfig(
 # --------------------------------------------------
 # Constants
 # --------------------------------------------------
-CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3" #HERE_FOR_CHANGE
-LORA_ADAPTER_DIR = "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters_3" #HERE_FOR_CHANGE
+CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_4" #HERE_FOR_CHANGE
+LORA_ADAPTER_DIR = "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters_4" #HERE_FOR_CHANGE
 ROOT_DIRECTORY = "/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2" #HERE_FOR_CHANGE
 
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
@@ -451,7 +451,7 @@ def main():
     parser.add_argument(
         "--checkpoint",
         type=str,
-        default="/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3/run_CHK/final_model_new.pt", #HERE_FOR_CHANGE
+        default="/u/mjha1/Proof2Silicon/journal_phase/checkpoints_4/run_CHK/final_model_new.pt", #HERE_FOR_CHANGE
     )
     parser.add_argument("--start_epoch", type=int, default=0)
     parser.add_argument("--wandb_project", type=str, default="dafny-rl_new2")
@@ -470,7 +470,7 @@ def main():
         project="Proof2Silicon-journal_phase_CODEBASE",
         entity="drprofmjha-university-of-illinois-urbana-champaign",
         name="Proof2Silicon-journal_phase_CODEBASE",
-        # id="tmxqi16n",
+        id="fqskm5x7",
         resume="allow",
         settings=wandb.Settings(init_timeout=800),
     )
@@ -494,19 +494,19 @@ def main():
         checkpoint_dir = os.path.dirname(args.checkpoint)
         os.makedirs(checkpoint_dir, exist_ok=True)
 
-        checkpoint_data = {
-            "model_state_dict": model.state_dict(),
-            "rewards": total_rewards,
-            "successful_examples": successful_examples,
-        }
+        # checkpoint_data = {
+        #     "model_state_dict": model.state_dict(),
+        #     "rewards": total_rewards,
+        #     "successful_examples": successful_examples,
+        # }
+        final_checkpoint = args.checkpoint
+        checkpoint_saved = os.path.exists(final_checkpoint)
 
-        checkpoint_saved = save_checkpoint_safely(checkpoint_data, args.checkpoint)
         if not checkpoint_saved:
-            logging.warning("Failed to save final checkpoint")
+            logging.warning(f"Expected final checkpoint not found at {final_checkpoint}")
         else:
-            logging.info(f"Successfully saved final checkpoint to {args.checkpoint}")
+            logging.info(f"Final trained checkpoint available at {final_checkpoint}")
 
-        # Final summary logs
         wandb.log(
             {
                 "job/final_total_reward": float(sum(total_rewards)) if total_rewards else 0.0,
@@ -514,6 +514,7 @@ def main():
                 "job/final_successful_examples_count": len(successful_examples),
                 "job/num_epochs_completed": len(total_rewards),
                 "job/checkpoint_saved": int(checkpoint_saved),
+                "job/final_checkpoint_path": final_checkpoint,
             }
         )
 

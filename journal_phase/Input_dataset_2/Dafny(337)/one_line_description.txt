@@ -1,1 +1,0 @@
-Implement a method in Dafny that converts a string into a sequence of characters while ensuring the sequence length matches the string length and each character is correctly mapped.

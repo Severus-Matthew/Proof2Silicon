@@ -1,8 +1,0 @@
-Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(494)/RL_No_feedback.dfy(3,25): Error: expression is not allowed to invoke a method (gcd)
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(494)/RL_No_feedback.dfy(3,28): Error: method call is not allowed to be used in an expression context (gcd)
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(494)/RL_No_feedback.dfy(20,14): Error: expression is not allowed to invoke a method (gcd)
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(494)/RL_No_feedback.dfy(20,17): Error: method call is not allowed to be used in an expression context (gcd)
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(494)/RL_No_feedback.dfy(20,27): Error: expression is not allowed to invoke a method (gcd)
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(494)/RL_No_feedback.dfy(20,30): Error: method call is not allowed to be used in an expression context (gcd)
-6 resolution/type errors detected in RL_No_feedback.dfy

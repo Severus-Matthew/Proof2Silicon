@@ -1,1 +1,0 @@
-Implement a method in Dafny that computes the median of two positive integers, ensuring both inputs are greater than zero and the output is the integer result of their average.

@@ -1,1 +1,0 @@
-Implement and verify methods in Dafny for binary searching an element in a sorted array of integers, ensuring correctness of boundaries and relationships between the returned index and the searched element.

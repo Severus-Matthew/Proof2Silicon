@@ -1,1 +1,0 @@
-Implement a Dafny function `expo` for exponentiation and prove via a lemma that the difference between \\\\( \\text{expo}(2, 3n) \\\\) and \\\\( \\text{expo}(3, n) \\\\) is divisible by 5 for all non-negative integers \\\\( n \\\\), while also including a method to verify the function's correctness.

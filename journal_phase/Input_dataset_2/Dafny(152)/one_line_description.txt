@@ -1,1 +1,0 @@
-Implement a Dafny method that counts even numbers while iterating from 0 to a non-negative integer `n`, ensuring the relationship between the current index `i`, a variable `x`, and the count of even numbers `y` is maintained.

@@ -1,1 +1,0 @@
-Implement a Dafny method `CircleCircumference` that computes the circumference of a circle using the formula \\\\(2\\pi \\times \\text{radius}\\\\), enforcing a precondition that the radius is greater than zero.

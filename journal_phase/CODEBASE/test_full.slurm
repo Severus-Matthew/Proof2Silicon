@@ -58,18 +58,19 @@ cd /u/mjha1/Proof2Silicon/journal_phase/CODEBASE
 
 # --------------------------------------------------
 # Run training
-# --------------------------------------------------
+# # --------------------------------------------------
 
-echo "=============================="
-echo "Running FULL TRAINING"
-echo "=============================="
+# echo "=============================="
+# echo "Running FULL TRAINING"
+# echo "=============================="
 
-python main.py \
-  --start_epoch 0 \
-  --wandb_project dafny-rl_full \
-  --wandb_entity drprofmjha-university-of-illinois-urbana-champaign \
-  2>&1 | tee full_run.log
+# python main.py \
+#   --start_epoch 4 \
+#   --wandb_project dafny-rl_full \
+#   --wandb_entity drprofmjha-university-of-illinois-urbana-champaign \
+#   2>&1 | tee full_run.log
 
-echo "=============================="
-echo "Finished at $(date)"
-echo "=============================="
+# echo "=============================="
+# echo "Finished at $(date)"
+# echo "=============================="
+ python3 /u/mjha1/Proof2Silicon/journal_phase/CODEBASE/Copy_dataset.py

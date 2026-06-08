@@ -1,1 +1,0 @@
-Implement a verified binary search algorithm in Dafny that checks for sorted arrays, maintains preconditions and postconditions, uses loop invariants, and includes test cases for correctness validation.

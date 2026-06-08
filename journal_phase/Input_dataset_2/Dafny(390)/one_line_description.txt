@@ -1,1 +1,0 @@
-Implement a method `RotateLeftBits` in Dafny that performs a left rotation on a 32-bit unsigned integer by a specified number of positions, ensuring valid input and correct bit preservation.

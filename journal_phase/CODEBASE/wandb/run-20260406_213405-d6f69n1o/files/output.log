@@ -1,7 +1,0 @@
-wandb: wandb.init() called while a run is active and reinit is set to 'default', so returning the previous run.
-wandb: Detected [openai] in use.
-wandb: Use W&B Weave for improved LLM call tracing. Install Weave with `pip install weave` then add `import weave` to the top of your script.
-wandb: For more information, check out the docs at: https://weave-docs.wandb.ai/
-2026-04-06 21:34:24,734 - INFO - Starting execution...
-2026-04-06 21:34:24,734 - INFO - Processing folders in /u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2
-wandb: wandb.init() called while a run is active and reinit is set to 'default', so returning the previous run.

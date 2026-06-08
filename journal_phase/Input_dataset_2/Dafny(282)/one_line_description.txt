@@ -1,1 +1,0 @@
-Implement a Dafny method to calculate the lateral surface area of a cylinder, ensuring positive radius and height inputs, and verifying the result against the formula 2 * π * radius * height with π approximated as 3.14.

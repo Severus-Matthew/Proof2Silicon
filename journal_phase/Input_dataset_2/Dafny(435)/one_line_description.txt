@@ -1,1 +1,0 @@
-Develop Dafny functions and predicates to analyze string properties, including prefix and substring checks, common substring detection, and maximum common substring length, while ensuring formal verification of length constraints and relationships.

@@ -1,1 +1,0 @@
-Develop Dafny modules that manage interactions between visible and hidden integer pair functions, ensuring correct relationships through lemmas, while incorporating opaque and fuel annotations for verification and resource control.

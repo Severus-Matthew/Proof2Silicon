@@ -1,1 +1,0 @@
-Implement a Dafny code that defines a recursive function and an iterative method to compute \\( a^n \\) for non-negative integers, ensuring correctness through pre-conditions, post-conditions, assertions, and loop invariants.

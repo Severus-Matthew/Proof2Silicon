@@ -1,1 +1,0 @@
-Implement two methods in Dafny to find the correct insertion position for a value in a non-increasing sequence, ensuring proper order, and validate their correctness with a test method.

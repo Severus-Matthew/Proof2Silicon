@@ -1,1 +1,0 @@
-Implement methods in Dafny to perform mirror image and flip operations on two-dimensional matrices, along with functionality to display the matrices before and after transformations.

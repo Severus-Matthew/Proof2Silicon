@@ -1,1 +1,0 @@
-Implement and verify a quicksort algorithm in Dafny, including methods for checking sorted sequences, partitioning based on a threshold, and ensuring multiset properties during recursive sorting.

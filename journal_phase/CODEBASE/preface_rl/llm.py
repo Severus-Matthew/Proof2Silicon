@@ -53,7 +53,7 @@ def run_LLM(prompt: str, last_code: str = "", last_error: str = "") -> str:
     prompt_count = response.usage.prompt_tokens
     print(generated_texts)
 
-    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/llm_new_3" #HERE_FOR_CHANGE
+    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/llm_new_4" #HERE_FOR_CHANGE
     save_prompt_response(full_prompt, generated_texts, save_dir)
 
     return generated_texts, prompt_count

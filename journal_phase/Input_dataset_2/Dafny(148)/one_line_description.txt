@@ -1,1 +1,0 @@
-Implement a Dafny method to compute the sum of the first \\( n \\) non-negative integers using a while loop with invariants to ensure correctness and validity of inputs and outputs.

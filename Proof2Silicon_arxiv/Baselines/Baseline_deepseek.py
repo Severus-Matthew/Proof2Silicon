@@ -271,13 +271,15 @@ except Exception:
     torch = None
     AutoModelForCausalLM = None
     AutoTokenizer = None
-
+import os 
+from openai import OpenAI 
+os.environ['DEEPSEEK_API_KEY']="sk-d7844b60db514574982d2e06c7f66fca"
 
 # ============================================================
 # CONFIG / CONSTANTS
 # ============================================================
 DEFAULT_DAFNY_EXEC = "/mnt/shared/gpfs/home/manvij2/dafny/Scripts/dafny"
-DEFAULT_LLM_MODEL = "gpt-5.1-codex-max"
+DEFAULT_LLM_MODEL = "deepseek-chat"
 DEFAULT_SLM_MODEL = "Qwen/Qwen2.5-1.5B-Instruct"
 PROMPT_TYPES = ["short", "shortanddetailed", "fewshot"]
 
@@ -553,21 +555,25 @@ def extract_dafny_code(text: str):
 # ============================================================
 # CLIENT HELPERS
 # ============================================================
+
 def get_openai_client() -> OpenAI:
-    api_key = os.environ.get("OPENAI_API_KEY")
+    api_key = os.environ.get("DEEPSEEK_API_KEY")
     if not api_key:
-        raise RuntimeError("OPENAI_API_KEY env var is not set.")
-    return OpenAI(api_key=api_key)
+        raise RuntimeError("DEEPSEEK_API_KEY env var is not set.")
+    return OpenAI(
+        api_key=api_key,
+        base_url="https://api.deepseek.com",
+    )
 
 
 
 def call_openai_text(client: OpenAI, model: str, prompt: str, temperature: float = 0.25) -> str:
-    response = client.responses.create(
+    response = client.chat.completions.create(
         model=model,
-        instructions="You are an expert in writing Dafny code.",
-        input=prompt,
+        messages=[{"role": "system", "content": "You are an expert in writing Dafny code."}, {"role": "user", "content": prompt}],
+        temperature=temperature,
     )
-    return response.output_text
+    return response.choices[0].message.content
 
 
 class LocalSLMGenerator:

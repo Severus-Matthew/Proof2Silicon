@@ -37,11 +37,11 @@ from .metrics import get_metrics_tracker, set_metrics_tracker, MetricsTracker
 # logging.info(f"Using device: {device}")
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3" #HERE_FOR_CHANGE
+CHECKPOINT_DIR = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_4" #HERE_FOR_CHANGE
 LORA_ADAPTER_DIR = (
-    "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters_3" #HERE_FOR_CHANGE
+    "/u/mjha1/Proof2Silicon/journal_phase/lora_adapters_4" #HERE_FOR_CHANGE
 )
-METRICS_DIR = "/u/mjha1/Proof2Silicon/journal_phase/wandb_metrics_3" #HERE_FOR_CHANGE
+METRICS_DIR = "/u/mjha1/Proof2Silicon/journal_phase/wandb_metrics_4" #HERE_FOR_CHANGE
 os.makedirs(METRICS_DIR, exist_ok=True)
 os.makedirs(CHECKPOINT_DIR, exist_ok=True)
 os.makedirs(LORA_ADAPTER_DIR, exist_ok=True)
@@ -152,7 +152,7 @@ def initialize_slm(checkpoint_path: str | None = None):
         )
 
         # Create offload folder
-        offload_folder = "/u/mjha1/Proof2Silicon/journal_phase/model_offload_3" #HERE_FOR_CHANGE
+        offload_folder = "/u/mjha1/Proof2Silicon/journal_phase/model_offload_4" #HERE_FOR_CHANGE
         os.makedirs(offload_folder, exist_ok=True)
 
         # Configure memory limits
@@ -201,6 +201,14 @@ def initialize_slm(checkpoint_path: str | None = None):
         # Apply LoRA config with offloading
         print("Applying LoRA configuration...")
         global_model = get_peft_model(global_model, lora_config)
+        global_model.print_trainable_parameters()
+
+        trainable = [n for n, p in global_model.named_parameters() if p.requires_grad]
+        print(f"Trainable parameter count: {len(trainable)}")
+        print("First trainable params:", trainable[:20])
+
+        if len(trainable) == 0:
+            raise RuntimeError("No trainable LoRA parameters found.")
 
         # Load checkpoint if provided
         if checkpoint_path and os.path.exists(checkpoint_path):
@@ -258,9 +266,9 @@ class SLMPG(nn.Module):
         self.model = base_model
         hidden_size = base_model.config.hidden_size
         self.value_head = nn.Sequential(
-            nn.Linear(hidden_size, hidden_size, dtype=torch.float16),
+            nn.Linear(hidden_size, hidden_size, dtype=torch.float32),
             nn.ReLU(),
-            nn.Linear(hidden_size, 1, dtype=torch.float16),
+            nn.Linear(hidden_size, 1, dtype=torch.float32),
         )
 
     def forward(self, input_ids, attention_mask=None, prompt_len: int = -1):
@@ -274,13 +282,13 @@ class SLMPG(nn.Module):
         # Use last prompt token as state representation, not last generated token.
         # Falls back to -1 (last token) during pure generation where prompt_len unknown.
         value_idx = (prompt_len - 1) if prompt_len > 0 else -1
-        last_hidden = outputs.hidden_states[-1][:, value_idx, :].to(device=device, dtype=torch.float16)
-        values = self.value_head(last_hidden).squeeze(-1).to(device=device, dtype=torch.float16)
+        last_hidden = outputs.hidden_states[-1][:, value_idx, :].to(device=device, dtype=torch.float32)
+        values = self.value_head(last_hidden).squeeze(-1).to(device=device, dtype=torch.float32)
         return logits, values
 
 
 MAX_PROMPT_TOKENS = 1024   # hard cap on input prompt tokens fed to SLM
-MAX_NEW_TOKENS    = 768  # tokens the SLM is allowed to generate
+MAX_NEW_TOKENS    = 1024  # tokens the SLM is allowed to generate
 MAX_SEQ_LEN       = MAX_PROMPT_TOKENS + MAX_NEW_TOKENS  # 1280 total
 @dataclass
 class RolloutSample:
@@ -298,7 +306,7 @@ class RolloutSample:
 
 def _save_slm_interaction(prompt: str, response: str) -> None:
     """Save SLM prompt and generated instruction to disk for inspection."""
-    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new_3" #HERE_FOR_CHANGE
+    save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new_4" #HERE_FOR_CHANGE
     os.makedirs(save_dir, exist_ok=True)
     timestamp = time.strftime("%Y%m%d_%H%M%S")
     try:
@@ -308,9 +316,22 @@ def _save_slm_interaction(prompt: str, response: str) -> None:
         logging.warning("Could not save SLM interaction to disk: %s", e)
 
 def compute_sequence_logprob_and_value(slm_pg, prompt_ids, generated_ids):
+    prompt_ids = prompt_ids.to(device)
+    generated_ids = generated_ids.to(device)
     full_ids = torch.cat([prompt_ids, generated_ids], dim=1)
+    prompt_len = prompt_ids.shape[1]
     if full_ids.shape[1] > MAX_SEQ_LEN:
-        full_ids = full_ids[:, :MAX_SEQ_LEN]
+        max_gen_len = max(0, MAX_SEQ_LEN - prompt_len)
+        generated_ids = generated_ids[:, :max_gen_len]
+        full_ids = torch.cat([prompt_ids, generated_ids], dim=1)
+    if generated_ids.shape[1] == 0:
+        zero = torch.tensor(0.0, device=device, dtype=torch.float32)
+        _, value = slm_pg(
+            input_ids=prompt_ids,
+            attention_mask=torch.ones_like(prompt_ids, device=device),
+            prompt_len=prompt_len,
+        )
+        return zero, value, zero
 
     attention_mask = torch.ones_like(full_ids).to(full_ids.device)
     logits, value = slm_pg(
@@ -323,13 +344,24 @@ def compute_sequence_logprob_and_value(slm_pg, prompt_ids, generated_ids):
     gen_len = generated_ids.shape[1]
 
     token_logits = logits[:, prompt_len - 1 : prompt_len - 1 + gen_len, :]
+    if token_logits.shape[1] != gen_len:
+        raise RuntimeError(
+            f"logit/gen length mismatch: logits={token_logits.shape[1]} gen_len={gen_len}"
+        )
+    vocab_size = token_logits.shape[-1]
+    if torch.any(generated_ids < 0) or torch.any(generated_ids >= vocab_size):
+        bad_min = int(generated_ids.min().item())
+        bad_max = int(generated_ids.max().item())
+        raise RuntimeError(
+            f"generated_ids out of range for vocab: min={bad_min}, max={bad_max}, vocab={vocab_size}"
+        )
     log_probs = F.log_softmax(token_logits, dim=-1)
 
     token_log_probs = log_probs.gather(
         2, generated_ids.unsqueeze(-1)
     ).squeeze(-1)
 
-    seq_log_prob = token_log_probs.sum(dim=1).squeeze(0)
+    seq_log_prob = token_log_probs.mean(dim=1).squeeze(0)
 
     token_probs = torch.exp(log_probs)
     entropy = -(token_probs * log_probs).sum(dim=-1).mean()
@@ -350,24 +382,42 @@ def generate_instruction_sequence(slm_pg, tokenizer, prompt_text, max_new_tokens
         padding=False,
         max_length=MAX_PROMPT_TOKENS,
     )
-    input_ids = inputs["input_ids"].to(device)
-    attention_mask = inputs["attention_mask"].to(device)
+    input_ids = inputs["input_ids"]
+    attention_mask = inputs["attention_mask"]
 
+    # CPU-side check before touching CUDA
+    vocab_size = slm_pg.model.get_input_embeddings().num_embeddings
+    if torch.any(input_ids < 0) or torch.any(input_ids >= vocab_size):
+        bad_min = int(input_ids.min().item())
+        bad_max = int(input_ids.max().item())
+        raise RuntimeError(
+            f"input_ids out of range before CUDA move: min={bad_min}, max={bad_max}, vocab={vocab_size}"
+        )
+
+    input_ids = input_ids.to(device)
+    attention_mask = attention_mask.to(device)
     prompt_len = input_ids.shape[1]  # actual prompt length after truncation
     gen_config = GenerationConfig(
         max_new_tokens=max_new_tokens,
         do_sample=True,
-        temperature=0.3,
-        top_p=0.9,
-        top_k=50,
+        temperature=0.6,
+        top_p=0.95,
+        top_k=80,
         pad_token_id=tokenizer.pad_token_id,
         eos_token_id=tokenizer.eos_token_id,
+        remove_invalid_values=True,
+        renormalize_logits=True,
+        repetition_penalty=1.0,
     )
     # generated_tokens = []
     # log_probs = []
     # step_distributions = []
 
     with torch.no_grad():
+        test_output = slm_pg.model(input_ids=input_ids, attention_mask=attention_mask, return_dict=True)
+        test_logits = test_output.logits
+        if not torch.isfinite(test_logits).all():
+            raise RuntimeError("Logits are not finite")
         _, state_value = slm_pg(input_ids=input_ids, attention_mask=attention_mask)
         output_ids = slm_pg.model.generate(input_ids=input_ids, attention_mask=attention_mask, generation_config=gen_config)
     generated_ids = output_ids[:, prompt_len:]
@@ -391,26 +441,63 @@ def generate_instruction_sequence(slm_pg, tokenizer, prompt_text, max_new_tokens
 
 
 def recompute_logprobs_for_sequence(slm_pg, prompt_ids, generated_ids):
-    """Single forward pass over full sequence to get log_probs + value for training."""
-    full_ids = torch.cat([prompt_ids, generated_ids.to(device)], dim=1)
-    # Trim to combined budget (prompt + generation), not old 512 hard-cap
+    prompt_ids = prompt_ids.to(device)
+    generated_ids = generated_ids.to(device)
+
+    prompt_len = prompt_ids.shape[1]
+
+    if generated_ids.shape[1] == 0:
+        zero = torch.tensor(0.0, device=device, dtype=torch.float32)
+        _, value = slm_pg(
+            input_ids=prompt_ids,
+            attention_mask=torch.ones_like(prompt_ids, device=device),
+            prompt_len=prompt_len,
+        )
+        return zero, value
+
+    # Build sequence
+    full_ids = torch.cat([prompt_ids, generated_ids], dim=1)
+
+    # Truncate if needed
     if full_ids.shape[1] > MAX_SEQ_LEN:
-        full_ids = full_ids[:, :MAX_SEQ_LEN]
+        max_gen_len = max(0, MAX_SEQ_LEN - prompt_len)
+        generated_ids = generated_ids[:, :max_gen_len]
+        full_ids = torch.cat([prompt_ids, generated_ids], dim=1)
+
+        # 🔥 check again AFTER truncation
+        if generated_ids.shape[1] == 0:
+            zero = torch.tensor(0.0, device=device, dtype=torch.float32)
+            _, value = slm_pg(
+                input_ids=prompt_ids,
+                attention_mask=torch.ones_like(prompt_ids, device=device),
+                prompt_len=prompt_len,
+            )
+            return zero, value
 
     attn = torch.ones_like(full_ids)
-    logits, value = slm_pg(input_ids=full_ids, attention_mask=attn, prompt_len=prompt_ids.shape[1])
 
-    # Get log probs only over generated portion
+    logits, value = slm_pg(
+        input_ids=full_ids,
+        attention_mask=attn,
+        prompt_len=prompt_len,
+    )
+
     gen_len = generated_ids.shape[1]
-    prompt_len = prompt_ids.shape[1]
+
     shift_logits = logits[:, prompt_len - 1: prompt_len - 1 + gen_len, :]
-    shift_labels = generated_ids.to(device)
+
+    if shift_logits.shape[1] != gen_len:
+        raise RuntimeError(
+            f"logit/gen length mismatch: logits={shift_logits.shape[1]} gen_len={gen_len}"
+        )
 
     log_probs = F.log_softmax(shift_logits, dim=-1)
-    token_log_probs = log_probs.gather(2, shift_labels.unsqueeze(-1)).squeeze(-1)
+    token_log_probs = log_probs.gather(2, generated_ids.unsqueeze(-1)).squeeze(-1)
+
     seq_log_prob = token_log_probs.mean(dim=-1).squeeze()
 
     return seq_log_prob, value
+
 def compute_mean_kl(current_distributions, previous_distributions):
     if previous_distributions is None or len(previous_distributions) == 0:
         return 0.0
@@ -542,7 +629,7 @@ def save_checkpoint_safely(checkpoint_data: Dict[str, Any], checkpoint_path: str
 def run_SLM(prompt: str) -> str:
     try:
         checkpoint_path = (
-            "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3/run_CHK/final_model_new.pt" #HERE_FOR_CHANGE
+            "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_4/run_CHK/final_model_new.pt" #HERE_FOR_CHANGE
         )
         model, tok = initialize_slm(checkpoint_path)
         print("Model config hidden size:", getattr(model.config, "hidden_size", "N/A"))
@@ -581,7 +668,7 @@ def run_SLM(prompt: str) -> str:
             prompt_len = inputs["input_ids"].shape[1]
             generated_only= out[0][prompt_len:]
             response = tok.decode(generated_only, skip_special_tokens=True).strip()
-        save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new_3" #HERE_FOR_CHANGE
+        save_dir = "/u/mjha1/Proof2Silicon/journal_phase/prompts/slm_new_4" #HERE_FOR_CHANGE
         os.makedirs(save_dir, exist_ok=True)
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         with open(
@@ -737,7 +824,7 @@ def ppo_update_sequence_level(
         advantages = (advantages - advantages.mean()) / (
             advantages.std(unbiased=False) + 1e-8
         )
-
+    advantages = torch.clamp(advantages, -5.0, 5.0)
     stats = {
         "policy_loss": 0.0,
         "value_loss": 0.0,
@@ -756,7 +843,32 @@ def ppo_update_sequence_level(
             )
 
             new_value = new_value.squeeze()
-            ratio = torch.exp(new_logprob - old_logprobs[i])
+
+            if not (
+                torch.isfinite(new_logprob).all()
+                and torch.isfinite(new_value).all()
+                and torch.isfinite(entropy).all()
+            ):
+                logging.warning("Skipping PPO sample because new_logprob/new_value/entropy is non-finite.")
+                continue
+
+            log_ratio = new_logprob - old_logprobs[i]
+
+            if not torch.isfinite(log_ratio).all():
+                logging.warning("Skipping PPO sample because log_ratio is non-finite.")
+                continue
+
+            # clamp before exp to prevent overflow
+            log_ratio = torch.clamp(log_ratio, min=-20.0, max=20.0)
+            ratio = torch.exp(log_ratio)
+            target_kl = 0.20
+            approx_kl = log_ratio.abs()
+
+            if approx_kl.item() > target_kl:
+                logging.warning(
+                    f"Early stopping PPO update due to KL={approx_kl.item():.4f}"
+                )
+                continue
 
             unclipped = ratio * advantages[i]
             clipped = torch.clamp(ratio, 1.0 - clip_eps, 1.0 + clip_eps) * advantages[i]
@@ -773,12 +885,44 @@ def ppo_update_sequence_level(
 
             total_loss = policy_loss + value_coef * value_loss - entropy_coef * entropy
 
+            if not (
+                torch.isfinite(policy_loss).all()
+                and torch.isfinite(value_loss).all()
+                and torch.isfinite(total_loss).all()
+            ):
+                logging.warning("Skipping PPO sample because loss is non-finite.")
+                continue
+
             optimizer.zero_grad()
             total_loss.backward()
-            torch.nn.utils.clip_grad_norm_(slm_pg.parameters(), 1.0)
+
+            # gradient finite check
+            bad_grad = False
+            for name, p in slm_pg.named_parameters():
+                if p.grad is not None and not torch.isfinite(p.grad).all():
+                    logging.warning(f"Non-finite gradient detected in {name}; skipping optimizer step.")
+                    bad_grad = True
+                    break
+
+            if bad_grad:
+                optimizer.zero_grad(set_to_none=True)
+                continue
+
+            grad_norm = torch.nn.utils.clip_grad_norm_(slm_pg.parameters(), 0.5)
+
+            if isinstance(grad_norm, torch.Tensor):
+                grad_norm_value = float(grad_norm.item())
+            else:
+                grad_norm_value = float(grad_norm)
+
+            if not (grad_norm_value == grad_norm_value) or grad_norm_value == float("inf"):
+                logging.warning("Gradient norm is non-finite; skipping optimizer step.")
+                optimizer.zero_grad(set_to_none=True)
+                continue
+
             optimizer.step()
 
-            approx_kl = (old_logprobs[i] - new_logprob).abs()
+            approx_kl = log_ratio.abs()
 
             stats["policy_loss"] += float(policy_loss.item())
             stats["value_loss"] += float(value_loss.item())
@@ -800,10 +944,10 @@ def train_slm_with_grpo(
     slm,
     global_tokenizer,
     num_epochs: int = 10,
-    learning_rate: float = 1e-5,
+    learning_rate: float = 5e-7,
     gamma: float = 0.99,
-    epsilon: float = 0.2,
-    checkpoint_path: str = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_3/run_CHK/final_model_new.pt",
+    epsilon: float = 0.1,
+    checkpoint_path: str = "/u/mjha1/Proof2Silicon/journal_phase/checkpoints_4/run_CHK/final_model_new.pt",
     start_epoch: int = 0,
 ):
     """
@@ -824,6 +968,7 @@ def train_slm_with_grpo(
             project="Proof2Silicon-journal_phase_CODEBASE",
             entity="drprofmjha-university-of-illinois-urbana-champaign",
             name="Proof2Silicon-journal_phase_CODEBASE",
+            id="fqskm5x7",
             resume="allow",
             settings=wandb.Settings(init_timeout=800),
         )
@@ -1012,8 +1157,16 @@ def train_slm_with_grpo(
                     value_ok = torch.isfinite(old_value).all().item()
                     logprob_ok = torch.isfinite(old_logprob).all().item()
                     reward_ok = isinstance(reward, (int, float)) and not (reward != reward)
+                    step_policy_loss = None
+                    step_value_loss = None
+                    step_total_loss = None
 
                     if value_ok and logprob_ok and reward_ok:
+                        step_return = float(reward)
+                        step_advantage = step_return - float(old_value.item())
+                        step_policy_loss = -float(old_logprob.detach().item())* step_advantage
+                        step_value_loss = float((old_value.detach().item())-step_return)**2
+                        step_total_loss = step_policy_loss + 0.5*step_value_loss
                         sample = RolloutSample(
                             prompt_text=state_prompt,
                             prompt_ids=prompt_ids.detach(),
@@ -1023,6 +1176,7 @@ def train_slm_with_grpo(
                             old_value=old_value.detach(),
                             reward=float(reward),
                             entropy=float(entropy.detach().item()) if isinstance(entropy, torch.Tensor) else float(entropy),
+                            episode_id=episode_idx,
                         )
                         episode_rollout_samples.append(sample)
 
@@ -1109,6 +1263,9 @@ def train_slm_with_grpo(
                                 "step/structure_recursion_count": int(curr_structure.get("recursion_count", 0)) if isinstance(curr_structure, dict) else 0,
                                 "step/structure_invariant_count": int(curr_structure.get("invariant_count", 0)) if isinstance(curr_structure, dict) else 0,
                                 "step/structure_ghost_var_count": int(curr_structure.get("ghost_var_count", 0)) if isinstance(curr_structure, dict) else 0,
+                                "step/policy_loss": float(step_policy_loss) if step_policy_loss is not None else None,
+                                "step/value_loss": float(step_value_loss) if step_value_loss is not None else None,
+                                "step/total_loss": float(step_total_loss) if step_total_loss is not None else None,
                             }
                         )
 
@@ -1162,6 +1319,43 @@ def train_slm_with_grpo(
                 # episodes). So we log raw episode stats here; the
                 # PPO-level logging after finalize covers the rest.
                 # --------------------------------------------------
+                returns_t = None
+                advantages_t = None
+                episode_policy_loss = None
+                episode_value_loss = None
+                episode_total_loss = None
+
+                if episode_rewards and episode_values and episode_log_probs:
+                    clipped_rewards = [max(-10.0, min(10.0, float(r))) for r in episode_rewards]
+                    returns = []
+                    R = 0.0
+                    for r in reversed(clipped_rewards):
+                        R = float(r) + gamma * R
+                        returns.append(R)
+                    returns = list(reversed(returns))
+
+                    returns_t = torch.tensor(returns, device=device, dtype=torch.float32)
+                    values_t = torch.stack(episode_values).float().to(device)
+                    log_probs_t = torch.stack(episode_log_probs).float().to(device)
+
+                    if (
+                        torch.isfinite(returns_t).all()
+                        and torch.isfinite(values_t).all()
+                        and torch.isfinite(log_probs_t).all()
+                    ):
+                        advantages_t = returns_t - values_t.detach()
+                        if len(advantages_t) > 1:
+                            adv_std = advantages_t.std(unbiased=False)
+                            if torch.isfinite(adv_std) and adv_std.item() > 1e-8:
+                                advantages_t = (advantages_t - advantages_t.mean()) / (adv_std + 1e-8)
+                            else:
+                                advantages_t = advantages_t - advantages_t.mean()
+                        else:
+                            advantages_t = advantages_t - advantages_t.mean()
+
+                        episode_policy_loss = -(log_probs_t * advantages_t).mean()
+                        episode_value_loss = F.mse_loss(values_t, returns_t)
+                        episode_total_loss = episode_policy_loss + 0.5 * episode_value_loss
                 if wandb_enabled:
                     episode_log = {
                         "episode/epoch": epoch + 1,
@@ -1172,6 +1366,12 @@ def train_slm_with_grpo(
                         "episode/successful_examples_count": len(env.successful_examples),
                         "episode/final_iteration": env.current_iteration,
                         "episode/step_success_count": episode_step_success_count,
+                        "episode/loss_computed": int(episode_policy_loss is not None and episode_value_loss is not None),
+                        "episode/policy_loss": float(episode_policy_loss.item()) if episode_policy_loss is not None else 0.0,
+                        "episode/value_loss": float(episode_value_loss.item()) if episode_value_loss is not None else 0.0,
+                        "episode/total_loss": float(episode_total_loss.item()) if episode_total_loss is not None else 0.0,
+                        "episode/mean_return": float(returns_t.mean().item()) if returns_t is not None else 0.0,
+                        "episode/mean_advantage": float(advantages_t.mean().item()) if advantages_t is not None else 0.0,
                         # mean raw reward across steps — the discounted
                         # return will appear in epoch/mean_return after PPO
                         "episode/mean_raw_reward": (
@@ -1284,6 +1484,16 @@ def train_slm_with_grpo(
 
             except Exception as e:
                 logging.exception(f"Failed on subfolder {entry}: {e}")
+
+                err_str = str(e).lower()
+                if "device-side assert" in err_str or "cuda error" in err_str:
+                    logging.error("Fatal CUDA error encountered; stopping training because CUDA context is no longer reliable.")
+                    raise
+
+                try:
+                    torch.cuda.empty_cache()
+                except Exception:
+                    pass
                 continue
 
         # --------------------------------------------------
@@ -1300,7 +1510,7 @@ def train_slm_with_grpo(
             optimizer=optimizer,
             rollouts=epoch_rollouts,
             clip_eps=epsilon,
-            value_coef=0.5,
+            value_coef=0.25,
             entropy_coef=0.01,
             num_update_epochs=4,
         )
@@ -1401,10 +1611,16 @@ def train_slm_with_grpo(
             "processed_samples": processed_samples,
         }
 
-        if not save_checkpoint_safely(checkpoint_data_epoch, checkpoint_path_epoch):
+        if save_checkpoint_safely(checkpoint_data_epoch, checkpoint_path_epoch):
+            logging.info(f"Saved epoch checkpoint to {checkpoint_path_epoch}")
+        else:
             logging.warning(f"Failed to save checkpoint for epoch {epoch + 1}")
 
-        save_checkpoint_safely(checkpoint_data_epoch, checkpoint_path)
+        if save_checkpoint_safely(checkpoint_data_epoch, checkpoint_path):
+            logging.info(f"Updated rolling checkpoint at {checkpoint_path}")
+        else:
+            logging.warning(f"Failed to update rolling checkpoint at {checkpoint_path}")
+
         torch.cuda.empty_cache()
 
     # --------------------------------------------------
@@ -1422,16 +1638,18 @@ def train_slm_with_grpo(
         "processed_samples": processed_samples,
     }
 
-    if not save_checkpoint_safely(checkpoint_data, final_model_path):
-        logging.error("Failed to save final model checkpoint!")
+    if save_checkpoint_safely(checkpoint_data, final_model_path):
+        logging.error("Saved final model checkpoint!")
+    else:
+        logging.warning(f"Failed to save final PPO checkpoint to {final_model_path}")
 
     if hasattr(slm_pg.model, "save_pretrained"):
         try:
             slm_pg.model.save_pretrained(final_lora_path)
-            logging.info("Successfully saved LoRA weights")
+            global_tokenizer.save_pretrained(final_lora_path)
+            logging.info(f"Saved final LoRA adapter to {final_lora_path}")
         except Exception as e:
-            logging.error(f"Failed to save LoRA weights: {str(e)}")
-
+            logging.warning(f"Failed to save LoRA adapter: {e}")
     metrics_tracker = get_metrics_tracker()
     if metrics_tracker is not None:
         metrics_tracker.plot_learning_curves()

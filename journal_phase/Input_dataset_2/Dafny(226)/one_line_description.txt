@@ -1,1 +1,0 @@
-Design a Dafny class with methods that manipulate integers through variable updates and state invariants in loops, ensuring correctness in incrementing a value based on an input integer.

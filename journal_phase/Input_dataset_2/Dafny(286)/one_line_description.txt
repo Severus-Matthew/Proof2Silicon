@@ -1,1 +1,0 @@
-Implement a method `CountCharacters` in Dafny that returns the number of characters in a given string, ensuring the count is non-negative and matches the string's length.

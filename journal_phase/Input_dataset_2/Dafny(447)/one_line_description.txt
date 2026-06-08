@@ -1,1 +1,0 @@
-Implement a commit process model in Dafny that manages synchronization request states using a linear mutable map, ensuring correctness through state transitions and invariants.

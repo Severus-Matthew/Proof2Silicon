@@ -1,7 +1,0 @@
-Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(316)/RL_No_feedback.dfy(108,41): Error: type conversions are not supported to this type (got string)
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(316)/RL_No_feedback.dfy(104,21): Error: type test for type 'int' must be from an expression assignable to it (got 'T')
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(316)/RL_No_feedback.dfy(105,38): Error: type conversion to an int-based type is allowed only from numeric and bitvector types, char, and ORDINAL (got T)
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(316)/RL_No_feedback.dfy(107,28): Error: type test for type 'string' must be from an expression assignable to it (got 'T')
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(316)/RL_No_feedback.dfy(1,7): Error: not resolving module '_module' because there were errors in resolving its nested module 'AtomicBoxSystem'
-5 resolution/type errors detected in RL_No_feedback.dfy

@@ -1,1 +1,0 @@
-Implement two methods in Dafny for searching an integer in a sequence: one using recursive linear search and the other using an iterative loop, with correctness guarantees through preconditions and postconditions.

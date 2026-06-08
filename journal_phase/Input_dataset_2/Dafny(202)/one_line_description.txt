@@ -1,1 +1,0 @@
-Implement a selection sort algorithm in Dafny that sorts a segment of an integer array while ensuring the segment is sorted, the overall multiset of elements remains unchanged, and the unsorted segments remain intact.

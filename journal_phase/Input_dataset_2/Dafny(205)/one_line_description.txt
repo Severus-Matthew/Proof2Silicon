@@ -1,1 +1,0 @@
-Implement functions to calculate the maximum sum of contiguous segments in an array while adhering to defined properties and ensuring correctness through preconditions and loop invariants.

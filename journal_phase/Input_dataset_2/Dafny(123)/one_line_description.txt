@@ -1,1 +1,0 @@
-Implement a recursive function `sumInts` to calculate the sum of integers from 1 to `n`, and an iterative method `SumIntsLoop` to validate this sum against the formula `n*(n+1)/2`, with a `Main` method that tests the functionality using an input of 100.

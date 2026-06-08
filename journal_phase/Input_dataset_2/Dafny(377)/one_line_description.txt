@@ -1,1 +1,0 @@
-Implement a method in Dafny that verifies if a string represents a decimal number with exactly two digits after the decimal point, ensuring correctness through postconditions and loop invariants.

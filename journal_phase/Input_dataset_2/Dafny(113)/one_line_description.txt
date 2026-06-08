@@ -1,1 +1,0 @@
-Implement a Dafny method `FindZero` that efficiently locates the first zero in an array of non-negative integers, using a supporting lemma `SkippingLemma` to skip over contiguous non-zero segments while adhering to specified preconditions and invariants.

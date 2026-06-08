@@ -1,1 +1,0 @@
-The Dafny code defines a method `nonZeroReturn` that takes an integer `x` and returns an integer `y`, ensuring that `y` is always non-zero. If `x` is zero, the method returns 1; if `x` is non-zero, it returns the negative of `x`. The `test` method verifies this behavior by calling `nonZeroReturn` with a negative input and asserting that the output is indeed non-zero.

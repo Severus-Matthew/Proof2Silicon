@@ -1,1 +1,0 @@
-Implement a `SetHelpers` module in Dafny that includes lemmas for properties of finite sets, covering intersections, unions, cardinality, natural number sets, monotonicity, and the pigeonhole principle.

@@ -1,1 +1,0 @@
-Implement a Dafny method `AsciiValue` that converts a character to its ASCII integer value and verifies the correctness of the conversion through post-condition checks.

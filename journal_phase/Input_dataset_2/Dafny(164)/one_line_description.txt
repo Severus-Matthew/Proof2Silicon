@@ -1,1 +1,0 @@
-Develop Dafny code that computes the average of two integers, triples a given integer using this average, and includes a method with conditional output while ensuring formal verification of preconditions and postconditions.

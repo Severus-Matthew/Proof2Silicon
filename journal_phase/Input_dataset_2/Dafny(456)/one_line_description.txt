@@ -1,1 +1,0 @@
-Implement a Dafny function `f` that returns the natural number `0`, includes a postcondition verifying the return value, and incorporates a trivially true assertion for correctness verification.

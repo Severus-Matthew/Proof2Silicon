@@ -1,1 +1,0 @@
-Implement a method `ReverseInPlace` in a `Node` class that reverses a linked list while maintaining node connectivity and structural integrity, with verification conditions for region membership and post-execution invariants.

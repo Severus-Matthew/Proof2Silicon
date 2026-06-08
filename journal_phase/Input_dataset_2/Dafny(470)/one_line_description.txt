@@ -1,1 +1,0 @@
-Implement a recursive and an iterative function in Dafny to compute the power of a number, ensuring the iterative method maintains a loop invariant for correctness.

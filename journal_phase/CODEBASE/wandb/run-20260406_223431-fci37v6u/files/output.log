@@ -1,2 +1,0 @@
-2026-04-06 22:34:32,605 - INFO - Worker for Dafny(116): re-attached to W&B run e3ed233h
-2026-04-06 22:34:32,748 - INFO - Skipping Dafny(116) because it appears already processed (found /u/mjha1/Proof2Silicon/journal_phase/dataset_new/epoch_0_Dafny(116)/iteration_1_results.json)

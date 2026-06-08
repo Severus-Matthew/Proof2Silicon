@@ -1,1 +1,0 @@
-Implement a method `addArrays` in Dafny that takes two integer arrays and returns a new array containing the element-wise sums, ensuring correct preconditions and invariants.

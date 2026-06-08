@@ -1,1 +1,0 @@
-Create a Dafny program that includes a recursive function to check if a non-negative integer is even and an iterative method that verifies this using loop invariants.

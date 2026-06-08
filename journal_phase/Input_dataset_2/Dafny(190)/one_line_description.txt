@@ -1,1 +1,0 @@
-Implement three methods in Dafny to calculate the integer square root of a non-negative integer `n` using algorithms with time complexities O(√n), O(n), and O(log n), ensuring correctness through preconditions, postconditions, and invariants.

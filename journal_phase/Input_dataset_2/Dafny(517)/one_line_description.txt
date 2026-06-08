@@ -1,1 +1,0 @@
-Implement and verify functions for reversing singly linked lists, concatenating lists, and detecting cycles, ensuring correctness through proofs and tests in Dafny.

@@ -1,1 +1,0 @@
-Implement a Dafny method `SquareElements` that takes an integer array and returns a new array with each element squared, ensuring the output maintains the same length and adheres to verification conditions.

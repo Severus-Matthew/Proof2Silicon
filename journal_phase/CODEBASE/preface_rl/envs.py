@@ -61,7 +61,7 @@ class DafnyEnv(gym.core.Env):
 
         tracker = get_metrics_tracker()
         if tracker is None:
-            fixed_metrics_dir = "/u/mjha1/Proof2Silicon/journal_phase/wandb_metrics_3" #HERE_FOR_CHANGE
+            fixed_metrics_dir = "/u/mjha1/Proof2Silicon/journal_phase/wandb_metrics_4" #HERE_FOR_CHANGE
             os.makedirs(fixed_metrics_dir, exist_ok=True)
             tracker = MetricsTracker(fixed_metrics_dir)
             set_metrics_tracker(tracker)
@@ -402,6 +402,7 @@ class DafnyEnv(gym.core.Env):
 
         info: Dict[str, Any] = {
             "error_tree": self.error_tree,
+            "successful_examples": self.successful_examples.copy(),
             "successful_examples_count": len(self.successful_examples),
             "iterations": self.current_iteration,
             "final_reward": reward,

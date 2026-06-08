@@ -1,3 +1,0 @@
-Warning: this way of using the CLI is deprecated. Use 'dafny --help' to see help for the new Dafny CLI format
-/u/mjha1/Proof2Silicon/journal_phase/Input_dataset_2/Dafny(431)/RL_No_feedback.dfy(23,6): Error: LHS of assignment must denote a mutable variable
-1 resolution/type errors detected in RL_No_feedback.dfy

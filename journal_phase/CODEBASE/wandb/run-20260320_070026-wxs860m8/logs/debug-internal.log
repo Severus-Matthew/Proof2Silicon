@@ -1,9 +1,0 @@
-{"time":"2026-03-20T07:00:26.848059839Z","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"/mnt/shared/gpfs/home/manvij2/journal_phase/CODEBASE/wandb/run-20260320_070026-wxs860m8/logs/debug-core.log"}
-{"time":"2026-03-20T07:00:27.092609791Z","level":"INFO","msg":"created new stream","id":"wxs860m8"}
-{"time":"2026-03-20T07:00:27.092708374Z","level":"INFO","msg":"stream: started","id":"wxs860m8"}
-{"time":"2026-03-20T07:00:27.092873322Z","level":"INFO","msg":"writer: Do: started","stream_id":"wxs860m8"}
-{"time":"2026-03-20T07:00:27.09306084Z","level":"INFO","msg":"sender: started","stream_id":"wxs860m8"}
-{"time":"2026-03-20T07:00:27.093134337Z","level":"INFO","msg":"handler: started","stream_id":"wxs860m8"}
-{"time":"2026-03-20T07:00:27.653636549Z","level":"INFO","msg":"Starting system monitor"}
-{"time":"2026-03-20T07:00:47.347296629Z","level":"ERROR","msg":"dispatch: no responder found: 127.0.0.1:53988"}
-{"time":"2026-03-20T07:00:47.92682652Z","level":"ERROR","msg":"dispatch: no responder found: 127.0.0.1:53988"}

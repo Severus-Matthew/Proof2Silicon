@@ -1,1 +1,0 @@
-Implement a Dafny method `ParabolaDirectrix` to compute the directrix of a parabola using parameters \\\\( a \\\\), \\\\( h \\\\), and \\\\( k \\\\), ensuring \\\\( a \\\\) is non-zero and returning \\\\( k - \\\\frac{1}{4a} \\\\).

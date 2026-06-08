@@ -48,6 +48,9 @@ Do:
 - include only necessary Dafny elements (invariants, pre/post, decreases if needed)
 - mention edge cases if critical
 - ensure full code is returned
+- make sure that recursion is not used
+
+The rewards are calculated based on the verification success, absence of recursion, the presence and use of lemmas and ghost variables and the efficeiny of the prompt.
 
 Format:
 Task: <1-line summary>
@@ -88,6 +91,8 @@ Focus:
 - Syntax or formatting mistakes
 - Incomplete implementation
 - Mismatch between code and specification
+- make sure that recursion is not used
+The rewards are calculated based on the verification success, absence of recursion, the presence and use of lemmas and ghost variables and the efficeiny of the prompt.
 
 Do NOT write code.
 

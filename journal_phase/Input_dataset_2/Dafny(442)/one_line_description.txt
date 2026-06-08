@@ -1,1 +1,0 @@
-Implement and verify a binary search algorithm in Dafny that finds a target integer in a sorted array of distinct elements, with appropriate preconditions and postconditions.

@@ -1,1 +1,0 @@
-Develop Dafny code to verify properties of sets and string equality, including set difference, injectivity of sequences, string inequality, and string concatenation through assertions in multiple methods.

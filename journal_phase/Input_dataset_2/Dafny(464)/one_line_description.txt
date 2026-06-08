@@ -1,1 +1,0 @@
-Implement a Dafny function for calculating power using exponentiation by squaring and a method for performing validated arithmetic operations on non-negative operands, ensuring correctness and handling exceptions like division by zero.
