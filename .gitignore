@@ -45,3 +45,6 @@ journal_phase/trained_outputs/
 journal_phase/trained_outputs copy/
 journal_phase/wandb_metrics_4/
 
+
+# Local third-party tools
+journal_phase/tools/

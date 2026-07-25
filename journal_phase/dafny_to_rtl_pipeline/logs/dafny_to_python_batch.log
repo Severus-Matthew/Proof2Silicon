@@ -1,0 +1,273 @@
+Dafny command : /u/mjha1/.dotnet/tools/dafny
+Input root    : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/dafny_outputs
+Output root   : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python
+Raw root      : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw
+
+Model: deepseek-chat
+Dafny files: 72
+  [1/72] Dafny_104_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_104_firstverified.py
+  [2/72] Dafny_107.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_107.py
+  [3/72] Dafny_120.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_120.py
+  [4/72] Dafny_122_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_122_firstverified.py
+  [5/72] Dafny_130_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_130_firstverified.py
+  [6/72] Dafny_143_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_143_firstverified.py
+  [7/72] Dafny_156_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_156_firstverified.py
+  [8/72] Dafny_162_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_162_firstverified.py
+  [9/72] Dafny_174_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_174_firstverified.py
+  [10/72] Dafny_176_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_176_firstverified.py
+  [11/72] Dafny_193_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_193_firstverified.py
+  [12/72] Dafny_194_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_194_firstverified.py
+  [13/72] Dafny_207_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_207_firstverified.py
+  [14/72] Dafny_229_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_229_firstverified.py
+  [15/72] Dafny_232_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_232_firstverified.py
+  [16/72] Dafny_233_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_233_firstverified.py
+  [17/72] Dafny_254_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_254_firstverified.py
+  [18/72] Dafny_263_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_263_firstverified.py
+  [19/72] Dafny_264_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_264_firstverified.py
+  [20/72] Dafny_267_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_267_firstverified.py
+  [21/72] Dafny_279_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_279_firstverified.py
+  [22/72] Dafny_283_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_283_firstverified.py
+  [23/72] Dafny_289_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_289_firstverified.py
+  [24/72] Dafny_290_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_290_firstverified.py
+  [25/72] Dafny_293_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_293_firstverified.py
+  [26/72] Dafny_299.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_299.py
+  [27/72] Dafny_303_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_303_firstverified.py
+  [28/72] Dafny_311_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_311_firstverified.py
+  [29/72] Dafny_322_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_322_firstverified.py
+  [30/72] Dafny_323.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_323.py
+  [31/72] Dafny_326_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_326_firstverified.py
+  [32/72] Dafny_333_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_333_firstverified.py
+  [33/72] Dafny_355_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_355_firstverified.py
+  [34/72] Dafny_357_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_357_firstverified.py
+  [35/72] Dafny_365_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_365_firstverified.py
+  [36/72] Dafny_369_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_369_firstverified.py
+  [37/72] Dafny_372_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_372_firstverified.py
+  [38/72] Dafny_387_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_387_firstverified.py
+  [39/72] Dafny_392_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_392_firstverified.py
+  [40/72] Dafny_400_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_400_firstverified.py
+  [41/72] Dafny_413_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_413_firstverified.py
+  [42/72] Dafny_426_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_426_firstverified.py
+  [43/72] Dafny_427.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_427.py
+  [44/72] Dafny_437_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_437_firstverified.py
+  [45/72] Dafny_452_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_452_firstverified.py
+  [46/72] Dafny_458_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_458_firstverified.py
+  [47/72] Dafny_465_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_465_firstverified.py
+  [48/72] Dafny_475_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_475_firstverified.py
+  [49/72] Dafny_481_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_481_firstverified.py
+  [50/72] Dafny_488_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_488_firstverified.py
+  [51/72] Dafny_502_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_502_firstverified.py
+  [52/72] Dafny_505_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_505_firstverified.py
+  [53/72] Dafny_510_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_510_firstverified.py
+  [54/72] Dafny_512.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_512.py
+  [55/72] Dafny_518_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_518_firstverified.py
+  [56/72] Dafny_531_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_531_firstverified.py
+  [57/72] Dafny_536.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_536.py
+  [58/72] Dafny_539_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_539_firstverified.py
+  [59/72] Dafny_542_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_542_firstverified.py
+  [60/72] Dafny_546_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_546_firstverified.py
+  [61/72] Dafny_554_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_554_firstverified.py
+  [62/72] Dafny_556_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_556_firstverified.py
+  [63/72] Dafny_561_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_561_firstverified.py
+  [64/72] Dafny_573_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_573_firstverified.py
+  [65/72] Dafny_62_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_62_firstverified.py
+  [66/72] Dafny_64_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_64_firstverified.py
+  [67/72] Dafny_65_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_65_firstverified.py
+  [68/72] Dafny_67_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_67_firstverified.py
+  [69/72] Dafny_71_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_71_firstverified.py
+  [70/72] Dafny_78_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_78_firstverified.py
+  [71/72] Dafny_96_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_96_firstverified.py
+  [72/72] Dafny_99_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_99_firstverified.py
+
+Model: gpt-5.1-codex-max
+Dafny files: 87
+  [1/87] Dafny_104_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_104_firstverified.py
+  [2/87] Dafny_114.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_114.py
+  [3/87] Dafny_120_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_120_firstverified.py
+  [4/87] Dafny_122.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_122.py
+  [5/87] Dafny_143.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_143.py
+  [6/87] Dafny_155.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_155.py
+  [7/87] Dafny_156.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_156.py
+  [8/87] Dafny_162_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_162_firstverified.py
+  [9/87] Dafny_176.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_176.py
+  [10/87] Dafny_193_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_193_firstverified.py
+  [11/87] Dafny_194.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_194.py
+  [12/87] Dafny_200.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_200.py
+  [13/87] Dafny_206_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_206_firstverified.py
+  [14/87] Dafny_207.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_207.py
+  [15/87] Dafny_216.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_216.py
+  [16/87] Dafny_225.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_225.py
+  [17/87] Dafny_227_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_227_firstverified.py
+  [18/87] Dafny_229.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_229.py
+  [19/87] Dafny_232.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_232.py
+  [20/87] Dafny_233.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_233.py
+  [21/87] Dafny_238.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_238.py
+  [22/87] Dafny_254_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_254_firstverified.py
+  [23/87] Dafny_256.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_256.py
+  [24/87] Dafny_260_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_260_firstverified.py
+  [25/87] Dafny_264.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_264.py
+  [26/87] Dafny_267.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_267.py
+  [27/87] Dafny_279.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_279.py
+  [28/87] Dafny_283.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_283.py
+  [29/87] Dafny_289_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_289_firstverified.py
+  [30/87] Dafny_290_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_290_firstverified.py
+  [31/87] Dafny_293_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_293_firstverified.py
+  [32/87] Dafny_299_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_299_firstverified.py
+  [33/87] Dafny_311_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_311_firstverified.py
+  [34/87] Dafny_314_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_314_firstverified.py
+  [35/87] Dafny_320_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_320_firstverified.py
+  [36/87] Dafny_322_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_322_firstverified.py
+  [37/87] Dafny_323.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_323.py
+  [38/87] Dafny_326_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_326_firstverified.py
+  [39/87] Dafny_333.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_333.py
+  [40/87] Dafny_355.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_355.py
+  [41/87] Dafny_357.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_357.py
+  [42/87] Dafny_369_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_369_firstverified.py
+  [43/87] Dafny_372.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_372.py
+  [44/87] Dafny_387.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_387.py
+  [45/87] Dafny_392.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_392.py
+  [46/87] Dafny_399_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_399_firstverified.py
+  [47/87] Dafny_400.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_400.py
+  [48/87] Dafny_413.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_413.py
+  [49/87] Dafny_426_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_426_firstverified.py
+  [50/87] Dafny_427_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_427_firstverified.py
+  [51/87] Dafny_437.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_437.py
+  [52/87] Dafny_450_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_450_firstverified.py
+  [53/87] Dafny_452.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_452.py
+  [54/87] Dafny_458.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_458.py
+  [55/87] Dafny_459.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_459.py
+  [56/87] Dafny_465.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_465.py
+  [57/87] Dafny_471.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_471.py
+  [58/87] Dafny_475.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_475.py
+  [59/87] Dafny_481.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_481.py
+  [60/87] Dafny_484.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_484.py
+  [61/87] Dafny_488_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_488_firstverified.py
+  [62/87] Dafny_500.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_500.py
+  [63/87] Dafny_501_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_501_firstverified.py
+  [64/87] Dafny_502.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_502.py
+  [65/87] Dafny_503_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_503_firstverified.py
+  [66/87] Dafny_505_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_505_firstverified.py
+  [67/87] Dafny_510.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_510.py
+  [68/87] Dafny_512.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_512.py
+  [69/87] Dafny_518.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_518.py
+  [70/87] Dafny_531.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_531.py
+  [71/87] Dafny_536.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_536.py
+  [72/87] Dafny_537.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_537.py
+  [73/87] Dafny_539_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_539_firstverified.py
+  [74/87] Dafny_542_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_542_firstverified.py
+  [75/87] Dafny_546.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_546.py
+  [76/87] Dafny_554_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_554_firstverified.py
+  [77/87] Dafny_555_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_555_firstverified.py
+  [78/87] Dafny_556.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_556.py
+  [79/87] Dafny_573_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_573_firstverified.py
+  [80/87] Dafny_62_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_62_firstverified.py
+  [81/87] Dafny_64_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_64_firstverified.py
+  [82/87] Dafny_65.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_65.py
+  [83/87] Dafny_67.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_67.py
+  [84/87] Dafny_71.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_71.py
+  [85/87] Dafny_78.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_78.py
+  [86/87] Dafny_91_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_91_firstverified.py
+  [87/87] Dafny_96.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_96.py
+
+Model: gpt-5.3-codex
+Dafny files: 88
+  [1/88] Dafny_104.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_104.py
+  [2/88] Dafny_107.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_107.py
+  [3/88] Dafny_114.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_114.py
+  [4/88] Dafny_120_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_120_firstverified.py
+  [5/88] Dafny_122_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_122_firstverified.py
+  [6/88] Dafny_130_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_130_firstverified.py
+  [7/88] Dafny_143.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_143.py
+  [8/88] Dafny_155.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_155.py
+  [9/88] Dafny_156_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_156_firstverified.py
+  [10/88] Dafny_162_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_162_firstverified.py
+  [11/88] Dafny_169_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_169_firstverified.py
+  [12/88] Dafny_174_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_174_firstverified.py
+  [13/88] Dafny_176_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_176_firstverified.py
+  [14/88] Dafny_193_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_193_firstverified.py
+  [15/88] Dafny_194_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_194_firstverified.py
+  [16/88] Dafny_206.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_206.py
+  [17/88] Dafny_207_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_207_firstverified.py
+  [18/88] Dafny_225.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_225.py
+  [19/88] Dafny_229_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_229_firstverified.py
+  [20/88] Dafny_232_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_232_firstverified.py
+  [21/88] Dafny_233_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_233_firstverified.py
+  [22/88] Dafny_254_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_254_firstverified.py
+  [23/88] Dafny_256.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_256.py
+  [24/88] Dafny_260.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_260.py
+  [25/88] Dafny_263.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_263.py
+  [26/88] Dafny_264_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_264_firstverified.py
+  [27/88] Dafny_267_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_267_firstverified.py
+  [28/88] Dafny_279_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_279_firstverified.py
+  [29/88] Dafny_283.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_283.py
+  [30/88] Dafny_289_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_289_firstverified.py
+  [31/88] Dafny_290.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_290.py
+  [32/88] Dafny_293_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_293_firstverified.py
+  [33/88] Dafny_299_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_299_firstverified.py
+  [34/88] Dafny_303_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_303_firstverified.py
+  [35/88] Dafny_311.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_311.py
+  [36/88] Dafny_314.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_314.py
+  [37/88] Dafny_320_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_320_firstverified.py
+  [38/88] Dafny_321_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_321_firstverified.py
+  [39/88] Dafny_322.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_322.py
+  [40/88] Dafny_323_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_323_firstverified.py
+  [41/88] Dafny_333.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_333.py
+  [42/88] Dafny_355_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_355_firstverified.py
+  [43/88] Dafny_357_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_357_firstverified.py
+  [44/88] Dafny_365_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_365_firstverified.py
+  [45/88] Dafny_372.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_372.py
+  [46/88] Dafny_380.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_380.py
+  [47/88] Dafny_387_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_387_firstverified.py
+  [48/88] Dafny_392_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_392_firstverified.py
+  [49/88] Dafny_399_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_399_firstverified.py
+  [50/88] Dafny_400_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_400_firstverified.py
+  [51/88] Dafny_413_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_413_firstverified.py
+  [52/88] Dafny_426_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_426_firstverified.py
+  [53/88] Dafny_427_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_427_firstverified.py
+  [54/88] Dafny_437_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_437_firstverified.py
+  [55/88] Dafny_450.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_450.py
+  [56/88] Dafny_452_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_452_firstverified.py
+  [57/88] Dafny_458_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_458_firstverified.py
+  [58/88] Dafny_459_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_459_firstverified.py
+  [59/88] Dafny_465_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_465_firstverified.py
+  [60/88] Dafny_471_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_471_firstverified.py
+  [61/88] Dafny_475.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_475.py
+  [62/88] Dafny_481_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_481_firstverified.py
+  [63/88] Dafny_484.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_484.py
+  [64/88] Dafny_488_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_488_firstverified.py
+  [65/88] Dafny_500.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_500.py
+  [66/88] Dafny_501_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_501_firstverified.py
+  [67/88] Dafny_502_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_502_firstverified.py
+  [68/88] Dafny_503_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_503_firstverified.py
+  [69/88] Dafny_505_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_505_firstverified.py
+  [70/88] Dafny_510.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_510.py
+  [71/88] Dafny_518_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_518_firstverified.py
+  [72/88] Dafny_536_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_536_firstverified.py
+  [73/88] Dafny_537_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_537_firstverified.py
+  [74/88] Dafny_539_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_539_firstverified.py
+  [75/88] Dafny_542_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_542_firstverified.py
+  [76/88] Dafny_546_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_546_firstverified.py
+  [77/88] Dafny_554.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_554.py
+  [78/88] Dafny_556.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_556.py
+  [79/88] Dafny_561_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_561_firstverified.py
+  [80/88] Dafny_62_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_62_firstverified.py
+  [81/88] Dafny_64_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_64_firstverified.py
+  [82/88] Dafny_65_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_65_firstverified.py
+  [83/88] Dafny_67_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_67_firstverified.py
+  [84/88] Dafny_71_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_71_firstverified.py
+  [85/88] Dafny_78_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_78_firstverified.py
+  [86/88] Dafny_91_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_91_firstverified.py
+  [87/88] Dafny_96_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_96_firstverified.py
+  [88/88] Dafny_99_firstverified.dfy -> SUCCESS: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_99_firstverified.py
+
+========================================================================
+DAFNY-TO-PYTHON TRANSLATION COMPLETE
+========================================================================
+Total      : 247
+Successful : 247
+Failed     : 0
+deepseek-chat             total=72   success=72   failed=0   
+gpt-5.1-codex-max         total=87   success=87   failed=0   
+gpt-5.3-codex             total=88   success=88   failed=0   
+
+JSON manifest: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/manifests/dafny_to_python_manifest.json
+CSV manifest : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/manifests/dafny_to_python_manifest.csv

@@ -1,0 +1,49 @@
+import sys
+from typing import Callable, Any, TypeVar, NamedTuple
+from math import floor
+from itertools import count
+
+import module_ as module_
+import _dafny as _dafny
+import System_ as System_
+
+# Module: FactorialModule
+
+class default__:
+    def  __init__(self):
+        pass
+
+    @staticmethod
+    def factorial(n):
+        d_0___accumulator_ = 1
+        while True:
+            with _dafny.label():
+                if (n) == (0):
+                    return (1) * (d_0___accumulator_)
+                elif True:
+                    d_0___accumulator_ = (d_0___accumulator_) * (n)
+                    in0_ = (n) - (1)
+                    n = in0_
+                    raise _dafny.TailCall()
+                break
+
+    @staticmethod
+    def FactorialIterative(n):
+        result: int = int(0)
+        result = 1
+        d_0_i_: int
+        d_0_i_ = 1
+        while (d_0_i_) <= (n):
+            result = (result) * (d_0_i_)
+            d_0_i_ = (d_0_i_) + (1)
+        return result
+
+    @staticmethod
+    def Demo():
+        d_0_n_: int
+        d_0_n_ = 5
+        d_1_res_: int
+        out0_: int
+        out0_ = default__.FactorialIterative(d_0_n_)
+        d_1_res_ = out0_
+

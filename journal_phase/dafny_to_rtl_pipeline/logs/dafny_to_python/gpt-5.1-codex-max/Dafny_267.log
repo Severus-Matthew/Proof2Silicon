@@ -1,0 +1,28 @@
+COMMAND:
+/u/mjha1/.dotnet/tools/dafny translate py /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/dafny_outputs/gpt-5.1-codex-max/Dafny_267.dfy --output /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_267 --no-verify --allow-warnings --verbose
+
+RETURN CODE:
+0
+
+GENERATED MODULE:
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_267-py/module_.py
+
+GENERATED FILES:
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_267-py/Dafny_267-py.dtr
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_267-py/__main__.py
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_267-py/module_.py
+
+STDOUT:
+dafny_to_rtl_pipeline/dafny_outputs/gpt-5.1-codex-max/Dafny_267.dfy(3,17): Warning: the type of the other operand is a non-null type, so this comparison with 'null' will always return 'true' (to make it possible for variable 'arr' to have the value 'null', declare its type to be 'array?<int>') (ID: r_trivial_null_test)
+  |
+3 |     requires arr != null && arr.Length > 0
+  |                  ^^
+
+
+Dafny program verifier did not attempt verification
+Wrote textual form of target program to Dafny_267-py/__main__.py
+Additional output written to Dafny_267-py/Dafny_267-py.dtr
+Additional output written to Dafny_267-py/module_.py
+
+
+STDERR:

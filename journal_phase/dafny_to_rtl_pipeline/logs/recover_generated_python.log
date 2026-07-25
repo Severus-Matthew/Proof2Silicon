@@ -1,0 +1,283 @@
+
+Model: deepseek-chat
+Dafny files: 72
+  [1/72] Dafny_104_firstverified.dfy -> SUCCESS [module_.py]
+  [2/72] Dafny_107.dfy -> TRUE_TRANSLATION_FAILURE
+  [3/72] Dafny_120.dfy -> SUCCESS [module_.py]
+  [4/72] Dafny_122_firstverified.dfy -> SUCCESS [module_.py]
+  [5/72] Dafny_130_firstverified.dfy -> SUCCESS [module_.py]
+  [6/72] Dafny_143_firstverified.dfy -> SUCCESS [module_.py]
+  [7/72] Dafny_156_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [8/72] Dafny_162_firstverified.dfy -> SUCCESS [module_.py]
+  [9/72] Dafny_174_firstverified.dfy -> SUCCESS [module_.py]
+  [10/72] Dafny_176_firstverified.dfy -> SUCCESS [module_.py]
+  [11/72] Dafny_193_firstverified.dfy -> SUCCESS [module_.py]
+  [12/72] Dafny_194_firstverified.dfy -> SUCCESS [module_.py]
+  [13/72] Dafny_207_firstverified.dfy -> SUCCESS [module_.py]
+  [14/72] Dafny_229_firstverified.dfy -> SUCCESS [module_.py]
+  [15/72] Dafny_232_firstverified.dfy -> SUCCESS [module_.py]
+  [16/72] Dafny_233_firstverified.dfy -> SUCCESS [AbsMax.py, module_.py]
+  [17/72] Dafny_254_firstverified.dfy -> SUCCESS [module_.py]
+  [18/72] Dafny_263_firstverified.dfy -> SUCCESS [module_.py]
+  [19/72] Dafny_264_firstverified.dfy -> SUCCESS [module_.py]
+  [20/72] Dafny_267_firstverified.dfy -> SUCCESS [module_.py]
+  [21/72] Dafny_279_firstverified.dfy -> SUCCESS [module_.py]
+  [22/72] Dafny_283_firstverified.dfy -> SUCCESS [module_.py]
+  [23/72] Dafny_289_firstverified.dfy -> SUCCESS [module_.py]
+  [24/72] Dafny_290_firstverified.dfy -> SUCCESS [module_.py]
+  [25/72] Dafny_293_firstverified.dfy -> SUCCESS [module_.py]
+  [26/72] Dafny_299.dfy -> SUCCESS [ElementWiseSubtraction.py, module_.py]
+  [27/72] Dafny_303_firstverified.dfy -> SUCCESS [module_.py]
+  [28/72] Dafny_311_firstverified.dfy -> SUCCESS [module_.py]
+  [29/72] Dafny_322_firstverified.dfy -> SUCCESS [module_.py]
+  [30/72] Dafny_323.dfy -> SUCCESS [module_.py]
+  [31/72] Dafny_326_firstverified.dfy -> SUCCESS [module_.py]
+  [32/72] Dafny_333_firstverified.dfy -> SUCCESS [module_.py]
+  [33/72] Dafny_355_firstverified.dfy -> SUCCESS [module_.py]
+  [34/72] Dafny_357_firstverified.dfy -> SUCCESS [module_.py]
+  [35/72] Dafny_365_firstverified.dfy -> SUCCESS [module_.py]
+  [36/72] Dafny_369_firstverified.dfy -> SUCCESS [module_.py]
+  [37/72] Dafny_372_firstverified.dfy -> SUCCESS [module_.py]
+  [38/72] Dafny_387_firstverified.dfy -> SUCCESS [module_.py]
+  [39/72] Dafny_392_firstverified.dfy -> SUCCESS [module_.py]
+  [40/72] Dafny_400_firstverified.dfy -> SUCCESS [module_.py]
+  [41/72] Dafny_413_firstverified.dfy -> SUCCESS [module_.py]
+  [42/72] Dafny_426_firstverified.dfy -> SUCCESS [module_.py]
+  [43/72] Dafny_427.dfy -> SUCCESS [module_.py]
+  [44/72] Dafny_437_firstverified.dfy -> SUCCESS [module_.py]
+  [45/72] Dafny_452_firstverified.dfy -> SUCCESS [module_.py]
+  [46/72] Dafny_458_firstverified.dfy -> SUCCESS [FindMax.py, module_.py]
+  [47/72] Dafny_465_firstverified.dfy -> SUCCESS [module_.py]
+  [48/72] Dafny_475_firstverified.dfy -> SUCCESS [Fat.py, module_.py]
+  [49/72] Dafny_481_firstverified.dfy -> SUCCESS [module_.py]
+  [50/72] Dafny_488_firstverified.dfy -> SUCCESS [module_.py]
+  [51/72] Dafny_502_firstverified.dfy -> SUCCESS [module_.py]
+  [52/72] Dafny_505_firstverified.dfy -> SUCCESS [module_.py]
+  [53/72] Dafny_510_firstverified.dfy -> SUCCESS [Implementation.py, Interface.py, Mod.py, Mod2.py, module_.py]
+  [54/72] Dafny_512.dfy -> TRUE_TRANSLATION_FAILURE
+  [55/72] Dafny_518_firstverified.dfy -> SUCCESS [module_.py]
+  [56/72] Dafny_531_firstverified.dfy -> SUCCESS [module_.py]
+  [57/72] Dafny_536.dfy -> SUCCESS [Client.py, ClientCached.py, M0.py, M1.py, M2.py, M3.py, module_.py]
+  [58/72] Dafny_539_firstverified.dfy -> SUCCESS [module_.py]
+  [59/72] Dafny_542_firstverified.dfy -> SUCCESS [module_.py]
+  [60/72] Dafny_546_firstverified.dfy -> SUCCESS [module_.py]
+  [61/72] Dafny_554_firstverified.dfy -> SUCCESS [module_.py]
+  [62/72] Dafny_556_firstverified.dfy -> SUCCESS [module_.py]
+  [63/72] Dafny_561_firstverified.dfy -> SUCCESS [module_.py]
+  [64/72] Dafny_573_firstverified.dfy -> SUCCESS [module_.py]
+  [65/72] Dafny_62_firstverified.dfy -> SUCCESS [module_.py]
+  [66/72] Dafny_64_firstverified.dfy -> SUCCESS [module_.py]
+  [67/72] Dafny_65_firstverified.dfy -> SUCCESS [module_.py]
+  [68/72] Dafny_67_firstverified.dfy -> SUCCESS [module_.py]
+  [69/72] Dafny_71_firstverified.dfy -> SUCCESS [module_.py]
+  [70/72] Dafny_78_firstverified.dfy -> SUCCESS [module_.py]
+  [71/72] Dafny_96_firstverified.dfy -> SUCCESS [module_.py]
+  [72/72] Dafny_99_firstverified.dfy -> SUCCESS [module_.py]
+
+Model: gpt-5.1-codex-max
+Dafny files: 87
+  [1/87] Dafny_104_firstverified.dfy -> SUCCESS [module_.py]
+  [2/87] Dafny_114.dfy -> SUCCESS [Max.py, module_.py]
+  [3/87] Dafny_120_firstverified.dfy -> SUCCESS [Arithmetic.py, module_.py]
+  [4/87] Dafny_122.dfy -> TRUE_TRANSLATION_FAILURE
+  [5/87] Dafny_143.dfy -> SUCCESS [AddSmallNumbers.py, module_.py]
+  [6/87] Dafny_155.dfy -> SUCCESS [module_.py]
+  [7/87] Dafny_156.dfy -> SUCCESS [module_.py]
+  [8/87] Dafny_162_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [9/87] Dafny_176.dfy -> TRUE_TRANSLATION_FAILURE
+  [10/87] Dafny_193_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [11/87] Dafny_194.dfy -> SUCCESS [FirstZeroFinder.py, module_.py]
+  [12/87] Dafny_200.dfy -> SUCCESS [module_.py]
+  [13/87] Dafny_206_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [14/87] Dafny_207.dfy -> TRUE_TRANSLATION_FAILURE
+  [15/87] Dafny_216.dfy -> TRUE_TRANSLATION_FAILURE
+  [16/87] Dafny_225.dfy -> SUCCESS [module_.py]
+  [17/87] Dafny_227_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [18/87] Dafny_229.dfy -> SUCCESS [Maximum.py, module_.py]
+  [19/87] Dafny_232.dfy -> SUCCESS [GCDProgram.py, module_.py]
+  [20/87] Dafny_233.dfy -> SUCCESS [module_.py]
+  [21/87] Dafny_238.dfy -> SUCCESS [module_.py]
+  [22/87] Dafny_254_firstverified.dfy -> SUCCESS [OctagonalNumber.py, module_.py]
+  [23/87] Dafny_256.dfy -> SUCCESS [module_.py]
+  [24/87] Dafny_260_firstverified.dfy -> SUCCESS [module_.py]
+  [25/87] Dafny_264.dfy -> TRUE_TRANSLATION_FAILURE
+  [26/87] Dafny_267.dfy -> TRUE_TRANSLATION_FAILURE
+  [27/87] Dafny_279.dfy -> SUCCESS [module_.py]
+  [28/87] Dafny_283.dfy -> SUCCESS [module_.py]
+  [29/87] Dafny_289_firstverified.dfy -> SUCCESS [module_.py]
+  [30/87] Dafny_290_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [31/87] Dafny_293_firstverified.dfy -> SUCCESS [SumOfSquaresOfFirstNOddNumbers.py, module_.py]
+  [32/87] Dafny_299_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [33/87] Dafny_311_firstverified.dfy -> SUCCESS [Min.py, module_.py]
+  [34/87] Dafny_314_firstverified.dfy -> SUCCESS [module_.py]
+  [35/87] Dafny_320_firstverified.dfy -> SUCCESS [FactorialModule.py, module_.py]
+  [36/87] Dafny_322_firstverified.dfy -> SUCCESS [module_.py]
+  [37/87] Dafny_323.dfy -> SUCCESS [MultiplyElements.py, module_.py]
+  [38/87] Dafny_326_firstverified.dfy -> SUCCESS [module_.py]
+  [39/87] Dafny_333.dfy -> SUCCESS [Lowercase.py, module_.py]
+  [40/87] Dafny_355.dfy -> SUCCESS [PrimeChecker.py, module_.py]
+  [41/87] Dafny_357.dfy -> SUCCESS [module_.py]
+  [42/87] Dafny_369_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [43/87] Dafny_372.dfy -> SUCCESS [module_.py]
+  [44/87] Dafny_387.dfy -> SUCCESS [CountListsModule.py, module_.py]
+  [45/87] Dafny_392.dfy -> SUCCESS [module_.py]
+  [46/87] Dafny_399_firstverified.dfy -> SUCCESS [PowerLogs.py, module_.py]
+  [47/87] Dafny_400.dfy -> SUCCESS [module_.py]
+  [48/87] Dafny_413.dfy -> SUCCESS [SelectionSort.py, module_.py]
+  [49/87] Dafny_426_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [50/87] Dafny_427_firstverified.dfy -> SUCCESS [Mult.py, module_.py]
+  [51/87] Dafny_437.dfy -> SUCCESS [module_.py]
+  [52/87] Dafny_450_firstverified.dfy -> SUCCESS [module_.py]
+  [53/87] Dafny_452.dfy -> SUCCESS [FactorialModule.py, module_.py]
+  [54/87] Dafny_458.dfy -> SUCCESS [FindMax.py, module_.py]
+  [55/87] Dafny_459.dfy -> TRUE_TRANSLATION_FAILURE
+  [56/87] Dafny_465.dfy -> TRUE_TRANSLATION_FAILURE
+  [57/87] Dafny_471.dfy -> SUCCESS [module_.py]
+  [58/87] Dafny_475.dfy -> SUCCESS [Factorial.py, module_.py]
+  [59/87] Dafny_481.dfy -> SUCCESS [module_.py]
+  [60/87] Dafny_484.dfy -> TRUE_TRANSLATION_FAILURE
+  [61/87] Dafny_488_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [62/87] Dafny_500.dfy -> SUCCESS [IterativeMath.py, module_.py]
+  [63/87] Dafny_501_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [64/87] Dafny_502.dfy -> TRUE_TRANSLATION_FAILURE
+  [65/87] Dafny_503_firstverified.dfy -> SUCCESS [module_.py]
+  [66/87] Dafny_505_firstverified.dfy -> SUCCESS [ComparisonProperties.py, module_.py]
+  [67/87] Dafny_510.dfy -> SUCCESS [Implementation.py, Mod2.py, module_.py]
+  [68/87] Dafny_512.dfy -> TRUE_TRANSLATION_FAILURE
+  [69/87] Dafny_518.dfy -> SUCCESS [module_.py]
+  [70/87] Dafny_531.dfy -> SUCCESS [module_.py]
+  [71/87] Dafny_536.dfy -> TRUE_TRANSLATION_FAILURE
+  [72/87] Dafny_537.dfy -> SUCCESS [f.py, module_.py]
+  [73/87] Dafny_539_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [74/87] Dafny_542_firstverified.dfy -> SUCCESS [module_.py]
+  [75/87] Dafny_546.dfy -> SUCCESS [module_.py]
+  [76/87] Dafny_554_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [77/87] Dafny_555_firstverified.dfy -> SUCCESS [SeqSumGuide.py, module_.py]
+  [78/87] Dafny_556.dfy -> SUCCESS [SquareEvaluation.py, module_.py]
+  [79/87] Dafny_573_firstverified.dfy -> SUCCESS [module_.py]
+  [80/87] Dafny_62_firstverified.dfy -> SUCCESS [Triple.py, module_.py]
+  [81/87] Dafny_64_firstverified.dfy -> SUCCESS [Triple.py, module_.py]
+  [82/87] Dafny_65.dfy -> SUCCESS [module_.py]
+  [83/87] Dafny_67.dfy -> SUCCESS [module_.py]
+  [84/87] Dafny_71.dfy -> SUCCESS [A8Q1.py, module_.py]
+  [85/87] Dafny_78.dfy -> SUCCESS [Gen.py, module_.py]
+  [86/87] Dafny_91_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [87/87] Dafny_96.dfy -> SUCCESS [TwoSum.py, module_.py]
+
+Model: gpt-5.3-codex
+Dafny files: 88
+  [1/88] Dafny_104.dfy -> TRUE_TRANSLATION_FAILURE
+  [2/88] Dafny_107.dfy -> SUCCESS [CheckSumCalculator.py, module_.py]
+  [3/88] Dafny_114.dfy -> SUCCESS [MaxModule.py, module_.py]
+  [4/88] Dafny_120_firstverified.dfy -> SUCCESS [module_.py]
+  [5/88] Dafny_122_firstverified.dfy -> SUCCESS [module_.py]
+  [6/88] Dafny_130_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [7/88] Dafny_143.dfy -> TRUE_TRANSLATION_FAILURE
+  [8/88] Dafny_155.dfy -> TRUE_TRANSLATION_FAILURE
+  [9/88] Dafny_156_firstverified.dfy -> SUCCESS [module_.py]
+  [10/88] Dafny_162_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [11/88] Dafny_169_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [12/88] Dafny_174_firstverified.dfy -> SUCCESS [module_.py]
+  [13/88] Dafny_176_firstverified.dfy -> SUCCESS [module_.py]
+  [14/88] Dafny_193_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [15/88] Dafny_194_firstverified.dfy -> SUCCESS [module_.py]
+  [16/88] Dafny_206.dfy -> TRUE_TRANSLATION_FAILURE
+  [17/88] Dafny_207_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [18/88] Dafny_225.dfy -> SUCCESS [SumReasoning.py, module_.py]
+  [19/88] Dafny_229_firstverified.dfy -> SUCCESS [module_.py]
+  [20/88] Dafny_232_firstverified.dfy -> SUCCESS [module_.py]
+  [21/88] Dafny_233_firstverified.dfy -> SUCCESS [Abs.py, module_.py]
+  [22/88] Dafny_254_firstverified.dfy -> SUCCESS [module_.py]
+  [23/88] Dafny_256.dfy -> SUCCESS [ContainsSequence.py, module_.py]
+  [24/88] Dafny_260.dfy -> SUCCESS [SphereVolume.py, module_.py]
+  [25/88] Dafny_263.dfy -> SUCCESS [module_.py]
+  [26/88] Dafny_264_firstverified.dfy -> SUCCESS [module_.py]
+  [27/88] Dafny_267_firstverified.dfy -> SUCCESS [module_.py]
+  [28/88] Dafny_279_firstverified.dfy -> SUCCESS [module_.py]
+  [29/88] Dafny_283.dfy -> SUCCESS [module_.py]
+  [30/88] Dafny_289_firstverified.dfy -> SUCCESS [module_.py]
+  [31/88] Dafny_290.dfy -> TRUE_TRANSLATION_FAILURE
+  [32/88] Dafny_293_firstverified.dfy -> SUCCESS [module_.py]
+  [33/88] Dafny_299_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [34/88] Dafny_303_firstverified.dfy -> SUCCESS [module_.py]
+  [35/88] Dafny_311.dfy -> SUCCESS [module_.py]
+  [36/88] Dafny_314.dfy -> SUCCESS [module_.py]
+  [37/88] Dafny_320_firstverified.dfy -> SUCCESS [module_.py]
+  [38/88] Dafny_321_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [39/88] Dafny_322.dfy -> TRUE_TRANSLATION_FAILURE
+  [40/88] Dafny_323_firstverified.dfy -> SUCCESS [module_.py]
+  [41/88] Dafny_333.dfy -> SUCCESS [Lowercase.py, module_.py]
+  [42/88] Dafny_355_firstverified.dfy -> SUCCESS [module_.py]
+  [43/88] Dafny_357_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [44/88] Dafny_365_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [45/88] Dafny_372.dfy -> SUCCESS [AllCharactersSame.py, module_.py]
+  [46/88] Dafny_380.dfy -> TRUE_TRANSLATION_FAILURE
+  [47/88] Dafny_387_firstverified.dfy -> SUCCESS [module_.py]
+  [48/88] Dafny_392_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [49/88] Dafny_399_firstverified.dfy -> SUCCESS [module_.py]
+  [50/88] Dafny_400_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [51/88] Dafny_413_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [52/88] Dafny_426_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [53/88] Dafny_427_firstverified.dfy -> SUCCESS [module_.py]
+  [54/88] Dafny_437_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [55/88] Dafny_450.dfy -> TRUE_TRANSLATION_FAILURE
+  [56/88] Dafny_452_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [57/88] Dafny_458_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [58/88] Dafny_459_firstverified.dfy -> SUCCESS [module_.py]
+  [59/88] Dafny_465_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [60/88] Dafny_471_firstverified.dfy -> SUCCESS [module_.py]
+  [61/88] Dafny_475.dfy -> SUCCESS [Fat.py, module_.py]
+  [62/88] Dafny_481_firstverified.dfy -> SUCCESS [module_.py]
+  [63/88] Dafny_484.dfy -> SUCCESS [SortingExample.py, module_.py]
+  [64/88] Dafny_488_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [65/88] Dafny_500.dfy -> SUCCESS [IterativeMathOps.py, module_.py]
+  [66/88] Dafny_501_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [67/88] Dafny_502_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [68/88] Dafny_503_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [69/88] Dafny_505_firstverified.dfy -> SUCCESS [module_.py]
+  [70/88] Dafny_510.dfy -> SUCCESS [Mod2.py, module_.py]
+  [71/88] Dafny_518_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [72/88] Dafny_536_firstverified.dfy -> SUCCESS [GeneratedStepsProgram.py, module_.py]
+  [73/88] Dafny_537_firstverified.dfy -> SUCCESS [F.py, module_.py]
+  [74/88] Dafny_539_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [75/88] Dafny_542_firstverified.dfy -> SUCCESS [module_.py]
+  [76/88] Dafny_546_firstverified.dfy -> SUCCESS [module_.py]
+  [77/88] Dafny_554.dfy -> SUCCESS [module_.py]
+  [78/88] Dafny_556.dfy -> SUCCESS [module_.py]
+  [79/88] Dafny_561_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [80/88] Dafny_62_firstverified.dfy -> SUCCESS [module_.py]
+  [81/88] Dafny_64_firstverified.dfy -> SUCCESS [module_.py]
+  [82/88] Dafny_65_firstverified.dfy -> SUCCESS [module_.py]
+  [83/88] Dafny_67_firstverified.dfy -> SUCCESS [module_.py]
+  [84/88] Dafny_71_firstverified.dfy -> SUCCESS [module_.py]
+  [85/88] Dafny_78_firstverified.dfy -> SUCCESS [module_.py]
+  [86/88] Dafny_91_firstverified.dfy -> TRUE_TRANSLATION_FAILURE
+  [87/88] Dafny_96_firstverified.dfy -> SUCCESS [module_.py]
+  [88/88] Dafny_99_firstverified.dfy -> SUCCESS [module_.py]
+
+==============================================================================
+PYTHON OUTPUT RECOVERY COMPLETE
+==============================================================================
+Total Dafny programs          : 247
+Programs with Python output   : 186
+Programs without implementation: 61
+
+STATUS COUNTS
+------------------------------------------------------------------------------
+SUCCESS                                          186
+TRUE_TRANSLATION_FAILURE                         61
+
+COUNTS BY MODEL
+------------------------------------------------------------------------------
+deepseek-chat
+  SUCCESS                                        69
+  TRUE_TRANSLATION_FAILURE                       3
+gpt-5.1-codex-max
+  SUCCESS                                        62
+  TRUE_TRANSLATION_FAILURE                       25
+gpt-5.3-codex
+  SUCCESS                                        55
+  TRUE_TRANSLATION_FAILURE                       33
+
+JSON manifest: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/manifests/dafny_to_python_recovered_manifest.json
+CSV manifest : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/manifests/dafny_to_python_recovered_manifest.csv

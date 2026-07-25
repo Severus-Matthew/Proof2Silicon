@@ -1,0 +1,23 @@
+COMMAND:
+/u/mjha1/.dotnet/tools/dafny translate py /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/dafny_outputs/deepseek-chat/Dafny_452_firstverified.dfy --output /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_452_firstverified --no-verify --allow-warnings --verbose
+
+RETURN CODE:
+0
+
+GENERATED MODULE:
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_452_firstverified-py/module_.py
+
+GENERATED FILES:
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_452_firstverified-py/Dafny_452_firstverified-py.dtr
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_452_firstverified-py/__main__.py
+/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_452_firstverified-py/module_.py
+
+STDOUT:
+
+Dafny program verifier did not attempt verification
+Wrote textual form of target program to Dafny_452_firstverified-py/__main__.py
+Additional output written to Dafny_452_firstverified-py/Dafny_452_firstverified-py.dtr
+Additional output written to Dafny_452_firstverified-py/module_.py
+
+
+STDERR:

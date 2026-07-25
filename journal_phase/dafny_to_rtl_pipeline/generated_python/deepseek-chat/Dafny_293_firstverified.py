@@ -1,0 +1,33 @@
+import sys
+from typing import Callable, Any, TypeVar, NamedTuple
+from math import floor
+from itertools import count
+
+import module_ as module_
+import _dafny as _dafny
+import System_ as System_
+
+# Module: module_
+
+class default__:
+    def  __init__(self):
+        pass
+
+    @staticmethod
+    def SumOfSquaresOfFirstNOddNumbersFormula(n):
+        return _dafny.euclidian_division(((n) * (((2) * (n)) - (1))) * (((2) * (n)) + (1)), 3)
+
+    @staticmethod
+    def SumOfSquaresOfFirstNOddNumbers(n):
+        sum_: int = int(0)
+        sum_ = 0
+        d_0_i_: int
+        d_0_i_ = 0
+        d_1_odd_: int
+        d_1_odd_ = 1
+        while (d_0_i_) < (n):
+            sum_ = (sum_) + ((d_1_odd_) * (d_1_odd_))
+            d_1_odd_ = (d_1_odd_) + (2)
+            d_0_i_ = (d_0_i_) + (1)
+        return sum_
+

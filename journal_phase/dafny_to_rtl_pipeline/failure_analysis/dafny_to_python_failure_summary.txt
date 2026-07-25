@@ -1,0 +1,25 @@
+DAFNY-TO-PYTHON FAILURE ANALYSIS
+========================================================================
+Manifest failures: 61
+Failures with module_.py present: 0
+
+FAILURE CATEGORIES
+------------------------------------------------------------------------
+generic_compilation_error                     61
+
+BY MODEL
+------------------------------------------------------------------------
+deepseek-chat
+  generic_compilation_error                   3
+gpt-5.1-codex-max
+  generic_compilation_error                   25
+gpt-5.3-codex
+  generic_compilation_error                   33
+
+MOST COMMON ERROR MESSAGES
+------------------------------------------------------------------------
+[61] NO_ERROR_TEXT_FOUND
+
+RECOVERABLE OUTPUTS
+------------------------------------------------------------------------
+None. All marked failures appear to lack module_.py.

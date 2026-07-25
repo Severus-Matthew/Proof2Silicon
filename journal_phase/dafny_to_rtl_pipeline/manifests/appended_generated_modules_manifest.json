@@ -1,0 +1,2397 @@
+{
+  "generated_root": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python",
+  "raw_root": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw",
+  "backup_root": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append",
+  "total_files_scanned": 247,
+  "modified": 75,
+  "module_marker_missing": 0,
+  "module_not_empty": 170,
+  "already_appended": 0,
+  "raw_directory_missing": 0,
+  "no_extra_python_files": 2,
+  "records": [
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_104_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_104_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_107",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_107.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_107-py",
+      "appended_files": [
+        "CheckSumCalculator.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/deepseek-chat/Dafny_107.py"
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_120",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_120.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_122_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_122_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_130_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_130_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_143_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_143_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_156_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_156_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_162_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_162_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_174_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_174_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_176_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_176_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_193_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_193_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_194_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_194_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_207_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_207_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_229_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_229_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_232_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_232_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_233_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_233_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_233_firstverified-py",
+      "appended_files": [
+        "AbsMax.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/deepseek-chat/Dafny_233_firstverified.py"
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_254_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_254_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_263_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_263_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_264_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_264_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_267_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_267_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_279_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_279_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_283_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_283_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_289_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_289_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_290_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_290_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_293_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_293_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_299",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_299.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_299-py",
+      "appended_files": [
+        "ElementWiseSubtraction.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/deepseek-chat/Dafny_299.py"
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_303_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_303_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_311_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_311_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_322_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_322_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_323",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_323.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_326_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_326_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_333_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_333_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_355_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_355_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_357_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_357_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_365_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_365_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_369_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_369_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_372_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_372_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_387_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_387_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_392_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_392_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_400_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_400_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_413_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_413_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_426_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_426_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_427",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_427.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_437_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_437_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_452_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_452_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_458_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_458_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_458_firstverified-py",
+      "appended_files": [
+        "FindMax.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/deepseek-chat/Dafny_458_firstverified.py"
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_465_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_465_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_475_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_475_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_475_firstverified-py",
+      "appended_files": [
+        "Fat.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/deepseek-chat/Dafny_475_firstverified.py"
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_481_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_481_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_488_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_488_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_502_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_502_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_505_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_505_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_510_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_510_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_510_firstverified-py",
+      "appended_files": [
+        "Implementation.py",
+        "Interface.py",
+        "Mod.py",
+        "Mod2.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/deepseek-chat/Dafny_510_firstverified.py"
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_512",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_512.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_518_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_518_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_531_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_531_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_536",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_536.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/deepseek-chat/Dafny_536-py",
+      "appended_files": [
+        "Client.py",
+        "ClientCached.py",
+        "M0.py",
+        "M1.py",
+        "M2.py",
+        "M3.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/deepseek-chat/Dafny_536.py"
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_539_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_539_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_542_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_542_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_546_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_546_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_554_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_554_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_556_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_556_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_561_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_561_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_573_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_573_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_62_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_62_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_64_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_64_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_65_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_65_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_67_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_67_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_71_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_71_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_78_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_78_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_96_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_96_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "deepseek-chat",
+      "task": "Dafny_99_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/deepseek-chat/Dafny_99_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_104_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_104_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_114",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_114.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_114-py",
+      "appended_files": [
+        "Max.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_114.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_120_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_120_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_120_firstverified-py",
+      "appended_files": [
+        "Arithmetic.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_120_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_122",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_122.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_143",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_143.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_143-py",
+      "appended_files": [
+        "AddSmallNumbers.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_143.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_155",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_155.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_156",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_156.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_162_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_162_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_176",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_176.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_193_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_193_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_193_firstverified-py",
+      "appended_files": [
+        "Test.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_193_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_194",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_194.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_194-py",
+      "appended_files": [
+        "FirstZeroFinder.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_194.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_200",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_200.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_206_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_206_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_206_firstverified-py",
+      "appended_files": [
+        "BarrierCheck.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_206_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_207",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_207.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_216",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_216.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_225",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_225.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_227_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_227_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_227_firstverified-py",
+      "appended_files": [
+        "Main.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_227_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_229",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_229.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_229-py",
+      "appended_files": [
+        "Maximum.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_229.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_232",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_232.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_232-py",
+      "appended_files": [
+        "GCDProgram.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_232.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_233",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_233.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_238",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_238.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_254_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_254_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_254_firstverified-py",
+      "appended_files": [
+        "OctagonalNumber.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_254_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_256",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_256.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_260_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_260_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_264",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_264.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_267",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_267.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_279",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_279.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_283",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_283.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_289_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_289_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_290_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_290_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_293_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_293_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_293_firstverified-py",
+      "appended_files": [
+        "SumOfSquaresOfFirstNOddNumbers.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_293_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_299_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_299_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_299_firstverified-py",
+      "appended_files": [
+        "ElementWiseSubtraction.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_299_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_311_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_311_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_311_firstverified-py",
+      "appended_files": [
+        "Min.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_311_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_314_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_314_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_320_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_320_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_320_firstverified-py",
+      "appended_files": [
+        "FactorialModule.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_320_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_322_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_322_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_323",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_323.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_323-py",
+      "appended_files": [
+        "MultiplyElements.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_323.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_326_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_326_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_333",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_333.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_333-py",
+      "appended_files": [
+        "Lowercase.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_333.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_355",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_355.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_355-py",
+      "appended_files": [
+        "PrimeChecker.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_355.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_357",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_357.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_369_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_369_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_369_firstverified-py",
+      "appended_files": [
+        "AddLists.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_369_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_372",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_372.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_387",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_387.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_387-py",
+      "appended_files": [
+        "CountListsModule.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_387.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_392",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_392.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_399_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_399_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_399_firstverified-py",
+      "appended_files": [
+        "PowerLogs.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_399_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_400",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_400.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_413",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_413.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_413-py",
+      "appended_files": [
+        "SelectionSort.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_413.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_426_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_426_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_426_firstverified-py",
+      "appended_files": [
+        "Sorter.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_426_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_427_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_427_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_427_firstverified-py",
+      "appended_files": [
+        "Mult.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_427_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_437",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_437.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_450_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_450_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_452",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_452.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_452-py",
+      "appended_files": [
+        "FactorialModule.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_452.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_458",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_458.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_458-py",
+      "appended_files": [
+        "FindMax.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_458.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_459",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_459.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_465",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_465.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_471",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_471.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_475",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_475.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_475-py",
+      "appended_files": [
+        "Factorial.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_475.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_481",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_481.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_484",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_484.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_484-py",
+      "appended_files": [
+        "InsertionSort.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_484.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_488_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_488_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_488_firstverified-py",
+      "appended_files": [
+        "F.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_488_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_500",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_500.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_500-py",
+      "appended_files": [
+        "IterativeMath.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_500.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_501_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_501_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_502",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_502.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_503_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_503_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_505_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_505_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_505_firstverified-py",
+      "appended_files": [
+        "ComparisonProperties.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_505_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_510",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_510.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_512",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_512.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_512-py",
+      "appended_files": [
+        "Foo.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_512.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_518",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_518.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_531",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_531.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_536",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_536.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_536-py",
+      "appended_files": [
+        "M0.py",
+        "M1.py",
+        "M2.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_536.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_537",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_537.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_537-py",
+      "appended_files": [
+        "f.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_537.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_539_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_539_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_542_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_542_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_546",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_546.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_554_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_554_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_554_firstverified-py",
+      "appended_files": [
+        "RollingMax.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_554_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_555_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_555_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_555_firstverified-py",
+      "appended_files": [
+        "SeqSumGuide.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_555_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_556",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_556.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_556-py",
+      "appended_files": [
+        "SquareEvaluation.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_556.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_573_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_573_firstverified.py",
+      "status": "no_extra_python_files",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_573_firstverified-py",
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_62_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_62_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_62_firstverified-py",
+      "appended_files": [
+        "Triple.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_62_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_64_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_64_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_64_firstverified-py",
+      "appended_files": [
+        "Triple.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_64_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_65",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_65.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_67",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_67.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_71",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_71.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_71-py",
+      "appended_files": [
+        "A8Q1.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_71.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_78",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_78.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_78-py",
+      "appended_files": [
+        "Gen.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_78.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_91_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_91_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_91_firstverified-py",
+      "appended_files": [
+        "BinarySearch.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_91_firstverified.py"
+    },
+    {
+      "model": "gpt-5.1-codex-max",
+      "task": "Dafny_96",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.1-codex-max/Dafny_96.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.1-codex-max/Dafny_96-py",
+      "appended_files": [
+        "TwoSum.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.1-codex-max/Dafny_96.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_104",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_104.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_107",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_107.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_107-py",
+      "appended_files": [
+        "CheckSumCalculator.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_107.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_114",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_114.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_114-py",
+      "appended_files": [
+        "MaxModule.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_114.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_120_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_120_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_122_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_122_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_130_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_130_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_130_firstverified-py",
+      "appended_files": [
+        "SelectionSortVerified.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_130_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_143",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_143.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_155",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_155.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_156_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_156_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_162_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_162_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_169_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_169_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_169_firstverified-py",
+      "appended_files": [
+        "BinarySearchModule.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_169_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_174_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_174_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_176_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_176_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_193_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_193_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_194_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_194_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_206",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_206.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_206-py",
+      "appended_files": [
+        "Barrier.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_206.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_207_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_207_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_225",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_225.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_225-py",
+      "appended_files": [
+        "SumReasoning.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_225.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_229_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_229_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_232_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_232_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_233_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_233_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_233_firstverified-py",
+      "appended_files": [
+        "Abs.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_233_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_254_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_254_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_256",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_256.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_256-py",
+      "appended_files": [
+        "ContainsSequence.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_256.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_260",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_260.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_260-py",
+      "appended_files": [
+        "SphereVolume.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_260.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_263",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_263.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_264_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_264_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_267_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_267_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_279_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_279_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_283",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_283.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_289_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_289_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_290",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_290.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_293_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_293_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_299_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_299_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_299_firstverified-py",
+      "appended_files": [
+        "ElementWiseSubtraction.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_299_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_303_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_303_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_311",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_311.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_314",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_314.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_320_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_320_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_321_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_321_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_321_firstverified-py",
+      "appended_files": [
+        "FindNegativeNumbers.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_321_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_322",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_322.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_323_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_323_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_333",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_333.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_333-py",
+      "appended_files": [
+        "Lowercase.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_333.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_355_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_355_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_357_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_357_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_365_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_365_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_372",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_372.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_372-py",
+      "appended_files": [
+        "AllCharactersSame.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_372.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_380",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_380.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_380-py",
+      "appended_files": [
+        "RevisedInstructionDemo.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_380.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_387_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_387_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_392_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_392_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_399_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_399_firstverified.py",
+      "status": "no_extra_python_files",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_399_firstverified-py",
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_400_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_400_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_413_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_413_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_413_firstverified-py",
+      "appended_files": [
+        "SelectionSortModule.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_413_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_426_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_426_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_427_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_427_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_437_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_437_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_450",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_450.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_452_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_452_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_458_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_458_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_458_firstverified-py",
+      "appended_files": [
+        "FindMax.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_458_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_459_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_459_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_465_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_465_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_471_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_471_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_475",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_475.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_475-py",
+      "appended_files": [
+        "Fat.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_475.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_481_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_481_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_484",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_484.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_484-py",
+      "appended_files": [
+        "SortingExample.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_484.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_488_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_488_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_500",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_500.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_500-py",
+      "appended_files": [
+        "IterativeMathOps.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_500.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_501_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_501_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_501_firstverified-py",
+      "appended_files": [
+        "SortingDemo.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_501_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_502_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_502_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_503_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_503_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_503_firstverified-py",
+      "appended_files": [
+        "Partitioning.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_503_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_505_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_505_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_510",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_510.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_510-py",
+      "appended_files": [
+        "Mod2.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_510.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_518_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_518_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_518_firstverified-py",
+      "appended_files": [
+        "GeneratedStepsProgram.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_518_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_536_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_536_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_536_firstverified-py",
+      "appended_files": [
+        "GeneratedStepsProgram.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_536_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_537_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_537_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_537_firstverified-py",
+      "appended_files": [
+        "F.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_537_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_539_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_539_firstverified.py",
+      "status": "modified",
+      "raw_task_directory": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_raw/gpt-5.3-codex/Dafny_539_firstverified-py",
+      "appended_files": [
+        "StepwiseTemplate.py"
+      ],
+      "backup_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append/gpt-5.3-codex/Dafny_539_firstverified.py"
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_542_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_542_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_546_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_546_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_554",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_554.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_556",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_556.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_561_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_561_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_62_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_62_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_64_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_64_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_65_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_65_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_67_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_67_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_71_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_71_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_78_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_78_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_91_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_91_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_96_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_96_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    },
+    {
+      "model": "gpt-5.3-codex",
+      "task": "Dafny_99_firstverified",
+      "generated_file": "/u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python/gpt-5.3-codex/Dafny_99_firstverified.py",
+      "status": "module_not_empty",
+      "raw_task_directory": null,
+      "appended_files": [],
+      "backup_file": null
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+
+Model: deepseek-chat
+Generated files: 72
+  Dafny_104_firstverified.py -> module already has content
+  Dafny_107.py -> appended: CheckSumCalculator.py
+  Dafny_120.py -> module already has content
+  Dafny_122_firstverified.py -> module already has content
+  Dafny_130_firstverified.py -> module already has content
+  Dafny_143_firstverified.py -> module already has content
+  Dafny_156_firstverified.py -> module already has content
+  Dafny_162_firstverified.py -> module already has content
+  Dafny_174_firstverified.py -> module already has content
+  Dafny_176_firstverified.py -> module already has content
+  Dafny_193_firstverified.py -> module already has content
+  Dafny_194_firstverified.py -> module already has content
+  Dafny_207_firstverified.py -> module already has content
+  Dafny_229_firstverified.py -> module already has content
+  Dafny_232_firstverified.py -> module already has content
+  Dafny_233_firstverified.py -> appended: AbsMax.py
+  Dafny_254_firstverified.py -> module already has content
+  Dafny_263_firstverified.py -> module already has content
+  Dafny_264_firstverified.py -> module already has content
+  Dafny_267_firstverified.py -> module already has content
+  Dafny_279_firstverified.py -> module already has content
+  Dafny_283_firstverified.py -> module already has content
+  Dafny_289_firstverified.py -> module already has content
+  Dafny_290_firstverified.py -> module already has content
+  Dafny_293_firstverified.py -> module already has content
+  Dafny_299.py -> appended: ElementWiseSubtraction.py
+  Dafny_303_firstverified.py -> module already has content
+  Dafny_311_firstverified.py -> module already has content
+  Dafny_322_firstverified.py -> module already has content
+  Dafny_323.py -> module already has content
+  Dafny_326_firstverified.py -> module already has content
+  Dafny_333_firstverified.py -> module already has content
+  Dafny_355_firstverified.py -> module already has content
+  Dafny_357_firstverified.py -> module already has content
+  Dafny_365_firstverified.py -> module already has content
+  Dafny_369_firstverified.py -> module already has content
+  Dafny_372_firstverified.py -> module already has content
+  Dafny_387_firstverified.py -> module already has content
+  Dafny_392_firstverified.py -> module already has content
+  Dafny_400_firstverified.py -> module already has content
+  Dafny_413_firstverified.py -> module already has content
+  Dafny_426_firstverified.py -> module already has content
+  Dafny_427.py -> module already has content
+  Dafny_437_firstverified.py -> module already has content
+  Dafny_452_firstverified.py -> module already has content
+  Dafny_458_firstverified.py -> appended: FindMax.py
+  Dafny_465_firstverified.py -> module already has content
+  Dafny_475_firstverified.py -> appended: Fat.py
+  Dafny_481_firstverified.py -> module already has content
+  Dafny_488_firstverified.py -> module already has content
+  Dafny_502_firstverified.py -> module already has content
+  Dafny_505_firstverified.py -> module already has content
+  Dafny_510_firstverified.py -> appended: Implementation.py, Interface.py, Mod.py, Mod2.py
+  Dafny_512.py -> module already has content
+  Dafny_518_firstverified.py -> module already has content
+  Dafny_531_firstverified.py -> module already has content
+  Dafny_536.py -> appended: Client.py, ClientCached.py, M0.py, M1.py, M2.py, M3.py
+  Dafny_539_firstverified.py -> module already has content
+  Dafny_542_firstverified.py -> module already has content
+  Dafny_546_firstverified.py -> module already has content
+  Dafny_554_firstverified.py -> module already has content
+  Dafny_556_firstverified.py -> module already has content
+  Dafny_561_firstverified.py -> module already has content
+  Dafny_573_firstverified.py -> module already has content
+  Dafny_62_firstverified.py -> module already has content
+  Dafny_64_firstverified.py -> module already has content
+  Dafny_65_firstverified.py -> module already has content
+  Dafny_67_firstverified.py -> module already has content
+  Dafny_71_firstverified.py -> module already has content
+  Dafny_78_firstverified.py -> module already has content
+  Dafny_96_firstverified.py -> module already has content
+  Dafny_99_firstverified.py -> module already has content
+
+Model: gpt-5.1-codex-max
+Generated files: 87
+  Dafny_104_firstverified.py -> module already has content
+  Dafny_114.py -> appended: Max.py
+  Dafny_120_firstverified.py -> appended: Arithmetic.py
+  Dafny_122.py -> module already has content
+  Dafny_143.py -> appended: AddSmallNumbers.py
+  Dafny_155.py -> module already has content
+  Dafny_156.py -> module already has content
+  Dafny_162_firstverified.py -> module already has content
+  Dafny_176.py -> module already has content
+  Dafny_193_firstverified.py -> appended: Test.py
+  Dafny_194.py -> appended: FirstZeroFinder.py
+  Dafny_200.py -> module already has content
+  Dafny_206_firstverified.py -> appended: BarrierCheck.py
+  Dafny_207.py -> module already has content
+  Dafny_216.py -> module already has content
+  Dafny_225.py -> module already has content
+  Dafny_227_firstverified.py -> appended: Main.py
+  Dafny_229.py -> appended: Maximum.py
+  Dafny_232.py -> appended: GCDProgram.py
+  Dafny_233.py -> module already has content
+  Dafny_238.py -> module already has content
+  Dafny_254_firstverified.py -> appended: OctagonalNumber.py
+  Dafny_256.py -> module already has content
+  Dafny_260_firstverified.py -> module already has content
+  Dafny_264.py -> module already has content
+  Dafny_267.py -> module already has content
+  Dafny_279.py -> module already has content
+  Dafny_283.py -> module already has content
+  Dafny_289_firstverified.py -> module already has content
+  Dafny_290_firstverified.py -> module already has content
+  Dafny_293_firstverified.py -> appended: SumOfSquaresOfFirstNOddNumbers.py
+  Dafny_299_firstverified.py -> appended: ElementWiseSubtraction.py
+  Dafny_311_firstverified.py -> appended: Min.py
+  Dafny_314_firstverified.py -> module already has content
+  Dafny_320_firstverified.py -> appended: FactorialModule.py
+  Dafny_322_firstverified.py -> module already has content
+  Dafny_323.py -> appended: MultiplyElements.py
+  Dafny_326_firstverified.py -> module already has content
+  Dafny_333.py -> appended: Lowercase.py
+  Dafny_355.py -> appended: PrimeChecker.py
+  Dafny_357.py -> module already has content
+  Dafny_369_firstverified.py -> appended: AddLists.py
+  Dafny_372.py -> module already has content
+  Dafny_387.py -> appended: CountListsModule.py
+  Dafny_392.py -> module already has content
+  Dafny_399_firstverified.py -> appended: PowerLogs.py
+  Dafny_400.py -> module already has content
+  Dafny_413.py -> appended: SelectionSort.py
+  Dafny_426_firstverified.py -> appended: Sorter.py
+  Dafny_427_firstverified.py -> appended: Mult.py
+  Dafny_437.py -> module already has content
+  Dafny_450_firstverified.py -> module already has content
+  Dafny_452.py -> appended: FactorialModule.py
+  Dafny_458.py -> appended: FindMax.py
+  Dafny_459.py -> module already has content
+  Dafny_465.py -> module already has content
+  Dafny_471.py -> module already has content
+  Dafny_475.py -> appended: Factorial.py
+  Dafny_481.py -> module already has content
+  Dafny_484.py -> appended: InsertionSort.py
+  Dafny_488_firstverified.py -> appended: F.py
+  Dafny_500.py -> appended: IterativeMath.py
+  Dafny_501_firstverified.py -> module already has content
+  Dafny_502.py -> module already has content
+  Dafny_503_firstverified.py -> module already has content
+  Dafny_505_firstverified.py -> appended: ComparisonProperties.py
+  Dafny_510.py -> module already has content
+  Dafny_512.py -> appended: Foo.py
+  Dafny_518.py -> module already has content
+  Dafny_531.py -> module already has content
+  Dafny_536.py -> appended: M0.py, M1.py, M2.py
+  Dafny_537.py -> appended: f.py
+  Dafny_539_firstverified.py -> module already has content
+  Dafny_542_firstverified.py -> module already has content
+  Dafny_546.py -> module already has content
+  Dafny_554_firstverified.py -> appended: RollingMax.py
+  Dafny_555_firstverified.py -> appended: SeqSumGuide.py
+  Dafny_556.py -> appended: SquareEvaluation.py
+  Dafny_573_firstverified.py -> no extra Python files
+  Dafny_62_firstverified.py -> appended: Triple.py
+  Dafny_64_firstverified.py -> appended: Triple.py
+  Dafny_65.py -> module already has content
+  Dafny_67.py -> module already has content
+  Dafny_71.py -> appended: A8Q1.py
+  Dafny_78.py -> appended: Gen.py
+  Dafny_91_firstverified.py -> appended: BinarySearch.py
+  Dafny_96.py -> appended: TwoSum.py
+
+Model: gpt-5.3-codex
+Generated files: 88
+  Dafny_104.py -> module already has content
+  Dafny_107.py -> appended: CheckSumCalculator.py
+  Dafny_114.py -> appended: MaxModule.py
+  Dafny_120_firstverified.py -> module already has content
+  Dafny_122_firstverified.py -> module already has content
+  Dafny_130_firstverified.py -> appended: SelectionSortVerified.py
+  Dafny_143.py -> module already has content
+  Dafny_155.py -> module already has content
+  Dafny_156_firstverified.py -> module already has content
+  Dafny_162_firstverified.py -> module already has content
+  Dafny_169_firstverified.py -> appended: BinarySearchModule.py
+  Dafny_174_firstverified.py -> module already has content
+  Dafny_176_firstverified.py -> module already has content
+  Dafny_193_firstverified.py -> module already has content
+  Dafny_194_firstverified.py -> module already has content
+  Dafny_206.py -> appended: Barrier.py
+  Dafny_207_firstverified.py -> module already has content
+  Dafny_225.py -> appended: SumReasoning.py
+  Dafny_229_firstverified.py -> module already has content
+  Dafny_232_firstverified.py -> module already has content
+  Dafny_233_firstverified.py -> appended: Abs.py
+  Dafny_254_firstverified.py -> module already has content
+  Dafny_256.py -> appended: ContainsSequence.py
+  Dafny_260.py -> appended: SphereVolume.py
+  Dafny_263.py -> module already has content
+  Dafny_264_firstverified.py -> module already has content
+  Dafny_267_firstverified.py -> module already has content
+  Dafny_279_firstverified.py -> module already has content
+  Dafny_283.py -> module already has content
+  Dafny_289_firstverified.py -> module already has content
+  Dafny_290.py -> module already has content
+  Dafny_293_firstverified.py -> module already has content
+  Dafny_299_firstverified.py -> appended: ElementWiseSubtraction.py
+  Dafny_303_firstverified.py -> module already has content
+  Dafny_311.py -> module already has content
+  Dafny_314.py -> module already has content
+  Dafny_320_firstverified.py -> module already has content
+  Dafny_321_firstverified.py -> appended: FindNegativeNumbers.py
+  Dafny_322.py -> module already has content
+  Dafny_323_firstverified.py -> module already has content
+  Dafny_333.py -> appended: Lowercase.py
+  Dafny_355_firstverified.py -> module already has content
+  Dafny_357_firstverified.py -> module already has content
+  Dafny_365_firstverified.py -> module already has content
+  Dafny_372.py -> appended: AllCharactersSame.py
+  Dafny_380.py -> appended: RevisedInstructionDemo.py
+  Dafny_387_firstverified.py -> module already has content
+  Dafny_392_firstverified.py -> module already has content
+  Dafny_399_firstverified.py -> no extra Python files
+  Dafny_400_firstverified.py -> module already has content
+  Dafny_413_firstverified.py -> appended: SelectionSortModule.py
+  Dafny_426_firstverified.py -> module already has content
+  Dafny_427_firstverified.py -> module already has content
+  Dafny_437_firstverified.py -> module already has content
+  Dafny_450.py -> module already has content
+  Dafny_452_firstverified.py -> module already has content
+  Dafny_458_firstverified.py -> appended: FindMax.py
+  Dafny_459_firstverified.py -> module already has content
+  Dafny_465_firstverified.py -> module already has content
+  Dafny_471_firstverified.py -> module already has content
+  Dafny_475.py -> appended: Fat.py
+  Dafny_481_firstverified.py -> module already has content
+  Dafny_484.py -> appended: SortingExample.py
+  Dafny_488_firstverified.py -> module already has content
+  Dafny_500.py -> appended: IterativeMathOps.py
+  Dafny_501_firstverified.py -> appended: SortingDemo.py
+  Dafny_502_firstverified.py -> module already has content
+  Dafny_503_firstverified.py -> appended: Partitioning.py
+  Dafny_505_firstverified.py -> module already has content
+  Dafny_510.py -> appended: Mod2.py
+  Dafny_518_firstverified.py -> appended: GeneratedStepsProgram.py
+  Dafny_536_firstverified.py -> appended: GeneratedStepsProgram.py
+  Dafny_537_firstverified.py -> appended: F.py
+  Dafny_539_firstverified.py -> appended: StepwiseTemplate.py
+  Dafny_542_firstverified.py -> module already has content
+  Dafny_546_firstverified.py -> module already has content
+  Dafny_554.py -> module already has content
+  Dafny_556.py -> module already has content
+  Dafny_561_firstverified.py -> module already has content
+  Dafny_62_firstverified.py -> module already has content
+  Dafny_64_firstverified.py -> module already has content
+  Dafny_65_firstverified.py -> module already has content
+  Dafny_67_firstverified.py -> module already has content
+  Dafny_71_firstverified.py -> module already has content
+  Dafny_78_firstverified.py -> module already has content
+  Dafny_91_firstverified.py -> module already has content
+  Dafny_96_firstverified.py -> module already has content
+  Dafny_99_firstverified.py -> module already has content
+
+========================================================================
+APPEND PROCESS COMPLETE
+========================================================================
+Total files scanned      : 247
+Files modified           : 75
+Module already nonempty  : 170
+Already appended         : 0
+Module marker missing    : 0
+Raw directory missing    : 0
+No extra Python files    : 2
+Backup directory         : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/generated_python_before_append
+Manifest                 : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl_pipeline/manifests/appended_generated_modules_manifest.json

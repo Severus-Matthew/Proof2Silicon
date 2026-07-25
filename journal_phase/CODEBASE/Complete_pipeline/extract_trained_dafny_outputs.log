@@ -1,0 +1,314 @@
+Input directory : /u/mjha1/Proof2Silicon/journal_phase/trained_outputs copy
+Output directory: /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs
+JSON files found: 902
+
+[WRITTEN] model=deepseek-chat problem=Dafny(104) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_104_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(104) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_104_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(104) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_104.dfy
+[NO SUCCESS] result_Dafny(106)_llm-deepseek-chat_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(106)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(106)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(107) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_107.dfy
+[NO SUCCESS] result_Dafny(107)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(107) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_107.dfy
+[NO SUCCESS] result_Dafny(114)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(114) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_114.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(114) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_114.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(120) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_120.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(120) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_120_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(120) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_120_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(122) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_122_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(122) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_122.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(122) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_122_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(130) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_130_firstverified.dfy
+[NO SUCCESS] result_Dafny(130)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(130) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_130_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(143) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_143_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(143) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_143.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(143) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_143.dfy
+[NO SUCCESS] result_Dafny(155)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(155) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_155.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(155) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_155.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(156) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_156_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(156) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_156.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(156) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_156_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(162) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_162_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(162) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_162_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(162) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_162_firstverified.dfy
+[NO SUCCESS] result_Dafny(169)_llm-deepseek-chat_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(169)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(169) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_169_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(174) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_174_firstverified.dfy
+[NO SUCCESS] result_Dafny(174)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(174) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_174_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(176) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_176_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(176) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_176.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(176) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_176_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(193) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_193_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(193) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_193_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(193) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_193_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(194) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_194_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(194) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_194.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(194) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_194_firstverified.dfy
+[NO SUCCESS] result_Dafny(200)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(200) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_200.dfy
+[NO SUCCESS] result_Dafny(200)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(206)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(206) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_206_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(206) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_206.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(207) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_207_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(207) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_207.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(207) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_207_firstverified.dfy
+[NO SUCCESS] result_Dafny(216)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(216) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_216.dfy
+[NO SUCCESS] result_Dafny(216)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(225)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(225) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_225.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(225) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_225.dfy
+[NO SUCCESS] result_Dafny(227)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(227) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_227_firstverified.dfy
+[NO SUCCESS] result_Dafny(227)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(229) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_229_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(229) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_229.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(229) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_229_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(232) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_232_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(232) attempt=7 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_232.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(232) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_232_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(233) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_233_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(233) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_233.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(233) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_233_firstverified.dfy
+[NO SUCCESS] result_Dafny(238)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(238) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_238.dfy
+[NO SUCCESS] result_Dafny(238)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(254) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_254_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(254) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_254_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(254) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_254_firstverified.dfy
+[NO SUCCESS] result_Dafny(256)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(256) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_256.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(256) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_256.dfy
+[NO SUCCESS] result_Dafny(260)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(260) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_260_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(260) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_260.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(263) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_263_firstverified.dfy
+[NO SUCCESS] result_Dafny(263)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(263) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_263.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(264) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_264_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(264) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_264.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(264) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_264_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(267) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_267_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(267) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_267.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(267) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_267_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(279) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_279_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(279) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_279.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(279) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_279_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(283) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_283_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(283) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_283.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(283) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_283.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(289) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_289_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(289) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_289_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(289) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_289_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(290) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_290_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(290) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_290_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(290) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_290.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(293) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_293_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(293) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_293_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(293) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_293_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(299) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_299.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(299) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_299_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(299) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_299_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(303) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_303_firstverified.dfy
+[NO SUCCESS] result_Dafny(303)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(303) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_303_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(311) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_311_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(311) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_311_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(311) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_311.dfy
+[NO SUCCESS] result_Dafny(314)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(314) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_314_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(314) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_314.dfy
+[NO SUCCESS] result_Dafny(320)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(320) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_320_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(320) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_320_firstverified.dfy
+[NO SUCCESS] result_Dafny(321)_llm-deepseek-chat_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(321)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(321) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_321_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(322) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_322_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(322) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_322_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(322) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_322.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(323) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_323.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(323) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_323.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(323) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_323_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(326) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_326_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(326) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_326_firstverified.dfy
+[NO SUCCESS] result_Dafny(326)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(333) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_333_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(333) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_333.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(333) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_333.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(355) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_355_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(355) attempt=6 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_355.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(355) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_355_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(357) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_357_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(357) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_357.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(357) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_357_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(365) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_365_firstverified.dfy
+[NO SUCCESS] result_Dafny(365)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(365) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_365_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(369) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_369_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(369) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_369_firstverified.dfy
+[NO SUCCESS] result_Dafny(369)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(372) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_372_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(372) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_372.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(372) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_372.dfy
+[NO SUCCESS] result_Dafny(380)_llm-deepseek-chat_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(380)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(380) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_380.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(387) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_387_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(387) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_387.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(387) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_387_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(392) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_392_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(392) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_392.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(392) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_392_firstverified.dfy
+[NO SUCCESS] result_Dafny(399)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(399) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_399_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(399) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_399_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(400) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_400_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(400) attempt=6 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_400.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(400) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_400_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(413) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_413_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(413) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_413.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(413) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_413_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(426) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_426_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(426) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_426_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(426) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_426_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(427) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_427.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(427) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_427_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(427) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_427_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(437) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_437_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(437) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_437.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(437) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_437_firstverified.dfy
+[NO SUCCESS] result_Dafny(450)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(450) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_450_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(450) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_450.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(452) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_452_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(452) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_452.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(452) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_452_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(458) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_458_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(458) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_458.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(458) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_458_firstverified.dfy
+[NO SUCCESS] result_Dafny(459)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(459) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_459.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(459) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_459_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(465) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_465_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(465) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_465.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(465) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_465_firstverified.dfy
+[NO SUCCESS] result_Dafny(471)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(471) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_471.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(471) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_471_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(475) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_475_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(475) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_475.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(475) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_475.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(481) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_481_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(481) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_481.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(481) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_481_firstverified.dfy
+[NO SUCCESS] result_Dafny(484)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(484) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_484.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(484) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_484.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(488) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_488_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(488) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_488_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(488) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_488_firstverified.dfy
+[NO SUCCESS] result_Dafny(500)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(500) attempt=5 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_500.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(500) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_500.dfy
+[NO SUCCESS] result_Dafny(501)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(501) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_501_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(501) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_501_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(502) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_502_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(502) attempt=7 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_502.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(502) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_502_firstverified.dfy
+[NO SUCCESS] result_Dafny(503)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(503) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_503_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(503) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_503_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(505) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_505_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(505) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_505_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(505) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_505_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(510) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_510_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(510) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_510.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(510) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_510.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(512) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_512.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(512) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_512.dfy
+[NO SUCCESS] result_Dafny(512)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(514)_llm-deepseek-chat_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(514)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[NO SUCCESS] result_Dafny(514)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(518) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_518_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(518) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_518.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(518) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_518_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(531) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_531_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(531) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_531.dfy
+[NO SUCCESS] result_Dafny(531)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(536) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_536.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(536) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_536.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(536) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_536_firstverified.dfy
+[NO SUCCESS] result_Dafny(537)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(537) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_537.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(537) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_537_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(539) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_539_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(539) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_539_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(539) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_539_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(542) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_542_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(542) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_542_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(542) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_542_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(546) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_546_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(546) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_546.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(546) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_546_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(554) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_554_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(554) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_554_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(554) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_554.dfy
+[NO SUCCESS] result_Dafny(555)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(555) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_555_firstverified.dfy
+[NO SUCCESS] result_Dafny(555)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(556) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_556_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(556) attempt=7 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_556.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(556) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_556.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(561) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_561_firstverified.dfy
+[NO SUCCESS] result_Dafny(561)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(561) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_561_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(573) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_573_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(573) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_573_firstverified.dfy
+[NO SUCCESS] result_Dafny(573)_llm-gpt-5.3-codex_pass@1_with_feedback.json
+[WRITTEN] model=deepseek-chat problem=Dafny(62) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_62_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(62) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_62_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(62) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_62_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(64) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_64_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(64) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_64_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(64) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_64_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(65) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_65_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(65) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_65.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(65) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_65_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(67) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_67_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(67) attempt=2 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_67.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(67) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_67_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(71) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_71_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(71) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_71.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(71) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_71_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(78) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_78_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(78) attempt=4 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_78.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(78) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_78_firstverified.dfy
+[NO SUCCESS] result_Dafny(91)_llm-deepseek-chat_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(91) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_91_firstverified.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(91) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_91_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(96) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_96_firstverified.dfy
+[WRITTEN] model=gpt-5.1-codex-max problem=Dafny(96) attempt=3 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.1-codex-max/Dafny_96.dfy
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(96) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_96_firstverified.dfy
+[WRITTEN] model=deepseek-chat problem=Dafny(99) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/deepseek-chat/Dafny_99_firstverified.dfy
+[NO SUCCESS] result_Dafny(99)_llm-gpt-5.1-codex-max_pass@1_with_feedback.json
+[WRITTEN] model=gpt-5.3-codex problem=Dafny(99) attempt=1 -> /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/gpt-5.3-codex/Dafny_99_firstverified.dfy
+
+========================================================================
+EXTRACTION COMPLETE
+========================================================================
+Processed matching JSON files : 300
+Successful Dafny files written: 247
+First-verified files written  : 162
+Results with no success       : 53
+Skipped or unreadable files   : 602
+Manifest                      : /u/mjha1/Proof2Silicon/journal_phase/dafny_to_rtl/dafny_outputs/extraction_manifest.json
