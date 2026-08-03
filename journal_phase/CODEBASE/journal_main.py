@@ -11,7 +11,7 @@ import torch
 import wandb
 
 from main import ROOT_DIRECTORY, collect_trainable_subfolders
-from preface_rl.slm import train_slm_with_grpo
+from preface_rl.resumable_training import infer_resume_position, train_slm_resumable
 from preface_rl.slm_qwen3 import initialize_slm, trainable_parameter_snapshot
 
 
@@ -44,6 +44,12 @@ def main():
     )
     run_dir.mkdir(parents=True, exist_ok=True)
 
+    effective_start_epoch, resume_metadata = infer_resume_position(
+        args.checkpoint,
+        args.start_epoch,
+    )
+    is_resume = os.path.exists(args.checkpoint)
+
     config = {
         "experiment": experiment,
         "slm_model": os.environ.get("SLM_MODEL_NAME", "Qwen/Qwen3-1.7B"),
@@ -58,11 +64,16 @@ def main():
         "judge_reasoning": os.environ.get("DAFNY_JUDGE_REASONING", "high"),
         "mixed_seed": int(os.environ.get("DAFNY_MIXED_SEED", "20260802")),
         "num_epochs": args.num_epochs,
-        "start_epoch": args.start_epoch,
+        "requested_start_epoch": args.start_epoch,
+        "effective_start_epoch": effective_start_epoch,
         "checkpoint": args.checkpoint,
         "dataset_root": ROOT_DIRECTORY,
         "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
+        "slurm_array_job_id": os.environ.get("SLURM_ARRAY_JOB_ID"),
         "slurm_array_task_id": os.environ.get("SLURM_ARRAY_TASK_ID"),
+        "study_id": os.environ.get("PROOF2SILICON_STUDY_ID"),
+        "is_resume": is_resume,
+        "resume_metadata": resume_metadata,
     }
 
     run = wandb.init(
@@ -70,7 +81,7 @@ def main():
         entity=args.wandb_entity,
         name=run_name,
         id=run_id,
-        resume="allow" if run_id else None,
+        resume="must" if is_resume and run_id else ("allow" if run_id else None),
         dir=os.environ.get("WANDB_DIR", str(run_dir / "wandb")),
         config=config,
         settings=wandb.Settings(init_timeout=800),
@@ -80,6 +91,29 @@ def main():
     )
 
     try:
+        wandb.log(
+            {
+                "resume/is_resume": int(is_resume),
+                "resume/effective_start_epoch": effective_start_epoch,
+                "resume/checkpoint_epoch": int(resume_metadata.get("checkpoint_epoch", -1)),
+                "resume/reward_history_length": int(
+                    resume_metadata.get("reward_history_length", 0)
+                ),
+                "resume/processed_sample_count": int(
+                    resume_metadata.get("processed_sample_count", 0)
+                ),
+            }
+        )
+
+        if effective_start_epoch >= args.num_epochs:
+            logging.info(
+                "Training already complete: effective_start_epoch=%s num_epochs=%s",
+                effective_start_epoch,
+                args.num_epochs,
+            )
+            wandb.log({"job/already_complete": 1})
+            return
+
         subfolders = collect_trainable_subfolders(ROOT_DIRECTORY)
         if not subfolders:
             raise RuntimeError("No trainable subfolders found in {}".format(ROOT_DIRECTORY))
@@ -96,13 +130,14 @@ def main():
             }
         )
 
-        total_rewards, successful_examples = train_slm_with_grpo(
+        total_rewards, successful_examples = train_slm_resumable(
             subfolders=subfolders,
             slm=model,
             global_tokenizer=tokenizer,
             num_epochs=args.num_epochs,
             checkpoint_path=args.checkpoint,
-            start_epoch=args.start_epoch,
+            start_epoch=effective_start_epoch,
+            run_dir=str(run_dir),
         )
 
         final = trainable_parameter_snapshot(model)
@@ -112,8 +147,10 @@ def main():
             {
                 "slm/final_l2_norm": final["l2_norm"],
                 "slm/final_max_abs": final["max_abs"],
-                "slm/l2_norm_delta": norm_delta,
-                "slm/trainable_parameter_change_detected": int(abs(norm_delta) > 1e-12),
+                "slm/l2_norm_delta_this_allocation": norm_delta,
+                "slm/trainable_parameter_change_detected_this_allocation": int(
+                    abs(norm_delta) > 1e-12
+                ),
                 "job/final_total_reward": float(sum(total_rewards)) if total_rewards else 0.0,
                 "job/final_epoch_reward": float(total_rewards[-1]) if total_rewards else 0.0,
                 "job/final_successful_examples_count": len(successful_examples),
@@ -129,7 +166,7 @@ def main():
         )
         if checkpoint_exists:
             artifact.add_file(args.checkpoint)
-            run.log_artifact(artifact)
+            run.log_artifact(artifact, aliases=["latest", "epoch-{}".format(len(total_rewards))])
         else:
             logging.warning("Expected checkpoint not found: %s", args.checkpoint)
 
