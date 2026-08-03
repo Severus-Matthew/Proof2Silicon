@@ -129,8 +129,4 @@ python3 journal_main.py \
   --wandb_entity drprofmjha-university-of-illinois-urbana-champaign \
   2>&1 | tee "$PROOF2SILICON_RUN_DIR/training.log"
 
-python3 audit_slm_training.py \
-  "$CHECKPOINT" "$CHECKPOINT" \
-  --json "$PROOF2SILICON_RUN_DIR/checkpoint_structure_audit.json" || true
-
 echo "Finished $EXPERIMENT at $(date)"
