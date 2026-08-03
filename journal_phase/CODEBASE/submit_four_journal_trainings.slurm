@@ -2,16 +2,17 @@
 #SBATCH --job-name=p2s_journal
 #SBATCH --output=p2s_journal_%A_%a.out
 #SBATCH --error=p2s_journal_%A_%a.err
+#SBATCH --open-mode=append
 #SBATCH --account=bgrm-dtai-gh
 #SBATCH --partition=ghx4
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:1
-#SBATCH --time=24:00:00
+#SBATCH --time=2-00:00:00
 #SBATCH --array=0-3
 #SBATCH --requeue
-#SBATCH --signal=B:USR1@300
+#SBATCH --signal=B:USR1@600
 
 set -euo pipefail
 
@@ -29,6 +30,7 @@ export TOKENIZERS_PARALLELISM=false
 export PYTHONPATH=/u/mjha1/Proof2Silicon/journal_phase/CODEBASE:${PYTHONPATH:-}
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
 export HF_HOME=/u/mjha1/.cache/huggingface
+export WANDB_RESUME=allow
 
 ROOT=/u/mjha1/Proof2Silicon/journal_phase
 CODEBASE=$ROOT/CODEBASE
@@ -94,13 +96,19 @@ LATEST_SLURM_ARRAY_TASK_ID=$SLURM_ARRAY_TASK_ID
 EOF
 
 TRAIN_PID=""
+REQUEUE_REQUESTED=0
 handle_timeout() {
+  if [[ "$REQUEUE_REQUESTED" -eq 1 ]]; then
+    return
+  fi
+  REQUEUE_REQUESTED=1
   echo "Received Slurm pre-timeout signal at $(date)."
-  echo "The latest completed epoch checkpoint will be used on restart."
+  echo "Stopping cleanly; restart will use the latest atomically written completed-epoch checkpoint."
   if [[ -n "${TRAIN_PID:-}" ]]; then
     kill -TERM "$TRAIN_PID" 2>/dev/null || true
     wait "$TRAIN_PID" 2>/dev/null || true
   fi
+  sync || true
   echo "Requesting Slurm requeue for job $SLURM_JOB_ID"
   scontrol requeue "$SLURM_JOB_ID" || true
   exit 0
@@ -143,9 +151,10 @@ python3 - <<'PY'
 from preface_rl.slm_qwen3 import initialize_slm, trainable_parameter_snapshot
 import os
 checkpoint = os.environ.get("PROOF2SILICON_RUN_DIR", "") + "/checkpoints/final_model.pt"
-model, tokenizer = initialize_slm(checkpoint if os.path.exists(checkpoint) else None)
+model, tokenizer = initialize_slm(None)
 print("SLM loaded:", model.config._name_or_path)
 print("trainable snapshot:", trainable_parameter_snapshot(model))
+print("rolling checkpoint exists:", os.path.exists(checkpoint), checkpoint)
 PY
 
 python3 journal_main.py \
