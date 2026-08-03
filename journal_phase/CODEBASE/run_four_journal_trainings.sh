@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Launch one experiment at a time by setting EXPERIMENT to:
 #   deepseek | openai | qwen_hf | mixed
-# Each experiment MUST use a separate checkpoint/output/W&B run.
+# Every run gets an independent checkpoint and audit directory.
 
 EXPERIMENT="${EXPERIMENT:-deepseek}"
 ROOT="/u/mjha1/Proof2Silicon/journal_phase"
@@ -46,7 +46,8 @@ RUN_NAME="journal_${EXPERIMENT}_${TIMESTAMP}"
 export WANDB_RUN_NAME="$RUN_NAME"
 export PROOF2SILICON_EXPERIMENT="$EXPERIMENT"
 export PROOF2SILICON_RUN_DIR="$ROOT/journal_runs/$RUN_NAME"
-mkdir -p "$PROOF2SILICON_RUN_DIR"
+CHECKPOINT_PATH="$PROOF2SILICON_RUN_DIR/checkpoints/final_model.pt"
+mkdir -p "$PROOF2SILICON_RUN_DIR/checkpoints"
 
 python "$CODEBASE/preflight_models.py"
 
@@ -60,7 +61,9 @@ DAFNY_JUDGE_PROVIDER=$DAFNY_JUDGE_PROVIDER
 DAFNY_JUDGE_MODEL=$DAFNY_JUDGE_MODEL
 DAFNY_MIXED_SEED=$DAFNY_MIXED_SEED
 SLM_MODEL_NAME=${SLM_MODEL_NAME:-Qwen/Qwen2.5-1.5B-Instruct}
+CHECKPOINT_PATH=$CHECKPOINT_PATH
 EOF
 
 cd "$CODEBASE"
-python main.py "$@" 2>&1 | tee "$PROOF2SILICON_RUN_DIR/training.log"
+python main.py --checkpoint "$CHECKPOINT_PATH" "$@" \
+  2>&1 | tee "$PROOF2SILICON_RUN_DIR/training.log"
