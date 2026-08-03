@@ -9,32 +9,29 @@ from typing import Dict, Optional, Tuple
 from openai import OpenAI
 
 
-# Generator experiment modes:
-#   deepseek  -> DeepSeek API
-#   openai    -> OpenAI API
-#   qwen_hf   -> Hugging Face Inference Providers router
-#   mixed     -> randomly choose one of the three on the first attempt of a task
 GENERATOR_MODE = os.environ.get("DAFNY_GENERATOR_MODE", "deepseek").strip().lower()
 
 DEEPSEEK_BASE_URL = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
 DEEPSEEK_GENERATOR_MODEL = os.environ.get("DEEPSEEK_GENERATOR_MODEL", "deepseek-chat")
-OPENAI_GENERATOR_MODEL = os.environ.get("OPENAI_GENERATOR_MODEL", "gpt-5.2")
+OPENAI_GENERATOR_MODEL = os.environ.get("OPENAI_GENERATOR_MODEL", "gpt-5.4-mini")
+OPENAI_GENERATOR_REASONING = os.environ.get(
+    "OPENAI_GENERATOR_REASONING", "medium"
+).strip().lower()
 HF_GENERATOR_MODEL = os.environ.get(
     "HF_GENERATOR_MODEL", "Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest"
 )
 HF_BASE_URL = os.environ.get("HF_BASE_URL", "https://router.huggingface.co/v1")
 
-# The semantic judge is deliberately independent from the generator.  Use an
-# exact model ID available in the caller's OpenAI project.  The launch scripts
-# perform a model-list preflight rather than assuming a ChatGPT product name is
-# also an API model ID.
-JUDGE_MODEL = os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.2")
+JUDGE_MODEL = os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.4")
 JUDGE_PROVIDER = os.environ.get("DAFNY_JUDGE_PROVIDER", "openai").strip().lower()
+JUDGE_REASONING = os.environ.get("DAFNY_JUDGE_REASONING", "high").strip().lower()
 
 MIXED_GENERATORS = tuple(
-    item.strip() for item in os.environ.get(
+    item.strip()
+    for item in os.environ.get(
         "DAFNY_MIXED_GENERATORS", "deepseek,openai,qwen_hf"
-    ).split(",") if item.strip()
+    ).split(",")
+    if item.strip()
 )
 MIXED_SEED = int(os.environ.get("DAFNY_MIXED_SEED", "20260802"))
 _rng = random.Random(MIXED_SEED)
@@ -45,8 +42,8 @@ def _require_env(name: str) -> str:
     value = os.environ.get(name)
     if not value:
         raise RuntimeError(
-            "{} is not set. Export it in the shell or job environment; never "
-            "hard-code API keys in the repository.".format(name)
+            "{} is not set. Export it in the shell or Slurm job environment; "
+            "never hard-code API keys in the repository.".format(name)
         )
     return value
 
@@ -63,7 +60,7 @@ def _client_for(provider: str) -> OpenAI:
     if provider == "openai":
         return OpenAI(
             api_key=_require_env("OPENAI_API_KEY"),
-            timeout=180.0,
+            timeout=240.0,
             max_retries=3,
         )
     if provider == "qwen_hf":
@@ -99,9 +96,6 @@ def _choose_generator(new_task: bool) -> str:
     if invalid:
         raise ValueError("Unsupported mixed generators: {}".format(sorted(invalid)))
 
-    # A first attempt has no prior code/error. Select once and keep the same
-    # generator for all repair iterations of that task. This avoids changing
-    # generator halfway through an episode.
     if new_task or _active_mixed_generator is None:
         _active_mixed_generator = _rng.choice(MIXED_GENERATORS)
     return _active_mixed_generator
@@ -121,6 +115,29 @@ def save_prompt_response(
     filename = "interaction_{}_{}.json".format(timestamp, time.time_ns())
     with open(os.path.join(save_dir, filename), "w", encoding="utf-8") as handle:
         json.dump(payload, handle, indent=2)
+
+
+def _extract_response_text(response) -> str:
+    text = getattr(response, "output_text", None)
+    if text:
+        return text
+    chunks = []
+    for item in getattr(response, "output", []) or []:
+        for content in getattr(item, "content", []) or []:
+            value = getattr(content, "text", None)
+            if value:
+                chunks.append(value)
+    return "\n".join(chunks)
+
+
+def _openai_response(model: str, system: str, user: str, reasoning: str, max_tokens: int):
+    return _client_for("openai").responses.create(
+        model=model,
+        instructions=system,
+        input=user,
+        reasoning={"effort": reasoning},
+        max_output_tokens=max_tokens,
+    )
 
 
 def run_LLM(
@@ -161,31 +178,40 @@ Mandatory output contract:
 ```
 """
 
-    kwargs = {
-        "model": model,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "You are an expert Dafny programmer. Solve exactly the supplied "
-                    "task. Verifier success alone is insufficient: an independent "
-                    "semantic judge rejects code that solves another problem."
-                ),
-            },
-            {"role": "user", "content": full_prompt},
-        ],
-        "temperature": 0.2,
-        "stream": False,
-    }
-    # Keep enough room for complete Dafny programs across providers.
-    if provider in {"deepseek", "qwen_hf"}:
-        kwargs["max_tokens"] = int(os.environ.get("DAFNY_GENERATOR_MAX_TOKENS", "4096"))
+    system = (
+        "You are an expert Dafny programmer. Solve exactly the supplied task. "
+        "Verifier success alone is insufficient: an independent semantic judge "
+        "rejects code that solves another problem."
+    )
+    max_tokens = int(os.environ.get("DAFNY_GENERATOR_MAX_TOKENS", "4096"))
 
-    response = _client_for(provider).chat.completions.create(**kwargs)
-    generated_text = response.choices[0].message.content or ""
-    usage = getattr(response, "usage", None)
-    prompt_count = int(getattr(usage, "prompt_tokens", 0) or 0)
-    completion_count = int(getattr(usage, "completion_tokens", 0) or 0)
+    if provider == "openai":
+        response = _openai_response(
+            model=model,
+            system=system,
+            user=full_prompt,
+            reasoning=OPENAI_GENERATOR_REASONING,
+            max_tokens=max_tokens,
+        )
+        generated_text = _extract_response_text(response)
+        usage = getattr(response, "usage", None)
+        prompt_count = int(getattr(usage, "input_tokens", 0) or 0)
+        completion_count = int(getattr(usage, "output_tokens", 0) or 0)
+    else:
+        response = _client_for(provider).chat.completions.create(
+            model=model,
+            messages=[
+                {"role": "system", "content": system},
+                {"role": "user", "content": full_prompt},
+            ],
+            temperature=0.2,
+            max_tokens=max_tokens,
+            stream=False,
+        )
+        generated_text = response.choices[0].message.content or ""
+        usage = getattr(response, "usage", None)
+        prompt_count = int(getattr(usage, "prompt_tokens", 0) or 0)
+        completion_count = int(getattr(usage, "completion_tokens", 0) or 0)
 
     save_prompt_response(
         full_prompt,
@@ -195,6 +221,7 @@ Mandatory output contract:
             "experiment_mode": GENERATOR_MODE,
             "selected_provider": provider,
             "model": model,
+            "reasoning_effort": OPENAI_GENERATOR_REASONING if provider == "openai" else None,
             "mixed_seed": MIXED_SEED if GENERATOR_MODE == "mixed" else None,
             "prompt_tokens": prompt_count,
             "completion_tokens": completion_count,
@@ -241,6 +268,7 @@ CANDIDATE DAFNY CODE:
     metadata = {
         "provider": JUDGE_PROVIDER,
         "model": JUDGE_MODEL,
+        "reasoning_effort": JUDGE_REASONING,
         "raw_response": "",
         "prompt_tokens": 0,
         "completion_tokens": 0,
@@ -249,27 +277,43 @@ CANDIDATE DAFNY CODE:
     }
 
     try:
-        response = _client_for(JUDGE_PROVIDER).chat.completions.create(
-            model=JUDGE_MODEL,
-            messages=[
-                {
-                    "role": "system",
-                    "content": "Return only YES or NO. Be strict about task-code alignment.",
-                },
-                {"role": "user", "content": judge_prompt},
-            ],
-            temperature=0.0,
-            max_tokens=4,
-            stream=False,
-        )
-        raw = (response.choices[0].message.content or "").strip()
+        if JUDGE_PROVIDER == "openai":
+            response = _openai_response(
+                model=JUDGE_MODEL,
+                system="Return only YES or NO. Be strict about task-code alignment.",
+                user=judge_prompt,
+                reasoning=JUDGE_REASONING,
+                max_tokens=int(os.environ.get("DAFNY_JUDGE_MAX_TOKENS", "128")),
+            )
+            raw = _extract_response_text(response).strip()
+            usage = getattr(response, "usage", None)
+            prompt_tokens = int(getattr(usage, "input_tokens", 0) or 0)
+            completion_tokens = int(getattr(usage, "output_tokens", 0) or 0)
+        else:
+            response = _client_for(JUDGE_PROVIDER).chat.completions.create(
+                model=JUDGE_MODEL,
+                messages=[
+                    {
+                        "role": "system",
+                        "content": "Return only YES or NO. Be strict about task-code alignment.",
+                    },
+                    {"role": "user", "content": judge_prompt},
+                ],
+                temperature=0.0,
+                max_tokens=8,
+                stream=False,
+            )
+            raw = (response.choices[0].message.content or "").strip()
+            usage = getattr(response, "usage", None)
+            prompt_tokens = int(getattr(usage, "prompt_tokens", 0) or 0)
+            completion_tokens = int(getattr(usage, "completion_tokens", 0) or 0)
+
         verdict = _normalize_yes_no(raw)
-        usage = getattr(response, "usage", None)
         metadata.update(
             {
                 "raw_response": raw,
-                "prompt_tokens": int(getattr(usage, "prompt_tokens", 0) or 0),
-                "completion_tokens": int(getattr(usage, "completion_tokens", 0) or 0),
+                "prompt_tokens": prompt_tokens,
+                "completion_tokens": completion_tokens,
                 "valid_binary_response": verdict is not None,
             }
         )
