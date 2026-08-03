@@ -81,8 +81,6 @@ def main():
         entity=args.wandb_entity,
         name=run_name,
         id=run_id,
-        # "allow" resumes an existing run but also survives a failure that
-        # created the local checkpoint before W&B finished creating the run.
         resume="allow" if run_id else None,
         dir=os.environ.get("WANDB_DIR", str(run_dir / "wandb")),
         config=config,
@@ -121,7 +119,12 @@ def main():
             raise RuntimeError("No trainable subfolders found in {}".format(ROOT_DIRECTORY))
         wandb.log({"data/trainable_subfolders": len(subfolders)})
 
-        model, tokenizer = initialize_slm(args.checkpoint)
+        # Always construct a clean Qwen3+LoRA base here. The rolling checkpoint
+        # contains the full SLMPG state (including the value head and optimizer),
+        # so it must be restored exactly once inside train_slm_resumable. Loading
+        # it directly into the bare PEFT model would silently produce many
+        # missing/unexpected keys and could leave a partially restored policy.
+        model, tokenizer = initialize_slm(None)
         initial = trainable_parameter_snapshot(model)
         wandb.log(
             {
