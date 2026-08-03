@@ -11,30 +11,44 @@ def require(name):
     return value
 
 
-def check_openai_model(model):
-    client = OpenAI(api_key=require("OPENAI_API_KEY"), timeout=60.0, max_retries=1)
+def openai_client():
+    return OpenAI(api_key=require("OPENAI_API_KEY"), timeout=120.0, max_retries=1)
+
+
+def check_openai_model(model, reasoning):
+    client = openai_client()
     available = {item.id for item in client.models.list().data}
     if model not in available:
         nearby = sorted(item for item in available if "gpt-5" in item or "codex" in item)
         raise RuntimeError(
             "OpenAI model {!r} is not available in this project. Available GPT/Codex "
-            "models include: {}".format(model, nearby[:50])
+            "models include: {}".format(model, nearby[:80])
         )
-    print("OpenAI model available:", model)
+    response = client.responses.create(
+        model=model,
+        instructions="Reply with exactly OK.",
+        input="Connectivity check.",
+        reasoning={"effort": reasoning},
+        max_output_tokens=64,
+    )
+    text = (getattr(response, "output_text", "") or "").strip()
+    if not text:
+        raise RuntimeError("OpenAI model {} returned empty output".format(model))
+    print("OpenAI model available: {} reasoning={} response={}".format(model, reasoning, text[:40]))
 
 
 def check_chat(provider, model, base_url, key_name):
     client = OpenAI(
         api_key=require(key_name),
         base_url=base_url,
-        timeout=90.0,
+        timeout=120.0,
         max_retries=1,
     )
     response = client.chat.completions.create(
         model=model,
         messages=[{"role": "user", "content": "Reply with exactly OK"}],
         temperature=0.0,
-        max_tokens=4,
+        max_tokens=16,
     )
     text = (response.choices[0].message.content or "").strip()
     if not text:
@@ -45,20 +59,26 @@ def check_chat(provider, model, base_url, key_name):
 def main():
     mode = os.environ.get("DAFNY_GENERATOR_MODE", "deepseek")
     judge_provider = os.environ.get("DAFNY_JUDGE_PROVIDER", "openai")
-    judge_model = os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.2")
+    judge_model = os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.4")
+    judge_reasoning = os.environ.get("DAFNY_JUDGE_REASONING", "high")
 
     if judge_provider != "openai":
-        raise RuntimeError("Journal configuration currently requires an OpenAI judge")
-    check_openai_model(judge_model)
+        raise RuntimeError("Journal configuration requires an OpenAI semantic judge")
+    check_openai_model(judge_model, judge_reasoning)
 
     providers = [mode] if mode != "mixed" else [
-        item.strip() for item in os.environ.get(
+        item.strip()
+        for item in os.environ.get(
             "DAFNY_MIXED_GENERATORS", "deepseek,openai,qwen_hf"
-        ).split(",") if item.strip()
+        ).split(",")
+        if item.strip()
     ]
 
     if "openai" in providers:
-        check_openai_model(os.environ.get("OPENAI_GENERATOR_MODEL", "gpt-5.2"))
+        check_openai_model(
+            os.environ.get("OPENAI_GENERATOR_MODEL", "gpt-5.4-mini"),
+            os.environ.get("OPENAI_GENERATOR_REASONING", "medium"),
+        )
     if "deepseek" in providers:
         check_chat(
             "DeepSeek",
