@@ -81,7 +81,9 @@ def main():
         entity=args.wandb_entity,
         name=run_name,
         id=run_id,
-        resume="must" if is_resume and run_id else ("allow" if run_id else None),
+        # "allow" resumes an existing run but also survives a failure that
+        # created the local checkpoint before W&B finished creating the run.
+        resume="allow" if run_id else None,
         dir=os.environ.get("WANDB_DIR", str(run_dir / "wandb")),
         config=config,
         settings=wandb.Settings(init_timeout=800),
