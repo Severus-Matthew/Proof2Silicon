@@ -10,11 +10,16 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=24:00:00
 #SBATCH --array=0-3
+#SBATCH --requeue
+#SBATCH --signal=B:USR1@300
 
 set -euo pipefail
 
-# Submit with the API keys already exported in the login shell:
-# sbatch --export=ALL submit_four_journal_trainings.slurm
+# Use one stable study ID for the entire four-run experiment. Re-submit with the
+# SAME ID after a timeout so the checkpoint path and W&B run IDs are reused:
+#   export PROOF2SILICON_STUDY_ID=journal_final_v1
+#   sbatch --export=ALL submit_four_journal_trainings.slurm
+: "${PROOF2SILICON_STUDY_ID:?Set a stable PROOF2SILICON_STUDY_ID before sbatch}"
 : "${OPENAI_API_KEY:?Export OPENAI_API_KEY before sbatch}"
 : "${DEEPSEEK_API_KEY:?Export DEEPSEEK_API_KEY before sbatch}"
 : "${HF_TOKEN:?Export HF_TOKEN before sbatch}"
@@ -58,8 +63,11 @@ export DAFNY_JUDGE_MODEL=gpt-5.4
 export DAFNY_JUDGE_REASONING=high
 export DAFNY_JUDGE_MAX_TOKENS=128
 
-RUN_KEY=${SLURM_ARRAY_JOB_ID}_${ARRAY_ID}_${EXPERIMENT}
-export WANDB_RUN_NAME=journal_${EXPERIMENT}_${SLURM_ARRAY_JOB_ID}_${ARRAY_ID}
+# These identifiers deliberately do NOT contain the Slurm job ID. They remain
+# stable across requeue and manual resubmission, so W&B appends to one run and
+# the same rolling checkpoint is loaded.
+RUN_KEY=${PROOF2SILICON_STUDY_ID}_${EXPERIMENT}
+export WANDB_RUN_NAME=journal_${RUN_KEY}
 export WANDB_RUN_ID=p2s_${RUN_KEY}
 export WANDB_MODE=online
 export WANDB_DIR=/u/mjha1/wandb_logs/$WANDB_RUN_NAME
@@ -69,6 +77,7 @@ CHECKPOINT=$PROOF2SILICON_RUN_DIR/checkpoints/final_model.pt
 mkdir -p "$WANDB_DIR" "$PROOF2SILICON_RUN_DIR/checkpoints"
 
 cat > "$PROOF2SILICON_RUN_DIR/config.env" <<EOF
+PROOF2SILICON_STUDY_ID=$PROOF2SILICON_STUDY_ID
 EXPERIMENT=$EXPERIMENT
 SLM_MODEL_NAME=$SLM_MODEL_NAME
 DAFNY_GENERATOR_MODE=$DAFNY_GENERATOR_MODE
@@ -79,16 +88,32 @@ HF_GENERATOR_MODEL=$HF_GENERATOR_MODEL
 DAFNY_JUDGE_MODEL=$DAFNY_JUDGE_MODEL
 DAFNY_JUDGE_REASONING=$DAFNY_JUDGE_REASONING
 DAFNY_MIXED_SEED=$DAFNY_MIXED_SEED
-SLURM_JOB_ID=$SLURM_JOB_ID
-SLURM_ARRAY_JOB_ID=$SLURM_ARRAY_JOB_ID
-SLURM_ARRAY_TASK_ID=$SLURM_ARRAY_TASK_ID
+LATEST_SLURM_JOB_ID=$SLURM_JOB_ID
+LATEST_SLURM_ARRAY_JOB_ID=$SLURM_ARRAY_JOB_ID
+LATEST_SLURM_ARRAY_TASK_ID=$SLURM_ARRAY_TASK_ID
 EOF
 
+TRAIN_PID=""
+handle_timeout() {
+  echo "Received Slurm pre-timeout signal at $(date)."
+  echo "The latest completed epoch checkpoint will be used on restart."
+  if [[ -n "${TRAIN_PID:-}" ]]; then
+    kill -TERM "$TRAIN_PID" 2>/dev/null || true
+    wait "$TRAIN_PID" 2>/dev/null || true
+  fi
+  echo "Requesting Slurm requeue for job $SLURM_JOB_ID"
+  scontrol requeue "$SLURM_JOB_ID" || true
+  exit 0
+}
+trap handle_timeout USR1
+
 printf '%s\n' "==============================" \
-  "Starting $EXPERIMENT at $(date)" \
+  "Starting/resuming $EXPERIMENT at $(date)" \
+  "Study ID: $PROOF2SILICON_STUDY_ID" \
   "Host: $(hostname)" \
   "Slurm job: $SLURM_JOB_ID array task: $SLURM_ARRAY_TASK_ID" \
   "Run directory: $PROOF2SILICON_RUN_DIR" \
+  "Checkpoint: $CHECKPOINT" \
   "=============================="
 
 nvidia-smi
@@ -116,7 +141,9 @@ python3 preflight_models.py
 # Verify Qwen3-1.7B and LoRA initialization on the allocated GPU.
 python3 - <<'PY'
 from preface_rl.slm_qwen3 import initialize_slm, trainable_parameter_snapshot
-model, tokenizer = initialize_slm(None)
+import os
+checkpoint = os.environ.get("PROOF2SILICON_RUN_DIR", "") + "/checkpoints/final_model.pt"
+model, tokenizer = initialize_slm(checkpoint if os.path.exists(checkpoint) else None)
 print("SLM loaded:", model.config._name_or_path)
 print("trainable snapshot:", trainable_parameter_snapshot(model))
 PY
@@ -127,6 +154,9 @@ python3 journal_main.py \
   --num_epochs 5 \
   --wandb_project proof2silicon-journal-final \
   --wandb_entity drprofmjha-university-of-illinois-urbana-champaign \
-  2>&1 | tee "$PROOF2SILICON_RUN_DIR/training.log"
+  2>&1 | tee -a "$PROOF2SILICON_RUN_DIR/training.log" &
+TRAIN_PID=$!
+wait "$TRAIN_PID"
+TRAIN_PID=""
 
 echo "Finished $EXPERIMENT at $(date)"
