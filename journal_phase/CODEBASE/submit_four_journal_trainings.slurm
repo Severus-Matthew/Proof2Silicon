@@ -17,9 +17,7 @@
 set -euo pipefail
 
 # Use one stable study ID for the entire four-run experiment. Re-submit with the
-# SAME ID after a timeout so the checkpoint path and W&B run IDs are reused:
-#   export PROOF2SILICON_STUDY_ID=journal_final_v1
-#   sbatch --export=ALL submit_four_journal_trainings.slurm
+# SAME ID after a timeout so the checkpoint path and W&B run IDs are reused.
 : "${PROOF2SILICON_STUDY_ID:?Set a stable PROOF2SILICON_STUDY_ID before sbatch}"
 : "${OPENAI_API_KEY:?Export OPENAI_API_KEY before sbatch}"
 : "${DEEPSEEK_API_KEY:?Export DEEPSEEK_API_KEY before sbatch}"
@@ -46,7 +44,9 @@ esac
 
 export PROOF2SILICON_EXPERIMENT=$EXPERIMENT
 export DAFNY_GENERATOR_MODE=$EXPERIMENT
-export DAFNY_MIXED_GENERATORS=deepseek,openai,qwen_hf
+# Mixed closed/open training uses exactly OpenAI + Qwen. DeepSeek is evaluated
+# only in its own generator-specific run (array task 0).
+export DAFNY_MIXED_GENERATORS=openai,qwen_hf
 export DAFNY_MIXED_SEED=20260802
 
 # All four runs use the identical trainable SLM.
@@ -65,9 +65,6 @@ export DAFNY_JUDGE_MODEL=gpt-5.4
 export DAFNY_JUDGE_REASONING=high
 export DAFNY_JUDGE_MAX_TOKENS=128
 
-# These identifiers deliberately do NOT contain the Slurm job ID. They remain
-# stable across requeue and manual resubmission, so W&B appends to one run and
-# the same rolling checkpoint is loaded.
 RUN_KEY=${PROOF2SILICON_STUDY_ID}_${EXPERIMENT}
 export WANDB_RUN_NAME=journal_${RUN_KEY}
 export WANDB_RUN_ID=p2s_${RUN_KEY}
@@ -83,6 +80,7 @@ PROOF2SILICON_STUDY_ID=$PROOF2SILICON_STUDY_ID
 EXPERIMENT=$EXPERIMENT
 SLM_MODEL_NAME=$SLM_MODEL_NAME
 DAFNY_GENERATOR_MODE=$DAFNY_GENERATOR_MODE
+DAFNY_MIXED_GENERATORS=$DAFNY_MIXED_GENERATORS
 DEEPSEEK_GENERATOR_MODEL=$DEEPSEEK_GENERATOR_MODEL
 OPENAI_GENERATOR_MODEL=$OPENAI_GENERATOR_MODEL
 OPENAI_GENERATOR_REASONING=$OPENAI_GENERATOR_REASONING
@@ -122,6 +120,7 @@ printf '%s\n' "==============================" \
   "Slurm job: $SLURM_JOB_ID array task: $SLURM_ARRAY_TASK_ID" \
   "Run directory: $PROOF2SILICON_RUN_DIR" \
   "Checkpoint: $CHECKPOINT" \
+  "Mixed generators: $DAFNY_MIXED_GENERATORS" \
   "=============================="
 
 nvidia-smi
@@ -143,10 +142,8 @@ print("device", torch.cuda.get_device_name(0) if torch.cuda.is_available() else 
 assert torch.cuda.is_available(), "GPU is unavailable"
 PY
 
-# Verify API/model access before spending time loading the SLM.
 python3 preflight_models.py
 
-# Verify Qwen3-1.7B and LoRA initialization on the allocated GPU.
 python3 - <<'PY'
 from preface_rl.slm_qwen3 import initialize_slm, trainable_parameter_snapshot
 import os
