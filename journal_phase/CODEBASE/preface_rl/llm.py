@@ -26,10 +26,13 @@ JUDGE_MODEL = os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.4")
 JUDGE_PROVIDER = os.environ.get("DAFNY_JUDGE_PROVIDER", "openai").strip().lower()
 JUDGE_REASONING = os.environ.get("DAFNY_JUDGE_REASONING", "high").strip().lower()
 
+# The mixed closed/open experiment intentionally uses one closed generator
+# (OpenAI) and one open-weight generator (Qwen via Hugging Face). DeepSeek remains
+# a separate generator-specific training condition but is excluded from mixed.
 MIXED_GENERATORS = tuple(
     item.strip()
     for item in os.environ.get(
-        "DAFNY_MIXED_GENERATORS", "deepseek,openai,qwen_hf"
+        "DAFNY_MIXED_GENERATORS", "openai,qwen_hf"
     ).split(",")
     if item.strip()
 )
@@ -92,9 +95,13 @@ def _choose_generator(new_task: bool) -> str:
 
     if not MIXED_GENERATORS:
         raise ValueError("DAFNY_MIXED_GENERATORS is empty")
-    invalid = set(MIXED_GENERATORS) - {"deepseek", "openai", "qwen_hf"}
+    invalid = set(MIXED_GENERATORS) - {"openai", "qwen_hf"}
     if invalid:
-        raise ValueError("Unsupported mixed generators: {}".format(sorted(invalid)))
+        raise ValueError(
+            "Mixed journal training permits only openai and qwen_hf; got: {}".format(
+                sorted(invalid)
+            )
+        )
 
     if new_task or _active_mixed_generator is None:
         _active_mixed_generator = _rng.choice(MIXED_GENERATORS)
@@ -222,6 +229,7 @@ Mandatory output contract:
             "selected_provider": provider,
             "model": model,
             "reasoning_effort": OPENAI_GENERATOR_REASONING if provider == "openai" else None,
+            "mixed_generators": list(MIXED_GENERATORS) if GENERATOR_MODE == "mixed" else None,
             "mixed_seed": MIXED_SEED if GENERATOR_MODE == "mixed" else None,
             "prompt_tokens": prompt_count,
             "completion_tokens": completion_count,
