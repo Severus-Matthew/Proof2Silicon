@@ -16,8 +16,6 @@
 
 set -euo pipefail
 
-# Use one stable study ID for the entire four-run experiment. Re-submit with the
-# SAME ID after a timeout so the checkpoint path and W&B run IDs are reused.
 : "${PROOF2SILICON_STUDY_ID:?Set a stable PROOF2SILICON_STUDY_ID before sbatch}"
 : "${OPENAI_API_KEY:?Export OPENAI_API_KEY before sbatch}"
 : "${DEEPSEEK_API_KEY:?Export DEEPSEEK_API_KEY before sbatch}"
@@ -44,22 +42,16 @@ esac
 
 export PROOF2SILICON_EXPERIMENT=$EXPERIMENT
 export DAFNY_GENERATOR_MODE=$EXPERIMENT
-# Mixed closed/open training uses exactly OpenAI + Qwen. DeepSeek is evaluated
-# only in its own generator-specific run (array task 0).
 export DAFNY_MIXED_GENERATORS=openai,qwen_hf
 export DAFNY_MIXED_SEED=20260802
-
-# All four runs use the identical trainable SLM.
 export SLM_MODEL_NAME=Qwen/Qwen3-1.7B
 
-# Generator configurations.
 export DEEPSEEK_GENERATOR_MODEL=deepseek-chat
 export OPENAI_GENERATOR_MODEL=gpt-5.4-mini
 export OPENAI_GENERATOR_REASONING=medium
 export HF_GENERATOR_MODEL=Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest
 export HF_BASE_URL=https://router.huggingface.co/v1
 
-# Independent semantic judge for every run.
 export DAFNY_JUDGE_PROVIDER=openai
 export DAFNY_JUDGE_MODEL=gpt-5.4
 export DAFNY_JUDGE_REASONING=high
@@ -154,13 +146,16 @@ print("trainable snapshot:", trainable_parameter_snapshot(model))
 print("rolling checkpoint exists:", os.path.exists(checkpoint), checkpoint)
 PY
 
+# Process substitution keeps $! equal to the Python process, not the tee
+# process. The timeout handler therefore terminates the actual trainer before
+# requeue instead of leaving it running against shared checkpoints.
 python3 journal_main.py \
   --checkpoint "$CHECKPOINT" \
   --start_epoch 0 \
   --num_epochs 5 \
   --wandb_project proof2silicon-journal-final \
   --wandb_entity drprofmjha-university-of-illinois-urbana-champaign \
-  2>&1 | tee -a "$PROOF2SILICON_RUN_DIR/training.log" &
+  > >(tee -a "$PROOF2SILICON_RUN_DIR/training.log") 2>&1 &
 TRAIN_PID=$!
 wait "$TRAIN_PID"
 TRAIN_PID=""
