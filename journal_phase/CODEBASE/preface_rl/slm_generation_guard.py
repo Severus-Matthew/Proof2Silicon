@@ -25,18 +25,12 @@ REQUIRED_REPAIR = (
 LAST_QUALITY_REPORT: Dict[str, object] = {}
 
 
+def current_quality_report() -> Dict[str, object]:
+    return dict(LAST_QUALITY_REPORT)
+
+
 def current_quality_reward() -> float:
-    """Small auxiliary reward for concise, schema-valid prompt-policy output."""
-    report = LAST_QUALITY_REPORT
-    if not report:
-        return 0.0
-    if bool(report.get("valid")):
-        return 0.75
-    penalty = -4.0
-    penalty -= min(2.0, 0.5 * len(report.get("missing_headings", [])))
-    penalty -= min(1.5, 4.0 * float(report.get("repeated_fourgram_ratio", 0.0)))
-    penalty -= min(1.0, 0.25 * len(report.get("forbidden_patterns", [])))
-    return max(-8.0, penalty)
+    return float(LAST_QUALITY_REPORT.get("quality_reward", 0.0) or 0.0)
 
 
 def _quality_report(text: str, repair: bool) -> Dict[str, object]:
@@ -59,11 +53,24 @@ def _quality_report(text: str, repair: bool) -> Dict[str, object]:
     if fourgrams:
         repeated_fourgram_ratio = 1.0 - (len(set(fourgrams)) / len(fourgrams))
 
+    penalties = {
+        "missing_headings_penalty": -1.0 * len(missing),
+        "forbidden_patterns_penalty": -2.0 * len(forbidden),
+        "repeated_lines_penalty": -0.25 * max(0, repeated_lines - 1),
+        "repetition_ratio_penalty": -4.0 * max(0.0, repeated_fourgram_ratio - 0.20),
+        "excess_length_penalty": -0.01 * max(0, len(words) - 650),
+        "too_short_penalty": -1.0 if 0 < len(words) < 35 else 0.0,
+        "empty_output_penalty": -4.0 if not stripped else 0.0,
+    }
+    quality_reward = sum(float(value) for value in penalties.values())
+
     valid = bool(stripped)
     valid = valid and not missing and not forbidden
     valid = valid and repeated_fourgram_ratio < 0.32
-    valid = valid and repeated_lines <= 3
-    valid = valid and len(words) <= 420
+    valid = valid and repeated_lines <= 4
+    valid = valid and len(words) <= 700
+    if valid:
+        quality_reward += 0.75
 
     return {
         "valid": valid,
@@ -72,6 +79,8 @@ def _quality_report(text: str, repair: bool) -> Dict[str, object]:
         "word_count": len(words),
         "repeated_line_count": repeated_lines,
         "repeated_fourgram_ratio": repeated_fourgram_ratio,
+        "penalties": penalties,
+        "quality_reward": quality_reward,
     }
 
 
@@ -80,9 +89,9 @@ def _render_chat(tokenizer, prompt_text: str) -> str:
         {
             "role": "system",
             "content": (
-                "You are a concise prompt-policy model. Follow the requested "
-                "schema exactly. Produce only an instruction for a downstream "
-                "Dafny model, never Dafny code and never repeated filler."
+                "You are a prompt-policy model. Follow the requested schema "
+                "exactly. Produce only an instruction for a downstream Dafny "
+                "model, never Dafny code and never repeated filler."
             ),
         },
         {"role": "user", "content": prompt_text},
@@ -98,11 +107,16 @@ def install_slm_generation_guard(slm_module) -> None:
     if getattr(slm_module, "_qwen_generation_guard_installed", False):
         return
 
+    # Keep prompt and output budgets separate for generation and PPO replay.
+    slm_module.MAX_PROMPT_TOKENS = 1600
+    slm_module.MAX_NEW_TOKENS = 800
+    slm_module.MAX_SEQ_LEN = 2400
+
     def guarded_generate_instruction_sequence(
         slm_pg,
         tokenizer,
         prompt_text,
-        max_new_tokens=320,
+        max_new_tokens=800,
         temperature=0.25,
     ):
         global LAST_QUALITY_REPORT
@@ -119,7 +133,7 @@ def install_slm_generation_guard(slm_module) -> None:
                 return_tensors="pt",
                 truncation=True,
                 padding=False,
-                max_length=slm_module.MAX_PROMPT_TOKENS,
+                max_length=1600,
             )
         finally:
             tokenizer.truncation_side = previous_side
@@ -138,7 +152,7 @@ def install_slm_generation_guard(slm_module) -> None:
         attempts: List[Tuple[str, torch.Tensor, Dict[str, object]]] = []
         for attempt_idx, attempt_temperature in enumerate([float(temperature), 0.15], 1):
             generation_config = GenerationConfig(
-                max_new_tokens=min(int(max_new_tokens), 384),
+                max_new_tokens=min(int(max_new_tokens), 800),
                 do_sample=True,
                 temperature=attempt_temperature,
                 top_p=0.90,
@@ -167,6 +181,8 @@ def install_slm_generation_guard(slm_module) -> None:
                     "generated_tokens": int(generated_ids.shape[1]),
                     "chat_template_applied": True,
                     "thinking_disabled": True,
+                    "max_prompt_tokens": 1600,
+                    "max_new_tokens": 800,
                 }
             )
             attempts.append((text, generated_ids, report))
@@ -185,9 +201,8 @@ def install_slm_generation_guard(slm_module) -> None:
                     int(item[2]["word_count"]),
                 ),
             )
-        LAST_QUALITY_REPORT = dict(report)
-        LAST_QUALITY_REPORT["quality_reward"] = current_quality_reward()
 
+        LAST_QUALITY_REPORT = dict(report)
         save_interaction(
             "slm",
             prompt_text,
