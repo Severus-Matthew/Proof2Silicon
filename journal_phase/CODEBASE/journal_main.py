@@ -27,6 +27,7 @@ def install_run_scoped_audit_hooks() -> None:
     import preface_rl.llm as llm_module
     import preface_rl.slm as slm_module
     import preface_rl.slm_generation_guard as generation_guard
+    from preface_rl.prompts import ErrorPrompt
     from preface_rl.run_audit import save_attempt_record, save_interaction, save_slm_interaction
 
     def scoped_prompt_response(prompt, response, save_dir, metadata=None):
@@ -48,6 +49,45 @@ def install_run_scoped_audit_hooks() -> None:
 
     envs_module.compute_total_reward = compute_total_reward_with_prompt_quality
 
+    # Capture the quality report for the exact SLM instruction that is about to
+    # drive this environment step. After the downstream attempt finishes, attach
+    # that report and the reward breakdown to last_attempt_info so the next SLM
+    # repair prompt can explicitly describe every negative signal.
+    original_step = envs_module.DafnyEnv.step
+
+    def step_with_quality_state(self, *args, **kwargs):
+        quality_report = generation_guard.current_quality_report()
+        result = original_step(self, *args, **kwargs)
+        reward, done, info = result
+        reward_breakdown = dict(info.get("reward_breakdown", {}) or {})
+        if self.last_attempt_info is not None:
+            self.last_attempt_info["slm_quality_analysis"] = quality_report
+            self.last_attempt_info["reward_breakdown"] = reward_breakdown
+        info["slm_quality_analysis"] = quality_report
+        return reward, done, info
+
+    envs_module.DafnyEnv.step = step_with_quality_state
+
+    # Build the next repair state with textual feedback derived from all negative
+    # numeric leaves in both the SLM quality JSON and the downstream reward JSON.
+    original_build_state_prompt = envs_module.DafnyEnv.build_state_prompt
+
+    def build_state_prompt_with_quality_feedback(self):
+        if self.current_iteration == 0 or self.last_attempt_info is None:
+            return original_build_state_prompt(self)
+        return ErrorPrompt(
+            self.last_attempt_info["error_output"],
+            self.prompt,
+            self.last_attempt_info["code"],
+            str(self.last_attempt_info["reward"]),
+            previous_instruction=self.last_attempt_info.get("instruction_text", ""),
+            previous_llm_response=self.last_attempt_info.get("llm_response", ""),
+            quality_analysis=self.last_attempt_info.get("slm_quality_analysis", {}),
+            reward_breakdown=self.last_attempt_info.get("reward_breakdown", {}),
+        )
+
+    envs_module.DafnyEnv.build_state_prompt = build_state_prompt_with_quality_feedback
+
     original_append = envs_module.append_to_weighted_dataset
 
     def append_and_audit(path, record):
@@ -56,11 +96,12 @@ def install_run_scoped_audit_hooks() -> None:
             enriched = dict(record)
             enriched.setdefault("task_name", Path(path).parent.name)
             enriched.setdefault("task_output_path", str(path))
+            enriched.setdefault("slm_quality_analysis", generation_guard.current_quality_report())
             save_attempt_record(enriched)
 
     envs_module.append_to_weighted_dataset = append_and_audit
     logging.info(
-        "Run-scoped audit, Qwen3 generation guard, and prompt-quality reward enabled at %s",
+        "Run-scoped audit, Qwen3 generation guard, quality reward, and textual quality feedback enabled at %s",
         os.environ.get("PROOF2SILICON_RUN_DIR"),
     )
 
@@ -140,9 +181,11 @@ def main():
         "ast_cross_process_lock": True,
         "qwen_chat_template": True,
         "qwen_thinking_disabled": True,
-        "slm_max_new_tokens": 320,
+        "slm_max_prompt_tokens": 1600,
+        "slm_max_new_tokens": 800,
         "slm_repetition_guard": True,
         "prompt_quality_auxiliary_reward": True,
+        "prompt_quality_textual_feedback": True,
     }
 
     run = wandb.init(
@@ -174,6 +217,9 @@ def main():
                 "slm/qwen_thinking_disabled": 1,
                 "slm/repetition_guard_enabled": 1,
                 "slm/prompt_quality_auxiliary_reward_enabled": 1,
+                "slm/prompt_quality_textual_feedback_enabled": 1,
+                "slm/max_prompt_tokens": 1600,
+                "slm/max_new_tokens": 800,
             }
         )
 
