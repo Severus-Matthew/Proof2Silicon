@@ -55,7 +55,10 @@ export HF_BASE_URL=https://router.huggingface.co/v1
 export DAFNY_JUDGE_PROVIDER=openai
 export DAFNY_JUDGE_MODEL=gpt-5.4
 export DAFNY_JUDGE_REASONING=high
-export DAFNY_JUDGE_MAX_TOKENS=128
+# High reasoning consumes output-budget tokens before emitting the final YES/NO.
+# 128 tokens was repeatedly exhausted by reasoning, producing an empty visible
+# answer. Give the judge enough budget to reason and still emit the verdict.
+export DAFNY_JUDGE_MAX_TOKENS=1024
 
 RUN_KEY=${PROOF2SILICON_STUDY_ID}_${EXPERIMENT}
 export WANDB_RUN_NAME=journal_${RUN_KEY}
@@ -79,6 +82,7 @@ OPENAI_GENERATOR_REASONING=$OPENAI_GENERATOR_REASONING
 HF_GENERATOR_MODEL=$HF_GENERATOR_MODEL
 DAFNY_JUDGE_MODEL=$DAFNY_JUDGE_MODEL
 DAFNY_JUDGE_REASONING=$DAFNY_JUDGE_REASONING
+DAFNY_JUDGE_MAX_TOKENS=$DAFNY_JUDGE_MAX_TOKENS
 DAFNY_MIXED_SEED=$DAFNY_MIXED_SEED
 SLM_MAX_PROMPT_TOKENS=1600
 SLM_MAX_NEW_TOKENS=800
@@ -118,6 +122,7 @@ printf '%s\n' "==============================" \
   "Checkpoint: $CHECKPOINT" \
   "Mixed generators: $DAFNY_MIXED_GENERATORS" \
   "SLM token budget: prompt=1600 new=800 total=2400 thinking=disabled" \
+  "Judge budget: reasoning=$DAFNY_JUDGE_REASONING max_output_tokens=$DAFNY_JUDGE_MAX_TOKENS" \
   "=============================="
 
 nvidia-smi
