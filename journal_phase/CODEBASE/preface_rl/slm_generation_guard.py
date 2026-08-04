@@ -22,6 +22,21 @@ REQUIRED_REPAIR = (
     "Required Repair:",
     "Instruction:",
 )
+LAST_QUALITY_REPORT: Dict[str, object] = {}
+
+
+def current_quality_reward() -> float:
+    """Small auxiliary reward for concise, schema-valid prompt-policy output."""
+    report = LAST_QUALITY_REPORT
+    if not report:
+        return 0.0
+    if bool(report.get("valid")):
+        return 0.75
+    penalty = -4.0
+    penalty -= min(2.0, 0.5 * len(report.get("missing_headings", [])))
+    penalty -= min(1.5, 4.0 * float(report.get("repeated_fourgram_ratio", 0.0)))
+    penalty -= min(1.0, 0.25 * len(report.get("forbidden_patterns", [])))
+    return max(-8.0, penalty)
 
 
 def _quality_report(text: str, repair: bool) -> Dict[str, object]:
@@ -72,22 +87,14 @@ def _render_chat(tokenizer, prompt_text: str) -> str:
         },
         {"role": "user", "content": prompt_text},
     ]
-    kwargs = {
-        "tokenize": False,
-        "add_generation_prompt": True,
-    }
+    kwargs = {"tokenize": False, "add_generation_prompt": True}
     try:
-        return tokenizer.apply_chat_template(
-            messages,
-            enable_thinking=False,
-            **kwargs,
-        )
+        return tokenizer.apply_chat_template(messages, enable_thinking=False, **kwargs)
     except TypeError:
         return tokenizer.apply_chat_template(messages, **kwargs)
 
 
 def install_slm_generation_guard(slm_module) -> None:
-    """Replace generate_instruction_sequence exactly once."""
     if getattr(slm_module, "_qwen_generation_guard_installed", False):
         return
 
@@ -98,6 +105,7 @@ def install_slm_generation_guard(slm_module) -> None:
         max_new_tokens=320,
         temperature=0.25,
     ):
+        global LAST_QUALITY_REPORT
         slm_pg.eval()
         if hasattr(slm_pg.model, "gradient_checkpointing_disable"):
             slm_pg.model.gradient_checkpointing_disable()
@@ -125,11 +133,10 @@ def install_slm_generation_guard(slm_module) -> None:
         input_ids = input_ids.to(slm_module.device)
         attention_mask = attention_mask.to(slm_module.device)
         prompt_len = input_ids.shape[1]
-        repair = "You are repairing an instruction" in prompt_text
+        repair = "Repair the instruction" in prompt_text
 
         attempts: List[Tuple[str, torch.Tensor, Dict[str, object]]] = []
-        temperatures = [float(temperature), 0.15]
-        for attempt_idx, attempt_temperature in enumerate(temperatures, 1):
+        for attempt_idx, attempt_temperature in enumerate([float(temperature), 0.15], 1):
             generation_config = GenerationConfig(
                 max_new_tokens=min(int(max_new_tokens), 384),
                 do_sample=True,
@@ -166,8 +173,6 @@ def install_slm_generation_guard(slm_module) -> None:
             if report["valid"]:
                 break
 
-        # Prefer the first valid sample; otherwise choose the least repetitive,
-        # shortest non-empty attempt. Downstream reward still penalizes failure.
         valid_attempts = [item for item in attempts if item[2]["valid"]]
         if valid_attempts:
             instruction_text, generated_ids, report = valid_attempts[0]
@@ -180,6 +185,8 @@ def install_slm_generation_guard(slm_module) -> None:
                     int(item[2]["word_count"]),
                 ),
             )
+        LAST_QUALITY_REPORT = dict(report)
+        LAST_QUALITY_REPORT["quality_reward"] = current_quality_reward()
 
         save_interaction(
             "slm",
@@ -187,7 +194,7 @@ def install_slm_generation_guard(slm_module) -> None:
             instruction_text,
             {
                 "slm_model": getattr(slm_pg.model.config, "_name_or_path", None),
-                "quality": report,
+                "quality": LAST_QUALITY_REPORT,
                 "all_attempt_quality": [item[2] for item in attempts],
             },
         )
