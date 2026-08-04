@@ -31,6 +31,7 @@ def install_run_scoped_audit_hooks() -> None:
         save_interaction,
         save_slm_interaction,
     )
+    from preface_rl.slm_generation_guard import install_slm_generation_guard
 
     def scoped_prompt_response(prompt, response, save_dir, metadata=None):
         kind = "judge" if "judge" in str(save_dir).lower() else "llm"
@@ -38,6 +39,7 @@ def install_run_scoped_audit_hooks() -> None:
 
     llm_module.save_prompt_response = scoped_prompt_response
     slm_module._save_slm_interaction = save_slm_interaction
+    install_slm_generation_guard(slm_module)
 
     original_append = envs_module.append_to_weighted_dataset
 
@@ -51,7 +53,7 @@ def install_run_scoped_audit_hooks() -> None:
 
     envs_module.append_to_weighted_dataset = append_and_audit
     logging.info(
-        "Run-scoped audit logging enabled at %s",
+        "Run-scoped audit logging and Qwen3 generation guard enabled at %s",
         os.environ.get("PROOF2SILICON_RUN_DIR"),
     )
 
@@ -129,6 +131,10 @@ def main():
         "resume_metadata": resume_metadata,
         "parallel_workspace_isolation": True,
         "ast_cross_process_lock": True,
+        "qwen_chat_template": True,
+        "qwen_thinking_disabled": True,
+        "slm_max_new_tokens": 320,
+        "slm_repetition_guard": True,
     }
 
     run = wandb.init(
@@ -160,6 +166,9 @@ def main():
                 "audit/run_scoped_logging_enabled": 1,
                 "audit/parallel_workspace_isolation_enabled": 1,
                 "audit/ast_cross_process_lock_enabled": 1,
+                "slm/qwen_chat_template_enabled": 1,
+                "slm/qwen_thinking_disabled": 1,
+                "slm/repetition_guard_enabled": 1,
             }
         )
 
