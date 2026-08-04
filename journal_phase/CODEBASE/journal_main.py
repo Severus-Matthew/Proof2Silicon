@@ -21,6 +21,41 @@ logging.basicConfig(
 )
 
 
+def install_run_scoped_audit_hooks() -> None:
+    """Redirect SLM/LLM/judge/attempt records into this experiment's run dir."""
+    import preface_rl.envs as envs_module
+    import preface_rl.llm as llm_module
+    import preface_rl.slm as slm_module
+    from preface_rl.run_audit import (
+        save_attempt_record,
+        save_interaction,
+        save_slm_interaction,
+    )
+
+    def scoped_prompt_response(prompt, response, save_dir, metadata=None):
+        kind = "judge" if "judge" in str(save_dir).lower() else "llm"
+        save_interaction(kind, prompt, response, metadata)
+
+    llm_module.save_prompt_response = scoped_prompt_response
+    slm_module._save_slm_interaction = save_slm_interaction
+
+    original_append = envs_module.append_to_weighted_dataset
+
+    def append_and_audit(path, record):
+        original_append(path, record)
+        if isinstance(record, dict) and "reward_breakdown" in record:
+            enriched = dict(record)
+            enriched.setdefault("task_name", Path(path).parent.name)
+            enriched.setdefault("task_output_path", str(path))
+            save_attempt_record(enriched)
+
+    envs_module.append_to_weighted_dataset = append_and_audit
+    logging.info(
+        "Run-scoped audit logging enabled at %s",
+        os.environ.get("PROOF2SILICON_RUN_DIR"),
+    )
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", required=True)
@@ -43,6 +78,17 @@ def main():
         )
     )
     run_dir.mkdir(parents=True, exist_ok=True)
+    for relative in [
+        "artifacts/slm",
+        "artifacts/llm",
+        "artifacts/judge",
+        "artifacts/attempts",
+        "audit",
+        "checkpoints",
+    ]:
+        (run_dir / relative).mkdir(parents=True, exist_ok=True)
+
+    install_run_scoped_audit_hooks()
 
     effective_start_epoch, resume_metadata = infer_resume_position(
         args.checkpoint,
@@ -68,6 +114,7 @@ def main():
         "effective_start_epoch": effective_start_epoch,
         "checkpoint": args.checkpoint,
         "dataset_root": ROOT_DIRECTORY,
+        "run_dir": str(run_dir),
         "slurm_job_id": os.environ.get("SLURM_JOB_ID"),
         "slurm_array_job_id": os.environ.get("SLURM_ARRAY_JOB_ID"),
         "slurm_array_task_id": os.environ.get("SLURM_ARRAY_TASK_ID"),
@@ -102,6 +149,7 @@ def main():
                 "resume/processed_sample_count": int(
                     resume_metadata.get("processed_sample_count", 0)
                 ),
+                "audit/run_scoped_logging_enabled": 1,
             }
         )
 
@@ -119,11 +167,6 @@ def main():
             raise RuntimeError("No trainable subfolders found in {}".format(ROOT_DIRECTORY))
         wandb.log({"data/trainable_subfolders": len(subfolders)})
 
-        # Always construct a clean Qwen3+LoRA base here. The rolling checkpoint
-        # contains the full SLMPG state (including the value head and optimizer),
-        # so it must be restored exactly once inside train_slm_resumable. Loading
-        # it directly into the bare PEFT model would silently produce many
-        # missing/unexpected keys and could leave a partially restored policy.
         model, tokenizer = initialize_slm(None)
         initial = trainable_parameter_snapshot(model)
         wandb.log(
