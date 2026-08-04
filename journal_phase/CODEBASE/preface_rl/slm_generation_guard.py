@@ -107,7 +107,6 @@ def install_slm_generation_guard(slm_module) -> None:
     if getattr(slm_module, "_qwen_generation_guard_installed", False):
         return
 
-    # Keep prompt and output budgets separate for generation and PPO replay.
     slm_module.MAX_PROMPT_TOKENS = 1600
     slm_module.MAX_NEW_TOKENS = 800
     slm_module.MAX_SEQ_LEN = 2400
@@ -126,7 +125,10 @@ def install_slm_generation_guard(slm_module) -> None:
 
         rendered = _render_chat(tokenizer, prompt_text)
         previous_side = getattr(tokenizer, "truncation_side", "right")
-        tokenizer.truncation_side = "left"
+        # The repair prompt places task, negative feedback, and newest verifier
+        # feedback before abbreviated historical material, so right truncation
+        # preserves the highest-priority sections and the chat preamble.
+        tokenizer.truncation_side = "right"
         try:
             inputs = tokenizer(
                 rendered,
@@ -137,6 +139,18 @@ def install_slm_generation_guard(slm_module) -> None:
             )
         finally:
             tokenizer.truncation_side = previous_side
+
+        # Register the exact chat-templated IDs. The legacy PPO loop immediately
+        # tokenizes raw prompt_text after generation; PolicyTokenizerProxy returns
+        # this registered encoding so rollout and PPO replay use identical state.
+        register = getattr(tokenizer, "register_policy_prompt", None)
+        if callable(register):
+            register(prompt_text, inputs)
+        else:
+            raise RuntimeError(
+                "Prompt-policy tokenizer is not wrapped; PPO prompt IDs would differ "
+                "from chat-templated rollout IDs."
+            )
 
         input_ids = inputs["input_ids"]
         attention_mask = inputs["attention_mask"]
@@ -183,6 +197,7 @@ def install_slm_generation_guard(slm_module) -> None:
                     "thinking_disabled": True,
                     "max_prompt_tokens": 1600,
                     "max_new_tokens": 800,
+                    "ppo_prompt_ids_aligned": True,
                 }
             )
             attempts.append((text, generated_ids, report))
