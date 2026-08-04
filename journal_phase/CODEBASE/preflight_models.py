@@ -69,10 +69,25 @@ def main():
     providers = [mode] if mode != "mixed" else [
         item.strip()
         for item in os.environ.get(
-            "DAFNY_MIXED_GENERATORS", "deepseek,openai,qwen_hf"
+            "DAFNY_MIXED_GENERATORS", "openai,qwen_hf"
         ).split(",")
         if item.strip()
     ]
+
+    if mode == "mixed":
+        invalid = set(providers) - {"openai", "qwen_hf"}
+        if invalid:
+            raise RuntimeError(
+                "Mixed journal training permits only openai and qwen_hf; got {}".format(
+                    sorted(invalid)
+                )
+            )
+        if set(providers) != {"openai", "qwen_hf"}:
+            raise RuntimeError(
+                "Mixed journal training must include exactly openai and qwen_hf; got {}".format(
+                    providers
+                )
+            )
 
     if "openai" in providers:
         check_openai_model(
@@ -98,6 +113,8 @@ def main():
         )
 
     print("Preflight passed for generator mode:", mode)
+    if mode == "mixed":
+        print("Mixed generators:", ",".join(providers))
     return 0
 
 
