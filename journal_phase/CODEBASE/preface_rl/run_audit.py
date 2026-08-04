@@ -91,14 +91,45 @@ def save_attempt_record(payload: Dict[str, Any]) -> None:
     enriched.setdefault("study_id", os.environ.get("PROOF2SILICON_STUDY_ID"))
     enriched.setdefault("experiment", os.environ.get("PROOF2SILICON_EXPERIMENT"))
     enriched.setdefault("slurm_job_id", os.environ.get("SLURM_JOB_ID"))
+    enriched.setdefault("slurm_array_job_id", os.environ.get("SLURM_ARRAY_JOB_ID"))
     enriched.setdefault("slurm_array_task_id", os.environ.get("SLURM_ARRAY_TASK_ID"))
     now_ns = time.time_ns()
     enriched.setdefault("timestamp_ns", now_ns)
+
     append_jsonl("audit/attempts.jsonl", enriched)
+
     epoch = enriched.get("epoch", "unknown")
     iteration = enriched.get("iteration", "unknown")
     task_name = enriched.get("task_name") or enriched.get("subfolder") or "task"
-    filename = "epoch_{}_iter_{}_{}_{}.json".format(
+    stem = "epoch_{}_iter_{}_{}_{}".format(
         _slug(epoch), _slug(iteration), _slug(task_name), now_ns
     )
-    _atomic_json(_run_dir() / "artifacts" / "attempts" / filename, enriched)
+    _atomic_json(_run_dir() / "artifacts" / "attempts" / (stem + ".json"), enriched)
+
+    # Explicit Dafny artifact: preserves the exact candidate, verifier stdout,
+    # verifier outcome, and whether the semantic judge was invoked/passed.
+    dafny_record = {
+        "timestamp": enriched.get("timestamp"),
+        "timestamp_ns": enriched.get("timestamp_ns"),
+        "study_id": enriched.get("study_id"),
+        "experiment": enriched.get("experiment"),
+        "slurm_job_id": enriched.get("slurm_job_id"),
+        "slurm_array_job_id": enriched.get("slurm_array_job_id"),
+        "slurm_array_task_id": enriched.get("slurm_array_task_id"),
+        "task_name": task_name,
+        "epoch": epoch,
+        "iteration": iteration,
+        "dafny_code": enriched.get("dafny_code", ""),
+        "verifier_outcome": enriched.get("verifier_outcome"),
+        "verifier_output": enriched.get("verifier_output", ""),
+        "semantic_judge_invoked": enriched.get("verifier_outcome") == "success",
+        "semantic_judge_pass": enriched.get("semantic_judge_pass"),
+        "accepted_success": enriched.get("accepted_success"),
+        "reward": enriched.get("reward"),
+        "reward_breakdown": enriched.get("reward_breakdown", {}),
+    }
+    append_jsonl("audit/dafny_outputs.jsonl", dafny_record)
+    _atomic_json(
+        _run_dir() / "artifacts" / "dafny" / (stem + ".json"),
+        dafny_record,
+    )
