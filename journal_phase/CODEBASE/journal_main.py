@@ -27,7 +27,7 @@ def install_run_scoped_audit_hooks() -> None:
     import preface_rl.llm as llm_module
     import preface_rl.slm as slm_module
     import preface_rl.slm_generation_guard as generation_guard
-    from preface_rl.prompts import ErrorPrompt
+    from preface_rl.prompts import ErrorPrompt, ShortPrompt
     from preface_rl.run_audit import save_attempt_record, save_interaction, save_slm_interaction
 
     def scoped_prompt_response(prompt, response, save_dir, metadata=None):
@@ -49,16 +49,11 @@ def install_run_scoped_audit_hooks() -> None:
 
     envs_module.compute_total_reward = compute_total_reward_with_prompt_quality
 
-    # Capture the quality report for the exact SLM instruction that is about to
-    # drive this environment step. After the downstream attempt finishes, attach
-    # that report and the reward breakdown to last_attempt_info so the next SLM
-    # repair prompt can explicitly describe every negative signal.
     original_step = envs_module.DafnyEnv.step
 
     def step_with_quality_state(self, *args, **kwargs):
         quality_report = generation_guard.current_quality_report()
-        result = original_step(self, *args, **kwargs)
-        reward, done, info = result
+        reward, done, info = original_step(self, *args, **kwargs)
         reward_breakdown = dict(info.get("reward_breakdown", {}) or {})
         if self.last_attempt_info is not None:
             self.last_attempt_info["slm_quality_analysis"] = quality_report
@@ -68,18 +63,17 @@ def install_run_scoped_audit_hooks() -> None:
 
     envs_module.DafnyEnv.step = step_with_quality_state
 
-    # Build the next repair state with textual feedback derived from all negative
-    # numeric leaves in both the SLM quality JSON and the downstream reward JSON.
-    original_build_state_prompt = envs_module.DafnyEnv.build_state_prompt
-
+    # DafnyEnv did not previously define build_state_prompt even though the PPO
+    # loop calls it. Define the complete method here before the run-scoped
+    # subclass is created, so the subclass inherits this exact implementation.
     def build_state_prompt_with_quality_feedback(self):
         if self.current_iteration == 0 or self.last_attempt_info is None:
-            return original_build_state_prompt(self)
+            return ShortPrompt(self.prompt)
         return ErrorPrompt(
-            self.last_attempt_info["error_output"],
+            self.last_attempt_info.get("error_output", ""),
             self.prompt,
-            self.last_attempt_info["code"],
-            str(self.last_attempt_info["reward"]),
+            self.last_attempt_info.get("code", ""),
+            str(self.last_attempt_info.get("reward", 0.0)),
             previous_instruction=self.last_attempt_info.get("instruction_text", ""),
             previous_llm_response=self.last_attempt_info.get("llm_response", ""),
             quality_analysis=self.last_attempt_info.get("slm_quality_analysis", {}),
@@ -186,6 +180,7 @@ def main():
         "slm_repetition_guard": True,
         "prompt_quality_auxiliary_reward": True,
         "prompt_quality_textual_feedback": True,
+        "ppo_chat_prompt_alignment": True,
     }
 
     run = wandb.init(
@@ -218,6 +213,7 @@ def main():
                 "slm/repetition_guard_enabled": 1,
                 "slm/prompt_quality_auxiliary_reward_enabled": 1,
                 "slm/prompt_quality_textual_feedback_enabled": 1,
+                "slm/ppo_chat_prompt_alignment_enabled": 1,
                 "slm/max_prompt_tokens": 1600,
                 "slm/max_new_tokens": 800,
             }
@@ -238,6 +234,9 @@ def main():
         wandb.log({"data/trainable_subfolders": len(subfolders)})
 
         model, tokenizer = initialize_slm(None)
+        from preface_rl.policy_tokenizer import wrap_policy_tokenizer
+
+        tokenizer = wrap_policy_tokenizer(tokenizer)
         initial = trainable_parameter_snapshot(model)
         wandb.log(
             {
