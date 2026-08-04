@@ -80,6 +80,10 @@ HF_GENERATOR_MODEL=$HF_GENERATOR_MODEL
 DAFNY_JUDGE_MODEL=$DAFNY_JUDGE_MODEL
 DAFNY_JUDGE_REASONING=$DAFNY_JUDGE_REASONING
 DAFNY_MIXED_SEED=$DAFNY_MIXED_SEED
+SLM_MAX_PROMPT_TOKENS=1600
+SLM_MAX_NEW_TOKENS=800
+SLM_MAX_SEQUENCE_TOKENS=2400
+SLM_THINKING_DISABLED=true
 LATEST_SLURM_JOB_ID=$SLURM_JOB_ID
 LATEST_SLURM_ARRAY_JOB_ID=$SLURM_ARRAY_JOB_ID
 LATEST_SLURM_ARRAY_TASK_ID=$SLURM_ARRAY_TASK_ID
@@ -113,6 +117,7 @@ printf '%s\n' "==============================" \
   "Run directory: $PROOF2SILICON_RUN_DIR" \
   "Checkpoint: $CHECKPOINT" \
   "Mixed generators: $DAFNY_MIXED_GENERATORS" \
+  "SLM token budget: prompt=1600 new=800 total=2400 thinking=disabled" \
   "=============================="
 
 nvidia-smi
@@ -134,6 +139,7 @@ print("device", torch.cuda.get_device_name(0) if torch.cuda.is_available() else 
 assert torch.cuda.is_available(), "GPU is unavailable"
 PY
 
+python3 check_slm_token_budget.py
 python3 preflight_models.py
 
 python3 - <<'PY'
@@ -146,9 +152,6 @@ print("trainable snapshot:", trainable_parameter_snapshot(model))
 print("rolling checkpoint exists:", os.path.exists(checkpoint), checkpoint)
 PY
 
-# Process substitution keeps $! equal to the Python process, not the tee
-# process. The timeout handler therefore terminates the actual trainer before
-# requeue instead of leaving it running against shared checkpoints.
 python3 journal_main.py \
   --checkpoint "$CHECKPOINT" \
   --start_epoch 0 \
