@@ -22,16 +22,12 @@ logging.basicConfig(
 
 
 def install_run_scoped_audit_hooks() -> None:
-    """Redirect SLM/LLM/judge/attempt records into this experiment's run dir."""
+    """Install run-scoped logs and prompt-policy quality controls."""
     import preface_rl.envs as envs_module
     import preface_rl.llm as llm_module
     import preface_rl.slm as slm_module
-    from preface_rl.run_audit import (
-        save_attempt_record,
-        save_interaction,
-        save_slm_interaction,
-    )
-    from preface_rl.slm_generation_guard import install_slm_generation_guard
+    import preface_rl.slm_generation_guard as generation_guard
+    from preface_rl.run_audit import save_attempt_record, save_interaction, save_slm_interaction
 
     def scoped_prompt_response(prompt, response, save_dir, metadata=None):
         kind = "judge" if "judge" in str(save_dir).lower() else "llm"
@@ -39,7 +35,18 @@ def install_run_scoped_audit_hooks() -> None:
 
     llm_module.save_prompt_response = scoped_prompt_response
     slm_module._save_slm_interaction = save_slm_interaction
-    install_slm_generation_guard(slm_module)
+    generation_guard.install_slm_generation_guard(slm_module)
+
+    original_compute_total_reward = envs_module.compute_total_reward
+
+    def compute_total_reward_with_prompt_quality(*args, **kwargs):
+        breakdown = original_compute_total_reward(*args, **kwargs)
+        quality_reward = generation_guard.current_quality_reward()
+        breakdown["prompt_quality_reward"] = quality_reward
+        breakdown["total_reward"] = float(breakdown["total_reward"]) + quality_reward
+        return breakdown
+
+    envs_module.compute_total_reward = compute_total_reward_with_prompt_quality
 
     original_append = envs_module.append_to_weighted_dataset
 
@@ -53,7 +60,7 @@ def install_run_scoped_audit_hooks() -> None:
 
     envs_module.append_to_weighted_dataset = append_and_audit
     logging.info(
-        "Run-scoped audit logging and Qwen3 generation guard enabled at %s",
+        "Run-scoped audit, Qwen3 generation guard, and prompt-quality reward enabled at %s",
         os.environ.get("PROOF2SILICON_RUN_DIR"),
     )
 
@@ -135,6 +142,7 @@ def main():
         "qwen_thinking_disabled": True,
         "slm_max_new_tokens": 320,
         "slm_repetition_guard": True,
+        "prompt_quality_auxiliary_reward": True,
     }
 
     run = wandb.init(
@@ -157,18 +165,15 @@ def main():
                 "resume/is_resume": int(is_resume),
                 "resume/effective_start_epoch": effective_start_epoch,
                 "resume/checkpoint_epoch": int(resume_metadata.get("checkpoint_epoch", -1)),
-                "resume/reward_history_length": int(
-                    resume_metadata.get("reward_history_length", 0)
-                ),
-                "resume/processed_sample_count": int(
-                    resume_metadata.get("processed_sample_count", 0)
-                ),
+                "resume/reward_history_length": int(resume_metadata.get("reward_history_length", 0)),
+                "resume/processed_sample_count": int(resume_metadata.get("processed_sample_count", 0)),
                 "audit/run_scoped_logging_enabled": 1,
                 "audit/parallel_workspace_isolation_enabled": 1,
                 "audit/ast_cross_process_lock_enabled": 1,
                 "slm/qwen_chat_template_enabled": 1,
                 "slm/qwen_thinking_disabled": 1,
                 "slm/repetition_guard_enabled": 1,
+                "slm/prompt_quality_auxiliary_reward_enabled": 1,
             }
         )
 
@@ -215,9 +220,7 @@ def main():
                 "slm/final_l2_norm": final["l2_norm"],
                 "slm/final_max_abs": final["max_abs"],
                 "slm/l2_norm_delta_this_allocation": norm_delta,
-                "slm/trainable_parameter_change_detected_this_allocation": int(
-                    abs(norm_delta) > 1e-12
-                ),
+                "slm/trainable_parameter_change_detected_this_allocation": int(abs(norm_delta) > 1e-12),
                 "job/final_total_reward": float(sum(total_rewards)) if total_rewards else 0.0,
                 "job/final_epoch_reward": float(total_rewards[-1]) if total_rewards else 0.0,
                 "job/final_successful_examples_count": len(successful_examples),
