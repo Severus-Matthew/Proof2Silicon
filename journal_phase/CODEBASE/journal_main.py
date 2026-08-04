@@ -83,12 +83,18 @@ def main():
         "artifacts/llm",
         "artifacts/judge",
         "artifacts/attempts",
+        "artifacts/dafny",
+        "artifacts/ast",
         "audit",
         "checkpoints",
+        "workspaces",
     ]:
         (run_dir / relative).mkdir(parents=True, exist_ok=True)
 
     install_run_scoped_audit_hooks()
+    from preface_rl.parallel_isolation import install_parallel_environment_isolation
+
+    install_parallel_environment_isolation()
 
     effective_start_epoch, resume_metadata = infer_resume_position(
         args.checkpoint,
@@ -121,6 +127,8 @@ def main():
         "study_id": os.environ.get("PROOF2SILICON_STUDY_ID"),
         "is_resume": is_resume,
         "resume_metadata": resume_metadata,
+        "parallel_workspace_isolation": True,
+        "ast_cross_process_lock": True,
     }
 
     run = wandb.init(
@@ -150,6 +158,8 @@ def main():
                     resume_metadata.get("processed_sample_count", 0)
                 ),
                 "audit/run_scoped_logging_enabled": 1,
+                "audit/parallel_workspace_isolation_enabled": 1,
+                "audit/ast_cross_process_lock_enabled": 1,
             }
         )
 
