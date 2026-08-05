@@ -49,16 +49,20 @@ export SLM_MODEL_NAME=Qwen/Qwen3-1.7B
 export DEEPSEEK_GENERATOR_MODEL=deepseek-chat
 export OPENAI_GENERATOR_MODEL=gpt-5.4-mini
 export OPENAI_GENERATOR_REASONING=medium
+# OpenAI Responses API budget includes hidden reasoning plus visible Dafny code.
+# Retry once with low reasoning and a larger budget when visible output is empty.
+export OPENAI_GENERATOR_MAX_TOKENS=16384
+export OPENAI_GENERATOR_RETRY_MAX_TOKENS=24576
+# Shared chat-completion budget for DeepSeek and Qwen-HF.
+export DAFNY_GENERATOR_MAX_TOKENS=8192
 export HF_GENERATOR_MODEL=Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest
 export HF_BASE_URL=https://router.huggingface.co/v1
 
 export DAFNY_JUDGE_PROVIDER=openai
 export DAFNY_JUDGE_MODEL=gpt-5.4
-export DAFNY_JUDGE_REASONING=high
-# High reasoning consumes output-budget tokens before emitting the final YES/NO.
-# 128 tokens was repeatedly exhausted by reasoning, producing an empty visible
-# answer. Give the judge enough budget to reason and still emit the verdict.
-export DAFNY_JUDGE_MAX_TOKENS=1024
+# This judge checks only same-problem alignment, not implementation correctness.
+export DAFNY_JUDGE_REASONING=low
+export DAFNY_JUDGE_MAX_TOKENS=512
 
 RUN_KEY=${PROOF2SILICON_STUDY_ID}_${EXPERIMENT}
 export WANDB_RUN_NAME=journal_${RUN_KEY}
@@ -79,15 +83,21 @@ DAFNY_MIXED_GENERATORS=$DAFNY_MIXED_GENERATORS
 DEEPSEEK_GENERATOR_MODEL=$DEEPSEEK_GENERATOR_MODEL
 OPENAI_GENERATOR_MODEL=$OPENAI_GENERATOR_MODEL
 OPENAI_GENERATOR_REASONING=$OPENAI_GENERATOR_REASONING
+OPENAI_GENERATOR_MAX_TOKENS=$OPENAI_GENERATOR_MAX_TOKENS
+OPENAI_GENERATOR_RETRY_MAX_TOKENS=$OPENAI_GENERATOR_RETRY_MAX_TOKENS
+DAFNY_GENERATOR_MAX_TOKENS=$DAFNY_GENERATOR_MAX_TOKENS
 HF_GENERATOR_MODEL=$HF_GENERATOR_MODEL
 DAFNY_JUDGE_MODEL=$DAFNY_JUDGE_MODEL
 DAFNY_JUDGE_REASONING=$DAFNY_JUDGE_REASONING
 DAFNY_JUDGE_MAX_TOKENS=$DAFNY_JUDGE_MAX_TOKENS
+DAFNY_JUDGE_SCOPE=same_problem_only_not_correctness
 DAFNY_MIXED_SEED=$DAFNY_MIXED_SEED
 SLM_MAX_PROMPT_TOKENS=1600
 SLM_MAX_NEW_TOKENS=800
 SLM_MAX_SEQUENCE_TOKENS=2400
 SLM_THINKING_DISABLED=true
+KL_SIGNAL=sampled_logprob_gap_to_base_policy
+PARSE_ERROR_SENTINEL_REMOVED=true
 LATEST_SLURM_JOB_ID=$SLURM_JOB_ID
 LATEST_SLURM_ARRAY_JOB_ID=$SLURM_ARRAY_JOB_ID
 LATEST_SLURM_ARRAY_TASK_ID=$SLURM_ARRAY_TASK_ID
@@ -122,7 +132,9 @@ printf '%s\n' "==============================" \
   "Checkpoint: $CHECKPOINT" \
   "Mixed generators: $DAFNY_MIXED_GENERATORS" \
   "SLM token budget: prompt=1600 new=800 total=2400 thinking=disabled" \
-  "Judge budget: reasoning=$DAFNY_JUDGE_REASONING max_output_tokens=$DAFNY_JUDGE_MAX_TOKENS" \
+  "OpenAI generator: primary=$OPENAI_GENERATOR_MAX_TOKENS retry=$OPENAI_GENERATOR_RETRY_MAX_TOKENS" \
+  "Judge: scope=same-problem-only reasoning=$DAFNY_JUDGE_REASONING max_output_tokens=$DAFNY_JUDGE_MAX_TOKENS" \
+  "KL: sampled log-probability gap to frozen base policy" \
   "=============================="
 
 nvidia-smi
