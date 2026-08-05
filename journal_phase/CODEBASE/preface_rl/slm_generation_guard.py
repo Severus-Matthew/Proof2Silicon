@@ -117,6 +117,20 @@ def install_slm_generation_guard(slm_module) -> None:
     slm_module.MAX_NEW_TOKENS = 800
     slm_module.MAX_SEQ_LEN = 2400
 
+    # The legacy loop still emits step/kl_value=0.0. Replace only that placeholder
+    # at logging time so the W&B chart reflects the sampled KL computed below.
+    if not getattr(slm_module, "_sampled_kl_wandb_patch_installed", False):
+        original_wandb_log = slm_module.wandb.log
+
+        def wandb_log_with_sampled_kl(payload, *args, **kwargs):
+            if isinstance(payload, dict) and "step/kl_value" in payload:
+                payload = dict(payload)
+                payload["step/kl_value"] = current_sampled_kl()
+            return original_wandb_log(payload, *args, **kwargs)
+
+        slm_module.wandb.log = wandb_log_with_sampled_kl
+        slm_module._sampled_kl_wandb_patch_installed = True
+
     def guarded_generate_instruction_sequence(
         slm_pg,
         tokenizer,
@@ -232,8 +246,6 @@ def install_slm_generation_guard(slm_module) -> None:
             generated_ids.to(slm_module.device),
         )
 
-        # Sampled-token KL proxy against the frozen base model with LoRA disabled.
-        # This is a real policy-drift signal, unlike the previous hard-coded zero.
         disable_adapter = getattr(slm_pg.model, "disable_adapter", None)
         if callable(disable_adapter):
             try:
