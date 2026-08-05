@@ -1,5 +1,6 @@
 """Qwen3-aware, bounded generation for the prompt-policy SLM."""
 
+import logging
 import re
 from typing import Dict, List, Tuple
 
@@ -23,6 +24,7 @@ REQUIRED_REPAIR = (
     "Instruction:",
 )
 LAST_QUALITY_REPORT: Dict[str, object] = {}
+LAST_SAMPLED_KL = 0.0
 
 
 def current_quality_report() -> Dict[str, object]:
@@ -31,6 +33,10 @@ def current_quality_report() -> Dict[str, object]:
 
 def current_quality_reward() -> float:
     return float(LAST_QUALITY_REPORT.get("quality_reward", 0.0) or 0.0)
+
+
+def current_sampled_kl() -> float:
+    return float(LAST_SAMPLED_KL)
 
 
 def _quality_report(text: str, repair: bool) -> Dict[str, object]:
@@ -118,16 +124,14 @@ def install_slm_generation_guard(slm_module) -> None:
         max_new_tokens=800,
         temperature=0.25,
     ):
-        global LAST_QUALITY_REPORT
+        global LAST_QUALITY_REPORT, LAST_SAMPLED_KL
+        LAST_SAMPLED_KL = 0.0
         slm_pg.eval()
         if hasattr(slm_pg.model, "gradient_checkpointing_disable"):
             slm_pg.model.gradient_checkpointing_disable()
 
         rendered = _render_chat(tokenizer, prompt_text)
         previous_side = getattr(tokenizer, "truncation_side", "right")
-        # The repair prompt places task, negative feedback, and newest verifier
-        # feedback before abbreviated historical material, so right truncation
-        # preserves the highest-priority sections and the chat preamble.
         tokenizer.truncation_side = "right"
         try:
             inputs = tokenizer(
@@ -140,9 +144,6 @@ def install_slm_generation_guard(slm_module) -> None:
         finally:
             tokenizer.truncation_side = previous_side
 
-        # Register the exact chat-templated IDs. The legacy PPO loop immediately
-        # tokenizes raw prompt_text after generation; PolicyTokenizerProxy returns
-        # this registered encoding so rollout and PPO replay use identical state.
         register = getattr(tokenizer, "register_policy_prompt", None)
         if callable(register):
             register(prompt_text, inputs)
@@ -217,19 +218,8 @@ def install_slm_generation_guard(slm_module) -> None:
                 ),
             )
 
-        LAST_QUALITY_REPORT = dict(report)
-        save_interaction(
-            "slm",
-            prompt_text,
-            instruction_text,
-            {
-                "slm_model": getattr(slm_pg.model.config, "_name_or_path", None),
-                "quality": LAST_QUALITY_REPORT,
-                "all_attempt_quality": [item[2] for item in attempts],
-            },
-        )
-
         if generated_ids.shape[1] == 0:
+            LAST_QUALITY_REPORT = dict(report)
             slm_pg.train()
             return "", None, None, None, 0, []
 
@@ -241,6 +231,41 @@ def install_slm_generation_guard(slm_module) -> None:
             inputs["input_ids"].to(slm_module.device),
             generated_ids.to(slm_module.device),
         )
+
+        # Sampled-token KL proxy against the frozen base model with LoRA disabled.
+        # This is a real policy-drift signal, unlike the previous hard-coded zero.
+        disable_adapter = getattr(slm_pg.model, "disable_adapter", None)
+        if callable(disable_adapter):
+            try:
+                with torch.no_grad():
+                    with disable_adapter():
+                        ref_log_prob, _, _ = slm_module.compute_sequence_logprob_and_value(
+                            slm_pg,
+                            inputs["input_ids"].to(slm_module.device),
+                            generated_ids.to(slm_module.device),
+                        )
+                LAST_SAMPLED_KL = max(
+                    0.0,
+                    float((seq_log_prob.detach() - ref_log_prob.detach()).item()),
+                )
+            except Exception as exc:
+                logging.warning("Could not compute sampled KL to base policy: %s", exc)
+                LAST_SAMPLED_KL = 0.0
+
+        report["sampled_kl_to_base"] = LAST_SAMPLED_KL
+        LAST_QUALITY_REPORT = dict(report)
+        save_interaction(
+            "slm",
+            prompt_text,
+            instruction_text,
+            {
+                "slm_model": getattr(slm_pg.model.config, "_name_or_path", None),
+                "quality": LAST_QUALITY_REPORT,
+                "all_attempt_quality": [item[2] for item in attempts],
+                "sampled_kl_to_base": LAST_SAMPLED_KL,
+            },
+        )
+
         return (
             instruction_text,
             seq_log_prob,
