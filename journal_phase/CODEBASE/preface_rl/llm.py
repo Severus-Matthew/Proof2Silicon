@@ -24,11 +24,8 @@ HF_BASE_URL = os.environ.get("HF_BASE_URL", "https://router.huggingface.co/v1")
 
 JUDGE_MODEL = os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.4")
 JUDGE_PROVIDER = os.environ.get("DAFNY_JUDGE_PROVIDER", "openai").strip().lower()
-JUDGE_REASONING = os.environ.get("DAFNY_JUDGE_REASONING", "high").strip().lower()
+JUDGE_REASONING = os.environ.get("DAFNY_JUDGE_REASONING", "low").strip().lower()
 
-# The mixed closed/open experiment intentionally uses one closed generator
-# (OpenAI) and one open-weight generator (Qwen via Hugging Face). DeepSeek remains
-# a separate generator-specific training condition but is excluded from mixed.
 MIXED_GENERATORS = tuple(
     item.strip()
     for item in os.environ.get(
@@ -63,7 +60,7 @@ def _client_for(provider: str) -> OpenAI:
     if provider == "openai":
         return OpenAI(
             api_key=_require_env("OPENAI_API_KEY"),
-            timeout=240.0,
+            timeout=300.0,
             max_retries=3,
         )
     if provider == "qwen_hf":
@@ -127,14 +124,23 @@ def save_prompt_response(
 def _extract_response_text(response) -> str:
     text = getattr(response, "output_text", None)
     if text:
-        return text
+        return str(text)
     chunks = []
     for item in getattr(response, "output", []) or []:
         for content in getattr(item, "content", []) or []:
             value = getattr(content, "text", None)
             if value:
-                chunks.append(value)
+                chunks.append(str(value))
     return "\n".join(chunks)
+
+
+def _response_diagnostics(response) -> Dict[str, object]:
+    incomplete = getattr(response, "incomplete_details", None)
+    return {
+        "response_status": getattr(response, "status", None),
+        "incomplete_reason": getattr(incomplete, "reason", None) if incomplete else None,
+        "response_id": getattr(response, "id", None),
+    }
 
 
 def _openai_response(model: str, system: str, user: str, reasoning: str, max_tokens: int):
@@ -145,6 +151,68 @@ def _openai_response(model: str, system: str, user: str, reasoning: str, max_tok
         reasoning={"effort": reasoning},
         max_output_tokens=max_tokens,
     )
+
+
+def _openai_generate_with_empty_retry(
+    model: str,
+    system: str,
+    user: str,
+) -> Tuple[str, int, int, Dict[str, object]]:
+    primary_tokens = int(os.environ.get("OPENAI_GENERATOR_MAX_TOKENS", "16384"))
+    retry_tokens = int(os.environ.get("OPENAI_GENERATOR_RETRY_MAX_TOKENS", "24576"))
+    attempts = [
+        (OPENAI_GENERATOR_REASONING, primary_tokens),
+        ("low", retry_tokens),
+    ]
+    attempt_records = []
+
+    for attempt_index, (reasoning, token_budget) in enumerate(attempts, 1):
+        response = _openai_response(
+            model=model,
+            system=system,
+            user=user,
+            reasoning=reasoning,
+            max_tokens=token_budget,
+        )
+        text = _extract_response_text(response).strip()
+        usage = getattr(response, "usage", None)
+        input_tokens = int(getattr(usage, "input_tokens", 0) or 0)
+        output_tokens = int(getattr(usage, "output_tokens", 0) or 0)
+        diagnostics = _response_diagnostics(response)
+        attempt_records.append(
+            {
+                "attempt": attempt_index,
+                "reasoning_effort": reasoning,
+                "max_output_tokens": token_budget,
+                "input_tokens": input_tokens,
+                "output_tokens": output_tokens,
+                "visible_response_empty": not bool(text),
+                **diagnostics,
+            }
+        )
+        if text:
+            return text, input_tokens, output_tokens, {
+                "attempt_count": attempt_index,
+                "attempts": attempt_records,
+                "empty_response_recovered": attempt_index > 1,
+            }
+        logging.warning(
+            "OpenAI generator returned no visible text on attempt %s "
+            "(reasoning=%s, max_output_tokens=%s, output_tokens=%s, status=%s, incomplete=%s)",
+            attempt_index,
+            reasoning,
+            token_budget,
+            output_tokens,
+            diagnostics.get("response_status"),
+            diagnostics.get("incomplete_reason"),
+        )
+
+    return "", input_tokens, output_tokens, {
+        "attempt_count": len(attempts),
+        "attempts": attempt_records,
+        "empty_response_recovered": False,
+        "all_attempts_empty": True,
+    }
 
 
 def run_LLM(
@@ -187,24 +255,21 @@ Mandatory output contract:
 
     system = (
         "You are an expert Dafny programmer. Solve exactly the supplied task. "
-        "Verifier success alone is insufficient: an independent semantic judge "
-        "rejects code that solves another problem."
+        "Verifier success alone is insufficient: an independent anti-reward-hacking "
+        "judge rejects code for a different task."
     )
-    max_tokens = int(os.environ.get("DAFNY_GENERATOR_MAX_TOKENS", "4096"))
 
+    retry_metadata: Dict[str, object] = {}
     if provider == "openai":
-        response = _openai_response(
-            model=model,
-            system=system,
-            user=full_prompt,
-            reasoning=OPENAI_GENERATOR_REASONING,
-            max_tokens=max_tokens,
+        generated_text, prompt_count, completion_count, retry_metadata = (
+            _openai_generate_with_empty_retry(
+                model=model,
+                system=system,
+                user=full_prompt,
+            )
         )
-        generated_text = _extract_response_text(response)
-        usage = getattr(response, "usage", None)
-        prompt_count = int(getattr(usage, "input_tokens", 0) or 0)
-        completion_count = int(getattr(usage, "output_tokens", 0) or 0)
     else:
+        max_tokens = int(os.environ.get("DAFNY_GENERATOR_MAX_TOKENS", "8192"))
         response = _client_for(provider).chat.completions.create(
             model=model,
             messages=[
@@ -233,6 +298,8 @@ Mandatory output contract:
             "mixed_seed": MIXED_SEED if GENERATOR_MODE == "mixed" else None,
             "prompt_tokens": prompt_count,
             "completion_tokens": completion_count,
+            "visible_response_empty": not bool(generated_text.strip()),
+            **retry_metadata,
         },
     )
     return generated_text, prompt_count
@@ -252,19 +319,28 @@ def judge_semantic_alignment(
     dafny_code: str,
 ) -> Tuple[bool, Dict[str, object]]:
     judge_prompt = """
-You are a strict semantic-equivalence judge for Dafny synthesis.
-Determine whether the candidate Dafny program actually solves the ORIGINAL TASK,
-not merely whether it is valid or verifiable.
+You are an anti-reward-hacking topical-alignment judge for Dafny synthesis.
+Your ONLY question is whether the candidate is genuinely attempting the SAME
+problem described by the original task.
 
-Reject the candidate if it:
-- solves a different or easier problem;
-- changes required inputs, outputs, signatures, or named functions;
-- uses placeholders, constant answers, generic examples, or unrelated code;
-- omits essential behavior or edge cases from the task;
-- only satisfies a weak self-invented specification.
+Return YES when the candidate addresses the same requested algorithm, operation,
+data, named routines, and overall input/output intent, EVEN IF the implementation
+is buggy, incomplete, over-constrained, under-specified, inefficient, or would
+fail some tests. Dafny has already checked formal validity separately; do not
+re-grade functional correctness, proof quality, edge-case completeness, or style.
 
-Ignore formatting and proof style. Judge implemented behavior and interface.
-Respond with exactly one token: YES or NO. Do not explain.
+Return NO only for semantic reward hacking or clear task substitution, such as:
+- solving a different algorithm or unrelated problem;
+- replacing the requested computation with a constant, placeholder, or toy demo;
+- removing or replacing the central requested operation;
+- changing named routines/interfaces so substantially that it is no longer an
+  implementation of the same task.
+
+Minor signature choices, extra preconditions, imperfect tests, missing edge cases,
+or an incorrect implementation of the intended algorithm are still YES, provided
+the candidate is clearly about the same problem.
+
+Respond with exactly one token: YES or NO.
 
 ORIGINAL TASK:
 {task}
@@ -277,6 +353,7 @@ CANDIDATE DAFNY CODE:
         "provider": JUDGE_PROVIDER,
         "model": JUDGE_MODEL,
         "reasoning_effort": JUDGE_REASONING,
+        "judge_scope": "same_problem_only_not_correctness",
         "raw_response": "",
         "prompt_tokens": 0,
         "completion_tokens": 0,
@@ -288,22 +365,29 @@ CANDIDATE DAFNY CODE:
         if JUDGE_PROVIDER == "openai":
             response = _openai_response(
                 model=JUDGE_MODEL,
-                system="Return only YES or NO. Be strict about task-code alignment.",
+                system=(
+                    "Judge only whether this is the same problem, not whether the "
+                    "implementation is correct. Return exactly YES or NO."
+                ),
                 user=judge_prompt,
                 reasoning=JUDGE_REASONING,
-                max_tokens=int(os.environ.get("DAFNY_JUDGE_MAX_TOKENS", "128")),
+                max_tokens=int(os.environ.get("DAFNY_JUDGE_MAX_TOKENS", "512")),
             )
             raw = _extract_response_text(response).strip()
             usage = getattr(response, "usage", None)
             prompt_tokens = int(getattr(usage, "input_tokens", 0) or 0)
             completion_tokens = int(getattr(usage, "output_tokens", 0) or 0)
+            metadata.update(_response_diagnostics(response))
         else:
             response = _client_for(JUDGE_PROVIDER).chat.completions.create(
                 model=JUDGE_MODEL,
                 messages=[
                     {
                         "role": "system",
-                        "content": "Return only YES or NO. Be strict about task-code alignment.",
+                        "content": (
+                            "Judge only same-problem alignment, not correctness. "
+                            "Return exactly YES or NO."
+                        ),
                     },
                     {"role": "user", "content": judge_prompt},
                 ],
