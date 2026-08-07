@@ -1,5 +1,5 @@
 #!/bin/bash -l
-#SBATCH --job-name=p2s_journal
+#SBATCH --job-name=p2s_journal3
 #SBATCH --output=p2s_journal_%A_%a.out
 #SBATCH --error=p2s_journal_%A_%a.err
 #SBATCH --open-mode=append
@@ -10,7 +10,7 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --gres=gpu:1
 #SBATCH --time=2-00:00:00
-#SBATCH --array=0-3
+#SBATCH --array=0-2
 #SBATCH --requeue
 #SBATCH --signal=B:USR1@600
 
@@ -18,7 +18,6 @@ set -euo pipefail
 
 : "${PROOF2SILICON_STUDY_ID:?Set a stable PROOF2SILICON_STUDY_ID before sbatch}"
 : "${OPENAI_API_KEY:?Export OPENAI_API_KEY before sbatch}"
-: "${DEEPSEEK_API_KEY:?Export DEEPSEEK_API_KEY before sbatch}"
 : "${HF_TOKEN:?Export HF_TOKEN before sbatch}"
 
 export PYTHONUNBUFFERED=1
@@ -33,10 +32,9 @@ CODEBASE=$ROOT/CODEBASE
 ARRAY_ID=${SLURM_ARRAY_TASK_ID:?}
 
 case "$ARRAY_ID" in
-  0) EXPERIMENT=deepseek ;;
-  1) EXPERIMENT=openai ;;
-  2) EXPERIMENT=qwen_hf ;;
-  3) EXPERIMENT=mixed ;;
+  0) EXPERIMENT=openai ;;
+  1) EXPERIMENT=qwen_hf ;;
+  2) EXPERIMENT=mixed ;;
   *) echo "Invalid array task: $ARRAY_ID" >&2; exit 2 ;;
 esac
 
@@ -46,23 +44,28 @@ export DAFNY_MIXED_GENERATORS=openai,qwen_hf
 export DAFNY_MIXED_SEED=20260802
 export SLM_MODEL_NAME=Qwen/Qwen3-1.7B
 
-export DEEPSEEK_GENERATOR_MODEL=deepseek-chat
 export OPENAI_GENERATOR_MODEL=gpt-5.4-mini
 export OPENAI_GENERATOR_REASONING=medium
-# OpenAI Responses API budget includes hidden reasoning plus visible Dafny code.
-# Retry once with low reasoning and a larger budget when visible output is empty.
+# Responses API budget includes hidden reasoning plus visible Dafny code.
 export OPENAI_GENERATOR_MAX_TOKENS=16384
 export OPENAI_GENERATOR_RETRY_MAX_TOKENS=24576
-# Shared chat-completion budget for DeepSeek and Qwen-HF.
-export DAFNY_GENERATOR_MAX_TOKENS=8192
-export HF_GENERATOR_MODEL=Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest
+
+# Pin one concrete HF inference provider for a controlled experiment.  Using
+# :cheapest can silently change serving providers over time and makes the Qwen
+# condition non-stationary.  The model page currently lists Featherless AI as a
+# live provider for this model.
+export HF_GENERATOR_MODEL=Qwen/Qwen3-Coder-30B-A3B-Instruct:featherless-ai
 export HF_BASE_URL=https://router.huggingface.co/v1
+export DAFNY_GENERATOR_MAX_TOKENS=8192
 
 export DAFNY_JUDGE_PROVIDER=openai
 export DAFNY_JUDGE_MODEL=gpt-5.4
-# This judge checks only same-problem alignment, not implementation correctness.
 export DAFNY_JUDGE_REASONING=low
 export DAFNY_JUDGE_MAX_TOKENS=512
+
+# PPO/critic stabilization.  Actor stays conservative; the randomly initialized
+# value head needs a materially larger LR to track O(10-40) Monte-Carlo returns.
+export SLM_VALUE_HEAD_LR=5e-5
 
 RUN_KEY=${PROOF2SILICON_STUDY_ID}_${EXPERIMENT}
 export WANDB_RUN_NAME=journal_${RUN_KEY}
@@ -80,7 +83,6 @@ EXPERIMENT=$EXPERIMENT
 SLM_MODEL_NAME=$SLM_MODEL_NAME
 DAFNY_GENERATOR_MODE=$DAFNY_GENERATOR_MODE
 DAFNY_MIXED_GENERATORS=$DAFNY_MIXED_GENERATORS
-DEEPSEEK_GENERATOR_MODEL=$DEEPSEEK_GENERATOR_MODEL
 OPENAI_GENERATOR_MODEL=$OPENAI_GENERATOR_MODEL
 OPENAI_GENERATOR_REASONING=$OPENAI_GENERATOR_REASONING
 OPENAI_GENERATOR_MAX_TOKENS=$OPENAI_GENERATOR_MAX_TOKENS
@@ -96,8 +98,12 @@ SLM_MAX_PROMPT_TOKENS=1600
 SLM_MAX_NEW_TOKENS=800
 SLM_MAX_SEQUENCE_TOKENS=2400
 SLM_THINKING_DISABLED=true
+SLM_ACTOR_LR=5e-7
+SLM_VALUE_HEAD_LR=$SLM_VALUE_HEAD_LR
+CRITIC_BACKBONE_DETACHED=true
 KL_SIGNAL=sampled_logprob_gap_to_base_policy
 PARSE_ERROR_SENTINEL_REMOVED=true
+TRAINING_REVISION=critic-stabilized-three-generator-v7
 LATEST_SLURM_JOB_ID=$SLURM_JOB_ID
 LATEST_SLURM_ARRAY_JOB_ID=$SLURM_ARRAY_JOB_ID
 LATEST_SLURM_ARRAY_TASK_ID=$SLURM_ARRAY_TASK_ID
@@ -132,9 +138,11 @@ printf '%s\n' "==============================" \
   "Checkpoint: $CHECKPOINT" \
   "Mixed generators: $DAFNY_MIXED_GENERATORS" \
   "SLM token budget: prompt=1600 new=800 total=2400 thinking=disabled" \
+  "Actor LR: 5e-7 | value-head LR: $SLM_VALUE_HEAD_LR | critic backbone detached" \
   "OpenAI generator: primary=$OPENAI_GENERATOR_MAX_TOKENS retry=$OPENAI_GENERATOR_RETRY_MAX_TOKENS" \
+  "Qwen-HF provider pinned: $HF_GENERATOR_MODEL" \
   "Judge: scope=same-problem-only reasoning=$DAFNY_JUDGE_REASONING max_output_tokens=$DAFNY_JUDGE_MAX_TOKENS" \
-  "KL: sampled log-probability gap to frozen base policy" \
+  "Target epochs: 8" \
   "=============================="
 
 nvidia-smi
@@ -172,7 +180,7 @@ PY
 python3 journal_main.py \
   --checkpoint "$CHECKPOINT" \
   --start_epoch 0 \
-  --num_epochs 5 \
+  --num_epochs 8 \
   --wandb_project proof2silicon-journal-final \
   --wandb_entity drprofmjha-university-of-illinois-urbana-champaign \
   > >(tee -a "$PROOF2SILICON_RUN_DIR/training.log") 2>&1 &
