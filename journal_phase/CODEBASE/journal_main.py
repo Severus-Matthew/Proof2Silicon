@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Entry point for the four controlled journal training runs."""
+"""Entry point for the three controlled journal training runs."""
 
 import argparse
+import copy
 import gc
 import logging
 import os
@@ -22,7 +23,7 @@ logging.basicConfig(
 
 
 def install_run_scoped_audit_hooks() -> None:
-    """Install run-scoped logs and prompt-policy quality controls."""
+    """Install run-scoped logs, prompt controls, and PPO stabilization hooks."""
     import preface_rl.envs as envs_module
     import preface_rl.llm as llm_module
     import preface_rl.slm as slm_module
@@ -37,6 +38,94 @@ def install_run_scoped_audit_hooks() -> None:
     llm_module.save_prompt_response = scoped_prompt_response
     slm_module._save_slm_interaction = save_slm_interaction
     generation_guard.install_slm_generation_guard(slm_module)
+
+    # ------------------------------------------------------------------
+    # Critic stabilization
+    # ------------------------------------------------------------------
+    # The v6 curves show a value head that remains near O(1) while Monte-Carlo
+    # returns are often O(10-40), producing value losses in the hundreds.  The
+    # old optimizer used the actor's 5e-7 LR for the randomly initialized value
+    # head, and the critic loss also back-propagated through the LoRA policy.
+    # Keep the actor conservative, give the value head its own LR, and detach the
+    # critic state representation so a large critic error cannot dominate policy
+    # gradients.
+    value_head_lr = float(os.environ.get("SLM_VALUE_HEAD_LR", "5e-5"))
+
+    def actor_critic_forward_decoupled(self, input_ids, attention_mask=None, prompt_len: int = -1):
+        outputs = self.model(
+            input_ids=input_ids,
+            attention_mask=attention_mask,
+            output_hidden_states=True,
+            return_dict=True,
+        )
+        logits = outputs.logits
+        value_idx = (prompt_len - 1) if prompt_len > 0 else -1
+        state_hidden = outputs.hidden_states[-1][:, value_idx, :].detach().to(
+            device=slm_module.device,
+            dtype=torch.float32,
+        )
+        values = self.value_head(state_hidden).squeeze(-1).to(
+            device=slm_module.device,
+            dtype=torch.float32,
+        )
+        return logits, values
+
+    slm_module.SLMPG.forward = actor_critic_forward_decoupled
+
+    class JournalAdam(torch.optim.Adam):
+        """Adam with a higher critic LR and v6 one-group checkpoint compatibility."""
+
+        def __init__(self, params, lr=5e-7, **kwargs):
+            params = list(params)
+            # SLMPG registers `model` first and the two-layer value_head second;
+            # the value head therefore contributes the final four Parameters.
+            if len(params) <= 4:
+                super().__init__(params, lr=lr, **kwargs)
+                self._p2s_actor_lr = float(lr)
+                self._p2s_critic_lr = float(lr)
+                self._p2s_critic_param_count = 0
+                return
+
+            actor_params = params[:-4]
+            critic_params = params[-4:]
+            super().__init__(
+                [
+                    {"params": actor_params, "lr": float(lr)},
+                    {"params": critic_params, "lr": value_head_lr},
+                ],
+                lr=float(lr),
+                **kwargs,
+            )
+            self._p2s_actor_lr = float(lr)
+            self._p2s_critic_lr = value_head_lr
+            self._p2s_critic_param_count = len(critic_params)
+
+        def load_state_dict(self, state_dict):
+            incoming = copy.deepcopy(state_dict)
+            groups = incoming.get("param_groups", [])
+            if len(groups) == 1 and len(self.param_groups) == 2:
+                old_group = dict(groups[0])
+                old_param_ids = list(old_group.get("params", []))
+                critic_count = len(self.param_groups[1]["params"])
+                if len(old_param_ids) > critic_count:
+                    split = len(old_param_ids) - critic_count
+                    actor_group = dict(old_group)
+                    critic_group = dict(old_group)
+                    actor_group["params"] = old_param_ids[:split]
+                    critic_group["params"] = old_param_ids[split:]
+                    actor_group["lr"] = self._p2s_actor_lr
+                    critic_group["lr"] = self._p2s_critic_lr
+                    incoming["param_groups"] = [actor_group, critic_group]
+                    logging.info(
+                        "Converted legacy one-group Adam checkpoint into actor/critic LR groups."
+                    )
+            super().load_state_dict(incoming)
+            if self.param_groups:
+                self.param_groups[0]["lr"] = self._p2s_actor_lr
+            if len(self.param_groups) > 1:
+                self.param_groups[1]["lr"] = self._p2s_critic_lr
+
+    slm_module.Adam = JournalAdam
 
     original_compute_total_reward = envs_module.compute_total_reward
 
@@ -62,6 +151,7 @@ def install_run_scoped_audit_hooks() -> None:
     envs_module.DafnyEnv.run_ast_plugin_and_analyzer = run_ast_with_nonnegative_metrics
 
     original_step = envs_module.DafnyEnv.step
+    latest_step_info = {}
 
     def step_with_quality_state(self, *args, **kwargs):
         quality_report = generation_guard.current_quality_report()
@@ -79,13 +169,23 @@ def install_run_scoped_audit_hooks() -> None:
         info["slm_quality_analysis"] = quality_report
         info["sampled_kl_to_base"] = sampled_kl
         info["ast_fallback_used"] = ast_fallback_used
+
+        latest_step_info.clear()
+        latest_step_info.update(
+            {
+                "sampled_kl_to_base": float(sampled_kl),
+                "accepted_success": bool(info.get("accepted_success", False)),
+                "parse_errors": max(0, int(info.get("parse_errors", 0))),
+                "ast_fallback_used": ast_fallback_used,
+            }
+        )
+
         try:
             if wandb.run is not None:
                 wandb.log(
                     {
-                        "step/kl_value": sampled_kl,
-                        "step/ast_fallback_used": int(ast_fallback_used),
-                        "step/parse_errors": max(0, int(info.get("parse_errors", 0))),
+                        "journal/base_policy_sampled_logratio": float(sampled_kl),
+                        "journal/ast_fallback_used": int(ast_fallback_used),
                     }
                 )
         except Exception:
@@ -93,6 +193,24 @@ def install_run_scoped_audit_hooks() -> None:
         return reward, done, info
 
     envs_module.DafnyEnv.step = step_with_quality_state
+
+    # Sanitize the outer trainer's legacy step log. It still constructs
+    # kl_value=0.0 and derives success indirectly from successful_examples_count.
+    # Replacing those two fields here makes step/* agree with the authoritative
+    # environment record without rewriting the legacy 1.5k-line trainer.
+    original_wandb_log = wandb.log
+
+    def sanitized_wandb_log(data=None, *args, **kwargs):
+        if isinstance(data, dict) and "step/global_index" in data and latest_step_info:
+            payload = dict(data)
+            payload["step/kl_value"] = latest_step_info["sampled_kl_to_base"]
+            payload["step/success"] = int(latest_step_info["accepted_success"])
+            payload["step/parse_errors"] = latest_step_info["parse_errors"]
+            payload["step/ast_fallback_used"] = int(latest_step_info["ast_fallback_used"])
+            return original_wandb_log(payload, *args, **kwargs)
+        return original_wandb_log(data, *args, **kwargs)
+
+    wandb.log = sanitized_wandb_log
 
     def build_state_prompt_with_quality_feedback(self):
         if self.current_iteration == 0 or self.last_attempt_info is None:
@@ -124,7 +242,8 @@ def install_run_scoped_audit_hooks() -> None:
 
     envs_module.append_to_weighted_dataset = append_and_audit
     logging.info(
-        "Run-scoped audit, prompt-quality feedback, sampled KL, and nonnegative parse metrics enabled at %s",
+        "Run-scoped audit, decoupled critic, actor/critic LRs, prompt-quality feedback, "
+        "sampled base-policy drift, and nonnegative parse metrics enabled at %s",
         os.environ.get("PROOF2SILICON_RUN_DIR"),
     )
 
@@ -133,7 +252,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--start_epoch", type=int, default=0)
-    parser.add_argument("--num_epochs", type=int, default=5)
+    parser.add_argument("--num_epochs", type=int, default=8)
     parser.add_argument("--wandb_project", default="proof2silicon-journal-final")
     parser.add_argument(
         "--wandb_entity",
@@ -178,14 +297,13 @@ def main():
     config = {
         "experiment": experiment,
         "slm_model": os.environ.get("SLM_MODEL_NAME", "Qwen/Qwen3-1.7B"),
-        "generator_mode": os.environ.get("DAFNY_GENERATOR_MODE", "deepseek"),
-        "deepseek_generator_model": os.environ.get("DEEPSEEK_GENERATOR_MODEL", "deepseek-chat"),
+        "generator_mode": os.environ.get("DAFNY_GENERATOR_MODE", "openai"),
         "openai_generator_model": os.environ.get("OPENAI_GENERATOR_MODEL", "gpt-5.4-mini"),
         "openai_generator_reasoning": os.environ.get("OPENAI_GENERATOR_REASONING", "medium"),
         "openai_generator_max_tokens": int(os.environ.get("OPENAI_GENERATOR_MAX_TOKENS", "16384")),
         "openai_generator_retry_max_tokens": int(os.environ.get("OPENAI_GENERATOR_RETRY_MAX_TOKENS", "24576")),
         "hf_generator_model": os.environ.get(
-            "HF_GENERATOR_MODEL", "Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest"
+            "HF_GENERATOR_MODEL", "Qwen/Qwen3-Coder-30B-A3B-Instruct:featherless-ai"
         ),
         "judge_model": os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.4"),
         "judge_reasoning": os.environ.get("DAFNY_JUDGE_REASONING", "low"),
@@ -215,6 +333,10 @@ def main():
         "prompt_quality_textual_feedback": True,
         "ppo_chat_prompt_alignment": True,
         "sampled_kl_to_base_enabled": True,
+        "critic_backbone_detached": True,
+        "actor_learning_rate": 5e-7,
+        "value_head_learning_rate": float(os.environ.get("SLM_VALUE_HEAD_LR", "5e-5")),
+        "training_revision": "critic-stabilized-three-generator-v7",
     }
 
     run = wandb.init(
@@ -226,8 +348,8 @@ def main():
         dir=os.environ.get("WANDB_DIR", str(run_dir / "wandb")),
         config=config,
         settings=wandb.Settings(init_timeout=800),
-        tags=["journal-final", experiment, "qwen3-1.7b-slm"],
-        group="proof2silicon-four-generator-study",
+        tags=["journal-final", experiment, "qwen3-1.7b-slm", "critic-stabilized"],
+        group="proof2silicon-three-generator-study",
         job_type=experiment,
     )
 
@@ -249,6 +371,9 @@ def main():
                 "slm/prompt_quality_textual_feedback_enabled": 1,
                 "slm/ppo_chat_prompt_alignment_enabled": 1,
                 "slm/sampled_kl_to_base_enabled": 1,
+                "slm/critic_backbone_detached": 1,
+                "slm/actor_learning_rate": 5e-7,
+                "slm/value_head_learning_rate": float(os.environ.get("SLM_VALUE_HEAD_LR", "5e-5")),
                 "slm/max_prompt_tokens": 1600,
                 "slm/max_new_tokens": 800,
             }
