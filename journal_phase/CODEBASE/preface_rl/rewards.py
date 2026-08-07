@@ -3,7 +3,7 @@ from typing import Dict, Optional
 
 # Outcome rewards. Verification alone is deliberately insufficient: a verified
 # program receives the full positive reward only when the semantic judge agrees
-# that it solves the original task.
+# that it addresses the original task.
 REWARD_VERIFIED_AND_ALIGNED = 12.0
 REWARD_VERIFIED_BUT_MISALIGNED = -15.0
 REWARD_EMPTY = -10.0
@@ -20,13 +20,17 @@ ERROR_WEIGHTS = {
 NEW_LEMMA_REWARD = 0.2
 NEW_INVARIANT_REWARD = 0.3
 
-# Recursion-aware shaping.  The reward depends on both the absolute recursion
-# count and whether recursion was introduced, removed, or retained.
+# Recursion-aware shaping.  v6 still produced recursion in a large fraction of
+# attempts, especially the Qwen condition.  Successful recursive programs were
+# still strongly net-positive, so the policy had too little incentive to prefer
+# an equally verified iterative implementation.  Keep failure shaping moderate,
+# but create a clear gap between recursive and non-recursive verified solutions.
 RECURSION_INTRODUCTION_PENALTY = -3.0
 RECURSION_PERSISTENCE_PENALTY = -1.0
 RECURSION_REMOVAL_REWARD = 2.0
 RECURSION_PER_CALL_PENALTY = -0.75
-RECURSION_ON_SUCCESS_PENALTY = -2.0
+RECURSION_ON_SUCCESS_PENALTY = -4.0
+NONRECURSIVE_SUCCESS_BONUS = 2.0
 
 GHOST_VAR_ERROR_DECREASE_REWARD = 0.4
 GHOST_VAR_INVARIANT_INCREASE_REWARD = 0.2
@@ -88,10 +92,14 @@ def compute_recursion_reward(
     elif prev_rec > 0 and curr_rec > 0:
         reward += RECURSION_PERSISTENCE_PENALTY
 
-    # A verified recursive program is still less desirable for this pipeline,
-    # because downstream HLS/PyLog compatibility is a core objective.
-    if outcome == "success" and curr_rec > 0:
-        reward += RECURSION_ON_SUCCESS_PENALTY
+    # Hardware-facing preference: a verified+aligned iterative solution is the
+    # desired terminal behavior.  Recursive successes remain valid semantically,
+    # but receive a much smaller return than non-recursive successes.
+    if outcome == "success":
+        if curr_rec > 0:
+            reward += RECURSION_ON_SUCCESS_PENALTY
+        else:
+            reward += NONRECURSIVE_SUCCESS_BONUS
 
     return reward
 
