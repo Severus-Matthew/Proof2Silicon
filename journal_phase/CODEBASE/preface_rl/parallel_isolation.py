@@ -1,9 +1,10 @@
 """Runtime isolation for parallel journal-training processes.
 
-The four Slurm array tasks read the same immutable dataset but must never write
+The three Slurm array tasks read the same immutable dataset but must never write
 candidate Dafny code, verifier output, weighted records, or iteration artifacts
 into the shared dataset folders. This module replaces the trainer's DafnyEnv
-constructor with a run-scoped version.
+constructor with a run-scoped version and installs the conservative anti-hacking
+judge used by the journal study.
 """
 
 import logging
@@ -19,7 +20,15 @@ def _slug(value: str) -> str:
 
 def install_parallel_environment_isolation() -> None:
     import preface_rl.envs as envs_module
+    import preface_rl.llm as llm_module
     import preface_rl.slm as slm_module
+    from preface_rl.judge_override import judge_semantic_alignment
+
+    # envs.py imported the judge by value, so replace both references.  The
+    # override rejects only clear task substitution; it intentionally does not
+    # re-grade implementation correctness.
+    llm_module.judge_semantic_alignment = judge_semantic_alignment
+    envs_module.judge_semantic_alignment = judge_semantic_alignment
 
     base_env = envs_module.DafnyEnv
     run_dir_value = os.environ.get("PROOF2SILICON_RUN_DIR")
@@ -54,4 +63,7 @@ def install_parallel_environment_isolation() -> None:
     # slm.py imported DafnyEnv by value, so replace both references.
     envs_module.DafnyEnv = RunScopedDafnyEnv
     slm_module.DafnyEnv = RunScopedDafnyEnv
-    logging.info("Parallel Dafny workspaces enabled under %s", workspace_root)
+    logging.info(
+        "Parallel Dafny workspaces enabled under %s; conservative anti-hacking judge enabled",
+        workspace_root,
+    )
