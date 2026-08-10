@@ -16,15 +16,17 @@
 
 set -euo pipefail
 
-# The supplied study ID names ONLY the fresh Qwen trace.
-# OpenAI and mixed continue their existing journal_final_v6 checkpoints/W&B IDs.
-: "${PROOF2SILICON_STUDY_ID:?Set a NEW Qwen study ID, e.g. journal_final_v8}"
+# The supplied study ID names the Qwen trace. OpenAI and mixed continue their
+# existing journal_final_v6 checkpoints/W&B IDs. Qwen automatically starts
+# fresh when its run directory is empty and resumes when a valid checkpoint +
+# resume sidecar already exist (including Slurm requeues).
+: "${PROOF2SILICON_STUDY_ID:?Set the Qwen study ID, e.g. journal_final_v9}"
 : "${OPENAI_API_KEY:?Export OPENAI_API_KEY before sbatch}"
 : "${HF_TOKEN:?Export HF_TOKEN before sbatch}"
 
 REQUESTED_NEW_STUDY_ID=$PROOF2SILICON_STUDY_ID
 if [[ "$REQUESTED_NEW_STUDY_ID" == "journal_final_v6" || "$REQUESTED_NEW_STUDY_ID" == "journal_final_v7" ]]; then
-  echo "ERROR: choose a new study ID for the fresh Qwen KL-fixed trace (for example journal_final_v8)." >&2
+  echo "ERROR: choose the intended Qwen study ID (for example journal_final_v9)." >&2
   exit 2
 fi
 
@@ -48,7 +50,7 @@ case "$ARRAY_ID" in
   1)
     EXPERIMENT=qwen_hf
     RUN_STUDY_ID=$REQUESTED_NEW_STUDY_ID
-    RESUME_MODE=fresh
+    RESUME_MODE=auto
     ;;
   2)
     EXPERIMENT=mixed
@@ -96,18 +98,33 @@ export PROOF2SILICON_RUN_DIR=$ROOT/journal_runs/$WANDB_RUN_NAME
 CHECKPOINT=$PROOF2SILICON_RUN_DIR/checkpoints/final_model.pt
 RESUME_STATE=$PROOF2SILICON_RUN_DIR/resume_state.json
 
+# For Qwen, decide fresh vs resume from durable run state. This is what makes
+# automatic Slurm requeue safe: the second invocation sees the checkpoint and
+# resumes the same W&B run instead of rejecting the populated run directory.
+if [[ "$RESUME_MODE" == "auto" ]]; then
+  if [[ -s "$CHECKPOINT" && -s "$RESUME_STATE" ]]; then
+    RESUME_MODE=required
+  elif [[ ! -e "$CHECKPOINT" && ! -e "$RESUME_STATE" && ! -d "$PROOF2SILICON_RUN_DIR/workspaces" ]]; then
+    RESUME_MODE=fresh
+  else
+    echo "ERROR: inconsistent Qwen run state in $PROOF2SILICON_RUN_DIR" >&2
+    echo "Expected either both checkpoint + resume_state for resume, or no prior state for fresh start." >&2
+    exit 4
+  fi
+fi
+
 if [[ "$RESUME_MODE" == "required" ]]; then
   if [[ ! -s "$CHECKPOINT" ]]; then
-    echo "ERROR: required v6 checkpoint missing for $EXPERIMENT: $CHECKPOINT" >&2
+    echo "ERROR: required checkpoint missing for $EXPERIMENT: $CHECKPOINT" >&2
     exit 3
   fi
   if [[ ! -s "$RESUME_STATE" ]]; then
-    echo "ERROR: required v6 W&B resume state missing for $EXPERIMENT: $RESUME_STATE" >&2
+    echo "ERROR: required W&B resume state missing for $EXPERIMENT: $RESUME_STATE" >&2
     exit 3
   fi
 else
   if [[ -e "$CHECKPOINT" || -e "$RESUME_STATE" || -d "$PROOF2SILICON_RUN_DIR/workspaces" ]]; then
-    echo "ERROR: fresh Qwen run directory already contains state: $PROOF2SILICON_RUN_DIR" >&2
+    echo "ERROR: fresh run directory already contains state: $PROOF2SILICON_RUN_DIR" >&2
     echo "Choose another PROOF2SILICON_STUDY_ID." >&2
     exit 4
   fi
