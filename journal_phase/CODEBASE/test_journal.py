@@ -59,7 +59,7 @@ DEFAULT_CODER_MODELS = [
     "openai:gpt-5.4-mini",
     "openai:gpt-5.4",
     "hf:Qwen/Qwen3-Coder-30B-A3B-Instruct:featherless-ai",
-    "hf:mistralai/Devstral-Small-2-24B-Instruct-2512",
+    "hf:deepseek-ai/DeepSeek-V3.1",
 ]
 
 
@@ -123,15 +123,17 @@ def parse_model_spec(value: str) -> ModelSpec:
     if ":" not in value:
         raise ValueError(f"Model must be provider:model, got {value!r}")
     provider, model = value.split(":", 1)
-    provider, model = provider.lower().strip(), model.strip()
-    if provider not in {"openai", "hf"} or not model:
-        raise ValueError(f"Invalid model spec: {value}")
+    provider = provider.strip().lower(); model = model.strip()
+    if provider not in {"openai", "hf"}:
+        raise ValueError(f"Unsupported provider {provider!r}; use openai or hf")
+    if not model:
+        raise ValueError("Empty model name")
     return ModelSpec(provider, model)
 
 
 def read_task(folder: Path) -> str:
-    for name in ("detailed_description.txt", "one_line_description.txt"):
-        path = folder / name
+    for filename in ("detailed_description.txt", "one_line_description.txt"):
+        path = folder / filename
         if path.exists():
             return path.read_text(encoding="utf-8").strip()
     return ""
@@ -148,458 +150,217 @@ def extract_dafny_code(text: str) -> str:
 
 
 def detect_recursion(code: str) -> Tuple[bool, List[str]]:
-    names: List[str] = []
-    decl = re.compile(r"\b(?:method|function(?:\s+method)?|lemma|predicate)\s+([A-Za-z_][A-Za-z0-9_]*)\b", re.I)
-    matches = list(decl.finditer(code or ""))
-    for i, match in enumerate(matches):
-        name = match.group(1)
-        end = matches[i + 1].start() if i + 1 < len(matches) else len(code)
-        body = code[match.end():end]
-        if re.search(rf"\b{re.escape(name)}\s*\(", body):
-            names.append(name)
-    names = sorted(set(names))
-    return bool(names), names
+    names=[]
+    decl=re.compile(r"\b(?:method|function(?:\s+method)?|lemma|predicate)\s+([A-Za-z_][A-Za-z0-9_]*)\b",re.I)
+    for match in decl.finditer(code or ""):
+        name=match.group(1); body_start=match.end(); next_decl=decl.search(code,body_start)
+        body=code[body_start:next_decl.start() if next_decl else len(code)]
+        if re.search(rf"\b{re.escape(name)}\s*\(",body): names.append(name)
+    names=sorted(set(names)); return bool(names),names
 
 
 def run_dafny(code: str, work_dir: Path, timeout_sec: int) -> Tuple[bool, str]:
-    work_dir.mkdir(parents=True, exist_ok=True)
-    path = work_dir / "candidate.dfy"
-    path.write_text(code or "", encoding="utf-8")
-    if not (code or "").strip():
-        return False, "Error: empty Dafny program"
+    work_dir.mkdir(parents=True, exist_ok=True); dafny_file=work_dir/"candidate.dfy"; dafny_file.write_text(code or "",encoding="utf-8")
+    if not code.strip(): return False,"Error: empty Dafny program"
     try:
-        proc = subprocess.run(["dafny", str(path)], stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                              text=True, timeout=timeout_sec, check=False)
-        output = proc.stdout or ""
-        return "verified, 0 errors" in output.lower(), output
-    except subprocess.TimeoutExpired:
-        return False, f"Error: Dafny verification timeout ({timeout_sec}s)"
-    except Exception as exc:
-        return False, f"Error running Dafny: {exc}"
+        result=subprocess.run(["dafny",str(dafny_file)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=timeout_sec,check=False)
+        output=result.stdout or ""; return "verified, 0 errors" in output.lower(),output
+    except subprocess.TimeoutExpired: return False,f"Error: Dafny verification timeout ({timeout_sec}s)"
+    except Exception as exc: return False,f"Error running Dafny: {exc}"
 
 
 def make_client(spec: ModelSpec) -> OpenAI:
-    if spec.provider == "openai":
-        key = os.environ.get("OPENAI_API_KEY", "")
-        if not key:
-            raise RuntimeError("OPENAI_API_KEY is not set")
+    if spec.provider=="openai":
+        key=os.environ.get("OPENAI_API_KEY","")
+        if not key: raise RuntimeError("OPENAI_API_KEY is not set")
         return OpenAI(api_key=key)
-    key = os.environ.get("HF_TOKEN", "")
-    if not key:
-        raise RuntimeError("HF_TOKEN is not set")
-    return OpenAI(api_key=key, base_url=os.environ.get("HF_BASE_URL", "https://router.huggingface.co/v1"))
+    key=os.environ.get("HF_TOKEN","")
+    if not key: raise RuntimeError("HF_TOKEN is not set")
+    return OpenAI(api_key=key,base_url=os.environ.get("HF_BASE_URL","https://router.huggingface.co/v1"))
 
 
-def usage_counts(response: Any) -> Tuple[int, int]:
-    usage = getattr(response, "usage", None)
-    if usage is None:
-        return 0, 0
-    p = int(getattr(usage, "input_tokens", 0) or getattr(usage, "prompt_tokens", 0) or 0)
-    c = int(getattr(usage, "output_tokens", 0) or getattr(usage, "completion_tokens", 0) or 0)
-    return p, c
+def usage_counts(response: Any) -> Tuple[int,int]:
+    usage=getattr(response,"usage",None)
+    if usage is None: return 0,0
+    p=int(getattr(usage,"input_tokens",0) or getattr(usage,"prompt_tokens",0) or 0)
+    c=int(getattr(usage,"output_tokens",0) or getattr(usage,"completion_tokens",0) or 0)
+    return p,c
 
 
-def call_model(spec: ModelSpec, system: str, user: str, *, max_tokens: int,
-               reasoning: Optional[str] = None, temperature: float = 0.2,
-               retries: int = 3) -> Tuple[str, int, int]:
-    client = make_client(spec)
-    last_error: Optional[Exception] = None
-    for attempt in range(1, retries + 1):
+def call_model(spec: ModelSpec, system: str, user: str, *, max_tokens: int, reasoning: Optional[str]=None, temperature: float=0.2, retries: int=3) -> Tuple[str,int,int]:
+    client=make_client(spec); last_error=None
+    for attempt in range(1,retries+1):
         try:
-            if spec.provider == "openai":
-                kwargs: Dict[str, Any] = {
-                    "model": spec.model,
-                    "instructions": system,
-                    "input": user,
-                    "max_output_tokens": max_tokens,
-                }
-                if reasoning:
-                    kwargs["reasoning"] = {"effort": reasoning}
-                response = client.responses.create(**kwargs)
-                p, c = usage_counts(response)
-                return (getattr(response, "output_text", "") or "").strip(), p, c
-            response = client.chat.completions.create(
-                model=spec.model,
-                messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
-                temperature=temperature, max_tokens=max_tokens, stream=False,
-            )
-            p, c = usage_counts(response)
-            return (response.choices[0].message.content or "").strip(), p, c
+            if spec.provider=="openai":
+                kwargs={"model":spec.model,"instructions":system,"input":user,"max_output_tokens":max_tokens}
+                if reasoning: kwargs["reasoning"]={"effort":reasoning}
+                response=client.responses.create(**kwargs); text=getattr(response,"output_text","") or ""; p,c=usage_counts(response); return text.strip(),p,c
+            response=client.chat.completions.create(model=spec.model,messages=[{"role":"system","content":system},{"role":"user","content":user}],temperature=temperature,max_tokens=max_tokens,stream=False)
+            text=response.choices[0].message.content or ""; p,c=usage_counts(response); return text.strip(),p,c
         except Exception as exc:
-            last_error = exc
-            logging.warning("API attempt %d/%d failed for %s: %s", attempt, retries, spec.key, exc)
-            if attempt < retries:
-                time.sleep(min(8, 2 ** attempt))
+            last_error=exc; logging.warning("API attempt %d/%d failed for %s: %s",attempt,retries,spec.key,exc)
+            if attempt<retries: time.sleep(min(8,2**attempt))
     raise RuntimeError(f"API failed after {retries} attempts for {spec.key}: {last_error}")
 
 
-def load_policy_model(instructor: str, policy_name: Optional[str], checkpoint_override: Optional[Path],
-                      adapter_scale: float):
-    base_model, tokenizer = initialize_qwen3_slm(None)
-    slm_pg = SLMPG(base_model)
-    if instructor == "trained":
-        if not policy_name:
-            raise ValueError("trained instructor requires --policy")
-        checkpoint_path = checkpoint_override or POLICY_CHECKPOINTS[policy_name]
-        if not checkpoint_path.exists():
-            raise FileNotFoundError(f"Policy checkpoint not found: {checkpoint_path}")
-        checkpoint = torch.load(checkpoint_path, map_location="cpu")
-        state = checkpoint.get("model_state_dict", checkpoint)
-        missing, unexpected = slm_pg.load_state_dict(state, strict=False)
-        logging.info("Loaded %s checkpoint: missing=%d unexpected=%d", policy_name, len(missing), len(unexpected))
-        if adapter_scale != 1.0:
+def load_policy_model(instructor: str, policy_name: Optional[str], checkpoint_override: Optional[Path], adapter_scale: float):
+    base_model,tokenizer=initialize_qwen3_slm(None); slm_pg=SLMPG(base_model)
+    if instructor=="trained":
+        if not policy_name: raise ValueError("trained instructor requires --policy")
+        checkpoint_path=checkpoint_override or POLICY_CHECKPOINTS[policy_name]
+        if not checkpoint_path.exists(): raise FileNotFoundError(f"Policy checkpoint not found: {checkpoint_path}")
+        checkpoint=torch.load(checkpoint_path,map_location="cpu"); state=checkpoint.get("model_state_dict",checkpoint)
+        missing,unexpected=slm_pg.load_state_dict(state,strict=False); logging.info("Policy checkpoint loaded: missing=%d unexpected=%d",len(missing),len(unexpected))
+        if adapter_scale!=1.0:
             with torch.no_grad():
-                n = 0
-                for name, parameter in slm_pg.named_parameters():
-                    if "lora_B" in name:
-                        parameter.mul_(adapter_scale)
-                        n += 1
-            logging.info("Scaled %d LoRA-B tensors by %.3f", n, adapter_scale)
+                count=0
+                for name,parameter in slm_pg.named_parameters():
+                    if "lora_B" in name: parameter.mul_(adapter_scale); count+=1
+            logging.info("Applied LoRA-B scale %.3f to %d tensors",adapter_scale,count)
     slm_pg.eval()
-    if hasattr(slm_pg.model, "gradient_checkpointing_disable"):
-        slm_pg.model.gradient_checkpointing_disable()
-    slm_pg.model.config.use_cache = True
-    return slm_pg, tokenizer
+    if hasattr(slm_pg.model,"gradient_checkpointing_disable"): slm_pg.model.gradient_checkpointing_disable()
+    if hasattr(slm_pg.model.config,"use_cache"): slm_pg.model.config.use_cache=True
+    return slm_pg,tokenizer
 
 
-def recursion_sentence(enabled: bool) -> str:
-    return " Avoid recursion; prefer iterative control flow with invariants." if enabled else ""
+def generate_slm_instruction(slm_pg,tokenizer,prompt:str,decode_mode:str,seed:int,recursion_hint:bool)->Tuple[str,int]:
+    system="You are a prompt-policy model. Produce a concise instruction for a Dafny coding agent. Preserve the exact requested task."
+    if recursion_hint: system+=" Avoid recursion and prefer verifier-friendly iterative control flow."
+    messages=[{"role":"system","content":system},{"role":"user","content":prompt}]
+    try: rendered=tokenizer.apply_chat_template(messages,tokenize=False,add_generation_prompt=True,enable_thinking=False)
+    except TypeError: rendered=tokenizer.apply_chat_template(messages,tokenize=False,add_generation_prompt=True)
+    inputs=tokenizer(rendered,return_tensors="pt",truncation=True,padding=False,max_length=MAX_PROMPT_TOKENS)
+    model_device=next(slm_pg.model.parameters()).device; inputs={k:v.to(model_device) for k,v in inputs.items()}
+    if decode_mode=="greedy": generation=dict(max_new_tokens=MAX_NEW_TOKENS,do_sample=False,repetition_penalty=1.12,no_repeat_ngram_size=4)
+    elif decode_mode=="train_match":
+        generator=torch.Generator(device=model_device); generator.manual_seed(seed)
+        generation=dict(max_new_tokens=MAX_NEW_TOKENS,do_sample=True,temperature=0.25,top_p=0.90,top_k=40,repetition_penalty=1.12,no_repeat_ngram_size=4,generator=generator)
+    else: raise ValueError(f"Unknown SLM decode mode: {decode_mode}")
+    with torch.no_grad(): output=slm_pg.model.generate(**inputs,pad_token_id=tokenizer.pad_token_id,eos_token_id=tokenizer.eos_token_id,**generation)
+    prompt_len=inputs["input_ids"].shape[1]; generated=output[0][prompt_len:]
+    return tokenizer.decode(generated,skip_special_tokens=True).strip(),int(generated.numel())
 
 
-def generate_slm_instruction(slm_pg, tokenizer, prompt: str, decode_mode: str, seed: int,
-                             recursion_hint: bool) -> Tuple[str, int]:
-    messages = [
-        {"role": "system", "content": "You are a prompt-policy model. Produce a concise instruction for a Dafny coding agent. Preserve the exact requested task." + recursion_sentence(recursion_hint)},
-        {"role": "user", "content": prompt},
-    ]
-    try:
-        rendered = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True, enable_thinking=False)
-    except TypeError:
-        rendered = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-    inputs = tokenizer(rendered, return_tensors="pt", truncation=True, padding=False, max_length=MAX_PROMPT_TOKENS)
-    device = next(slm_pg.model.parameters()).device
-    inputs = {k: v.to(device) for k, v in inputs.items()}
-    torch.manual_seed(seed)
-    if torch.cuda.is_available():
-        torch.cuda.manual_seed_all(seed)
-    generation: Dict[str, Any] = {
-        "max_new_tokens": MAX_NEW_TOKENS,
-        "repetition_penalty": 1.12,
-        "no_repeat_ngram_size": 4,
-    }
-    if decode_mode == "greedy":
-        generation["do_sample"] = False
-    elif decode_mode == "train_match":
-        generation.update(do_sample=True, temperature=0.25, top_p=0.90, top_k=40)
-    else:
-        raise ValueError(decode_mode)
-    with torch.no_grad():
-        output = slm_pg.model.generate(**inputs, pad_token_id=tokenizer.pad_token_id,
-                                       eos_token_id=tokenizer.eos_token_id, **generation)
-    prompt_len = inputs["input_ids"].shape[1]
-    generated = output[0][prompt_len:]
-    return tokenizer.decode(generated, skip_special_tokens=True).strip(), int(generated.numel())
+def anti_recursion_text(enabled:bool)->str:
+    return " Avoid recursion; prefer loops with invariants." if enabled else ""
 
 
-def initial_instructor_prompt(task: str, recursion_hint: bool) -> str:
-    return (
-        "Create an instruction for another coding model that must solve exactly the following Dafny task. "
-        "Focus on specifications, invariants, proof obligations, edge cases, and verifier-friendly control flow. "
-        "Do not substitute another problem." + recursion_sentence(recursion_hint) + f"\n\nTASK:\n{task}"
-    )
+def initial_instructor_prompt(task:str,recursion_hint:bool)->str:
+    return "Create an instruction for another coding model that must solve exactly the following Dafny task. Focus on specifications, invariants, proof obligations, edge cases, and verifier-friendly proof strategy. Do not substitute another problem."+anti_recursion_text(recursion_hint)+f"\n\nTASK:\n{task}"
 
 
-def repair_instructor_prompt(task: str, code: str, verifier_output: str, recursion_hint: bool) -> str:
-    return (
-        "Create a revised instruction for another coding model. Preserve the original Dafny task exactly and diagnose "
-        "the previous verifier failure." + recursion_sentence(recursion_hint) +
-        f"\n\nORIGINAL TASK:\n{task}\n\nPREVIOUS CODE:\n{code}\n\nVERIFIER OUTPUT:\n{verifier_output}"
-    )
+def repair_instructor_prompt(task:str,code:str,verifier_output:str,recursion_hint:bool)->str:
+    return "Create a revised instruction for another coding model. Preserve the original Dafny task exactly and diagnose the previous verifier failure."+anti_recursion_text(recursion_hint)+f"\n\nORIGINAL TASK:\n{task}\n\nPREVIOUS CODE:\n{code}\n\nVERIFIER OUTPUT:\n{verifier_output}"
 
 
-def coder_prompt(task: str, instruction: Optional[str], previous_code: str, previous_error: str,
-                 recursion_hint: bool) -> str:
-    pieces = [f"Original task:\n{task}"]
-    if instruction:
-        pieces.append(f"Instructor guidance:\n{instruction}")
-    if previous_code:
-        pieces.append(f"Previous Dafny code:\n{previous_code}")
-    if previous_error:
-        pieces.append(f"Previous verifier feedback:\n{previous_error}")
-    requirements = (
-        "Requirements:\n- Solve exactly the original task; preserve requested names, inputs, outputs, and behavior.\n"
-        "- Return exactly one complete Dafny program inside ```dafny ... ``` and no other code block.\n"
-        "- Include all specifications/invariants/assertions needed for verification."
-    )
-    if recursion_hint:
-        requirements += "\n- Avoid recursion; prefer loops with invariants."
-    pieces.append(requirements)
-    return "\n\n".join(pieces)
+def coder_prompt(task:str,instruction:Optional[str],previous_code:str="",previous_error:str="",recursion_hint:bool=True)->str:
+    pieces=[f"Original task:\n{task}"]
+    if instruction: pieces.append(f"Instructor guidance:\n{instruction}")
+    if previous_code: pieces.append(f"Previous Dafny code:\n{previous_code}")
+    if previous_error: pieces.append(f"Previous verifier feedback:\n{previous_error}")
+    req="Requirements:\n- Solve exactly the original task; preserve requested names, inputs, outputs, and behavior.\n"
+    if recursion_hint: req+="- Avoid recursion; prefer loops with invariants.\n"
+    req+="- Return exactly one complete Dafny program inside ```dafny ... ``` and no other code block.\n- Include all specifications/invariants/assertions needed for verification."
+    pieces.append(req); return "\n\n".join(pieces)
 
 
-def get_instruction(args: argparse.Namespace, task: str, previous_code: str, previous_error: str,
-                    coder_spec: ModelSpec, slm_pg, tokenizer, seed: int) -> Tuple[Optional[str], int, int, int]:
-    if args.instructor == "none":
-        return None, 0, 0, 0
-    use_repair_context = bool(previous_code or previous_error) and args.feedback_mode == "full"
-    prompt = (repair_instructor_prompt(task, previous_code, previous_error, args.recursion_hint)
-              if use_repair_context else initial_instructor_prompt(task, args.recursion_hint))
-    if args.instructor in {"trained", "untrained"}:
-        text, n = generate_slm_instruction(slm_pg, tokenizer, prompt, args.slm_decode, seed, args.recursion_hint)
-        return text, 0, 0, n
-    if args.instructor == "self":
-        text, p, c = call_model(coder_spec,
-            "You are the instructor in a two-agent Dafny system. Do not write final code; give precise guidance.",
-            prompt, max_tokens=args.instructor_max_tokens,
-            reasoning="low" if coder_spec.provider == "openai" else None, temperature=0.2)
-        return text, p, c, 0
-    if args.instructor == "external":
-        spec = parse_model_spec(args.external_instructor_model)
-        text, p, c = call_model(spec,
-            "You are the instructor in a two-agent Dafny system. Do not write final code; give precise guidance.",
-            prompt, max_tokens=args.instructor_max_tokens,
-            reasoning=args.external_instructor_reasoning if spec.provider == "openai" else None, temperature=0.2)
-        return text, p, c, 0
-    raise ValueError(args.instructor)
+def get_instruction(args,task,previous_code,previous_error,coder_spec,slm_pg,tokenizer,seed):
+    if args.instructor=="none": return None,0,0,0
+    prompt=repair_instructor_prompt(task,previous_code,previous_error,args.recursion_hint) if (previous_code or previous_error) else initial_instructor_prompt(task,args.recursion_hint)
+    if args.feedback_mode in {"none","coder_only"} and (previous_code or previous_error): prompt=initial_instructor_prompt(task,args.recursion_hint)
+    if args.instructor in {"trained","untrained"}:
+        text,tokens=generate_slm_instruction(slm_pg,tokenizer,prompt,args.slm_decode,seed,args.recursion_hint); return text,0,0,tokens
+    spec=coder_spec if args.instructor=="self" else parse_model_spec(args.external_instructor_model)
+    system="You are the instructor in a two-agent Dafny system. Do not write final code; give precise guidance to the coding agent."
+    text,p,c=call_model(spec,system,prompt,max_tokens=2048,reasoning="low" if spec.provider=="openai" else None,temperature=0.2); return text,p,c,0
 
 
-def semantic_judge(task: str, code: str) -> Tuple[bool, Dict[str, Any]]:
-    spec = ModelSpec("openai", os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.4"))
-    prompt = (
-        "Determine only whether the Dafny program attempts to solve the SAME underlying problem as the task. "
-        "Do not judge verifier correctness, proof completeness, or minor interface bugs. Answer YES for the same problem "
-        "even if buggy. Answer NO only for task substitution, unrelated/generic programs, placeholders, or shells. "
-        "Return exactly YES or NO.\n\nTASK:\n" + task + "\n\nPROGRAM:\n" + code
-    )
-    text, p, c = call_model(spec, "You are an anti-reward-hacking semantic alignment judge.", prompt,
-                            max_tokens=32, reasoning=os.environ.get("DAFNY_JUDGE_REASONING", "low"), temperature=0.0)
-    normalized = re.sub(r"[^A-Za-z]", "", text).upper()
-    return normalized == "YES", {
-        "judge_model": spec.model, "raw": text, "prompt_tokens": p, "completion_tokens": c,
-        "parsed": normalized if normalized in {"YES", "NO"} else "INVALID",
-    }
+def semantic_judge(task:str,code:str)->Tuple[bool,Dict[str,Any]]:
+    spec=ModelSpec("openai",os.environ.get("DAFNY_JUDGE_MODEL","gpt-5.4"))
+    prompt="Determine only whether the Dafny program attempts to solve the SAME underlying problem as the task. Do not judge verifier correctness, proof completeness, or minor interface bugs. Answer YES for the same problem even if buggy. Answer NO only for task substitution, unrelated/generic programs, placeholders, or shells. Return exactly YES or NO.\n\n"+f"TASK:\n{task}\n\nPROGRAM:\n{code}"
+    text,p,c=call_model(spec,"You are an anti-reward-hacking semantic alignment judge.",prompt,max_tokens=32,reasoning=os.environ.get("DAFNY_JUDGE_REASONING","low"),temperature=0.0)
+    normalized=re.sub(r"[^A-Za-z]","",text).upper(); aligned=normalized=="YES"
+    return aligned,{"judge_model":spec.model,"raw":text,"prompt_tokens":p,"completion_tokens":c,"parsed":normalized if normalized in {"YES","NO"} else "INVALID"}
 
 
-def condition_key(args: argparse.Namespace, coder: ModelSpec) -> str:
-    policy = args.policy if args.instructor == "trained" else "na"
-    ext = args.external_instructor_model if args.instructor == "external" else "na"
-    return safe_name(
-        f"mode={args.evaluation_mode}__instr={args.instructor}__policy={policy}__ext={ext}__coder={coder.key}"
-        f"__scale={args.adapter_scale:g}__decode={args.slm_decode}__feedback={args.feedback_mode}"
-        f"__rechint={int(args.recursion_hint)}__k={args.max_attempts}__seed={args.seed}"
-    )
+def condition_key(args,coder):
+    policy=args.policy if args.instructor=="trained" else "na"
+    return safe_name(f"mode={args.evaluation_mode}__instr={args.instructor}__policy={policy}__fb={args.feedback_mode}__rechint={int(args.recursion_hint)}__scale={args.adapter_scale:g}__decode={args.slm_decode}__coder={coder.key}__seed={args.seed}")
 
 
-def evaluate_task(task_id: str, task: str, args: argparse.Namespace, coder: ModelSpec,
-                  slm_pg, tokenizer, condition_dir: Path) -> Dict[str, Any]:
-    trajectory_path = condition_dir / "trajectories" / f"{safe_name(task_id)}.json"
-    if trajectory_path.exists() and not args.overwrite:
-        return json.loads(trajectory_path.read_text(encoding="utf-8"))
-
-    attempts: List[AttemptRecord] = []
-    previous_code = ""
-    previous_error = ""
-    first_verified: Optional[int] = None
-    first_aligned: Optional[int] = None
-
-    for k in range(1, args.max_attempts + 1):
-        start = time.time()
-        seed_material = f"{args.seed}|{task_id}|{k}|{condition_key(args, coder)}"
-        seed = int(hashlib.sha256(seed_material.encode()).hexdigest()[:8], 16)
-        if args.evaluation_mode == "independent":
-            previous_code_for_call = ""
-            previous_error_for_call = ""
-        else:
-            previous_code_for_call = previous_code if args.feedback_mode in {"full", "coder_only"} else ""
-            previous_error_for_call = previous_error if args.feedback_mode in {"full", "coder_only"} else ""
+def evaluate_task(task_id,task,args,coder,slm_pg,tokenizer,condition_dir):
+    trajectory_path=condition_dir/"trajectories"/f"{safe_name(task_id)}.json"
+    if trajectory_path.exists() and not args.overwrite: return json.loads(trajectory_path.read_text(encoding="utf-8"))
+    records=[]; previous_code=""; previous_error=""; first_verified=None; first_aligned=None
+    for sample in range(1,args.max_attempts+1):
+        start=time.time(); seed_material=f"{args.seed}|{task_id}|{sample}|{condition_key(args,coder)}"; seed=int(hashlib.sha256(seed_material.encode()).hexdigest()[:8],16)
+        if args.evaluation_mode=="independent": context_code=context_error=""
+        else: context_code,context_error=previous_code,previous_error
         try:
-            instruction, ip, ic, slm_tokens = get_instruction(
-                args, task, previous_code_for_call, previous_error_for_call, coder, slm_pg, tokenizer, seed)
-            cp = coder_prompt(task, instruction, previous_code_for_call, previous_error_for_call, args.recursion_hint)
-            response, coder_p, coder_c = call_model(
-                coder, "You are an expert Dafny programmer. Return only the requested complete Dafny program.", cp,
-                max_tokens=args.coder_max_tokens,
-                reasoning=args.openai_coder_reasoning if coder.provider == "openai" else None,
-                temperature=args.coder_temperature)
-            code = extract_dafny_code(response)
-            work = condition_dir / "work" / safe_name(task_id) / f"sample_{k}"
-            verified, verifier_output = run_dafny(code, work, args.dafny_timeout)
-            recursive, recursion_names = detect_recursion(code)
-            aligned: Optional[bool] = None
-            semantic_meta: Dict[str, Any] = {}
-            if verified and args.semantic_judge:
-                aligned, semantic_meta = semantic_judge(task, code)
-            elif verified:
-                aligned = True
-            record = AttemptRecord(
-                task_id, args.instructor, args.policy if args.instructor == "trained" else None,
-                coder.key, args.evaluation_mode, args.feedback_mode, args.recursion_hint,
-                args.adapter_scale, args.slm_decode, k, instruction or "", response, code, verified,
-                verifier_output, aligned, semantic_meta, recursive, recursion_names,
-                ip, ic, coder_p, coder_c, slm_tokens, time.time() - start)
+            instruction,ip,ic,slm_tokens=get_instruction(args,task,context_code,context_error,coder,slm_pg,tokenizer,seed)
+            coder_code_context=context_code if args.feedback_mode in {"full","coder_only"} else ""
+            coder_error_context=context_error if args.feedback_mode in {"full","coder_only"} else ""
+            cp=coder_prompt(task,instruction,coder_code_context,coder_error_context,args.recursion_hint)
+            response,coder_p,coder_c=call_model(coder,"You are an expert Dafny programmer. Return only the requested complete Dafny program.",cp,max_tokens=args.coder_max_tokens,reasoning=args.openai_coder_reasoning if coder.provider=="openai" else None,temperature=args.coder_temperature)
+            code=extract_dafny_code(response); work=condition_dir/"work"/safe_name(task_id)/f"sample_{sample}"; verified,verifier_output=run_dafny(code,work,args.dafny_timeout); recursive,recursion_names=detect_recursion(code)
+            aligned=None; semantic_meta={}
+            if verified and args.semantic_judge: aligned,semantic_meta=semantic_judge(task,code)
+            elif verified: aligned=True
+            record=AttemptRecord(task_id,args.instructor,args.policy if args.instructor=="trained" else None,coder.key,args.evaluation_mode,args.feedback_mode,args.recursion_hint,args.adapter_scale,args.slm_decode,sample,instruction or "",response,code,verified,verifier_output,aligned,semantic_meta,recursive,recursion_names,ip,ic,coder_p,coder_c,slm_tokens,time.time()-start)
         except Exception as exc:
-            logging.exception("Task %s sample/attempt %d failed", task_id, k)
-            record = AttemptRecord(
-                task_id, args.instructor, args.policy if args.instructor == "trained" else None,
-                coder.key, args.evaluation_mode, args.feedback_mode, args.recursion_hint,
-                args.adapter_scale, args.slm_decode, k, "", "", "", False, "", None, {}, False, [],
-                0, 0, 0, 0, 0, time.time() - start, str(exc))
-        attempts.append(record)
-        append_jsonl(condition_dir / "attempts.jsonl", asdict(record))
-        if record.verifier_success and first_verified is None:
-            first_verified = k
-        if record.verifier_success and record.semantic_aligned and first_aligned is None:
-            first_aligned = k
-        if args.evaluation_mode == "repair" and record.verifier_success and (not args.semantic_judge or record.semantic_aligned):
-            break
-        if args.evaluation_mode == "repair":
-            previous_code = record.dafny_code
-            previous_error = record.verifier_output or record.error or "Unknown failure"
-
-    verified_samples = sum(x.verifier_success for x in attempts)
-    aligned_samples = sum(bool(x.verifier_success and x.semantic_aligned) for x in attempts)
-    recursive_samples = sum(x.recursive for x in attempts)
-    prefix = "pass" if args.evaluation_mode == "independent" else "repair"
-    summary: Dict[str, Any] = {
-        "task_id": task_id, "condition": condition_key(args, coder), "evaluation_mode": args.evaluation_mode,
-        "instructor": args.instructor, "policy": args.policy if args.instructor == "trained" else None,
-        "coder": coder.key, "feedback_mode": args.feedback_mode, "recursion_hint": args.recursion_hint,
-        "adapter_scale": args.adapter_scale, "slm_decode": args.slm_decode, "samples_or_attempts_run": len(attempts),
-        "first_verified_index": first_verified, "first_aligned_verified_index": first_aligned,
-        "verified_sample_fraction": verified_samples / len(attempts) if attempts else 0.0,
-        "aligned_sample_fraction": aligned_samples / len(attempts) if attempts else 0.0,
-        "recursive_sample_fraction": recursive_samples / len(attempts) if attempts else 0.0,
-        "any_verified": bool(first_verified), "any_aligned": bool(first_aligned),
-        "any_aligned_nonrecursive": any(x.verifier_success and x.semantic_aligned and not x.recursive for x in attempts),
-        "total_coder_prompt_tokens": sum(x.coder_prompt_tokens for x in attempts),
-        "total_coder_completion_tokens": sum(x.coder_completion_tokens for x in attempts),
-        "total_instructor_prompt_tokens": sum(x.instructor_prompt_tokens for x in attempts),
-        "total_instructor_completion_tokens": sum(x.instructor_completion_tokens for x in attempts),
-        "total_slm_generated_tokens": sum(x.slm_generated_tokens for x in attempts),
-        "total_latency_sec": sum(x.latency_sec for x in attempts),
-        "api_or_runtime_errors": sum(bool(x.error) for x in attempts),
-        "attempts": [asdict(x) for x in attempts],
-    }
-    for kk in (1, 3, 5, 7):
-        if args.evaluation_mode == "repair":
-            summary[f"{prefix}_at_{kk}"] = bool(first_verified and first_verified <= kk)
-            summary[f"aligned_{prefix}_at_{kk}"] = bool(first_aligned and first_aligned <= kk)
-        else:
-            subset = attempts[:min(kk, len(attempts))]
-            summary[f"{prefix}_at_{kk}"] = any(x.verifier_success for x in subset)
-            summary[f"aligned_{prefix}_at_{kk}"] = any(x.verifier_success and x.semantic_aligned for x in subset)
-    atomic_json(trajectory_path, summary)
-    return summary
+            logging.exception("Task %s sample/attempt %d failed",task_id,sample)
+            record=AttemptRecord(task_id,args.instructor,args.policy if args.instructor=="trained" else None,coder.key,args.evaluation_mode,args.feedback_mode,args.recursion_hint,args.adapter_scale,args.slm_decode,sample,"","","",False,"",None,{},False,[],0,0,0,0,0,time.time()-start,str(exc))
+        records.append(record); append_jsonl(condition_dir/"attempts.jsonl",asdict(record))
+        if record.verifier_success and first_verified is None: first_verified=sample
+        if record.verifier_success and record.semantic_aligned and first_aligned is None: first_aligned=sample
+        if args.evaluation_mode=="repair":
+            if record.verifier_success and (not args.semantic_judge or record.semantic_aligned): break
+            previous_code=record.dafny_code; previous_error=record.verifier_output or record.error or "Unknown failure"
+    if args.evaluation_mode=="independent":
+        v=[r.verifier_success for r in records]; a=[bool(r.verifier_success and r.semantic_aligned) for r in records]
+        metrics={f"pass_at_{k}":any(v[:k]) for k in (1,3,5) if k<=args.max_attempts}; metrics.update({f"aligned_pass_at_{k}":any(a[:k]) for k in (1,3,5) if k<=args.max_attempts})
+    else:
+        metrics={f"repair_at_{k}":bool(first_verified and first_verified<=k) for k in (1,3,5,7) if k<=args.max_attempts}; metrics.update({f"aligned_repair_at_{k}":bool(first_aligned and first_aligned<=k) for k in (1,3,5,7) if k<=args.max_attempts})
+    summary={"task_id":task_id,"condition":condition_key(args,coder),"instructor":args.instructor,"policy":args.policy if args.instructor=="trained" else None,"coder":coder.key,"evaluation_mode":args.evaluation_mode,"feedback_mode":args.feedback_mode,"recursion_hint":args.recursion_hint,"adapter_scale":args.adapter_scale,"slm_decode":args.slm_decode,"samples_or_attempts_run":len(records),"first_verified_index":first_verified,"first_aligned_verified_index":first_aligned,**metrics,"any_verified":any(r.verifier_success for r in records),"any_aligned":any(r.verifier_success and r.semantic_aligned for r in records),"any_aligned_nonrecursive":any(r.verifier_success and r.semantic_aligned and not r.recursive for r in records),"recursive_generation_rate":sum(r.recursive for r in records)/len(records),"total_coder_prompt_tokens":sum(r.coder_prompt_tokens for r in records),"total_coder_completion_tokens":sum(r.coder_completion_tokens for r in records),"total_instructor_prompt_tokens":sum(r.instructor_prompt_tokens for r in records),"total_instructor_completion_tokens":sum(r.instructor_completion_tokens for r in records),"total_slm_generated_tokens":sum(r.slm_generated_tokens for r in records),"total_latency_sec":sum(r.latency_sec for r in records),"api_or_runtime_errors":sum(bool(r.error) for r in records),"attempts":[asdict(r) for r in records]}
+    atomic_json(trajectory_path,summary); return summary
 
 
-def aggregate(condition_dir: Path, rows: List[Dict[str, Any]], evaluation_mode: str) -> Dict[str, Any]:
-    n = len(rows)
-    rate = lambda key: sum(bool(r.get(key)) for r in rows) / n if n else 0.0
-    prefix = "pass" if evaluation_mode == "independent" else "repair"
-    result: Dict[str, Any] = {"n_tasks": n, "evaluation_mode": evaluation_mode}
-    for kk in (1, 3, 5, 7):
-        result[f"{prefix}_at_{kk}"] = rate(f"{prefix}_at_{kk}")
-        result[f"aligned_{prefix}_at_{kk}"] = rate(f"aligned_{prefix}_at_{kk}")
-    result.update({
-        "any_verified_rate": rate("any_verified"),
-        "any_aligned_rate": rate("any_aligned"),
-        "any_aligned_nonrecursive_rate": rate("any_aligned_nonrecursive"),
-        "mean_verified_sample_fraction": sum(r["verified_sample_fraction"] for r in rows) / n if n else 0.0,
-        "mean_aligned_sample_fraction": sum(r["aligned_sample_fraction"] for r in rows) / n if n else 0.0,
-        "mean_recursive_sample_fraction": sum(r["recursive_sample_fraction"] for r in rows) / n if n else 0.0,
-        "mean_coder_tokens": sum(r["total_coder_prompt_tokens"] + r["total_coder_completion_tokens"] for r in rows) / n if n else 0.0,
-        "mean_instructor_tokens": sum(r["total_instructor_prompt_tokens"] + r["total_instructor_completion_tokens"] + r["total_slm_generated_tokens"] for r in rows) / n if n else 0.0,
-        "mean_latency_sec": sum(r["total_latency_sec"] for r in rows) / n if n else 0.0,
-        "runtime_error_rate": sum(r["api_or_runtime_errors"] > 0 for r in rows) / n if n else 0.0,
-    })
-    aligned_indexes = [r["first_aligned_verified_index"] for r in rows if r.get("first_aligned_verified_index")]
-    result["mean_index_to_aligned_success"] = sum(aligned_indexes) / len(aligned_indexes) if aligned_indexes else None
-    atomic_json(condition_dir / "summary.json", result)
+def aggregate(condition_dir,rows,mode):
+    n=len(rows); rate=lambda k:sum(bool(r.get(k)) for r in rows)/n if n else 0.0
+    keys=(("pass_at_1","pass_at_3","pass_at_5","aligned_pass_at_1","aligned_pass_at_3","aligned_pass_at_5") if mode=="independent" else ("repair_at_1","repair_at_3","repair_at_5","repair_at_7","aligned_repair_at_1","aligned_repair_at_3","aligned_repair_at_5","aligned_repair_at_7"))
+    result={"n_tasks":n,**{k:rate(k) for k in keys},"any_verified_rate":rate("any_verified"),"any_aligned_rate":rate("any_aligned"),"aligned_nonrecursive_rate":rate("any_aligned_nonrecursive"),"mean_recursive_generation_rate":sum(r["recursive_generation_rate"] for r in rows)/n if n else 0,"mean_coder_tokens":sum(r["total_coder_prompt_tokens"]+r["total_coder_completion_tokens"] for r in rows)/n if n else 0,"mean_instructor_tokens":sum(r["total_instructor_prompt_tokens"]+r["total_instructor_completion_tokens"]+r["total_slm_generated_tokens"] for r in rows)/n if n else 0,"mean_latency_sec":sum(r["total_latency_sec"] for r in rows)/n if n else 0,"runtime_error_rate":sum(r["api_or_runtime_errors"]>0 for r in rows)/n if n else 0}
+    atomic_json(condition_dir/"summary.json",result)
     if rows:
-        keys = [k for k in rows[0] if k != "attempts"]
-        with (condition_dir / "tasks.csv").open("w", newline="", encoding="utf-8") as handle:
-            writer = csv.DictWriter(handle, fieldnames=keys)
-            writer.writeheader()
-            for row in rows:
-                writer.writerow({k: row.get(k) for k in keys})
+        fields=[k for k in rows[0] if k!="attempts"]
+        with (condition_dir/"tasks.csv").open("w",newline="",encoding="utf-8") as f:
+            w=csv.DictWriter(f,fieldnames=fields); w.writeheader(); [w.writerow({k:r.get(k) for k in fields}) for r in rows]
     return result
 
 
-def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
-    p.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT)
-    p.add_argument("--instructor", choices=["trained", "untrained", "none", "self", "external"], required=True)
-    p.add_argument("--policy", choices=["openai", "qwen", "mixed"])
-    p.add_argument("--checkpoint", type=Path)
-    p.add_argument("--coder", default=DEFAULT_CODER_MODELS[0], help="provider:model")
-    p.add_argument("--external-instructor-model", default="openai:gpt-5.4")
-    p.add_argument("--external-instructor-reasoning", default="low")
-    p.add_argument("--instructor-max-tokens", type=int, default=2048)
-    p.add_argument("--adapter-scale", type=float, default=1.0)
-    p.add_argument("--slm-decode", choices=["greedy", "train_match"], default="train_match")
-    p.add_argument("--evaluation-mode", choices=["repair", "independent"], default="repair")
-    p.add_argument("--feedback-mode", choices=["full", "coder_only", "none"], default="full")
-    p.add_argument("--recursion-hint", action=argparse.BooleanOptionalAction, default=True)
-    p.add_argument("--max-attempts", type=int, default=DEFAULT_MAX_ATTEMPTS)
-    p.add_argument("--dafny-timeout", type=int, default=DEFAULT_DAFNY_TIMEOUT)
-    p.add_argument("--coder-max-tokens", type=int, default=8192)
-    p.add_argument("--coder-temperature", type=float, default=0.2)
-    p.add_argument("--openai-coder-reasoning", default="medium")
-    p.add_argument("--semantic-judge", action=argparse.BooleanOptionalAction, default=True)
-    p.add_argument("--limit", type=int, default=0)
-    p.add_argument("--seed", type=int, default=20260811)
-    p.add_argument("--overwrite", action="store_true")
-    return p
+def build_parser():
+    p=argparse.ArgumentParser(description=__doc__); p.add_argument("--dataset",type=Path,default=DEFAULT_DATASET); p.add_argument("--output-root",type=Path,default=DEFAULT_OUTPUT)
+    p.add_argument("--instructor",choices=["trained","untrained","none","self","external"],required=True); p.add_argument("--policy",choices=["openai","qwen","mixed"],default=None); p.add_argument("--checkpoint",type=Path,default=None); p.add_argument("--coder",default=DEFAULT_CODER_MODELS[0])
+    p.add_argument("--external-instructor-model",default="openai:gpt-5.4"); p.add_argument("--evaluation-mode",choices=["repair","independent"],default="repair"); p.add_argument("--feedback-mode",choices=["full","coder_only","none"],default="full")
+    p.add_argument("--recursion-hint",action=argparse.BooleanOptionalAction,default=True); p.add_argument("--adapter-scale",type=float,default=1.0); p.add_argument("--slm-decode",choices=["greedy","train_match"],default="train_match"); p.add_argument("--max-attempts",type=int,default=DEFAULT_MAX_ATTEMPTS); p.add_argument("--dafny-timeout",type=int,default=DEFAULT_DAFNY_TIMEOUT); p.add_argument("--coder-max-tokens",type=int,default=8192); p.add_argument("--coder-temperature",type=float,default=0.2); p.add_argument("--openai-coder-reasoning",default="medium"); p.add_argument("--semantic-judge",action=argparse.BooleanOptionalAction,default=True); p.add_argument("--limit",type=int,default=0); p.add_argument("--seed",type=int,default=20260811); p.add_argument("--overwrite",action="store_true"); return p
 
 
-def main() -> None:
-    args = build_parser().parse_args()
-    if args.instructor == "trained" and not args.policy:
-        raise SystemExit("--policy is required with --instructor trained")
-    if args.instructor != "trained" and args.policy:
-        raise SystemExit("--policy is only valid with --instructor trained")
-    if args.adapter_scale < 0:
-        raise SystemExit("--adapter-scale must be nonnegative")
-    if args.evaluation_mode == "independent" and args.feedback_mode != "none":
-        logging.warning("Independent mode ignores repair context; forcing --feedback-mode none")
-        args.feedback_mode = "none"
-
-    coder = parse_model_spec(args.coder)
-    condition = condition_key(args, coder)
-    condition_dir = args.output_root / condition
-    condition_dir.mkdir(parents=True, exist_ok=True)
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s",
-                        handlers=[logging.FileHandler(condition_dir / "evaluation.log"), logging.StreamHandler()], force=True)
-
-    checkpoint = args.checkpoint or (POLICY_CHECKPOINTS[args.policy] if args.policy else None)
-    config = vars(args).copy()
-    config.update({"dataset": str(args.dataset), "output_root": str(args.output_root),
-                   "checkpoint": str(checkpoint) if checkpoint else None,
-                   "slm_model": SLM_MODEL_NAME, "condition": condition, "coder": coder.key,
-                   "judge_model": os.environ.get("DAFNY_JUDGE_MODEL", "gpt-5.4"),
-                   "max_prompt_tokens": MAX_PROMPT_TOKENS, "max_new_tokens": MAX_NEW_TOKENS})
-    atomic_json(condition_dir / "config.json", config)
-
-    slm_pg = tokenizer = None
-    if args.instructor in {"trained", "untrained"}:
-        slm_pg, tokenizer = load_policy_model(args.instructor, args.policy, args.checkpoint, args.adapter_scale)
-
-    folders = sorted(x for x in args.dataset.iterdir() if x.is_dir())
-    if args.limit > 0:
-        folders = folders[:args.limit]
-    rows: List[Dict[str, Any]] = []
-    logging.info("Evaluating %d tasks: %s", len(folders), condition)
-    for i, folder in enumerate(folders, 1):
-        task = read_task(folder)
-        if not task:
-            logging.warning("Skipping %s: no description", folder.name)
-            continue
-        logging.info("[%d/%d] %s", i, len(folders), folder.name)
-        rows.append(evaluate_task(folder.name, task, args, coder, slm_pg, tokenizer, condition_dir))
-    summary = aggregate(condition_dir, rows, args.evaluation_mode)
-    logging.info("Summary: %s", json.dumps(summary, sort_keys=True))
+def main():
+    args=build_parser().parse_args()
+    if args.instructor=="trained" and not args.policy: raise SystemExit("--policy is required with --instructor trained")
+    if args.instructor!="trained" and args.policy: raise SystemExit("--policy is only valid with --instructor trained")
+    if args.adapter_scale<0: raise SystemExit("--adapter-scale must be nonnegative")
+    if args.evaluation_mode=="independent" and args.feedback_mode!="none": logging.warning("Independent mode ignores repair context; forcing --feedback-mode none"); args.feedback_mode="none"
+    coder=parse_model_spec(args.coder); condition=condition_key(args,coder); condition_dir=args.output_root/condition; condition_dir.mkdir(parents=True,exist_ok=True)
+    logging.basicConfig(level=logging.INFO,format="%(asctime)s - %(levelname)s - %(message)s",handlers=[logging.FileHandler(condition_dir/"evaluation.log"),logging.StreamHandler()],force=True)
+    checkpoint=args.checkpoint or (POLICY_CHECKPOINTS[args.policy] if args.policy else None); config=vars(args).copy(); config.update({"dataset":str(args.dataset),"output_root":str(args.output_root),"checkpoint":str(checkpoint) if checkpoint else None,"slm_model":SLM_MODEL_NAME,"condition":condition,"coder":coder.key,"judge_model":os.environ.get("DAFNY_JUDGE_MODEL","gpt-5.4"),"max_prompt_tokens":MAX_PROMPT_TOKENS,"max_new_tokens":MAX_NEW_TOKENS}); atomic_json(condition_dir/"config.json",config)
+    slm_pg=tokenizer=None
+    if args.instructor in {"trained","untrained"}: slm_pg,tokenizer=load_policy_model(args.instructor,args.policy,args.checkpoint,args.adapter_scale)
+    folders=sorted(x for x in args.dataset.iterdir() if x.is_dir()); folders=folders[:args.limit] if args.limit>0 else folders; rows=[]; logging.info("Evaluating %d tasks: %s",len(folders),condition)
+    for i,folder in enumerate(folders,1):
+        task=read_task(folder)
+        if not task: logging.warning("Skipping %s: no description",folder.name); continue
+        logging.info("[%d/%d] %s",i,len(folders),folder.name); rows.append(evaluate_task(folder.name,task,args,coder,slm_pg,tokenizer,condition_dir))
+    summary=aggregate(condition_dir,rows,args.evaluation_mode); logging.info("Summary: %s",json.dumps(summary,sort_keys=True))
 
 
-if __name__ == "__main__":
-    main()
+if __name__=="__main__": main()
