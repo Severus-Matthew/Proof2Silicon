@@ -25,13 +25,13 @@ POLICIES = ["openai", "qwen", "mixed"]
 SEED = 20260811
 
 
-def add(rows, name, instructor, coder, *, policy="", mode="repair", feedback="full",
+def add(rows, name, instructor, coder, *, policy="na", mode="repair", feedback="full",
         recursion=True, scale=1.0, decode="train_match", attempts=7,
         seed=SEED, external="openai:gpt-5.4"):
     rows.append({
         "name": name,
         "instructor": instructor,
-        "policy": policy,
+        "policy": policy or "na",
         "coder": coder,
         "evaluation_mode": mode,
         "feedback_mode": feedback,
@@ -46,8 +46,6 @@ def add(rows, name, instructor, coder, *, policy="", mode="repair", feedback="fu
 
 def build(suite: str):
     rows = []
-
-    # Tier 1: full primary comparison across four coders.
     if suite in {"core", "full"}:
         for coder in CORE_CODERS:
             tag = coder.replace(":", "_").replace("/", "_")
@@ -58,7 +56,6 @@ def build(suite: str):
             for policy in POLICIES:
                 add(rows, f"trained_{policy}__{tag}", "trained", coder, policy=policy)
 
-    # Tier 2: unseen coder-family transfer.  Avoid full Cartesian explosion.
     if suite in {"transfer", "full"}:
         for coder in EXTENDED_CODERS:
             tag = coder.replace(":", "_").replace("/", "_")
@@ -68,51 +65,38 @@ def build(suite: str):
             add(rows, f"transfer_external__{tag}", "external", coder)
             add(rows, f"transfer_mixed__{tag}", "trained", coder, policy="mixed")
 
-    # Tier 3a: LoRA-strength ablation. Use two representative coders and all policies.
     if suite in {"ablations", "full"}:
         reps = [CORE_CODERS[0], CORE_CODERS[2]]
         for coder in reps:
             tag = coder.replace(":", "_").replace("/", "_")
             for policy in POLICIES:
                 for scale in (0.0, 0.25, 0.5, 1.0, 1.5):
-                    add(rows, f"lora_{policy}_{scale:g}__{tag}", "trained", coder,
-                        policy=policy, scale=scale)
-
-        # Decoding ablation on the mixed policy.
+                    add(rows, f"lora_{policy}_{scale:g}__{tag}", "trained", coder, policy=policy, scale=scale)
         for coder in reps:
             tag = coder.replace(":", "_").replace("/", "_")
             for decode in ("greedy", "train_match"):
-                add(rows, f"decode_mixed_{decode}__{tag}", "trained", coder,
-                    policy="mixed", decode=decode)
-
-        # Explicit anti-recursion instruction ablation.
+                add(rows, f"decode_mixed_{decode}__{tag}", "trained", coder, policy="mixed", decode=decode)
         for coder in reps:
             tag = coder.replace(":", "_").replace("/", "_")
-            for instructor, policy in (("none", ""), ("untrained", ""), ("trained", "mixed")):
+            for instructor, policy in (("none", "na"), ("untrained", "na"), ("trained", "mixed")):
                 for recursion in (False, True):
-                    add(rows, f"rechint_{instructor}_{policy or 'na'}_{int(recursion)}__{tag}",
-                        instructor, coder, policy=policy, recursion=recursion)
-
-        # Feedback-channel ablation: what information reaches the trained instructor/coder.
+                    add(rows, f"rechint_{instructor}_{policy}_{int(recursion)}__{tag}", instructor, coder,
+                        policy=policy, recursion=recursion)
         for coder in reps:
             tag = coder.replace(":", "_").replace("/", "_")
             for feedback in ("full", "coder_only", "none"):
-                add(rows, f"feedback_mixed_{feedback}__{tag}", "trained", coder,
-                    policy="mixed", feedback=feedback)
+                add(rows, f"feedback_mixed_{feedback}__{tag}", "trained", coder, policy="mixed", feedback=feedback)
 
-    # Tier 4: genuine independent pass@k (no repair feedback). Five samples per task.
     if suite in {"passk", "full"}:
         reps = [CORE_CODERS[0], CORE_CODERS[2]]
         for coder in reps:
             tag = coder.replace(":", "_").replace("/", "_")
-            for instructor, policy in (("none", ""), ("untrained", ""), ("self", ""),
-                                       ("external", ""), ("trained", "mixed")):
-                add(rows, f"passk_{instructor}_{policy or 'na'}__{tag}", instructor, coder,
+            for instructor, policy in (("none", "na"), ("untrained", "na"), ("self", "na"),
+                                       ("external", "na"), ("trained", "mixed")):
+                add(rows, f"passk_{instructor}_{policy}__{tag}", instructor, coder,
                     policy=policy, mode="independent", feedback="none", attempts=5)
 
-    # Deduplicate conditions that occur in multiple tiers.
-    unique = []
-    seen = set()
+    unique, seen = [], set()
     for row in rows:
         key = tuple(row[k] for k in row if k != "name")
         if key not in seen:
@@ -131,9 +115,7 @@ def main():
     fields = list(rows[0].keys()) if rows else []
     with args.output.open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields, delimiter="\t")
-        w.writeheader()
-        w.writerows(rows)
+        w.writeheader(); w.writerows(rows)
     print(f"Wrote {len(rows)} conditions to {args.output}")
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
