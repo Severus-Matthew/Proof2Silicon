@@ -11,7 +11,6 @@ DEFAULT_MODELS = [
     'hf:Qwen/Qwen3-Coder-30B-A3B-Instruct:featherless-ai',
     'hf:deepseek-ai/DeepSeek-V3.1',
     'hf:Qwen/Qwen3-Coder-Next',
-    'hf:zai-org/GLM-4.5-Air',
 ]
 
 def main():
