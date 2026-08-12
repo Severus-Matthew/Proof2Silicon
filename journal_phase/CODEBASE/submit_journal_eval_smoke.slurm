@@ -51,6 +51,8 @@ COMMON=(
   --slm-decode train_match
   --max-attempts 2
   --limit 2
+  --overwrite
+  --fail-on-runtime-errors
 )
 
 case "$IDX" in
