@@ -32,6 +32,7 @@ export HF_HOME=${HF_HOME:-/u/mjha1/.cache/huggingface}
 export HF_BASE_URL=${HF_BASE_URL:-https://router.huggingface.co/v1}
 export DAFNY_JUDGE_MODEL=${DAFNY_JUDGE_MODEL:-gpt-5.4}
 export DAFNY_JUDGE_REASONING=${DAFNY_JUDGE_REASONING:-low}
+export DAFNY_JUDGE_MAX_TOKENS=${DAFNY_JUDGE_MAX_TOKENS:-512}
 
 ROW=$(awk -F '\t' -v n=$((ARRAY_ID + 2)) 'NR==n {print; exit}' "$EVAL_MATRIX_FILE")
 if [[ -z "$ROW" ]]; then
@@ -53,7 +54,7 @@ conda activate base
 source ~/rl_env311/bin/activate
 cd "$CODEBASE"
 
-python3 -m py_compile test_journal.py make_journal_eval_matrix.py summarize_journal_eval.py sample_semantic_audit.py preflight_journal_eval.py
+python3 -m py_compile test_journal.py journal_eval_entry.py make_journal_eval_matrix.py summarize_journal_eval.py sample_semantic_audit.py preflight_journal_eval.py
 command -v dafny >/dev/null || { echo "ERROR: dafny not found" >&2; exit 3; }
 
 ARGS=(
@@ -66,6 +67,7 @@ ARGS=(
   --adapter-scale "$ADAPTER_SCALE"
   --slm-decode "$SLM_DECODE"
   --max-attempts "$MAX_ATTEMPTS"
+  --coder-max-tokens 16384
   --seed "$SEED"
   --external-instructor-model "$EXTERNAL_INSTRUCTOR"
   --fail-on-runtime-errors
@@ -90,6 +92,7 @@ echo "Instructor: $INSTRUCTOR policy=${POLICY:-na}"
 echo "Coder: $CODER"
 echo "Mode: $EVAL_MODE feedback=$FEEDBACK_MODE recursion_hint=$RECURSION_HINT"
 echo "LoRA scale=$ADAPTER_SCALE decode=$SLM_DECODE max_attempts=$MAX_ATTEMPTS seed=$SEED"
+echo "Coder max tokens=16384; judge max tokens=$DAFNY_JUDGE_MAX_TOKENS"
 echo "Output: $OUTPUT_ROOT"
 echo "=============================================="
 
@@ -110,7 +113,7 @@ handle_timeout() {
 trap handle_timeout USR1
 
 set +e
-python3 test_journal.py "${ARGS[@]}" > >(tee -a "$RUN_LOG_DIR/${NAME}.log") 2>&1 &
+python3 journal_eval_entry.py "${ARGS[@]}" > >(tee -a "$RUN_LOG_DIR/${NAME}.log") 2>&1 &
 TRAIN_PID=$!
 wait "$TRAIN_PID"
 RC=$?
