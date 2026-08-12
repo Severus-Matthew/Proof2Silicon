@@ -27,10 +27,15 @@ export PYTHONPATH=$CODEBASE:${PYTHONPATH:-}
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
 export HF_HOME=${HF_HOME:-/u/mjha1/.cache/huggingface}
 export HF_BASE_URL=${HF_BASE_URL:-https://router.huggingface.co/v1}
+
+# Match the journal-training generator/judge configuration exactly.
+export OPENAI_GENERATOR_REASONING=${OPENAI_GENERATOR_REASONING:-medium}
+export OPENAI_GENERATOR_MAX_TOKENS=${OPENAI_GENERATOR_MAX_TOKENS:-16384}
+export OPENAI_GENERATOR_RETRY_MAX_TOKENS=${OPENAI_GENERATOR_RETRY_MAX_TOKENS:-24576}
+export DAFNY_GENERATOR_MAX_TOKENS=${DAFNY_GENERATOR_MAX_TOKENS:-8192}
 export DAFNY_JUDGE_MODEL=${DAFNY_JUDGE_MODEL:-gpt-5.4}
 export DAFNY_JUDGE_REASONING=${DAFNY_JUDGE_REASONING:-low}
 export DAFNY_JUDGE_MAX_TOKENS=${DAFNY_JUDGE_MAX_TOKENS:-512}
-export JOURNAL_CODER_MAX_TOKENS=${JOURNAL_CODER_MAX_TOKENS:-32768}
 
 module purge
 module load gcc-native/14
@@ -52,7 +57,8 @@ COMMON=(
   --recursion-hint
   --slm-decode train_match
   --max-attempts 2
-  --coder-max-tokens "$JOURNAL_CODER_MAX_TOKENS"
+  --coder-max-tokens "$DAFNY_GENERATOR_MAX_TOKENS"
+  --openai-coder-reasoning "$OPENAI_GENERATOR_REASONING"
   --limit 2
   --overwrite
   --fail-on-runtime-errors
@@ -80,7 +86,8 @@ esac
 mkdir -p "$OUTPUT_ROOT/_slurm"
 echo "Running smoke condition $NAME on $(hostname) at $(date)"
 echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
-echo "Coder max tokens=$JOURNAL_CODER_MAX_TOKENS; judge max tokens=$DAFNY_JUDGE_MAX_TOKENS"
+echo "OpenAI coder: reasoning=$OPENAI_GENERATOR_REASONING primary=$OPENAI_GENERATOR_MAX_TOKENS fallback=low/$OPENAI_GENERATOR_RETRY_MAX_TOKENS"
+echo "HF coder max tokens=$DAFNY_GENERATOR_MAX_TOKENS; judge=$DAFNY_JUDGE_MODEL/$DAFNY_JUDGE_REASONING/$DAFNY_JUDGE_MAX_TOKENS"
 
 python3 journal_eval_entry.py "${COMMON[@]}" "${EXTRA[@]}" \
   > >(tee -a "$OUTPUT_ROOT/_slurm/${NAME}.log") 2>&1
