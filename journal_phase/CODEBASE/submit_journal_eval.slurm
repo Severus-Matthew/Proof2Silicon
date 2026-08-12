@@ -30,10 +30,15 @@ export PYTHONPATH=$CODEBASE:${PYTHONPATH:-}
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:128
 export HF_HOME=${HF_HOME:-/u/mjha1/.cache/huggingface}
 export HF_BASE_URL=${HF_BASE_URL:-https://router.huggingface.co/v1}
+
+# Match the journal-training generator/judge configuration.
+export OPENAI_GENERATOR_REASONING=${OPENAI_GENERATOR_REASONING:-medium}
+export OPENAI_GENERATOR_MAX_TOKENS=${OPENAI_GENERATOR_MAX_TOKENS:-16384}
+export OPENAI_GENERATOR_RETRY_MAX_TOKENS=${OPENAI_GENERATOR_RETRY_MAX_TOKENS:-24576}
+export DAFNY_GENERATOR_MAX_TOKENS=${DAFNY_GENERATOR_MAX_TOKENS:-8192}
 export DAFNY_JUDGE_MODEL=${DAFNY_JUDGE_MODEL:-gpt-5.4}
 export DAFNY_JUDGE_REASONING=${DAFNY_JUDGE_REASONING:-low}
 export DAFNY_JUDGE_MAX_TOKENS=${DAFNY_JUDGE_MAX_TOKENS:-512}
-export JOURNAL_CODER_MAX_TOKENS=${JOURNAL_CODER_MAX_TOKENS:-32768}
 
 ROW=$(awk -F '\t' -v n=$((ARRAY_ID + 2)) 'NR==n {print; exit}' "$EVAL_MATRIX_FILE")
 if [[ -z "$ROW" ]]; then
@@ -68,7 +73,8 @@ ARGS=(
   --adapter-scale "$ADAPTER_SCALE"
   --slm-decode "$SLM_DECODE"
   --max-attempts "$MAX_ATTEMPTS"
-  --coder-max-tokens "$JOURNAL_CODER_MAX_TOKENS"
+  --coder-max-tokens "$DAFNY_GENERATOR_MAX_TOKENS"
+  --openai-coder-reasoning "$OPENAI_GENERATOR_REASONING"
   --seed "$SEED"
   --external-instructor-model "$EXTERNAL_INSTRUCTOR"
   --fail-on-runtime-errors
@@ -93,7 +99,8 @@ echo "Instructor: $INSTRUCTOR policy=${POLICY:-na}"
 echo "Coder: $CODER"
 echo "Mode: $EVAL_MODE feedback=$FEEDBACK_MODE recursion_hint=$RECURSION_HINT"
 echo "LoRA scale=$ADAPTER_SCALE decode=$SLM_DECODE max_attempts=$MAX_ATTEMPTS seed=$SEED"
-echo "Coder max tokens=$JOURNAL_CODER_MAX_TOKENS; judge max tokens=$DAFNY_JUDGE_MAX_TOKENS"
+echo "OpenAI coder: reasoning=$OPENAI_GENERATOR_REASONING primary=$OPENAI_GENERATOR_MAX_TOKENS fallback=low/$OPENAI_GENERATOR_RETRY_MAX_TOKENS"
+echo "HF coder max tokens=$DAFNY_GENERATOR_MAX_TOKENS; judge=$DAFNY_JUDGE_MODEL/$DAFNY_JUDGE_REASONING/$DAFNY_JUDGE_MAX_TOKENS"
 echo "Output: $OUTPUT_ROOT"
 echo "=============================================="
 
