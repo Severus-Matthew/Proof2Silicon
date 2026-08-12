@@ -12,7 +12,6 @@ DEFAULT_MODELS = [
     'hf:deepseek-ai/DeepSeek-V3.1',
     'hf:Qwen/Qwen3-Coder-Next',
     'hf:zai-org/GLM-4.5-Air',
-    'hf:mistralai/Devstral-Small-2-24B-Instruct-2512',
 ]
 
 def main():
@@ -34,7 +33,11 @@ def main():
         for raw in a.models:
             spec=parse_model_spec(raw)
             try:
-                text,_,_=call_model(spec,'Reply with exactly OK.','OK',max_tokens=8,reasoning='low' if spec.provider=='openai' else None,temperature=0.0,retries=2)
+                # OpenAI Responses requires max_output_tokens >= 16.  Use 32 for
+                # every provider so the same preflight is valid across APIs.
+                text,_,_=call_model(spec,'Reply with exactly OK.','Reply with exactly OK.',max_tokens=32,reasoning='low' if spec.provider=='openai' else None,temperature=0.0,retries=2)
+                if not text.strip():
+                    raise RuntimeError('model returned an empty response')
                 print(f'model {raw}: OK ({text[:60]!r})')
             except Exception as e:
                 print(f'model {raw}: FAILED ({e})'); failures.append(f'model unavailable: {raw}: {e}')
