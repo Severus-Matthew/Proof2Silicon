@@ -33,7 +33,6 @@ export HF_BASE_URL=${HF_BASE_URL:-https://router.huggingface.co/v1}
 export DAFNY_JUDGE_MODEL=${DAFNY_JUDGE_MODEL:-gpt-5.4}
 export DAFNY_JUDGE_REASONING=${DAFNY_JUDGE_REASONING:-low}
 
-# Read row ARRAY_ID+2 because row 1 is the header.
 ROW=$(awk -F '\t' -v n=$((ARRAY_ID + 2)) 'NR==n {print; exit}' "$EVAL_MATRIX_FILE")
 if [[ -z "$ROW" ]]; then
   echo "ERROR: no matrix row for array index $ARRAY_ID in $EVAL_MATRIX_FILE" >&2
@@ -41,7 +40,6 @@ if [[ -z "$ROW" ]]; then
 fi
 
 IFS=$'\t' read -r NAME INSTRUCTOR POLICY CODER EVAL_MODE FEEDBACK_MODE RECURSION_HINT ADAPTER_SCALE SLM_DECODE MAX_ATTEMPTS SEED EXTERNAL_INSTRUCTOR <<< "$ROW"
-
 if [[ -z "$NAME" || -z "$INSTRUCTOR" || -z "$CODER" ]]; then
   echo "ERROR: malformed matrix row: $ROW" >&2
   exit 2
@@ -70,6 +68,7 @@ ARGS=(
   --max-attempts "$MAX_ATTEMPTS"
   --seed "$SEED"
   --external-instructor-model "$EXTERNAL_INSTRUCTOR"
+  --fail-on-runtime-errors
 )
 
 if [[ "$INSTRUCTOR" == "trained" ]]; then
