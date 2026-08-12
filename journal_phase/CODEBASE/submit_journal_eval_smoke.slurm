@@ -30,6 +30,7 @@ export HF_BASE_URL=${HF_BASE_URL:-https://router.huggingface.co/v1}
 export DAFNY_JUDGE_MODEL=${DAFNY_JUDGE_MODEL:-gpt-5.4}
 export DAFNY_JUDGE_REASONING=${DAFNY_JUDGE_REASONING:-low}
 export DAFNY_JUDGE_MAX_TOKENS=${DAFNY_JUDGE_MAX_TOKENS:-512}
+export JOURNAL_CODER_MAX_TOKENS=${JOURNAL_CODER_MAX_TOKENS:-32768}
 
 module purge
 module load gcc-native/14
@@ -51,7 +52,7 @@ COMMON=(
   --recursion-hint
   --slm-decode train_match
   --max-attempts 2
-  --coder-max-tokens 16384
+  --coder-max-tokens "$JOURNAL_CODER_MAX_TOKENS"
   --limit 2
   --overwrite
   --fail-on-runtime-errors
@@ -79,7 +80,7 @@ esac
 mkdir -p "$OUTPUT_ROOT/_slurm"
 echo "Running smoke condition $NAME on $(hostname) at $(date)"
 echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-unset}"
-echo "Coder max tokens=16384; judge max tokens=$DAFNY_JUDGE_MAX_TOKENS"
+echo "Coder max tokens=$JOURNAL_CODER_MAX_TOKENS; judge max tokens=$DAFNY_JUDGE_MAX_TOKENS"
 
 python3 journal_eval_entry.py "${COMMON[@]}" "${EXTRA[@]}" \
   > >(tee -a "$OUTPUT_ROOT/_slurm/${NAME}.log") 2>&1
