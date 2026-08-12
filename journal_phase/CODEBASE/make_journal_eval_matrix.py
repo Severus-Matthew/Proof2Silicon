@@ -12,7 +12,6 @@ CORE_CODERS = [
 ]
 EXTENDED_CODERS = [
     "hf:Qwen/Qwen3-Coder-Next",
-    "hf:zai-org/GLM-4.5-Air",
 ]
 POLICIES=["openai","qwen","mixed"]; SEED=20260811
 
