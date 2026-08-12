@@ -33,6 +33,7 @@ export HF_BASE_URL=${HF_BASE_URL:-https://router.huggingface.co/v1}
 export DAFNY_JUDGE_MODEL=${DAFNY_JUDGE_MODEL:-gpt-5.4}
 export DAFNY_JUDGE_REASONING=${DAFNY_JUDGE_REASONING:-low}
 export DAFNY_JUDGE_MAX_TOKENS=${DAFNY_JUDGE_MAX_TOKENS:-512}
+export JOURNAL_CODER_MAX_TOKENS=${JOURNAL_CODER_MAX_TOKENS:-32768}
 
 ROW=$(awk -F '\t' -v n=$((ARRAY_ID + 2)) 'NR==n {print; exit}' "$EVAL_MATRIX_FILE")
 if [[ -z "$ROW" ]]; then
@@ -67,7 +68,7 @@ ARGS=(
   --adapter-scale "$ADAPTER_SCALE"
   --slm-decode "$SLM_DECODE"
   --max-attempts "$MAX_ATTEMPTS"
-  --coder-max-tokens 16384
+  --coder-max-tokens "$JOURNAL_CODER_MAX_TOKENS"
   --seed "$SEED"
   --external-instructor-model "$EXTERNAL_INSTRUCTOR"
   --fail-on-runtime-errors
@@ -92,7 +93,7 @@ echo "Instructor: $INSTRUCTOR policy=${POLICY:-na}"
 echo "Coder: $CODER"
 echo "Mode: $EVAL_MODE feedback=$FEEDBACK_MODE recursion_hint=$RECURSION_HINT"
 echo "LoRA scale=$ADAPTER_SCALE decode=$SLM_DECODE max_attempts=$MAX_ATTEMPTS seed=$SEED"
-echo "Coder max tokens=16384; judge max tokens=$DAFNY_JUDGE_MAX_TOKENS"
+echo "Coder max tokens=$JOURNAL_CODER_MAX_TOKENS; judge max tokens=$DAFNY_JUDGE_MAX_TOKENS"
 echo "Output: $OUTPUT_ROOT"
 echo "=============================================="
 
