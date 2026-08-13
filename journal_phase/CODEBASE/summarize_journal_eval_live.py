@@ -15,7 +15,6 @@ Outputs under --root:
 IMPORTANT: all metrics are INTERIM.  Faster/easier tasks may finish first, so
 partial rates and p-values must not be reported as final paper results.
 """
-from __future__ import annotations
 
 import argparse
 import csv
