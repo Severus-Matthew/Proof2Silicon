@@ -6,10 +6,15 @@ from test_journal import POLICY_CHECKPOINTS, parse_model_spec, call_model
 
 ROOT = Path('/u/mjha1/Proof2Silicon/journal_phase')
 DEFAULT_MODELS = [
+    # In-distribution OpenAI anchor used during journal training.
     'openai:gpt-5.4-mini',
-    'openai:gpt-5.4',
+    # Cheap weaker OpenAI capability-probe candidate.
+    'openai:gpt-5.4-nano',
+    # Existing callable Hugging Face coder anchor.
     'hf:Qwen/Qwen3-Coder-30B-A3B-Instruct:featherless-ai',
-    'hf:deepseek-ai/DeepSeek-V3.1',
+    # Newest verified DeepSeek-V4 Flash checkpoint; preflight before adding to a matrix.
+    'hf:deepseek-ai/DeepSeek-V4-Flash-0731',
+    # Existing transfer-family candidate.
     'hf:Qwen/Qwen3-Coder-Next',
 ]
 
@@ -32,7 +37,7 @@ def main():
         for raw in a.models:
             spec=parse_model_spec(raw)
             try:
-                # OpenAI Responses requires max_output_tokens >= 16.  Use 32 for
+                # OpenAI Responses requires max_output_tokens >= 16. Use 32 for
                 # every provider so the same preflight is valid across APIs.
                 text,_,_=call_model(spec,'Reply with exactly OK.','Reply with exactly OK.',max_tokens=32,reasoning='low' if spec.provider=='openai' else None,temperature=0.0,retries=2)
                 if not text.strip():
