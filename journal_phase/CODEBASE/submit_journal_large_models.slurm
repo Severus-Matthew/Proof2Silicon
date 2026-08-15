@@ -22,6 +22,7 @@ set -euo pipefail
 ROOT=/u/mjha1/Proof2Silicon/journal_phase
 CODEBASE=$ROOT/CODEBASE
 OUTPUT_ROOT=${JOURNAL_LARGE_OUTPUT_ROOT:-$ROOT/journal_eval_large_models}
+LIMIT=${JOURNAL_LARGE_LIMIT:-0}
 ARRAY_ID=${SLURM_ARRAY_TASK_ID:?}
 
 export PYTHONUNBUFFERED=1
@@ -80,6 +81,9 @@ ARGS=(
   --seed "$SEED"
   --fail-on-runtime-errors
 )
+if [[ "$LIMIT" -gt 0 ]]; then
+  ARGS+=(--limit "$LIMIT")
+fi
 
 if [[ "$INSTRUCTOR" == "trained" ]]; then
   ARGS+=(--policy "$POLICY")
@@ -99,7 +103,7 @@ echo "Array index: $ARRAY_ID"
 echo "Instructor: $INSTRUCTOR policy=${POLICY:-na}"
 echo "Coder API: $CODER"
 echo "Downstream generator weights: API ONLY (not loaded locally)"
-echo "Repair budget: 5"
+echo "Repair budget: 5; task limit=$LIMIT"
 echo "Judge: $DAFNY_JUDGE_MODEL/$DAFNY_JUDGE_REASONING/$DAFNY_JUDGE_MAX_TOKENS"
 echo "Output: $OUTPUT_ROOT"
 echo "=============================================="
