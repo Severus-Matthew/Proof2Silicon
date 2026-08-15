@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Generate the hardware Proof2Silicon evaluation matrix.
 
-Seven large downstream coders x five instructor conditions.  No self/external
-instructor rows are generated.  Every condition uses a five-attempt repair
-budget.  The trained-only bit reminder requested for the hardware study is made
+Seven large downstream coders x five instructor conditions. No self/external
+instructor rows are generated. Every condition uses a five-attempt repair
+budget. The trained-only bit reminder requested for the hardware study is made
 an explicit matrix column so it is auditable rather than hidden.
+
+HF provider pins are the preflighted/live API routes; no downstream generator
+weights are downloaded locally.
 """
 
 import argparse
@@ -17,12 +20,15 @@ MAX_ATTEMPTS = 5
 CODERS = [
     ("hf:deepseek-ai/DeepSeek-V4-Flash:cheapest", "none"),
     ("hf:Qwen/Qwen2.5-Coder-32B-Instruct:cheapest", "none"),
-    ("hf:mistralai/Mistral-Large-Instruct-2411:cheapest", "none"),
-    ("hf:meta-llama/Llama-3.1-70B-Instruct:cheapest", "none"),
+    # Mistral-Large-Instruct-2411 is not exposed as a chat model through the
+    # shared HF router, so use Kimi K2 Instruct as the very-large cross-family model.
+    ("hf:moonshotai/Kimi-K2-Instruct-0905:novita", "none"),
+    # Generic :cheapest routing failed; Featherless AI is the live HF provider.
+    ("hf:meta-llama/Llama-3.1-70B-Instruct:featherless-ai", "none"),
     ("hf:Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest", "none"),
     ("hf:deepseek-ai/DeepSeek-V3.1:cheapest", "none"),
     # Cheapest current GPT-5.4-class model with an explicitly supported
-    # no-reasoning mode.  The launcher passes reasoning effort="none".
+    # no-reasoning mode. The launcher passes reasoning effort="none".
     ("openai:gpt-5.4-nano", "none"),
 ]
 
