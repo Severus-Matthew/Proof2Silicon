@@ -2,9 +2,15 @@
 """API-only preflight for the next large-model and P2S evaluation suites.
 
 Safe to run on a Delta login node: this script does not load the SLM, any coder
-weights, CUDA, or Dafny.  It verifies that the exact HF router model strings are
-callable and that DeepSeek-V4 obeys strict non-thinking mode.  It also verifies
+weights, CUDA, or Dafny. It verifies that the exact HF router model strings are
+callable and that DeepSeek-V4 obeys strict non-thinking mode. It also verifies
 the P2S OpenAI coder with reasoning effort explicitly set to ``none``.
+
+Provider pins are intentional:
+- Llama-3.1-70B is pinned to Featherless AI because the generic :cheapest route
+  is not available for this account while HF lists Featherless as a live provider.
+- Kimi-K2-Instruct-0905 replaces Mistral-Large-Instruct-2411 because the latter
+  is not exposed as a chat model through the shared HF OpenAI-compatible router.
 """
 
 import argparse
@@ -16,8 +22,8 @@ from openai import OpenAI
 HF_MODELS = [
     "deepseek-ai/DeepSeek-V4-Flash:cheapest",
     "Qwen/Qwen2.5-Coder-32B-Instruct:cheapest",
-    "mistralai/Mistral-Large-Instruct-2411:cheapest",
-    "meta-llama/Llama-3.1-70B-Instruct:cheapest",
+    "moonshotai/Kimi-K2-Instruct-0905:novita",
+    "meta-llama/Llama-3.1-70B-Instruct:featherless-ai",
     "Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest",
     "deepseek-ai/DeepSeek-V3.1:cheapest",
 ]
@@ -153,7 +159,7 @@ def main():
         for failure in failures:
             print(" -", failure)
         print(
-            "\nDo not launch the array.  For an HF failure, inspect the model's "
+            "\nDo not launch the array. For an HF failure, inspect the model's "
             "live providers and pin a provider suffix only after confirming it "
             "supports the required protocol."
         )
