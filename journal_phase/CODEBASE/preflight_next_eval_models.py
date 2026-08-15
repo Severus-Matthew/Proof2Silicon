@@ -6,23 +6,27 @@ weights, CUDA, or Dafny. It verifies that the exact HF router model strings are
 callable and that DeepSeek-V4 obeys strict non-thinking mode. It also verifies
 the P2S OpenAI coder with reasoning effort explicitly set to ``none``.
 
-Provider pins are intentional:
-- Llama-3.1-70B is pinned to Featherless AI because the generic :cheapest route
-  is not available for this account while HF lists Featherless as a live provider.
-- Kimi-K2-Instruct-0905 replaces Mistral-Large-Instruct-2411 because the latter
-  is not exposed as a chat model through the shared HF OpenAI-compatible router.
+Provider notes:
+- Llama-3.1-70B is pinned to Featherless AI because that is the live provider
+  exposed for this model; transient provider-capacity errors are retried.
+- Mistral-Large-Instruct-2411 was not exposed as a chat model through the shared
+  HF router.
+- Kimi-K2-Instruct-0905/Novita returned an empty chat-completion response in
+  preflight, so it is replaced by the 753B GLM-5.2, which has multiple live HF
+  Inference Providers and is directly exposed as a conversational model.
 """
 
 import argparse
 import os
 import re
 import sys
+import time
 from openai import OpenAI
 
 HF_MODELS = [
     "deepseek-ai/DeepSeek-V4-Flash:cheapest",
     "Qwen/Qwen2.5-Coder-32B-Instruct:cheapest",
-    "moonshotai/Kimi-K2-Instruct-0905:novita",
+    "zai-org/GLM-5.2:cheapest",
     "meta-llama/Llama-3.1-70B-Instruct:featherless-ai",
     "Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest",
     "deepseek-ai/DeepSeek-V3.1:cheapest",
@@ -44,7 +48,17 @@ def usage_text(message):
     return ""
 
 
-def check_hf(client, model):
+def is_capacity_error(exc):
+    text = str(exc).lower()
+    return (
+        "capacity_exhausted" in text
+        or "temporarily at capacity" in text
+        or "error code: 503" in text
+        or "server_error" in text and "capacity" in text
+    )
+
+
+def check_hf_once(client, model):
     kwargs = {
         "model": model,
         "messages": [
@@ -76,6 +90,25 @@ def check_hf(client, model):
             )
 
     return text
+
+
+def check_hf(client, model, capacity_retries=4):
+    """Retry only transient provider-capacity failures; protocol errors stay fatal."""
+    last = None
+    for attempt in range(1, capacity_retries + 1):
+        try:
+            return check_hf_once(client, model)
+        except Exception as exc:
+            last = exc
+            if not is_capacity_error(exc) or attempt == capacity_retries:
+                raise
+            wait = min(60, 10 * (2 ** (attempt - 1)))
+            print(
+                "HF %-72s capacity retry %d/%d in %ds"
+                % (model, attempt, capacity_retries, wait)
+            )
+            time.sleep(wait)
+    raise last
 
 
 def check_openai(client, model):
@@ -159,9 +192,9 @@ def main():
         for failure in failures:
             print(" -", failure)
         print(
-            "\nDo not launch the array. For an HF failure, inspect the model's "
-            "live providers and pin a provider suffix only after confirming it "
-            "supports the required protocol."
+            "\nDo not launch the array. Persistent HF capacity failures mean the "
+            "provider is not reliable enough for this run window; protocol/model "
+            "errors require changing the route or model before launch."
         )
         sys.exit(1)
 
