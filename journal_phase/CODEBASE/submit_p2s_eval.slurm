@@ -23,6 +23,7 @@ ROOT=/u/mjha1/Proof2Silicon/journal_phase
 CODEBASE=$ROOT/CODEBASE
 DATASET=${P2S_DATASET:-$ROOT/The_hardware_dataset/Sample_dafny}
 OUTPUT_ROOT=${P2S_EVAL_OUTPUT_ROOT:-$ROOT/p2s_journal_eval}
+LIMIT=${P2S_EVAL_LIMIT:-0}
 ARRAY_ID=${SLURM_ARRAY_TASK_ID:?}
 
 export PYTHONUNBUFFERED=1
@@ -88,6 +89,9 @@ ARGS=(
   --seed "$SEED"
   --fail-on-runtime-errors
 )
+if [[ "$LIMIT" -gt 0 ]]; then
+  ARGS+=(--limit "$LIMIT")
+fi
 
 if [[ "$INSTRUCTOR" == "trained" ]]; then
   ARGS+=(--policy "$POLICY")
@@ -114,7 +118,7 @@ echo "Instructor: $INSTRUCTOR policy=${POLICY:-na}"
 echo "Coder: $CODER"
 echo "Coder reasoning mode: $CODER_REASONING"
 echo "Downstream generator weights: API ONLY"
-echo "Repair budget: 5"
+echo "Repair budget: 5; task limit=$LIMIT"
 echo "Trained bit reminder: $TRAINED_BIT_REMINDER"
 echo "Acceptance: Dafny + semantic alignment + requested bit mapping"
 echo "Judge: $DAFNY_JUDGE_MODEL/$DAFNY_JUDGE_REASONING/$DAFNY_JUDGE_MAX_TOKENS"
