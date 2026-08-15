@@ -20,11 +20,13 @@ MAX_ATTEMPTS = 5
 CODERS = [
     "hf:deepseek-ai/DeepSeek-V4-Flash:cheapest",
     "hf:Qwen/Qwen2.5-Coder-32B-Instruct:cheapest",
-    # Mistral-Large-Instruct-2411 is not exposed as a chat model through the
-    # shared HF router, so use a similarly very-large cross-family chat coder.
-    "hf:moonshotai/Kimi-K2-Instruct-0905:novita",
-    # :cheapest was unavailable for this account; HF lists Featherless AI as a
-    # live text-generation provider for Llama-3.1-70B-Instruct.
+    # Mistral-Large-Instruct-2411 was not exposed as a chat model through the
+    # shared HF router. Kimi-K2/Novita returned empty chat-completion output in
+    # preflight, so use the 753B GLM-5.2 as the very-large cross-family model.
+    "hf:zai-org/GLM-5.2:cheapest",
+    # :cheapest was unavailable for this account; HF exposes Featherless AI for
+    # Llama-3.1-70B-Instruct. Capacity failures are treated as infrastructure
+    # failures and retried by the evaluation entry point.
     "hf:meta-llama/Llama-3.1-70B-Instruct:featherless-ai",
 ]
 
