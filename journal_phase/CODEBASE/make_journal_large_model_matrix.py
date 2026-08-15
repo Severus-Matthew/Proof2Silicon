@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Generate the post-core large-generator matrix for Input_dataset_3.
 
-This suite intentionally excludes self/external instructors.  Each large coder
+This suite intentionally excludes self/external instructors. Each large coder
 is evaluated with: none, untrained Qwen3-1.7B, and the three trained policies.
 All new repair runs stop after five attempts.
+
+All downstream generators are API-only through Hugging Face Inference Providers.
+Provider pins reflect preflighted/live routes; no downstream generator weights
+are downloaded locally.
 """
 
 import argparse
@@ -16,8 +20,12 @@ MAX_ATTEMPTS = 5
 CODERS = [
     "hf:deepseek-ai/DeepSeek-V4-Flash:cheapest",
     "hf:Qwen/Qwen2.5-Coder-32B-Instruct:cheapest",
-    "hf:mistralai/Mistral-Large-Instruct-2411:cheapest",
-    "hf:meta-llama/Llama-3.1-70B-Instruct:cheapest",
+    # Mistral-Large-Instruct-2411 is not exposed as a chat model through the
+    # shared HF router, so use a similarly very-large cross-family chat coder.
+    "hf:moonshotai/Kimi-K2-Instruct-0905:novita",
+    # :cheapest was unavailable for this account; HF lists Featherless AI as a
+    # live text-generation provider for Llama-3.1-70B-Instruct.
+    "hf:meta-llama/Llama-3.1-70B-Instruct:featherless-ai",
 ]
 
 
