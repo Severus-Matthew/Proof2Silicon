@@ -2,17 +2,21 @@
 """Entry point for the post-core large-generator journal experiments.
 
 All downstream open-weight generators are called through Hugging Face Inference
-Providers; no downstream generator weights are loaded locally.  The only local
+Providers; no downstream generator weights are loaded locally. The only local
 model in trained/untrained conditions remains the existing Qwen3-1.7B prompt
 policy used by the journal pipeline.
 
-DeepSeek-V4-Flash is required to run in strict non-thinking/chat mode.  We pass
+DeepSeek-V4-Flash is required to run in strict non-thinking/chat mode. We pass
 its documented ``thinking_mode=chat`` request extension and reject a response if
-reasoning content or an explicit <think> block is returned.  We deliberately do
+reasoning content or an explicit <think> block is returned. We deliberately do
 not fall back to thinking mode because that would silently change the protocol.
 
 For the P2S cost-sensitive OpenAI row, gpt-5.4-nano is run with reasoning effort
 ``none`` on every transport retry; it never falls back to low/medium reasoning.
+
+Transient Hugging Face provider-capacity errors are infrastructure failures, not
+model failures. They are retried with longer backoff without changing prompts,
+decoding settings, model IDs, or provider routes.
 """
 
 from __future__ import annotations
@@ -31,15 +35,11 @@ STRICT_NO_REASONING_OPENAI = {"gpt-5.4-nano"}
 
 
 def _repo_without_route(model: str) -> str:
-    """Remove an HF provider-selection suffix such as :cheapest/:novita."""
     if ":" not in model:
         return model
     repo, suffix = model.rsplit(":", 1)
     if suffix in {"cheapest", "fastest", "preferred"}:
         return repo
-    # Explicit provider names are also routing suffixes. Model repo IDs in this
-    # study do not otherwise contain a colon, so treating the final component as
-    # routing metadata is safe.
     if "/" in repo:
         return repo
     return model
@@ -51,6 +51,16 @@ def _reasoning_text(message) -> str:
         if value:
             return str(value).strip()
     return ""
+
+
+def _is_capacity_error(exc: Exception) -> bool:
+    text = str(exc).lower()
+    return (
+        "capacity_exhausted" in text
+        or "temporarily at capacity" in text
+        or "error code: 503" in text
+        or ("server_error" in text and "capacity" in text)
+    )
 
 
 def _strict_deepseek_v4_nonthink(
@@ -76,9 +86,6 @@ def _strict_deepseek_v4_nonthink(
                 temperature=temperature,
                 max_tokens=max_tokens,
                 stream=False,
-                # DeepSeek-V4's official encoding calls this chat mode: it closes
-                # the thinking block before generation. HF providers may differ,
-                # which is why preflight + response validation are mandatory.
                 extra_body={"thinking_mode": "chat"},
             )
             message = response.choices[0].message
@@ -126,7 +133,6 @@ def _strict_openai_no_reasoning(
     max_tokens: int,
     retries: int,
 ):
-    """Responses API call that never changes reasoning effort from ``none``."""
     client = tj.make_client(spec)
     last_error: Optional[Exception] = None
     for attempt in range(1, retries + 1):
@@ -176,6 +182,44 @@ def _strict_openai_no_reasoning(
     )
 
 
+def _hf_with_capacity_backoff(
+    spec: tj.ModelSpec,
+    system: str,
+    user: str,
+    *,
+    max_tokens: int,
+    reasoning: Optional[str],
+    temperature: float,
+    retries: int,
+):
+    last_error: Optional[Exception] = None
+    for outer in range(1, 5):
+        try:
+            return base_entry.robust_call_model(
+                spec,
+                system,
+                user,
+                max_tokens=max_tokens,
+                reasoning=reasoning,
+                temperature=temperature,
+                retries=retries,
+            )
+        except Exception as exc:
+            last_error = exc
+            if not _is_capacity_error(exc) or outer == 4:
+                raise
+            wait = min(120, 15 * (2 ** (outer - 1)))
+            logging.warning(
+                "HF provider capacity exhausted for %s; infrastructure retry "
+                "%d/4 in %ds without changing the scientific configuration",
+                spec.key,
+                outer,
+                wait,
+            )
+            time.sleep(wait)
+    raise RuntimeError(f"HF capacity retries exhausted for {spec.key}: {last_error}")
+
+
 def large_model_call(
     spec: tj.ModelSpec,
     system: str,
@@ -212,8 +256,17 @@ def large_model_call(
             retries=retries,
         )
 
-    # Existing journal behavior, including the exact OpenAI training-matched
-    # coder fallback and GPT-5.4 low/512 semantic judge configuration.
+    if spec.provider == "hf":
+        return _hf_with_capacity_backoff(
+            spec,
+            system,
+            user,
+            max_tokens=max_tokens,
+            reasoning=reasoning,
+            temperature=temperature,
+            retries=retries,
+        )
+
     return base_entry.robust_call_model(
         spec,
         system,
