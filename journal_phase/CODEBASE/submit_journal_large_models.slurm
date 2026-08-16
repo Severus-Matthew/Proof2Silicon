@@ -15,15 +15,22 @@
 
 set -euo pipefail
 
-: "${EVAL_MATRIX_FILE:?Set EVAL_MATRIX_FILE to the large-model TSV matrix}"
 : "${OPENAI_API_KEY:?Export OPENAI_API_KEY for the semantic judge}"
 : "${HF_TOKEN:?Export HF_TOKEN for Hugging Face Inference Providers}"
 
 ROOT=/u/mjha1/Proof2Silicon/journal_phase
 CODEBASE=$ROOT/CODEBASE
+EVAL_MATRIX_FILE=${EVAL_MATRIX_FILE:-$ROOT/journal_large_models.tsv}
 OUTPUT_ROOT=${JOURNAL_LARGE_OUTPUT_ROOT:-$ROOT/journal_eval_large_models}
 LIMIT=${JOURNAL_LARGE_LIMIT:-0}
 ARRAY_ID=${SLURM_ARRAY_TASK_ID:?}
+
+if [[ ! -f "$EVAL_MATRIX_FILE" ]]; then
+  echo "ERROR: large-model matrix not found: $EVAL_MATRIX_FILE" >&2
+  echo "Generate it first with:" >&2
+  echo "  python3 $CODEBASE/make_journal_large_model_matrix.py --output $ROOT/journal_large_models.tsv" >&2
+  exit 2
+fi
 
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
@@ -100,6 +107,7 @@ mkdir -p "$RUN_LOG_DIR"
 echo "=============================================="
 echo "Large-generator journal condition: $NAME"
 echo "Array index: $ARRAY_ID"
+echo "Matrix: $EVAL_MATRIX_FILE"
 echo "Instructor: $INSTRUCTOR policy=${POLICY:-na}"
 echo "Coder API: $CODER"
 echo "Downstream generator weights: API ONLY (not loaded locally)"
