@@ -6,8 +6,8 @@ is evaluated with: none, untrained Qwen3-1.7B, and the three trained policies.
 All new repair runs stop after five attempts.
 
 All downstream generators are API-only through Hugging Face Inference Providers.
-Provider pins reflect preflighted/live routes; no downstream generator weights
-are downloaded locally.
+Provider pins reflect routes that are currently deployed; no downstream generator
+weights are downloaded locally.
 """
 
 import argparse
@@ -20,14 +20,13 @@ MAX_ATTEMPTS = 5
 CODERS = [
     "hf:deepseek-ai/DeepSeek-V4-Flash:cheapest",
     "hf:Qwen/Qwen2.5-Coder-32B-Instruct:cheapest",
-    # Mistral-Large-Instruct-2411 was not exposed as a chat model through the
-    # shared HF router. Kimi-K2/Novita returned empty chat-completion output in
-    # preflight, so use the 753B GLM-5.2 as the very-large cross-family model.
-    "hf:zai-org/GLM-5.2:cheapest",
-    # :cheapest was unavailable for this account; HF exposes Featherless AI for
-    # Llama-3.1-70B-Instruct. Capacity failures are treated as infrastructure
-    # failures and retried by the evaluation entry point.
-    "hf:meta-llama/Llama-3.1-70B-Instruct:featherless-ai",
+    # Mistral-Large was not exposed as a chat model; GLM-5.2 returned empty
+    # responses in our preflight. Use NVIDIA Nemotron 3 Ultra instead: 550B
+    # total / 55B active, with a currently deployed Fireworks HF route.
+    "hf:nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4:fireworks-ai",
+    # Llama-3.1-70B is not currently deployed through our HF providers. Llama
+    # 3.3 keeps the 70B Llama-family tier and has a currently deployed Novita route.
+    "hf:meta-llama/Llama-3.3-70B-Instruct:novita",
 ]
 
 
