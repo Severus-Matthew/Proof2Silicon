@@ -20,8 +20,8 @@ MAX_ATTEMPTS = 5
 CODERS = [
     ("hf:deepseek-ai/DeepSeek-V4-Flash:cheapest", "none"),
     ("hf:Qwen/Qwen2.5-Coder-32B-Instruct:cheapest", "none"),
-    ("hf:zai-org/GLM-5.2:cheapest", "none"),
-    ("hf:meta-llama/Llama-3.1-70B-Instruct:featherless-ai", "none"),
+    ("hf:nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4:fireworks-ai", "none"),
+    ("hf:meta-llama/Llama-3.3-70B-Instruct:novita", "none"),
     ("hf:Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest", "none"),
     ("hf:deepseek-ai/DeepSeek-V3.1:cheapest", "none"),
     ("openai:gpt-5.4-nano", "none"),
