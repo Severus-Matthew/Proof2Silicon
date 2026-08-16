@@ -15,16 +15,23 @@
 
 set -euo pipefail
 
-: "${P2S_MATRIX_FILE:?Set P2S_MATRIX_FILE to the generated P2S TSV matrix}"
 : "${OPENAI_API_KEY:?Export OPENAI_API_KEY for gpt-5.4-nano and semantic judge}"
 : "${HF_TOKEN:?Export HF_TOKEN for Hugging Face Inference Providers}"
 
 ROOT=/u/mjha1/Proof2Silicon/journal_phase
 CODEBASE=$ROOT/CODEBASE
+P2S_MATRIX_FILE=${P2S_MATRIX_FILE:-$ROOT/p2s_eval_matrix.tsv}
 DATASET=${P2S_DATASET:-$ROOT/The_hardware_dataset/Sample_dafny}
 OUTPUT_ROOT=${P2S_EVAL_OUTPUT_ROOT:-$ROOT/p2s_journal_eval}
 LIMIT=${P2S_EVAL_LIMIT:-0}
 ARRAY_ID=${SLURM_ARRAY_TASK_ID:?}
+
+if [[ ! -f "$P2S_MATRIX_FILE" ]]; then
+  echo "ERROR: P2S matrix not found: $P2S_MATRIX_FILE" >&2
+  echo "Generate it first with:" >&2
+  echo "  python3 $CODEBASE/make_p2s_eval_matrix.py --output $ROOT/p2s_eval_matrix.tsv" >&2
+  exit 2
+fi
 
 export PYTHONUNBUFFERED=1
 export TOKENIZERS_PARALLELISM=false
@@ -113,6 +120,7 @@ mkdir -p "$RUN_LOG_DIR"
 echo "=============================================="
 echo "P2S hardware condition: $NAME"
 echo "Array index: $ARRAY_ID"
+echo "Matrix: $P2S_MATRIX_FILE"
 echo "Dataset: $DATASET"
 echo "Instructor: $INSTRUCTOR policy=${POLICY:-na}"
 echo "Coder: $CODER"
