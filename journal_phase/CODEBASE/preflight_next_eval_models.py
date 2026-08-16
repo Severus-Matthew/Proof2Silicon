@@ -6,14 +6,10 @@ weights, CUDA, or Dafny. It verifies that the exact HF router model strings are
 callable and that DeepSeek-V4 obeys strict non-thinking mode. It also verifies
 the P2S OpenAI coder with reasoning effort explicitly set to ``none``.
 
-Provider notes:
-- Llama-3.1-70B is pinned to Featherless AI because that is the live provider
-  exposed for this model; transient provider-capacity errors are retried.
-- Mistral-Large-Instruct-2411 was not exposed as a chat model through the shared
-  HF router.
-- Kimi-K2-Instruct-0905/Novita returned an empty chat-completion response in
-  preflight, so it is replaced by the 753B GLM-5.2, which has multiple live HF
-  Inference Providers and is directly exposed as a conversational model.
+The model routes below are deliberately pinned to models/providers that are
+currently exposed by Hugging Face Inference Providers. We do not silently swap
+models inside an evaluation job: this preflight must pass before the matrix is
+launched.
 """
 
 import argparse
@@ -26,8 +22,14 @@ from openai import OpenAI
 HF_MODELS = [
     "deepseek-ai/DeepSeek-V4-Flash:cheapest",
     "Qwen/Qwen2.5-Coder-32B-Instruct:cheapest",
-    "zai-org/GLM-5.2:cheapest",
-    "meta-llama/Llama-3.1-70B-Instruct:featherless-ai",
+    # Mistral-Large was not exposed as a chat model and GLM-5.2 repeatedly
+    # returned empty chat content through our account's router. Nemotron Ultra
+    # is a 550B/55B-active large conversational model with a live Fireworks route.
+    "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4:fireworks-ai",
+    # Llama-3.1-70B is no longer deployed by the providers available to this
+    # account. Llama-3.3-70B preserves the same 70B Llama-family capability tier
+    # and currently has a live Novita route.
+    "meta-llama/Llama-3.3-70B-Instruct:novita",
     "Qwen/Qwen3-Coder-30B-A3B-Instruct:cheapest",
     "deepseek-ai/DeepSeek-V3.1:cheapest",
 ]
@@ -54,8 +56,12 @@ def is_capacity_error(exc):
         "capacity_exhausted" in text
         or "temporarily at capacity" in text
         or "error code: 503" in text
-        or "server_error" in text and "capacity" in text
+        or ("server_error" in text and "capacity" in text)
     )
+
+
+def is_transient_empty(exc):
+    return "empty response" in str(exc).lower()
 
 
 def check_hf_once(client, model):
@@ -92,20 +98,26 @@ def check_hf_once(client, model):
     return text
 
 
-def check_hf(client, model, capacity_retries=4):
-    """Retry only transient provider-capacity failures; protocol errors stay fatal."""
+def check_hf(client, model, retries=4):
+    """Retry transient capacity/empty responses; protocol/model errors stay fatal."""
     last = None
-    for attempt in range(1, capacity_retries + 1):
+    for attempt in range(1, retries + 1):
         try:
             return check_hf_once(client, model)
         except Exception as exc:
             last = exc
-            if not is_capacity_error(exc) or attempt == capacity_retries:
+            retryable = is_capacity_error(exc) or is_transient_empty(exc)
+            if not retryable or attempt == retries:
                 raise
-            wait = min(60, 10 * (2 ** (attempt - 1)))
+            if is_capacity_error(exc):
+                wait = min(60, 10 * (2 ** (attempt - 1)))
+                kind = "capacity"
+            else:
+                wait = min(15, 3 * attempt)
+                kind = "empty-response"
             print(
-                "HF %-72s capacity retry %d/%d in %ds"
-                % (model, attempt, capacity_retries, wait)
+                "HF %-72s %s retry %d/%d in %ds"
+                % (model, kind, attempt, retries, wait)
             )
             time.sleep(wait)
     raise last
@@ -192,9 +204,8 @@ def main():
         for failure in failures:
             print(" -", failure)
         print(
-            "\nDo not launch the array. Persistent HF capacity failures mean the "
-            "provider is not reliable enough for this run window; protocol/model "
-            "errors require changing the route or model before launch."
+            "\nDo not launch the array. The matrix must use only routes that pass "
+            "this exact chat-completion preflight."
         )
         sys.exit(1)
 
