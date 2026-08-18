@@ -89,7 +89,6 @@ def _width_evidence(code: str, width: int) -> List[str]:
     """Return auditable textual evidence that code represents a width."""
     evidence = []
     text = code or ""
-    lower = text.lower()
     pow2 = 1 << width
     umax = pow2 - 1
     smin = -(1 << (width - 1)) if width > 0 else 0
@@ -116,7 +115,7 @@ def _width_evidence(code: str, width: int) -> List[str]:
             evidence.append(label)
 
     # Decimal range/mask constants are accepted as mathematically equivalent
-    # evidence.  Save the exact kind so reviewers can audit false positives.
+    # evidence. Save the exact kind so reviewers can audit false positives.
     if re.search(r"(?<!\d)%d(?!\d)" % pow2, text):
         evidence.append("decimal 2^%d bound (%d)" % (width, pow2))
     if re.search(r"(?<!\d)%d(?!\d)" % umax, text):
@@ -124,9 +123,10 @@ def _width_evidence(code: str, width: int) -> List[str]:
     if str(smin) in text and re.search(r"(?<!\d)%d(?!\d)" % smax, text):
         evidence.append("signed %d-bit range (%d..%d)" % (width, smin, smax))
 
-    # Common masking/modulus formulations.  These are useful when the prompt
-    # asks for explicit wrapping rather than a bitvector declaration.
-    if re.search(r"%\s*%d(?!\d)" % pow2, text):
+    # Common masking/modulus formulations. Using an f-string here is deliberate:
+    # a literal percent sign in an old-style %-formatted regex is interpreted as
+    # a formatting directive and previously crashed the P2S evaluator.
+    if re.search(rf"%\s*{pow2}(?!\d)", text):
         evidence.append("modulo 2^%d" % width)
     if re.search(r"&\s*%d(?!\d)" % umax, text):
         evidence.append("%d-bit mask" % width)
@@ -340,7 +340,7 @@ def evaluate_task(
         seed = int(hashlib.sha256(seed_material.encode()).hexdigest()[:8], 16)
 
         # Requested P2S intervention: trained policies alone receive an explicit
-        # width reminder on attempt 2 after a failed first candidate.  It is
+        # width reminder on attempt 2 after a failed first candidate. It is
         # recorded in every artifact so this cannot be mistaken for a matched
         # trained-vs-untrained treatment.
         bit_reminder = bool(
@@ -473,7 +473,7 @@ def evaluate_task(
         previous_code = record.get("dafny_code", "")
         previous_error = record.get("verifier_output") or record.get("error") or "Unknown failure"
         if record["verifier_success"] and record.get("semantic_aligned") and not bit_ok(record):
-            # Keep the non-trained feedback generic.  The explicit width-focused
+            # Keep the non-trained feedback generic. The explicit width-focused
             # reminder is intentionally reserved for the trained attempt-2 flag.
             previous_error = (
                 "Dafny verification passed, but the candidate did not satisfy all "
@@ -569,9 +569,7 @@ def aggregate(condition_dir: Path, rows: List[Dict[str, Any]]) -> Dict[str, Any]
         return sum(bool(r.get(key)) for r in rows) / n if n else 0.0
 
     applicable = [r for r in rows if r.get("bit_mapping_applicable")]
-    aligned_applicable = [
-        r for r in applicable if r.get("any_aligned")
-    ]
+    aligned_applicable = [r for r in applicable if r.get("any_aligned")]
 
     result = {
         "n_tasks": n,
