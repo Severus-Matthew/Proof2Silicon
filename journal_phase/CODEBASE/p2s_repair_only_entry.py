@@ -8,9 +8,10 @@ The original P2S harness remains unchanged, so the earlier pilot is reproducible
 The trained-only attempt-2 bit-width reminder is preserved exactly as requested.
 """
 
-# Install the API protocol patches first (strict DeepSeek-V4 non-thinking,
-# strict GPT-5.4-nano reasoning=none, HF retry handling).
-import journal_large_eval_entry  # noqa: F401
+# Import the standard P2S entry point so every repair-only run receives the same
+# API protocol patches AND the bit-audit self-test before any paid model call.
+# p2s_eval_entry does not execute its main() when imported.
+import p2s_eval_entry  # noqa: F401
 import test_p2s_journal as p2s
 
 
@@ -28,7 +29,7 @@ def _repair_only_instruction(
     seed,
     bit_reminder,
 ):
-    # Attempt 1 has no previous candidate/error.  For trained and untrained
+    # Attempt 1 has no previous candidate/error. For trained and untrained
     # controller conditions, do not perturb the base coder on that first pass.
     if args.instructor in {"trained", "untrained"} and not previous_code and not previous_error:
         return None, 0
