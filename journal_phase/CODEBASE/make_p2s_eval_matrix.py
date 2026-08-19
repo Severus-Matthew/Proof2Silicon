@@ -77,7 +77,14 @@ def main():
     rows = build()
     args.output.parent.mkdir(parents=True, exist_ok=True)
     with args.output.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(rows[0]), delimiter="\t")
+        # Bash launchers consume the final TSV column directly. Force Unix line
+        # endings so the last value is exactly "0"/"1" rather than "0\r"/"1\r".
+        writer = csv.DictWriter(
+            f,
+            fieldnames=list(rows[0]),
+            delimiter="\t",
+            lineterminator="\n",
+        )
         writer.writeheader()
         writer.writerows(rows)
     print("Wrote %d P2S conditions to %s" % (len(rows), args.output))
